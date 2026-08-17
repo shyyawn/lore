@@ -35,19 +35,23 @@ Slash prompts / `.cursor/commands/` are legacy. New user-invoked workflows are s
 
 ## Install
 
-Cursor can import a GitHub repo whose skills live under `skills/`. Or symlink:
+Cursor can import a GitHub repo whose skills live under `skills/`. Or install locally:
 
 ```bash
 git clone git@github.com:shyyawn/lore.git
 cd lore
-mkdir -p ~/.cursor/skills ~/.agents/skills
-for s in skills/*; do
-  name=$(basename "$s")
-  ln -sfn "$(pwd)/$s" "$HOME/.cursor/skills/$name"
-  ln -sfn "$(pwd)/$s" "$HOME/.agents/skills/$name"
-done
+make install
 ```
 
-`~/.agents/skills` is the portable location (Cursor, Claude Code, Codex). `~/.cursor/skills` is Cursor-only. Symlink both.
+| Target | Does |
+| --- | --- |
+| `make install` | Copy every skill into `~/.cursor/skills` and `~/.agents/skills` |
+| `make status` | Show which installed copies have drifted from the repo |
+| `make uninstall` | Remove this repo's skills from both locations |
+| `make list` | List the skills in this repo |
+
+`~/.agents/skills` is the portable location (Cursor, Claude Code, Codex). `~/.cursor/skills` is Cursor-only. `install` writes both, and leaves skills it does not own (symlinks to other repos) alone.
+
+These are **copies, not symlinks** — a running agent keeps a stable snapshot while you edit. The trade-off is drift: re-run `make install` after every change, and `make status` reports what is stale. Symlink instead (`ln -sfn`) if you would rather edits go live immediately.
 
 Project-local: copy a skill into that repo's `.cursor/skills/` (or `.agents/skills/`).
