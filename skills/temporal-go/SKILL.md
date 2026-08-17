@@ -1,5 +1,5 @@
 ---
-name: temporal-go-2026
+name: temporal-go
 description: >-
   Writes, restyles, and reviews Temporal Go workflows, activities, workers, and
   clients using official Go SDK practice (function references, activity structs,
@@ -18,7 +18,7 @@ do I/O. The cluster records Event History and **replays** workflow code from the
 top to restore state. The Go SDK (`go.temporal.io/sdk`) has **no sandbox** —
 determinism is convention plus `workflowcheck`.
 
-Language idioms follow the `go-2026` skill. This skill **overrides** go-2026
+Language idioms follow the `go` skill. This skill **overrides** the `go` skill
 inside workflow functions: no `slog`, no `go`/`chan`/`select`, no `time.Now` /
 `time.Sleep`, no `WaitGroup`. Activities and `cmd/` wiring stay ordinary Go.
 

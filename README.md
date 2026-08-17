@@ -29,9 +29,9 @@ Slash prompts / `.cursor/commands/` are legacy. New user-invoked workflows are s
 
 | Skill | Use |
 | --- | --- |
-| [go-2026](skills/go-2026) | Idiomatic Go 1.18–1.26 and 2024–2026 layout |
-| [encore-go-2026](skills/encore-go-2026) | Encore.go backends |
-| [temporal-go-2026](skills/temporal-go-2026) | Temporal Go SDK |
+| [go-idioms](skills/go-idioms) | Idiomatic Go 1.18–1.26 and 2024–2026 layout |
+| [encore-go](skills/encore-go) | Encore.go backends |
+| [temporal-go](skills/temporal-go) | Temporal Go SDK |
 
 ## Install
 
