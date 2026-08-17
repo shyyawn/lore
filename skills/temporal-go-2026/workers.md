@@ -168,17 +168,29 @@ Register every Activity the workflow schedules, or mock it.
 - Replay: `worker.NewWorkflowReplayer` + checked-in histories for workflows
   you will change while they run.
 - Time-skipping is built into the test env; do not `time.Sleep` to wait.
-- Deadlock detector: a workflow task that does not yield for **1s of real
-  time** fails as `[TMPRL1101] Potential deadlock detected: workflow goroutine
-  "root" didn't yield for over 1s`. CPU contention — the whole suite in
-  parallel, a loaded CI box — trips it on correct code, and the message names
-  your workflow, so it reads like a determinism bug. Rule out genuine blocking
-  (real I/O, `time.Sleep`, a native lock) first, then raise the same
-  `worker.Options` field on the test env:
+- Deadlock detector: `worker.Options.DeadlockDetectionTimeout` caps how long a
+  workflow task may run, in **real** time, and defaults to 1s. Exceeding it
+  fails the task as `[TMPRL1101] Potential deadlock detected`. The message
+  names your workflow, so it reads like a determinism bug; confirm the code is
+  genuinely non-blocking before believing that. A test suite is the one place
+  where a correct workflow trips it routinely, because tests run many
+  executions on a contended machine — raise it on the env there rather than
+  changing working code:
   `env.SetWorkerOptions(worker.Options{DeadlockDetectionTimeout: time.Minute})`.
 
 Unique Task Queues in integration tests. `//go:build integration` for tests
 that need a real server.
+
+## When it breaks
+
+| Symptom | Usually means |
+| --- | --- |
+| `[TMPRL1101] Potential deadlock detected` | A workflow task exceeded `worker.Options.DeadlockDetectionTimeout` (default **1s**), measured in real time. Suspect blocking workflow code first — I/O, `time.Sleep`, a native lock or channel, a tight CPU loop. Only once the code is demonstrably non-blocking is a starved CPU the explanation; then raise the timeout instead of rewriting correct code. |
+| `unknown activity type` / `unknown workflow type` | Not registered on a Worker polling that Task Queue. Every Worker on a queue registers the same types. |
+| Non-determinism error on replay after a deploy | The command sequence changed for in-flight runs. `workflow.GetVersion`, or a new Workflow type — never an in-place edit. |
+| Duplicate start of a business-key Workflow ID | Do **not** write a `WorkflowExecutionAlreadyStarted` handler by reflex: `WorkflowExecutionErrorWhenAlreadyStarted` defaults to **false**, so `ExecuteWorkflow` returns a handle to the current or last run instead of erroring. To tell a fresh start from an attach, compare the returned `RunID`. Set `WorkflowIDConflictPolicy` (defaults to `Fail`) to `UseExisting` to have the server attach to a *running* execution, and `WorkflowIDReusePolicy` for the *completed* case. Only opt into the error explicitly. |
+| Query is stale, or errors on a finished run | Queries need a live Worker on that queue and history that has not aged out. Do not build reporting on Queries — project to a database. |
+| Activity retries forever on a bad argument | The error is retryable by default. Mark permanent failures with `temporal.NewNonRetryableApplicationError`. |
 
 ## CLI (developer loop)
 

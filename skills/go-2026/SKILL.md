@@ -39,10 +39,21 @@ Experimental `GOEXPERIMENT` APIs are out of scope unless the module already enab
 ```bash
 gofmt -w <files>
 go fix ./<packages>          # skip vendor; repeat until go fix -diff is empty
+go vet ./<packages>          # catches a class of bug tests do not
 go test ./<packages>
 ```
 
 Write the modern form the first time. Do not write old Go and wait for `go fix`.
+
+## When it breaks
+
+| Symptom | Usually means |
+| --- | --- |
+| `undefined: errors.AsType`, `new(expr)` rejected | `go.mod` targets below the version that added it. Write to the module's version; do not bump `go`. |
+| `missing go.sum entry for module providing package …` | A dependency was added but not resolved. `go mod tidy` — never hand-edit `go.sum`. |
+| `go vet`: `conversion from X (int) to string yields a string of one rune` | `string(someIntType)` where you meant `.String()` or `strconv.Itoa`. Compiles, passes tests, wrong in production. |
+| `go fix -diff` still non-empty after a pass | Modernizers do not cascade. Re-run until empty. |
+| Passes alone, fails in `./...` | Shared state or a real-time assumption, exposed by parallelism. `testing/synctest` (1.25+) removes the clock dependency; otherwise find the shared state. |
 
 ## Language (1.18 → now)
 
@@ -55,7 +66,7 @@ Write the modern form the first time. Do not write old Go and wait for `go fix`.
 - `new(expr)` (1.26) for a pointer to a non-zero value. Keep `&T{}` for structs you fill in.
 - `//go:build`, never `// +build`.
 - Range-over-func iterators (`iter.Seq`, `iter.Seq2`) for streaming APIs; a slice is still right for small in-memory data.
-- Go has **no enums**. `iota` is integers. A named string type will not type-check through `any`. Use a `const` of type `string`.
+- Go has **no enums**. A named string type plus typed consts is the idiomatic stand-in (`type Step string`; `const StepPaid Step = "paid"`): it documents intent, serializes as itself, and keeps API contracts honest. Two real limits — the compiler does not check exhaustiveness, and a named type does not assert to `string` through `any` (`any(Step("paid")).(string)` is false; assert to `Step`). Use `iota` only for values that are genuinely ordinal and never serialized — renumbering an `iota` const that reached a database or a wire format is silent data corruption.
 
 ## Architecture (2024–2026)
 
