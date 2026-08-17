@@ -168,6 +168,14 @@ Register every Activity the workflow schedules, or mock it.
 - Replay: `worker.NewWorkflowReplayer` + checked-in histories for workflows
   you will change while they run.
 - Time-skipping is built into the test env; do not `time.Sleep` to wait.
+- Deadlock detector: a workflow task that does not yield for **1s of real
+  time** fails as `[TMPRL1101] Potential deadlock detected: workflow goroutine
+  "root" didn't yield for over 1s`. CPU contention — the whole suite in
+  parallel, a loaded CI box — trips it on correct code, and the message names
+  your workflow, so it reads like a determinism bug. Rule out genuine blocking
+  (real I/O, `time.Sleep`, a native lock) first, then raise the same
+  `worker.Options` field on the test env:
+  `env.SetWorkerOptions(worker.Options{DeadlockDetectionTimeout: time.Minute})`.
 
 Unique Task Queues in integration tests. `//go:build integration` for tests
 that need a real server.
