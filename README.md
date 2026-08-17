@@ -1,28 +1,29 @@
 # lore
 
-What the agent should know: skills now; prompts, rules, and MCP client config later.
+Agent knowledge as files. Skills now; rules, subagents, and MCP client config when they exist.
 
-MCP *servers* stay in their own repos (for example [shyyawn/mcp](https://github.com/shyyawn/mcp)). This repo is only the agent-side lore that *uses* them.
+MCP *servers* (the processes) stay in their own repos — for example [shyyawn/mcp](https://github.com/shyyawn/mcp). This repo only holds what the agent should read.
 
 ## Layout
 
+Matches how public skill libraries are published ([anthropics/skills](https://github.com/anthropics/skills), skills.sh) and where Cursor actually loads files.
+
 ```
 lore/
-├── skills/                    # → ~/.cursor/skills/<name>/
-│   ├── go-2026/
-│   ├── encore-go-2026/
-│   └── temporal-go-2026/
-├── prompts/                   # reusable prompts / commands
-├── rules/                     # always-on rules → .cursor/rules/
-└── mcp/                       # which servers to attach (mcp.json), not server source
+├── skills/<name>/SKILL.md     # Agent Skills (required name + description)
+├── rules/*.mdc                # always-on or glob-scoped rules
+├── agents/                    # subagent definitions
+└── mcp.json                   # MCP *client* config when you add it (not committed secrets)
 ```
 
-| Directory | Maps to | Add when |
+| Path | Installs as | What belongs here |
 | --- | --- | --- |
-| `skills/<name>/SKILL.md` | `~/.cursor/skills/<name>/` or a project's `.cursor/skills/` | the agent should load domain knowledge on trigger |
-| `prompts/` | Cursor prompts / custom commands | you have a repeatable prompt that is not a skill |
-| `rules/` | `.cursor/rules/*.mdc` | guidance that should apply without being invoked |
-| `mcp/` | Cursor MCP client config | you are wiring servers, not implementing them |
+| `skills/<name>/` | `~/.cursor/skills/<name>/` and `~/.agents/skills/<name>/` | Repeatable domain playbooks. Cursor also loads `.claude/skills` and `.codex/skills`. |
+| `rules/*.mdc` | `~/.cursor/rules/` or a project's `.cursor/rules/` | Short always-on or glob-scoped constraints. Dynamic “apply intelligently” rules are skills instead. |
+| `agents/` | `~/.cursor/agents/` | Subagent personas. Add when you have one. |
+| `mcp.json` | `~/.cursor/mcp.json` or `.cursor/mcp.json` | Which servers to attach. Use `${env:NAME}` for secrets. Never commit keys. |
+
+Slash prompts / `.cursor/commands/` are legacy. New user-invoked workflows are skills with `disable-model-invocation: true` in frontmatter.
 
 ## Skills
 
@@ -34,12 +35,19 @@ lore/
 
 ## Install
 
+Cursor can import a GitHub repo whose skills live under `skills/`. Or symlink:
+
 ```bash
 git clone git@github.com:shyyawn/lore.git
 cd lore
+mkdir -p ~/.cursor/skills ~/.agents/skills
 for s in skills/*; do
-  ln -sfn "$(pwd)/$s" "$HOME/.cursor/skills/$(basename "$s")"
+  name=$(basename "$s")
+  ln -sfn "$(pwd)/$s" "$HOME/.cursor/skills/$name"
+  ln -sfn "$(pwd)/$s" "$HOME/.agents/skills/$name"
 done
 ```
 
-Project-local: copy a skill into that repo's `.cursor/skills/`.
+`~/.agents/skills` is the portable location (Cursor, Claude Code, Codex). `~/.cursor/skills` is Cursor-only. Symlink both.
+
+Project-local: copy a skill into that repo's `.cursor/skills/` (or `.agents/skills/`).
