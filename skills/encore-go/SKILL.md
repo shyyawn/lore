@@ -14,9 +14,9 @@ Encore.go is an **infrastructure-from-code** backend platform, not an HTTP
 router. Declare services, APIs, Postgres, Pub/Sub, cron, secrets, caches, and
 object storage in Go. Encore provisions them locally and in the cloud.
 
-Language idioms follow the `go` skill. Target the module's `go` version
+Language idioms follow the `go-idioms` skill. Target the module's `go` version
 (Encore.go requires **1.22+**; **1.26** is supported from Encore v1.56). This
-skill **overrides** `go` on layout, HTTP, logging, errors, and tests: do not
+skill **overrides** `go-idioms` on layout, HTTP, logging, errors, and tests: do not
 add `net/http` servers, `cmd/` binaries, `slog` in handlers, or `go test`.
 
 Catalogs: [architecture.md](architecture.md) (services, DI, split rules),

@@ -42,7 +42,7 @@ comms/email/     comms/push/
 - `encore.app` at the repo root. One per backend.
 - Tests live next to code (`foo_test.go`).
 - Sub-packages of a service are internal helpers. They **cannot** define APIs.
-- Do not apply the `go` skill's `cmd/<bin>/main.go` to an Encore app. Encore is the binary.
+- Do not apply the `go-idioms` skill's `cmd/<bin>/main.go` to an Encore app. Encore is the binary.
 - No `domain/` / `usecase/` / `adapter/` trees unless the repo already has them.
 - No `util/`, `common/`, `helpers/` at the app root. Name packages for a noun.
 

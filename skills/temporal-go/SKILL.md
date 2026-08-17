@@ -18,7 +18,7 @@ do I/O. The cluster records Event History and **replays** workflow code from the
 top to restore state. The Go SDK (`go.temporal.io/sdk`) has **no sandbox** —
 determinism is convention plus `workflowcheck`.
 
-Language idioms follow the `go` skill. This skill **overrides** the `go` skill
+Language idioms follow the `go-idioms` skill. This skill **overrides** `go-idioms`
 inside workflow functions: no `slog`, no `go`/`chan`/`select`, no `time.Now` /
 `time.Sleep`, no `WaitGroup`. Activities and `cmd/` wiring stay ordinary Go.
 

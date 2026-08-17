@@ -1,5 +1,5 @@
 ---
-name: go
+name: go-idioms
 description: >-
   Writes, restyles, and reviews Go using idioms from Go 1.18 through 1.26
   (generics, any, slog, slices/maps, iterators, ServeMux, errors.AsType,
