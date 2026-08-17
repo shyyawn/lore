@@ -1,17 +1,28 @@
-# cursor-config
+# lore
 
-Personal [Cursor](https://cursor.com) agent config: skills, and later prompts, rules, and MCP client config.
+What the agent should know: skills now; prompts, rules, and MCP client config later.
 
-MCP *servers* (the programs that speak the protocol) live in their own repos — for example [shyyawn/mcp](https://github.com/shyyawn/mcp). This repo only holds the agent-side config that *uses* them.
+MCP *servers* stay in their own repos (for example [shyyawn/mcp](https://github.com/shyyawn/mcp)). This repo is only the agent-side lore that *uses* them.
 
 ## Layout
 
 ```
-skills/          # Cursor Agent Skills (~/.cursor/skills/<name>/)
-prompts/         # reserved
-rules/           # reserved (.cursor/rules)
-mcp/             # reserved (mcp.json / server lists, not server source)
+lore/
+├── skills/                    # → ~/.cursor/skills/<name>/
+│   ├── go-2026/
+│   ├── encore-go-2026/
+│   └── temporal-go-2026/
+├── prompts/                   # reusable prompts / commands
+├── rules/                     # always-on rules → .cursor/rules/
+└── mcp/                       # which servers to attach (mcp.json), not server source
 ```
+
+| Directory | Maps to | Add when |
+| --- | --- | --- |
+| `skills/<name>/SKILL.md` | `~/.cursor/skills/<name>/` or a project's `.cursor/skills/` | the agent should load domain knowledge on trigger |
+| `prompts/` | Cursor prompts / custom commands | you have a repeatable prompt that is not a skill |
+| `rules/` | `.cursor/rules/*.mdc` | guidance that should apply without being invoked |
+| `mcp/` | Cursor MCP client config | you are wiring servers, not implementing them |
 
 ## Skills
 
@@ -23,14 +34,12 @@ mcp/             # reserved (mcp.json / server lists, not server source)
 
 ## Install
 
-Copy or symlink into your personal skills directory:
-
 ```bash
-git clone git@github.com:shyyawn/cursor-config.git
-cd cursor-config
+git clone git@github.com:shyyawn/lore.git
+cd lore
 for s in skills/*; do
   ln -sfn "$(pwd)/$s" "$HOME/.cursor/skills/$(basename "$s")"
 done
 ```
 
-Project-local install: copy a skill into that repo's `.cursor/skills/`.
+Project-local: copy a skill into that repo's `.cursor/skills/`.
