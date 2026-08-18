@@ -129,11 +129,13 @@ if v == workflow.DefaultVersion {
 
 Keep the `GetVersion` call after collapsing to one branch so stale replays
 fail fast. Unique `changeID` per change; in loops append the index
-(`fmt.Sprintf("step-%d", i)`). Find open patched runs:
+(`fmt.Sprintf("step-%d", i)`). Search-attribute values are
+`{changeID}-{version}` (e.g. `charge-via-psp-1`), not the bare change ID.
+Find open patched runs:
 
 ```bash
 temporal workflow list --query \
-  'WorkflowType = "OrderWorkflow" AND ExecutionStatus = "Running" AND TemporalChangeVersion = "charge-via-psp"'
+  'WorkflowType = "OrderWorkflow" AND ExecutionStatus = "Running" AND TemporalChangeVersion = "charge-via-psp-1"'
 ```
 
 ## Worker Versioning

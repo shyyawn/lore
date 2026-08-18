@@ -96,7 +96,7 @@ Layout is earned: `cmd/` for binaries, `internal/` for private code. `pkg/` only
 - Sentinels (`var ErrNotFound = errors.New(...)`) + `errors.Is`. Never `nil, nil` for "not found". Never compare error strings.
 - `defer` cleanup immediately after the matching success. `t.Cleanup` in tests.
 - Goroutines have a lifetime the caller can see: `WaitGroup.Go` (1.25), `errgroup`, or an explicit done path. No fire-and-forget `go f()` in libraries.
-- In `select`, `time.After` leaks; use `time.NewTimer` and `Stop`.
+- In `select` on 1.22 and earlier, `time.After` leaks until it fires; use `time.NewTimer` and `Stop`. On 1.23+ unstopped timers are GC'd — `time.After` is fine; call `Stop` only to cancel a pending timer.
 - `http.NewRequestWithContext`, never `http.Get`/`http.Post`. Close response bodies. Set `ReadHeaderTimeout` on `http.Server`; shut down with `Shutdown(ctx)`.
 - `sql.DB` is a pool: `Open` once, not per request.
 - `os`/`io`, never `io/ioutil`.

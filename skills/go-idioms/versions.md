@@ -23,6 +23,7 @@ Generics: functions and types with constraints (`comparable`, interface type set
 | --- | --- |
 | `var n int64; atomic.AddInt64(&n, 1)` | `var n atomic.Int64; n.Add(1)` |
 | `atomic.Value` for typed pointers | `atomic.Pointer[T]` |
+| `[]byte(fmt.Sprintf(...))` | `fmt.Appendf(nil, ...)` |
 
 ## 1.20 — wrapping many errors, comparable
 
@@ -32,6 +33,7 @@ Generics: functions and types with constraints (`comparable`, interface type set
 | `errors.Is`/`As` on a single wrap | they walk joined errors too |
 | `http.ResponseController` hacks | `http.NewResponseController` where needed |
 | global `math/rand.Seed` | own `rand.Source`; 1.22: `math/rand/v2` |
+| `strings.HasPrefix` + `TrimPrefix` | `strings.CutPrefix` |
 
 ## 1.21 — slog, slices, maps, cmp, builtins, WithoutCancel
 
@@ -70,6 +72,7 @@ Libraries never call `slog.SetDefault()` — `main` owns that.
 | custom intern maps | `"unique"` for canonical comparable values |
 | `for i := len(s)-1; i >= 0; i--` | `for i, v := range slices.Backward(s)` |
 | buffered timer channel assumptions | timers are synchronous; do not rely on `Reset` racing a receive |
+| `time.After` leak workaround (`NewTimer` + `defer Stop`) | `time.After` is fine; unstopped timers are GC'd |
 
 New packages: `iter` (`Seq`, `Seq2`, `Pull`), `unique`, `structs`. Implement iterators with `yield`; return false from yield means the caller `break`s — stop cleanly.
 
@@ -82,8 +85,6 @@ New packages: `iter` (`Seq`, `Seq2`, `Pull`), `unique`, `structs`. Implement ite
 | `for i := 0; i < b.N; i++` + `b.ResetTimer()` | `for b.Loop()` |
 | `tools.go` with `_ "golangci-lint"` | `tool` directive in `go.mod`; run `go tool <name>` |
 | `filepath.Join(root, userPath)` without jail | `os.OpenRoot` / `os.Root` |
-| `[]byte(fmt.Sprintf(...))` | `fmt.Appendf(nil, ...)` |
-| `strings.HasPrefix` + `TrimPrefix` | `strings.CutPrefix` |
 | `crypto/rand` hex helpers | `rand.Text` where a readable secret is enough |
 | `testing/synctest` via `GOEXPERIMENT` | available experimental; prefer 1.25 stable API |
 

@@ -10,7 +10,7 @@ appears.
 
 ```
 my-app/
-  encore.app          # CUE manifest (text). App id, CORS, build flags.
+  encore.app          # JSON/HJSON manifest. App id, CORS, build flags.
   go.mod              # module path is often encore.app
   hello/
     hello.go          # //encore:api → this package is a service

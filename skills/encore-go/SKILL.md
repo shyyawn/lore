@@ -25,7 +25,7 @@ Catalogs: [architecture.md](architecture.md) (services, DI, split rules),
 
 ## First step
 
-1. Read `encore.app` (CUE text, despite the `.app` suffix) and `go.mod`.
+1. Read `encore.app` (JSON/HJSON — comments work because it is HuJSON, not CUE) and `go.mod`.
 2. Find existing `//encore:api` packages — each is a service. Match that shape.
 3. Never edit `encore.gen/` or `.encore/` (CLI-regenerated).
 
