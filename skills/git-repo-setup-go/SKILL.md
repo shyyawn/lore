@@ -11,7 +11,8 @@ description: >-
 
 Follow `git-repo-setup` for the kit (init, Lefthook, mise, just/Make, ignore
 basics). This file fills the **Go** commands. Language idioms stay in
-`go-idioms`. Encore layout stays in `encore-go` / `encore-go-app-structure`.
+`go-idioms`. How to write tests stays in `go-unit-tests`. Encore layout stays
+in `encore-go` / `encore-go-app-structure`.
 
 ## First step
 

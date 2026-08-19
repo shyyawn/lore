@@ -104,6 +104,9 @@ Layout is earned: `cmd/` for binaries, `internal/` for private code. `pkg/` only
 
 ## Tests
 
+How to write them: `go-unit-tests`. Encore runner: `encore-go`. Temporal:
+`temporal-go`.
+
 - `t.Context()` / `b.Context()` (1.24). `for b.Loop()` in new benchmarks.
 - `testing/synctest` (stable 1.25) instead of `time.Sleep` to "wait for a goroutine".
 - Table tests with `t.Run`; `t.Parallel()` when the test is isolated. Stdlib `testing` for new code; do not rip out existing testify.
