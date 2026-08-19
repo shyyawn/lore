@@ -22,6 +22,8 @@ add `net/http` servers, `cmd/` binaries, `slog` in handlers, or `go test`.
 Catalogs: [architecture.md](architecture.md) (services, DI, split rules),
 [primitives.md](primitives.md) (APIs, auth, errors, middleware),
 [infrastructure.md](infrastructure.md) (db, pubsub, cron, secrets, config).
+Package layout: `encore-go-app-structure`. If the module also uses Temporal:
+`encore-temporal-go-app-structure`.
 
 ## First step
 

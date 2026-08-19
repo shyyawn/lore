@@ -25,6 +25,8 @@ inside workflow functions: no `slog`, no `go`/`chan`/`select`, no `time.Now` /
 Catalogs: [determinism.md](determinism.md) (replay, workflowcheck, GetVersion),
 [primitives.md](primitives.md) (activities, errors, signals/queries/updates,
 saga), [workers.md](workers.md) (client, worker, versioning, Nexus, tests, CLI).
+Package layout: `temporal-go-app-structure`. If `encore.app` exists:
+`encore-temporal-go-app-structure`.
 
 ## First step
 

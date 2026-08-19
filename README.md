@@ -32,7 +32,10 @@ Slash prompts / `.cursor/commands/` are legacy. New user-invoked workflows are s
 | [go-idioms](skills/go-idioms) | Idiomatic Go 1.18–1.26 and 2024–2026 layout |
 | [typescript-idioms](skills/typescript-idioms) | Idiomatic TypeScript 5–7 and 2024–2026 layout |
 | [encore-go](skills/encore-go) | Encore.go backends |
+| [encore-go-app-structure](skills/encore-go-app-structure) | Encore Go package layout |
 | [temporal-go](skills/temporal-go) | Temporal Go SDK |
+| [temporal-go-app-structure](skills/temporal-go-app-structure) | Temporal Go package layout |
+| [encore-temporal-go-app-structure](skills/encore-temporal-go-app-structure) | Encore + Temporal Go layout |
 
 ## Install
 
