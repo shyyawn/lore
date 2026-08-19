@@ -56,7 +56,10 @@ EOF
 That leak is real. `git commit -m "fix: handle `set`"` or `<<EOF` without
 quotes runs `set` (or `printenv`, …) in the shell and can paste the
 environment into the commit. Never `-m` twice, never unquoted `<<EOF`,
-never `--no-verify`.
+never `--no-verify`. Do not pass `--trailer`. Do not put `Authored by`,
+`Co-authored-by`, `Made-with`, or any Cursor / Claude / Copilot /
+generator banner in the message. Those are opt-in: add them only when
+the user explicitly asks.
 
 Honor leftover commitlint / Lefthook / commitizen in the repo. If the
 hook rewrites files, new commit — do not amend a failed one unless the
@@ -92,7 +95,9 @@ flags, env vars, HTTP, persisted files).
 
 - Copy the official skill into `skills/` or rewrite its type table here.
 - Add Node / commitlint to a Go or Python repo just to lint messages.
-- Mention authorship trailers (`Co-authored-by`, generator banners).
+- Pass `--trailer` or add agent authorship (`Authored by Cursor`,
+  Claude, Copilot, `Co-authored-by`, generator banners) unless the
+  user asks.
 - Use Gitmoji as the type.
 - Use `<<EOF` (unquoted), `git commit -m "..."`, or printf/echo that lets
   the shell expand the message. Always `<<'EOF'`.
