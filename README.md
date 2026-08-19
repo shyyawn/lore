@@ -29,7 +29,7 @@ Slash prompts / `.cursor/commands/` are legacy. New user-invoked workflows are s
 
 Three layers. That is the whole agent setup.
 
-1. **This repo's skills** — how we write Go, TypeScript, Encore, and Temporal, plus a Conventional Commits *overlay* for those languages.
+1. **This repo's skills** — how we write Go, TypeScript, Encore, and Temporal, plus a Conventional Commits *overlay* for those languages and a 2026 Git repo kit.
 2. **Three official Cursor plugins** — live tooling and vendor how-tos that this repo does not duplicate.
 3. **One official vendor skill** — Conventional Commits format, from conventional-changelog. Not a Cursor plugin.
 
@@ -68,6 +68,10 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | Skill | Use |
 | --- | --- |
 | [conventional-commits](skills/conventional-commits) | Go/Python/TS overlay on the official `conventional-commit-message` skill (install that first — [Start here](#start-here-cursor)) |
+| [git-repo-setup](skills/git-repo-setup) | 2026 Git repo kit: init, hooks, mise, just/Make, ignore/attributes |
+| [git-repo-setup-go](skills/git-repo-setup-go) | Go overlay: gofmt, go vet, go test / encore test |
+| [git-repo-setup-typescript](skills/git-repo-setup-typescript) | TypeScript overlay: Biome, tsc, vitest, commitlint |
+| [git-repo-setup-python](skills/git-repo-setup-python) | Python overlay: uv, ruff, pytest |
 | [go-idioms](skills/go-idioms) | Idiomatic Go 1.18–1.26 and 2024–2026 layout |
 | [typescript-idioms](skills/typescript-idioms) | Idiomatic TypeScript 5–7 and 2024–2026 layout |
 | [encore-go](skills/encore-go) | Encore.go backends |
