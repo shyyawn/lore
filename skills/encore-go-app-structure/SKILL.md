@@ -35,7 +35,8 @@ If `go.temporal.io/sdk` is already a dependency, stop and follow
 ## Hard rules
 
 - **One Encore app = the entire backend monorepo.** A second `encore.app`
-  splits the application model (tracing, Flow, service catalog).
+  splits the application model (tracing, Flow, service catalog). Extra
+  Go modules beside Encore are `go-mono-repo`, not a second `encore.app`.
 - **A Go package is a service** if it contains `//encore:api` **or**
   `//encore:service`. Package name = service name. The compiler discovers
   services; there is no registration file.

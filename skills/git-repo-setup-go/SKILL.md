@@ -12,13 +12,16 @@ description: >-
 Follow `git-repo-setup` for the kit (init, Lefthook, mise, just/Make, ignore
 basics). This file fills the **Go** commands. Language idioms stay in
 `go-idioms`. How to write tests stays in `go-unit-tests`. Encore layout stays
-in `encore-go` / `encore-go-app-structure`.
+in `encore-go` / `encore-go-app-structure`. Several `go.mod` files or a
+`go.work`: `go-mono-repo` (test with `GOWORK=off` per published module).
 
 ## First step
 
 1. Apply `git-repo-setup` (new vs existing, one hook manager, one task runner).
 2. Read `go.mod` (`go` version). Do not bump `go` to unlock a linter.
 3. If `encore.app` exists, tests are `encore test`, not `go test`.
+4. If there is more than one `go.mod`, stop and follow `go-mono-repo`
+   for workspace vs `GOWORK=off` before writing Just/Lefthook recipes.
 
 Polyglot (Go + a `package.json` app): also apply `git-repo-setup-typescript`.
 One `lefthook.yml`, one Justfile, both formatters.
@@ -69,6 +72,11 @@ vendor/
 Commit `vendor/` only if the module already vendors. Then mark it
 `vendor/** linguist-vendored=true` in `.gitattributes`. Encore:
 `encore.gen/** linguist-generated=true`.
+
+[github/gitignore Go.gitignore](https://github.com/github/gitignore/blob/main/Go.gitignore)
+ignores `go.work` and `go.work.sum`. That is correct for a personal
+workspace overlay. If `go-mono-repo` says **commit** the workspace (lockstep
+modules), delete those ignore lines so `go.work` / `go.work.sum` are tracked.
 
 ## Lefthook (Go commands)
 

@@ -36,7 +36,8 @@ Do **not** create `domain/`, `usecase/`, `adapter/`, `controller/`, `repository/
 
 Inside a service (handlers, persistence, shutdown): `go-backend`. When
 invariants appear: `go-ddd` — still inside the package, still no those
-folders.
+folders. More than one `go.mod` / `go.work`: `go-mono-repo`. Default
+stays **this** tree (one module).
 
 ## Dependency direction
 
