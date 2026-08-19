@@ -25,6 +25,35 @@ lore/
 
 Slash prompts / `.cursor/commands/` are legacy. New user-invoked workflows are skills with `disable-model-invocation: true` in frontmatter.
 
+## Start here (Cursor)
+
+Two layers. That is the whole agent setup.
+
+1. **This repo's skills** — how we write Go, TypeScript, Encore, and Temporal (layout and 2024–2026 idioms).
+2. **Three official Cursor plugins** — live tooling and vendor how-tos that this repo does not duplicate.
+
+Install the skills (`make install` below), then in Cursor agent chat run these three commands (user scope, so they apply in every project):
+
+```
+/add-plugin encore
+/add-plugin temporal
+/add-plugin svelte
+```
+
+| Plugin | Covers | Do not also install |
+| --- | --- | --- |
+| [encore](https://cursor.com/marketplace/encore) | Live MCP against `encore run` (services, DBs, traces, call endpoints), plus Encore's own rules/skills/commands | `npx add-skill encoredev/skills` or a second Encore MCP |
+| [temporal](https://cursor.com/marketplace/temporal) | Official Temporal SDK, CLI, and Cloud skill (`temporal-developer`) | `npx skills add temporalio/skill-temporal-developer` or the Temporal docs MCP |
+| [svelte](https://cursor.com/marketplace/svelte) | Svelte MCP, skills, and the `svelte-file-editor` agent | Extra Svelte skill packs or a second Svelte MCP |
+
+That combination covers the stack. You do **not** need more plugins, skill catalogs, or MCP servers to start.
+
+**Who wins when they overlap:** lore skills own Go package layout and Encore+Temporal structure (`encore-go-app-structure`, `temporal-go-app-structure`, `encore-temporal-go-app-structure`). The plugins own live inspection (Encore MCP), official Temporal CLI/SDK encyclopedias, and Svelte UI. Do not copy plugin skills into `skills/` — `make uninstall` would wipe them, and you would be forking vendor docs.
+
+Plugins are Cursor-only (`/add-plugin` is not available in the Cursor CLI). After installing, restart the agent chat if MCP tools do not appear.
+
+Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal server start-dev`), Docker for local Postgres, Node for Svelte. Install those when you open a real app, not as agent knowledge.
+
 ## Skills
 
 | Skill | Use |
@@ -38,6 +67,8 @@ Slash prompts / `.cursor/commands/` are legacy. New user-invoked workflows are s
 | [encore-temporal-go-app-structure](skills/encore-temporal-go-app-structure) | Encore + Temporal Go layout |
 
 ## Install
+
+Cursor plugins are the other half of setup — see [Start here](#start-here-cursor). This section is only the skills in this repo.
 
 Cursor can import a GitHub repo whose skills live under `skills/`. Or install locally:
 
