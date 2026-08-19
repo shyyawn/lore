@@ -6,7 +6,9 @@ Persistence wiring: `go-backend` `internals.md`. Encore API boundary:
 
 ## Aggregate
 
-Methods are the API. Invalid combinations cannot be constructed.
+Methods are the API. Invalid combinations cannot be constructed. Name
+methods in the ubiquitous language (`Cancel`, `Confirm`), not CRUD
+(`SetStatus`). Errors name the rule (`ErrAlreadyCanceled`).
 
 ```go
 type Training struct {
@@ -14,40 +16,33 @@ type Training struct {
 	userID   UserID
 	when     time.Time
 	canceled bool
-	events   []Event
 }
 
 func NewTraining(id TrainingID, userID UserID, when time.Time) (Training, error) {
-	if when.Before(time.Now()) { // or a passed clock in tests
+	if !when.After(time.Now()) {
 		return Training{}, ErrNotInFuture
 	}
-	t := Training{id: id, userID: userID, when: when}
-	t.record(TrainingScheduled{ID: id, UserID: userID, When: when})
-	return t, nil
+	return Training{id: id, userID: userID, when: when}, nil
 }
 
-func (t *Training) Cancel(reason string) error {
+func (t *Training) Cancel(reason string) (Event, error) {
 	if t.canceled {
-		return ErrAlreadyCanceled
+		return nil, ErrAlreadyCanceled
 	}
 	t.canceled = true
-	t.record(TrainingCanceled{ID: t.id, Reason: reason})
-	return nil
+	return TrainingCanceled{ID: t.id, Reason: reason}, nil
 }
-
-func (t Training) Events() []Event { return slices.Clone(t.events) }
 ```
 
-- Unexport fields that have rules. Export on a DTO at the API boundary if
-  the wire type is a different shape.
-- `NewX` / methods return sentinels (`ErrAlreadyCanceled`). Handlers map
-  them (`go-backend`).
+- Unexport fields that have rules. Map to a DTO at the API / sqlc boundary.
+- `NewX` / methods return sentinels. Handlers map them (`go-backend`).
 - Table-test the methods (`go-unit-tests`). Do not test SQL in the same
   test as "cannot cancel twice".
-- Pass a clock (`func() time.Time` or `synctest`) instead of sprinkling
-  `time.Now` if "future" is a rule you assert.
+- Time: `testing/synctest` (1.25+) in tests. Do not add a clock interface
+  only to freeze `time.Now`.
 
-No aggregate: a row you only Get/Save with no method that can fail.
+No aggregate: a row you only Get/Save with no method that can fail. That
+corner stays `go-backend` even if this package has an aggregate next to it.
 
 ## Value object
 
@@ -73,8 +68,7 @@ func (m Money) Add(o Money) (Money, error) {
 ```
 
 Equal by value. No `ID`. Never `float64` for money (`go-100-mistakes-avoid`
-#18). IDs: a named type (`type TrainingID string`), not a raw `string`
-through every signature once two ID kinds exist.
+#18). IDs: a named type (`type TrainingID string`) once two ID kinds exist.
 
 ## Repository
 
@@ -83,22 +77,25 @@ Collection of aggregates. Same consumer-side rule as `go-backend`:
 ```go
 type TrainingStore interface {
 	Get(ctx context.Context, id TrainingID) (Training, error)
-	Save(ctx context.Context, t Training) error
+	Save(ctx context.Context, t Training, events ...Event) error
 }
 ```
 
-- `Save` persists the aggregate **and** (in the same transaction when you
-  have one) the outbox rows for `t.Events()`. Then clear or do not reload
-  events as if they were uncommitted.
+- `Save` persists the aggregate **and** outbox rows for `events` in **one
+  transaction**. Then a relay publishes. That is the reliability default
+  (no dual-write).
+- sqlc: `Save` maps `Training` → generated params, `Get` maps the row →
+  `Training` (unexported fields via a constructor in this package). Do
+  not return `db.Training` as the aggregate.
 - Optimistic concurrency: a version column, `ErrConflict` on stale write.
   Add it when two writers exist, not on day one.
-- No `List` on this interface unless a command needs it. Queries that are
-  screens of data are a different function (and, later, a different model).
+- No `List` on this interface unless a command needs it. Screens of data
+  are a different function (and, later, a different model).
 
 ## Domain events
 
-Values. The aggregate appends them. The application layer publishes
-**after** a successful save.
+Values **returned** from the method that caused them. `nil` means nothing
+emitted. The aggregate does not import a bus.
 
 ```go
 type Event interface{ event() }
@@ -111,10 +108,17 @@ type TrainingCanceled struct {
 func (TrainingCanceled) event() {}
 ```
 
-Encore: publish on the service's `*pubsub.Topic` in the API function after
-`Save`. Temporal: the workflow is the long-running reaction — do not
-invent a second process manager. Same-process listener: a function call,
-not a broker.
+Do not plug a publisher into `NewTraining`. Tests should not need a fake
+broker to cancel a training.
+
+Consumers are **idempotent**. Outbox delivery is at-least-once. Dedup on
+event ID or make the apply an upsert.
+
+Encore: if loss of a publish is unacceptable, write the outbox row in the
+same `sqldb` transaction as the aggregate, then publish from a worker.
+`topic.Publish` *after* `Save` is dual-write — fine for logs, not for
+another service that must not miss the event. Temporal: the workflow is
+the long-running reaction. Same-process listener: a function call.
 
 Do not import the subscriber's package from the aggregate.
 
@@ -128,18 +132,11 @@ func (s *Service) CancelTraining(ctx context.Context, p *CancelParams) error {
 	if err != nil {
 		return err
 	}
-	if err := t.Cancel(p.Reason); err != nil {
+	ev, err := t.Cancel(p.Reason)
+	if err != nil {
 		return err
 	}
-	if err := s.trainings.Save(ctx, t); err != nil {
-		return err
-	}
-	for _, e := range t.Events() {
-		if err := s.publish(ctx, e); err != nil {
-			return err
-		}
-	}
-	return nil
+	return s.trainings.Save(ctx, t, ev)
 }
 ```
 

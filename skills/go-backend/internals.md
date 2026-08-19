@@ -10,20 +10,22 @@ func (s *Server) handleGetItem(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	item, err := s.items.Get(r.Context(), id)
 	if err != nil {
-		writeErr(w, err)
+		s.writeErr(r.Context(), w, err)
 		return
 	}
 	writeJSON(w, http.StatusOK, item)
 }
 ```
 
-- `Server` holds deps (`*slog.Logger`, store, clock). Constructed in `main`.
+- `Server` holds deps (`*slog.Logger`, store). Constructed in `main`.
 - `writeErr` maps `ErrNotFound` → 404, `ErrConflict` → 409, else 500 and
-  log the 500. Do not stringify `err` into the client body for internals.
-- Decode with a size-limited `json.Decoder`. Do not `json.Unmarshal` a
-  unbounded `io.ReadAll`.
+  `slog.ErrorContext` the 500. Do not stringify `err` into the client body.
+- Decode with a size-limited `json.Decoder`. Do not `json.Unmarshal` an
+  unbounded `io.ReadAll`. JSON tags: `omitzero` on `time.Time` (1.24+).
 - Authn identity is an argument or a small type, not a magic `context`
   value the domain has to fish out.
+- Request logs: `slog.InfoContext(r.Context(), ...)`. Plain `Info` drops
+  trace IDs once `otelhttp` is in the stack.
 
 ## API (Encore)
 
@@ -56,18 +58,20 @@ type Item struct {
 var ErrNotFound = errors.New("item not found")
 ```
 
-SQL type is concrete:
+SQL type is concrete. Prefer `pgxpool` for Postgres; `database/sql` is
+fine when the module already uses it. `lib/pq` is maintenance-mode — do
+not add it.
 
 ```go
 type ItemSQL struct {
-	db *sql.DB
+	db *pgxpool.Pool
 }
 
 func (s ItemSQL) Get(ctx context.Context, id string) (Item, error) {
 	var it Item
-	err := s.db.QueryRowContext(ctx, `SELECT id, name FROM items WHERE id = $1`, id).
+	err := s.db.QueryRow(ctx, `SELECT id, name FROM items WHERE id = $1`, id).
 		Scan(&it.ID, &it.Name)
-	if errors.Is(err, sql.ErrNoRows) {
+	if errors.Is(err, pgx.ErrNoRows) {
 		return Item{}, ErrNotFound
 	}
 	if err != nil {
@@ -77,35 +81,40 @@ func (s ItemSQL) Get(ctx context.Context, id string) (Item, error) {
 }
 ```
 
-- Two or three methods. Add a method when a caller needs it, not "for the
-  whole database".
+- Two or three methods. Add a method when a caller needs it.
 - Fake: an in-memory map in `item_test.go`. Same interface.
-- Transactions: a method that takes `func(tx ItemStore) error`, or a
-  `Begin`/`Commit` on a small unit-of-work type. Do not pass `*sql.Tx`
+- Transactions: a method that takes `func(tx ItemStore) error`, or
+  `Begin`/`Commit` on a small unit-of-work type. Do not pass `pgx.Tx`
   into domain functions.
-- pgx: `pgx.ErrNoRows` maps the same way. Encore: `sqldb.ErrNoRows`.
+- sqlc: `ItemSQL` holds `*db.Queries` (and a pool for tx). Map
+  `db.GetItemRow` → `Item` here. `sql.ErrNoRows` / `pgx.ErrNoRows`
+  become `ErrNotFound` before they leave the store. Encore: `sqldb.ErrNoRows`.
+- CRUD with no rules: the API may call sqlc directly. Introduce
+  `ItemStore` when a test or a rule needs it — not a folder named
+  `repository`.
 
 ## Config and wiring (non-Encore)
 
 ```go
-// cmd/itemd/main.go
 func main() {
+	ctx := context.Background()
 	cfg := configFromFlags()
 	log := slog.New(slog.NewJSONHandler(os.Stderr, nil))
 	slog.SetDefault(log)
 
-	db, err := sql.Open("pgx", cfg.DSN)
+	pool, err := pgxpool.New(ctx, cfg.DSN)
 	if err != nil {
 		log.Error("open db", "err", err)
 		os.Exit(1)
 	}
-	defer db.Close()
-
-	srv := &Server{
-		items: ItemSQL{db: db},
-		log:   log,
+	defer pool.Close()
+	if err := pool.Ping(ctx); err != nil {
+		log.Error("ping db", "err", err)
+		os.Exit(1)
 	}
-	if err := srv.run(context.Background(), cfg.Addr); err != nil {
+
+	srv := &Server{items: ItemSQL{db: pool}, pool: pool, log: log}
+	if err := srv.run(ctx, cfg); err != nil {
 		log.Error("run", "err", err)
 		os.Exit(1)
 	}
@@ -114,19 +123,29 @@ func main() {
 
 `configFromFlags` fills a typed struct (`Addr`, `DSN`, timeouts). No
 global `Cfg`. Encore: `encore.dev/config` and `initService` instead of
-this `main`.
+this `main`. `*sql.DB`: `PingContext`, then `SetMaxOpenConns` /
+`SetMaxIdleConns` / `SetConnMaxLifetime`. `pgxpool` takes `MaxConns` in
+the parse config.
 
-## Shutdown (non-Encore)
+## HTTP server and shutdown (non-Encore)
 
 ```go
-func (s *Server) run(ctx context.Context, addr string) error {
-	ctx, stop := signal.NotifyContext(ctx, os.Interrupt)
+func (s *Server) run(ctx context.Context, cfg Config) error {
+	ctx, stop := signal.NotifyContext(ctx, os.Interrupt, syscall.SIGTERM)
 	defer stop()
 
+	mux := http.NewServeMux()
+	mux.HandleFunc("GET /livez", s.handleLive)
+	mux.HandleFunc("GET /readyz", s.handleReady)
+	s.routes(mux)
+
 	httpSrv := &http.Server{
-		Addr:              addr,
-		Handler:           s.routes(),
+		Addr:              cfg.Addr,
+		Handler:           mux,
 		ReadHeaderTimeout: 5 * time.Second,
+		ReadTimeout:       15 * time.Second,
+		WriteTimeout:      15 * time.Second,
+		IdleTimeout:       60 * time.Second,
 	}
 
 	g, ctx := errgroup.WithContext(ctx)
@@ -144,10 +163,26 @@ func (s *Server) run(ctx context.Context, addr string) error {
 	})
 	return g.Wait()
 }
+
+func (s *Server) handleLive(w http.ResponseWriter, _ *http.Request) {
+	w.WriteHeader(http.StatusOK)
+}
+
+func (s *Server) handleReady(w http.ResponseWriter, r *http.Request) {
+	if err := s.pool.Ping(r.Context()); err != nil {
+		http.Error(w, "not ready", http.StatusServiceUnavailable)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+}
 ```
 
-Honor `ctx` in store methods (`QueryRowContext`). Drain in-flight work in
-`Shutdown`; do not `os.Exit` from a handler.
+- `SIGINT` (local) and `SIGTERM` (Kubernetes). Do not derive `Shutdown`'s
+  timeout from the cancelled signal ctx.
+- `WriteTimeout` includes handler time. Streaming / SSE: raise it or use
+  `http.NewResponseController`.
+- If the module already imports `otelhttp`, wrap `mux` and filter probes
+  out of spans. Do not add OTel otherwise. Encore: skip this whole file.
 
 ## Error mapping
 

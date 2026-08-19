@@ -74,9 +74,16 @@ s := &http.Server{
     Addr:              addr,
     Handler:           mux,
     ReadHeaderTimeout: 5 * time.Second,
+    ReadTimeout:       15 * time.Second,
+    WriteTimeout:      15 * time.Second,
+    IdleTimeout:       60 * time.Second,
 }
-// ListenAndServe in a goroutine; Shutdown(ctx) on signal.NotifyContext
+// ListenAndServe in a goroutine; Shutdown(ctx) on
+// signal.NotifyContext(ctx, os.Interrupt, syscall.SIGTERM)
 ```
+
+`GET /livez` (no I/O) and `GET /readyz` (dependency ping). Full recipes:
+`go-backend` `internals.md`.
 
 Middleware is `func(http.Handler) http.Handler`. Request-scoped values go in `context.WithValue` only for things that are not in the signature (trace IDs). IDs and user objects stay arguments.
 
@@ -86,6 +93,7 @@ Middleware is `func(http.Handler) http.Handler`. Request-scoped values go in `co
 - Library/domain: take `*slog.Logger` or use `slog.Default()` without reconfiguring it.
 - `logger := slog.With("request_id", id)` per operation, not a global with no fields.
 - Errors: `slog.Error("listen", "err", err)` — do not `err.Error()` into the message.
+- With a request `ctx`: `InfoContext` / `ErrorContext` so trace IDs survive.
 
 ## Tooling
 

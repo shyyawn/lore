@@ -71,13 +71,21 @@ rules in the handler. No `log.Fatal`. Recipes: [internals.md](internals.md).
 
 The package that **calls** storage declares the interface with the methods
 it needs. The SQL type is concrete and lives beside it (or in a sub-package
-when the driver types would otherwise leak).
+when the driver types would otherwise leak). Name it `Store`, not
+`Repository`, unless the repo already says repository.
 
 - Return `Item`, not `*Item`, unless you need a distinguishable nil.
 - `ErrNotFound` (and friends) in this package. Never `nil, nil`.
 - Fake in `_test.go`. Do not generate a 15-method mock of a type you own.
-- One `*sql.DB` / `*pgxpool.Pool` / Encore `*sqldb.Database` for the
-  process. Open once. Not per request.
+- One pool for the process: `pgxpool` (Postgres), `*sql.DB`, or Encore
+  `*sqldb.Database`. Open once. `PingContext` before serving. Not per
+  request. Do not add `lib/pq` (`jackc/pgx` replaced it).
+- sqlc: 2026 default for a non-Encore Postgres service with more than a
+  handful of queries. Map generated rows to package types in the store.
+  Do not return `db.GetItemRow` from an API. Do not inject `*db.Queries`
+  into domain functions. Do not add sqlc beside Encore `sqldb`.
+- CRUD with no rules may call sqlc / `QueryRowContext` from the API.
+  Add the consumer interface when a test seam or a rule appears.
 
 Encore: `sqldb.NewDatabase` as a package-level var is the platform
 constructor. Do not also `sql.Open` into a global. Prefer fields on the
@@ -92,13 +100,24 @@ mutable clients you own. No `init()` that dials.
   fields. No package named `config` that accumulates unrelated keys.
 - HTTP client: explicit timeout, not `http.DefaultClient`.
 - Options struct for 2+ optional fields. No `WithX` on an internal package.
+- Logs with a request `ctx`: `slog.InfoContext` / `ErrorContext`, not
+  `Info` / `Error`. JSON handler in `main` for services.
+- OpenTelemetry: wrap the mux with `otelhttp` **only if** the module
+  already has `go.opentelemetry.io`. Do not add OTel to a greenfield
+  service. Encore owns traces. Exclude `/livez` and `/readyz` from spans.
 
 ## Shutdown
 
 Every goroutine has a stop the caller can see: `errgroup.WithContext`,
-`WaitGroup.Go` (1.25), or `http.Server.Shutdown`. Non-Encore recipe:
-[internals.md](internals.md). Encore: `Shutdown(force context.Context)` on
-the service struct.
+`WaitGroup.Go` (1.25), or `http.Server.Shutdown`. Listen for `SIGINT`
+**and** `SIGTERM` (`signal.NotifyContext`). Drain HTTP, then close the
+pool. Shutdown timeout uses `context.Background()`, not the already
+cancelled signal ctx. Non-Encore recipe: [internals.md](internals.md).
+Encore: `Shutdown(force context.Context)` on the service struct.
+
+Non-Encore probes: `GET /livez` (no I/O — process up) and `GET /readyz`
+(`PingContext` the pool). Do not ping the DB on liveness. Encore: do not
+add these; the platform already probes.
 
 ## Growth
 
@@ -127,9 +146,11 @@ Go backend:
 - [ ] Handler / API is decode → one call → map errors
 - [ ] Interface at the consumer, 2–3 methods; fake in _test.go
 - [ ] ErrNotFound (etc.) sentinels; no nil, nil; no err.Error() map
+- [ ] sqlc/pgx rows mapped at the store; no lib/pq; PingContext before serve
 - [ ] Clients constructed at the edge (main / initService), passed down
 - [ ] No domain/ usecase/ adapter/ trees; no util package
-- [ ] Shutdown / errgroup / WaitGroup.Go is visible
+- [ ] SIGINT+SIGTERM; full http.Server timeouts; Shutdown then close pool
+- [ ] /livez (no I/O) + /readyz (Ping) unless Encore
 - [ ] encore.app → no cmd/, no net/http server, no slog in APIs
 ```
 
@@ -139,9 +160,12 @@ Go backend:
 - Producer-side `type Repository interface { ... }` in the store package
 - `WithX` options, `viper`, a `config` package of unrelated fields
 - `http.DefaultClient`, `ListenAndServe` with no timeouts, no `Shutdown`
-- Package-level `var db *sql.DB` you `Open` yourself
+- `signal.NotifyContext` on `os.Interrupt` only (misses Kubernetes `SIGTERM`)
+- Package-level `var db *sql.DB` you `Open` yourself; `lib/pq`; no `PingContext`
+- Returning sqlc `db.GetXRow` / injecting `*db.Queries` into domain code
+- `PingContext` on `/livez` (that is `/readyz`; a slow DB restarts the pod)
+- Adding Chi/Gin/Echo, GORM, or OTel on a greenfield stdlib/Encore service
 - `log.Fatal` / `slog` in Encore APIs
-- Gin/Echo/Chi on a greenfield internal service (`ServeMux` / `//encore:api`)
 - Copying `ardanlabs/service` `foundation/` or Wild Workouts hexagonal trees
 
 ## Do not

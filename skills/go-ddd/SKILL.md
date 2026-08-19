@@ -43,17 +43,19 @@ Earn DDD Lite:
 
 CRUD with required-field validation is **not** an aggregate. A struct
 with getters is not DDD. A folder named `domain` is not a bounded context.
+The same service may mix a CRUD corner and one aggregate. Do not DDD the
+CRUD to look consistent.
 
 ## DDD Lite (do these)
 
 | Pattern | Meaning in Go |
 | --- | --- |
 | Bounded context | Encore **service**, Temporal subsystem, or `internal/<noun>` that compiles without `net/http` |
-| Aggregate | One type whose methods are the only way to mutate a cluster. Unexported fields when an invariant exists. Constructor `NewX` returns `X, error` |
+| Aggregate | One type whose methods are the only way to mutate a cluster. Unexported fields when an invariant exists. Constructor `NewX` returns `X, error`. Methods named in the ubiquitous language (`Cancel`, not `SetStatus`) |
 | Value object | `Money`, `Email`, `ItemID` — equal by value, no identity, invalid states unrepresentable |
-| Repository | Collection of **aggregates**: `Get` / `Save`. Not `Store[T]`, not per-column setters |
-| Domain event | A value the aggregate recorded. Application layer publishes after a successful save |
-| Application / command | The Encore API or `go-backend` handler: load → call method → save → publish. No rules here |
+| Repository | Collection of **aggregates**: `Get` / `Save`. Not `Store[T]`, not per-column setters. sqlc rows map here, they do not leak |
+| Domain event | A **value returned** from the method that caused it (`(Event, error)`; `nil` event = nothing). No bus inside the aggregate |
+| Application / command | Encore API or `go-backend` handler: load → call method → `Save` (aggregate + outbox, one tx). No rules here |
 
 Full shapes: [lite.md](lite.md).
 
@@ -98,7 +100,8 @@ Go DDD Lite:
 - [ ] Mutation only through aggregate methods; NewX validates
 - [ ] VOs for money/IDs/status with rules; integer cents, not float
 - [ ] Repository Get/Save of the aggregate, not CRUD of rows
-- [ ] Events are values recorded by the aggregate, published after save
+- [ ] Events are values **returned** from methods; Save persists aggregate + outbox in one tx
+- [ ] Consumers of events are idempotent (at-least-once)
 - [ ] Bounded context = existing service / internal/<noun>, not new folders
 - [ ] No CQRS unless read/write models already diverged
 - [ ] encore.app → no cmd/, no adapters/ tree, no Watermill
@@ -111,6 +114,9 @@ Go DDD Lite:
 - `type Repository[T any] interface { Get, List, Update, Delete }`
 - Domain package importing `encore.dev`, `database/sql`, or `net/http`
 - Event bus / Watermill / NATS for a call in the same process
+- Publishing after `Save` as the reliable path (dual-write). Outbox in the same tx
+- Clock interfaces on 1.25+ just to freeze time — `testing/synctest`
+- Returning sqlc row types as the aggregate
 - CQRS + separate read DB on the first endpoint
 - Copying Wild Workouts `internal/common` or Firebase auth
 - Getters/setters for DDD flavour (`go-100-mistakes-avoid` #4)
