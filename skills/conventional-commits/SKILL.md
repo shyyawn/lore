@@ -37,7 +37,10 @@ toolchain on a Go or Python repo.
 
 ## Commit mechanics
 
-Pass the message via HEREDOC. Never `-m` twice, never `--no-verify`.
+Pass the message via a **quoted** HEREDOC. The quotes on `'EOF'` are the
+safety: the shell does not expand `$VAR`, `` `cmd` ``, or `$(cmd)` in the
+body. The official skill wraps identifiers in backticks, so this is not
+optional.
 
 ```bash
 git commit -m "$(cat <<'EOF'
@@ -49,6 +52,11 @@ still paid for a round trip.
 EOF
 )"
 ```
+
+That leak is real. `git commit -m "fix: handle `set`"` or `<<EOF` without
+quotes runs `set` (or `printenv`, …) in the shell and can paste the
+environment into the commit. Never `-m` twice, never unquoted `<<EOF`,
+never `--no-verify`.
 
 Honor leftover commitlint / Lefthook / commitizen in the repo. If the
 hook rewrites files, new commit — do not amend a failed one unless the
@@ -86,3 +94,5 @@ flags, env vars, HTTP, persisted files).
 - Add Node / commitlint to a Go or Python repo just to lint messages.
 - Mention authorship trailers (`Co-authored-by`, generator banners).
 - Use Gitmoji as the type.
+- Use `<<EOF` (unquoted), `git commit -m "..."`, or printf/echo that lets
+  the shell expand the message. Always `<<'EOF'`.
