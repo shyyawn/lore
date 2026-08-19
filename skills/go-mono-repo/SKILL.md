@@ -38,7 +38,7 @@ Tick **yes** on at least two, or stay on one `go.mod`.
 ```
 Earn a second go.mod:
 - [ ] Independent version / tag (library consumers pin v1.2.3)
-- [ ] Independent publish (module proxy, staging repo, public import path)
+- [ ] Independent publish (another Git repo must `go get` this path)
 - [ ] Different `go` line or a dependency the rest of the repo must not take
 - [ ] A binary that must not import the rest of the tree even via internal/
 ```
@@ -99,8 +99,12 @@ lists them. `replace` stays for forks and unpublished patches.
 - One Git repo may still be one module. "Monorepo" ≠ many `go.mod`s.
 - Nested module tags are `subdir/v1.2.3`, not a root `v1.2.3` for that
   module. Majors are `/v2` in the **module path** (`conventional-commits`).
+  Full table: [layouts.md](layouts.md).
+- Name directories for the **noun** (`internal/auth`, module `auth/`).
+  No `libs/`, `lib/`, `pkg/`, `shared/`, `common/` buckets (`go-idioms`).
 - `internal/` is per-module. A sibling module **cannot** import another
-  module's `internal/`. Shared code is a public package or its own module.
+  module's `internal/`. Shared-and-private stays `internal/<noun>` in the
+  **one** module until another repo must import it.
 - Do not nest a `go.mod` under a package that already belongs to a parent
   module (broken import paths).
 - Vendoring: one `vendor/` per module. Workspace vendoring exists (k8s
@@ -133,6 +137,7 @@ Go monorepo:
 - [ ] Commit go.work iff lockstep; else gitignore + optional go.work.example
 - [ ] Releasable modules tested with GOWORK=off
 - [ ] No import of another module's internal/
+- [ ] Shared code is `internal/<noun>`, not libs/pkg/shared
 - [ ] Polyglot JS is pnpm/npm, not a Go module per frontend package
 ```
 
@@ -141,6 +146,7 @@ Go monorepo:
 - A `go.mod` per Encore service or per `cmd/` binary
 - `replace ../sibling` in every `go.mod` instead of `go.work`
 - Splitting `internal/` into modules so two services "look like microservices"
+- A `libs/`, `lib/`, `pkg/`, or `shared/` directory as the place shared code goes
 - Nx / Turborepo / Pants / Bazel on a new Go app
 - Kubernetes `staging/` + publish scripts without actually publishing
 - Copying github/gitignore `go.work` ignore while also committing `go.work`

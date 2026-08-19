@@ -20,7 +20,12 @@ repo/
 ```
 
 Shared code that must not leak: `internal/<noun>`. A second binary is
-`cmd/<name>`, not a second module.
+`cmd/<name>`, not a second module. Do **not** add `libs/`, `lib/`,
+`pkg/`, `shared/`, or `common/` as a bucket — those names are `util` by
+another spelling. The directory is the noun (`internal/auth`). Official:
+[Organizing a Go module](https://go.dev/doc/modules/layout). Split that
+package into its **own module** only when another Git repo must `go get`
+it at its own semver (`gopls/`, Vault `api/`).
 
 ## Encore (backend monorepo)
 
@@ -43,26 +48,28 @@ next to this, one Lefthook.
 ## Multi-module + workspace
 
 When modules version or publish on their own. Official stitch:
-`go.dev/doc/tutorial/workspaces` (play with `golang.org/x/example`).
+`go.dev/doc/tutorial/workspaces`. Nested examples on GitHub:
+`golang.org/x/tools/gopls` (tags `gopls/v0.x`), Vault `api/` (tags
+`api/v1.x`). Not a `libs/` folder of tiny `go.mod`s.
 
 ```
 repo/
   go.work                # committed iff lockstep (see SKILL.md)
   go.work.sum
-  services/
-    api/go.mod           # github.com/org/repo/services/api
-    worker/go.mod
-  libs/
-    auth/go.mod          # github.com/org/repo/libs/auth
+  cmd/
+    api/go.mod           # github.com/org/repo/cmd/api   (only if this binary publishes alone)
+  auth/go.mod            # github.com/org/repo/auth      — the noun is the module
 ```
+
+Prefer **one extra module at a named directory**, not `services/` +
+`libs/` ceremony. Most products never get here.
 
 ```
 go 1.26
 
 use (
-    ./services/api
-    ./services/worker
-    ./libs/auth
+    .
+    ./auth
 )
 ```
 
@@ -70,8 +77,19 @@ Local imports resolve from disk. Each `go.mod` still has real `require`
 lines so `GOWORK=off` works. After adding a workspace dependency:
 `go work sync`.
 
-Tags for a nested module: `libs/auth/v1.2.3` (directory prefix). Module
-path majors: `.../libs/auth/v2`.
+## Tags
+
+Go versions **are git tags**. `go.work` does not version anything.
+
+| `go.mod` location | Tag for 1.2.3 | `require` |
+| --- | --- | --- |
+| Repo root | `v1.2.3` | `github.com/org/repo v1.2.3` |
+| Directory `auth/` | `auth/v1.2.3` | `github.com/org/repo/auth v1.2.3` |
+
+Root `v1.2.3` does not version a nested module. A nested tag does not
+version the root. Wrong prefix → `unknown revision` and a
+`v0.0.0-yyyymmdd-hash` pseudo-version. Majors: `/v2` in the **module
+path**; tag stays `auth/v2.0.0` (prefix is the directory, not `/v2`).
 
 ## Kubernetes staging (do not cargo-cult)
 
