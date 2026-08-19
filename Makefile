@@ -11,12 +11,13 @@ SKILLS        := $(notdir $(wildcard skills/*))
 RULES         := $(wildcard rules/*.mdc)
 
 # ~/.agents/skills is the portable location (Cursor, Claude Code, Codex).
-# ~/.cursor/skills is Cursor-only. Install to both.
+# ~/.cursor/skills is Cursor-only. Re-enable AGENTS_SKILLS when you want both.
 CURSOR_SKILLS := $(HOME)/.cursor/skills
-AGENTS_SKILLS := $(HOME)/.agents/skills
+# AGENTS_SKILLS := $(HOME)/.agents/skills
 CURSOR_RULES  := $(HOME)/.cursor/rules
 
-SKILL_DESTS   := $(CURSOR_SKILLS) $(AGENTS_SKILLS)
+SKILL_DESTS   := $(CURSOR_SKILLS)
+# SKILL_DESTS   := $(CURSOR_SKILLS) $(AGENTS_SKILLS)
 
 .DEFAULT_GOAL := help
 .PHONY: help install status uninstall list
@@ -25,7 +26,7 @@ SKILL_DESTS   := $(CURSOR_SKILLS) $(AGENTS_SKILLS)
 help:
 	@grep -E '^## ' $(MAKEFILE_LIST) | sed 's/^## /  /'
 
-## install: copy skills (and any rules) into ~/.cursor and ~/.agents
+## install: copy skills (and any rules) into ~/.cursor
 install:
 	@for d in $(SKILL_DESTS); do mkdir -p "$$d"; done
 	@for s in $(SKILLS); do \
