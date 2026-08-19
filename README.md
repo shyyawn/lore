@@ -75,6 +75,8 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [go-idioms](skills/go-idioms) | Idiomatic Go 1.18–1.26 and 2024–2026 layout |
 | [go-100-mistakes-avoid](skills/go-100-mistakes-avoid) | Overlay on `go-idioms`: common Go mistakes still in force in 2026 |
 | [go-unit-tests](skills/go-unit-tests) | Overlay on `go-idioms`: 2024–2026 Go tests (tables, synctest, fuzz, what to skip) |
+| [go-backend](skills/go-backend) | Overlay on `go-idioms`: inside a Go service (handlers, persistence, shutdown) |
+| [go-ddd](skills/go-ddd) | Overlay on `go-backend`: DDD Lite when a domain earns an aggregate |
 | [typescript-idioms](skills/typescript-idioms) | Idiomatic TypeScript 5–7 and 2024–2026 layout |
 | [encore-go](skills/encore-go) | Encore.go backends |
 | [encore-go-app-structure](skills/encore-go-app-structure) | Encore Go package layout |

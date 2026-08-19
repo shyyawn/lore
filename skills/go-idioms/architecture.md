@@ -34,6 +34,10 @@ go.mod
 
 Do **not** create `domain/`, `usecase/`, `adapter/`, `controller/`, `repository/` layers for a small module. Flatten. Extract a package when an import cycle or a second binary forces it.
 
+Inside a service (handlers, persistence, shutdown): `go-backend`. When
+invariants appear: `go-ddd` — still inside the package, still no those
+folders.
+
 ## Dependency direction
 
 One-way:

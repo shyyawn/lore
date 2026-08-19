@@ -120,7 +120,8 @@ Import paths change; API contracts do not.
 ## Inside a service
 
 Keep endpoints thin. Put DB access, domain logic, and third-party clients
-in files or sub-packages in the same service.
+in files or sub-packages in the same service. Internals (thin API,
+persistence, shutdown): `go-backend`. Aggregates: `go-ddd`.
 
 ```
 hello/

@@ -59,7 +59,7 @@ result over five tests of the private path that produced it.
 
 | Test | Why |
 | --- | --- |
-| Business rules, validation, state machines | This is the suite. Table every variant. |
+| Business rules, validation, state machines | This is the suite. Table every variant. Aggregates: `go-ddd`. |
 | Error classification | `errors.Is` / `As` / `AsType`. Status mapping. Not found vs conflict vs internal. |
 | Boundaries | empty, nil vs empty slice, 0, max int, invalid UTF-8, duplicate keys |
 | Context cancel / deadline | Honor `ctx.Done()` mid-flight, not only before the call. |

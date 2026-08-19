@@ -18,7 +18,7 @@ into essays.
 | 9 | Being confused about when to use generics | Generics for containers and helpers, not hierarchies. Need two+ concrete uses. |
 | 10 | Problems with type embedding | Do not embed to hide a field path. Do not promote a mutex or a method that should stay private. |
 | 11 | Functional options on an internal package | Public library ABI: `WithX` OK. Internal: options struct. No `WithX` for one caller. |
-| 12 | Project misorganization | Follow `go-idioms` `architecture.md`. No `domain/` / `usecase/` / `adapter/` trees for a small module. |
+| 12 | Project misorganization | Follow `go-idioms` `architecture.md`. No `domain/` / `usecase/` / `adapter/` trees for a small module. Internals: `go-backend`. |
 | 13 | Creating utility packages | No `util` / `common` / `helpers`. Name the noun. |
 | 14 | Ignoring package name collisions | Package name is the last import-path element. Do not collide with stdlib (`http`, `json`) or call it `util`. |
 | 15 | Missing code documentation | Exported names get a doc comment that starts with the name. Do not document the obvious. |

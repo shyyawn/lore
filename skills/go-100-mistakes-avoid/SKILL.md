@@ -11,9 +11,9 @@ description: >-
 # Go 100 mistakes (2026 overlay)
 
 Numbered rows: [catalog.md](catalog.md). Language, `go fix`, slog, ServeMux,
-iterators: `go-idioms`. Layout: `go-idioms` `architecture.md`. Tests:
-`go-unit-tests`. This skill is the don't-do-this review. Keep actions to
-the catalog lines.
+iterators: `go-idioms`. Layout: `go-idioms` `architecture.md`. Internals:
+`go-backend`. Aggregates: `go-ddd`. Tests: `go-unit-tests`. This skill is
+the don't-do-this review. Keep actions to the catalog lines.
 
 ## First step
 

@@ -81,7 +81,7 @@ Stdlib-first: do not add a dependency the standard library now covers.
 | Random | `math/rand/v2` (non-crypto), `crypto/rand` (secrets) | math/rand global Seed |
 | Tools | `tool` directive in go.mod (1.24) | `tools.go` blank imports |
 
-Layout is earned: `cmd/` for binaries, `internal/` for private code. `pkg/` only when you deliberately publish. No `util/`, `common/`, `helpers/`. Do not invent `domain/` / `usecase/` / `adapter/` trees unless the repo is already that shape.
+Layout is earned: `cmd/` for binaries, `internal/` for private code. `pkg/` only when you deliberately publish. No `util/`, `common/`, `helpers/`. Do not invent `domain/` / `usecase/` / `adapter/` trees unless the repo is already that shape. Service internals: `go-backend`. Aggregates: `go-ddd`.
 
 - Name packages for what they **are**, not which binary imports them.
 - One-way imports: domain packages must not import CLI, HTTP, or UI wiring.
