@@ -53,7 +53,7 @@ boundary until you publish.
 | --- | --- |
 | One product, several binaries | One module — `go-idioms` `architecture.md` |
 | Encore backend | One `encore.app`, services = packages |
-| Encore + Svelte (or other `package.json`) | One Go module + JS workspace. `git-repo-setup-go` + `git-repo-setup-typescript`. Not `go.work` |
+| Encore + Svelte (or other `package.json`) | One Go module + JS workspace. `git-repo-setup-go` + `git-repo-setup-typescript`. Not `go.work`. One `.vscode/launch.json` at the Git root (`git-repo-setup` debug.md) |
 | Lockstep modules that publish separately | Multi-module + committed `go.work` |
 | Published libraries, most people work on one | Multi-module; gitignore `go.work` or ship `go.work.example` |
 | Hermetic polyglot at Google/Uber scale | Bazel (`rules_go`, Gazelle). Do not invent for a greenfield app |
@@ -137,6 +137,7 @@ Go monorepo:
 - [ ] Commit go.work iff lockstep; else gitignore + optional go.work.example
 - [ ] Releasable modules tested with GOWORK=off
 - [ ] No import of another module's internal/
+- [ ] One `.vscode/launch.json` at the Git root (not per module)
 - [ ] Shared code is `internal/<noun>`, not libs/pkg/shared
 - [ ] Polyglot JS is pnpm/npm, not a Go module per frontend package
 ```

@@ -5,7 +5,8 @@ description: >-
   infrastructure-from-code, service packages, //encore:api, service structs,
   sqldb/pubsub/cron/secrets, rlog, and encore.dev/beta/errs. Use when generating,
   editing, reviewing, or scaffolding Encore Go; when the user mentions Encore,
-  encore.dev, encore.app, //encore:api, sqldb, pubsub, encore run, or encore test.
+  encore.dev, encore.app, //encore:api, sqldb, pubsub, encore run, encore test,
+  debug, delve, breakpoints, or Cursor/VS Code attach.
 ---
 
 # Encore Go 2026
@@ -21,7 +22,8 @@ add `net/http` servers, `cmd/` binaries, `slog` in handlers, or `go test`.
 
 Catalogs: [architecture.md](architecture.md) (services, DI, split rules),
 [primitives.md](primitives.md) (APIs, auth, errors, middleware),
-[infrastructure.md](infrastructure.md) (db, pubsub, cron, secrets, config).
+[infrastructure.md](infrastructure.md) (db, pubsub, cron, secrets, config),
+[debug.md](debug.md) (Encore traps; kit is `git-repo-setup-go` debug.md).
 Package layout: `encore-go-app-structure`. Inside a service: `go-backend`.
 Aggregates: `go-ddd`. If the module also uses Temporal:
 `encore-temporal-go-app-structure`.
@@ -51,13 +53,19 @@ start with `/`; flags go **after** the path (`curl /orders -X POST -d '...'`).
 | Symptom | Usually means |
 | --- | --- |
 | `failed to start cluster: database did not come up … dial error: timeout` | Encore provisions local infrastructure in Docker with a bounded startup window; a cold or slow start can exceed it. Check whether the container is actually running before treating this as a code or migration fault — if it is, re-run. If it persists, the cause is Docker itself: not running, out of resources, or the port already taken. |
-| `encore apps must be run using the encore command` (panic) | `go test` instead of `encore test`. Every Encore primitive panics outside the runtime — `go build` and `go vet` are still fine. |
+| `encore apps must be run using the encore command` (panic) | `go test` instead of `encore test`, or F5 / Launch Package. Every Encore primitive panics outside the runtime — `go build` and `go vet` are still fine. Attach: `git-repo-setup-go` [debug.md](../git-repo-setup-go/debug.md). |
 | The parser rejects a resource | `sqldb.NewDatabase` / `pubsub.NewTopic` / `cache.NewCluster` declared inside a function. They are package-level `var`s. |
 | An API is unreachable from another service | You reached for HTTP instead of importing the package and calling the function, or the caller is not actually a service. `private` is not the cause — that is exactly how services and cron are meant to call. Never "fix" this by flipping the endpoint to `public`. |
 | Client sees 500 where you meant 404 / 409 | A bare `error` escaped the endpoint. Map it: `sqldb.ErrNoRows` → `errs.NotFound`, unique violation → `errs.AlreadyExists`. |
 
 `encore check` compiles, boots and migrates — a faster signal than `encore run`
 when you only need to know the app is valid.
+
+## Debug in Cursor
+
+The repo kit writes **Connect to Encore** (`git-repo-setup-go`
+[debug.md](../git-repo-setup-go/debug.md)). Encore traps: [debug.md](debug.md).
+Official: <https://encore.dev/docs/go/how-to/debug>.
 
 ## Hard rules
 

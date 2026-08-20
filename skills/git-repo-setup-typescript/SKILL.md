@@ -3,16 +3,18 @@ name: git-repo-setup-typescript
 description: >-
   TypeScript overlay for git-repo-setup: Biome (or the repo's Prettier),
   tsc --noEmit, vitest/node --test, pnpm/npm lockfile, commitlint when Node
-  is first-class. Use when bootstrapping or retrofitting Git hooks / just /
-  Lefthook in a TypeScript or JS repo, or when the repo has package.json,
-  tsconfig.json, *.ts, *.tsx, or svelte.config.
+  is first-class, Cursor Node/vitest launch.json. Use when bootstrapping or
+  retrofitting Git hooks / just / Lefthook in a TypeScript or JS repo, or
+  when the repo has package.json, tsconfig.json, *.ts, *.tsx, svelte.config,
+  or the user asks to debug TypeScript, set breakpoints, or add launch.json.
 ---
 
 # Git repo setup — TypeScript
 
 Follow `git-repo-setup` for the kit. This file fills the **TypeScript**
-commands. Language idioms stay in `typescript-idioms`. Commitlint wiring is
-in `conventional-commits` / `tooling.md`.
+commands and [debug.md](debug.md). Language idioms stay in
+`typescript-idioms`. Commitlint wiring is in `conventional-commits` /
+`tooling.md`.
 
 ## First step
 
@@ -41,6 +43,7 @@ the Svelte app.
 | Test | `vitest` if present, else `node --test`, else `npm test` | — |
 | Commit-msg | commitlint + Lefthook (`conventional-commits` / `tooling.md`) | Use commitlint here; do not fall back to the Go/Python regex |
 | JSON/MD/YAML | Biome or the existing Prettier | `dprint` already owns those files |
+| Debug | `.vscode/launch.json` ([debug.md](debug.md)): current file + vitest | Honor existing named configs |
 
 Do not add Husky. Lefthook is the hook runner. Do not add a second of
 Biome/Prettier/ESLint/dprint that formats the same globs.
@@ -150,6 +153,11 @@ check:
     npx tsc --noEmit
 ```
 
+## Debug
+
+Write `.vscode/launch.json` from [debug.md](debug.md) on greenfield.
+Polyglot with Go: one `launch.json`, merge configurations.
+
 ## Do not
 
 - Husky + lint-staged in a new TS repo (Lefthook covers it).
@@ -157,3 +165,4 @@ check:
 - Biome **and** Prettier on the same globs.
 - commitlint in a Go/Python-only tree that happens to contain one `package.json`
   for docs. If Node is not a first-class toolchain, use the Lefthook regex.
+- Omit `.vscode/launch.json` on a new TypeScript repo, or overwrite an existing one instead of merging named configs.

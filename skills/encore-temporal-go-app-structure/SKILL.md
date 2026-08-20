@@ -31,7 +31,9 @@ Sources: Encore `docs/go/how-to/temporal.md`, official example
 
 Local cluster is `temporal server start-dev` (Encore docs still say
 Temporalite; that project is folded into the CLI). Production is
-Temporal Cloud or self-hosted — not the dev server.
+Temporal Cloud or self-hosted — not the dev server. Debug APIs and the
+in-process worker by attaching to Encore (`git-repo-setup-go`
+[debug.md](../git-repo-setup-go/debug.md)); do not attach to the Temporal CLI.
 
 ## Division of labor
 

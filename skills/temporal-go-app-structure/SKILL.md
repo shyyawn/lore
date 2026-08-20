@@ -31,6 +31,10 @@ If `encore.app` exists, stop and follow `encore-temporal-go-app-structure`.
 If the repo is not yet a Temporal app, add the SDK and a worker binary.
 Do not invent a second workflow engine beside it.
 
+Debug: `git-repo-setup-go` [debug.md](../git-repo-setup-go/debug.md) —
+Launch the `cmd/` / `worker` `main`. Encore apps: stop, use
+`encore-temporal-go-app-structure` (attach to Encore, not this binary).
+
 ## Choose a layout
 
 | Situation | Layout |

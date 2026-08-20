@@ -34,8 +34,9 @@ mise.toml.local
 # language build output (keep what github/gitignore already covers)
 ```
 
-Do not ignore `.vscode/` if the repo already commits shared `extensions.json`
-/ `settings.json`. Ignore personal `*.code-workspace` either way.
+Do not ignore `.vscode/`. Commit shared `extensions.json` and `launch.json`
+([debug.md](debug.md); overlay fills them). Ignore personal `*.code-workspace`
+either way. Do not commit `settings.json` unless the team already shares it.
 
 After writing, `git check-ignore -v -- .env` must match.
 
@@ -256,6 +257,9 @@ Needs [mise](https://mise.jdx.dev/). Then:
 Name the real recipe file (`just` vs `make`). Do not list Lefthook
 commands for humans — `bootstrap` installs them.
 
+Debug: Run and Debug uses the committed `.vscode/launch.json` (overlay
+[debug.md](debug.md)). Do not document a personal F5 config in README.
+
 ## GitHub Actions
 
 `.github/workflows/ci.yml`:
@@ -308,6 +312,30 @@ Create only when you make a bulk format commit:
 Then `git config blame.ignoreRevsFile .git-blame-ignore-revs` is documented
 in README, or set in a Lefthook `post-checkout` only if the team wants it
 automatic. Do not set it globally from this skill.
+
+## `.vscode/extensions.json`
+
+Language overlay fills `recommendations`. Empty array is wrong — the
+overlay always has at least Go (`golang.go`) or Python (`ms-python.python`).
+TypeScript may be `[]` (Cursor already debugs Node).
+
+```json
+{
+  "recommendations": []
+}
+```
+
+## `.vscode/launch.json`
+
+Language overlay fills `configurations`. Polyglot: concatenate, unique
+`name`. Honor existing named configs.
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": []
+}
+```
 
 ## Optional, not default
 

@@ -2,18 +2,21 @@
 name: git-repo-setup-go
 description: >-
   Go overlay for git-repo-setup: gofmt, go vet, go test (encore test when
-  encore.app exists), go.mod tool pins, Go gitignore. Use when bootstrapping
-  or retrofitting Git hooks / just / Make / Lefthook in a Go module, or when
-  the repo has go.mod, *.go, or encore.app.
+  encore.app exists), go.mod tool pins, Go gitignore, Cursor/Delve
+  launch.json. Use when bootstrapping or retrofitting Git hooks / just /
+  Make / Lefthook in a Go module, or when the repo has go.mod, *.go,
+  encore.app, or the user asks to debug Go, set breakpoints, or add
+  launch.json.
 ---
 
 # Git repo setup — Go
 
 Follow `git-repo-setup` for the kit (init, Lefthook, mise, just/Make, ignore
-basics). This file fills the **Go** commands. Language idioms stay in
-`go-idioms`. How to write tests stays in `go-unit-tests`. Encore layout stays
-in `encore-go` / `encore-go-app-structure`. Several `go.mod` files or a
-`go.work`: `go-mono-repo` (test with `GOWORK=off` per published module).
+basics, debugger). This file fills the **Go** commands and
+[debug.md](debug.md). Language idioms stay in `go-idioms`. How to write tests
+stays in `go-unit-tests`. Encore layout stays in `encore-go` /
+`encore-go-app-structure`. Several `go.mod` files or a `go.work`:
+`go-mono-repo` (test with `GOWORK=off` per published module).
 
 ## First step
 
@@ -24,7 +27,7 @@ in `encore-go` / `encore-go-app-structure`. Several `go.mod` files or a
    for workspace vs `GOWORK=off` before writing Just/Lefthook recipes.
 
 Polyglot (Go + a `package.json` app): also apply `git-repo-setup-typescript`.
-One `lefthook.yml`, one Justfile, both formatters.
+One `lefthook.yml`, one Justfile, both formatters, one `launch.json`.
 
 ## 2026 Go defaults
 
@@ -38,6 +41,7 @@ One `lefthook.yml`, one Justfile, both formatters.
 | Test | `go test ./...` | `encore.app` → `encore test ./...` |
 | Race | `go test -race ./...` on `ci` when packages start goroutines | Existing CI already races (or cannot, e.g. some CGO) |
 | Commit-msg | Lefthook regex (`conventional-commits` / `tooling.md`) | — |
+| Debug | `.vscode/launch.json` ([debug.md](debug.md)): Encore attach, else Launch `cmd/` | Honor existing named configs |
 
 Do not add Node, husky, or commitlint. Do not add golangci-lint to a greenfield
 module unless asked. `go get -tool` for govulncheck when the module is serious
@@ -123,6 +127,12 @@ If `go.mod` has `govulncheck` as a tool, add `go tool govulncheck ./...` to
 Existing Makefile: add these **names**, keep Make. `go test` line becomes
 `encore test` when `encore.app` is present.
 
+## Debug
+
+Write `.vscode/extensions.json` + `launch.json` from [debug.md](debug.md)
+on greenfield. Encore: **Connect to Encore**, never F5 Launch Package.
+Polyglot: one `launch.json`, merge configurations.
+
 ## Do not
 
 - Add Node, husky, or commitlint to a Go-only repo.
@@ -130,3 +140,4 @@ Existing Makefile: add these **names**, keep Make. `go test` line becomes
 - Pre-commit `go test ./...` (that is `pre-push` / `ci`).
 - A second formatter (`gofumpt` + `gofmt`) unless the repo already standardized.
 - `tools.go` — `tool` in `go.mod` (`go-idioms`).
+- Omit `.vscode/launch.json` on a new Go or Encore repo, or overwrite an existing one instead of merging named configs.

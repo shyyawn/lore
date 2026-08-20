@@ -3,11 +3,14 @@ name: git-repo-setup
 description: >-
   Bootstraps and retrofits Git repositories to 2026 defaults: main + reftable
   on init, SSH commit signing, .gitignore/.gitattributes/.editorconfig,
-  Lefthook hooks, mise-pinned tools, and one task runner (just; Make if already
-  present). Use when creating a new repo, running git init, adding hooks, a
-  Makefile or Justfile, lefthook, husky, pre-commit, gitleaks, mise, or when
-  the user asks to set up or modernize an existing repository's Git or local
-  dev tooling.
+  Lefthook hooks, mise-pinned tools, one task runner (just; Make if already
+  present), and a shared Cursor/VS Code debugger (`.vscode/launch.json`). Use
+  when creating a new repo, running git init, adding hooks, a Makefile or
+  Justfile, lefthook, husky, pre-commit, gitleaks, mise, debug, breakpoints,
+  launch.json, or when the user asks to set up or modernize an existing
+  repository's Git, debugger, or local dev tooling. Also use when an existing
+  repo has no `.vscode/launch.json` or the user asks to scan and add debug
+  configs.
 ---
 
 # Git repo setup (2026)
@@ -17,6 +20,7 @@ invent a second Makefile, a second hook runner, or CI steps that diverge from
 local recipes.
 
 File contents: [files.md](files.md). Machine `git config`: [gitconfig.md](gitconfig.md).
+Debugger: [debug.md](debug.md) (Cursor/VS Code; overlay fills `launch.json`).
 Commit messages: `conventional-commits` skill. Do not restyle those messages here.
 
 ## First step
@@ -34,8 +38,9 @@ Commit messages: `conventional-commits` skill. Do not restyle those messages her
 3. Inventory what is already there before writing files: `.gitignore`,
    `.gitattributes`, `.editorconfig`, `lefthook.yml` / `.husky/` /
    `.pre-commit-config.yaml`, `Justfile` / `Makefile` / `Taskfile.yml`,
-   `.mise.toml` / `.tool-versions`, `.github/workflows`. **Honor a working
-   stack.** One hook manager, one task runner.
+   `.mise.toml` / `.tool-versions`, `.vscode/`, `.github/workflows`.
+   **Honor a working stack.** One hook manager, one task runner, one
+   `launch.json`.
 4. Language overlay (read that skill; do not invent formatter/test commands):
 
    | Detect | Overlay |
@@ -43,7 +48,7 @@ Commit messages: `conventional-commits` skill. Do not restyle those messages her
    | `go.mod` / `*.go` / `encore.app` | `git-repo-setup-go` |
    | `package.json` + TypeScript/JS (`tsconfig.json`, `*.ts`, `*.tsx`, `svelte.config.*`) | `git-repo-setup-typescript` |
    | `pyproject.toml` / `uv.lock` / `*.py` | `git-repo-setup-python` |
-   | More than one | Apply each overlay. Still one `lefthook.yml` and one Justfile/Makefile |
+   | More than one | Apply each overlay. Still one `lefthook.yml`, one Justfile/Makefile, one `launch.json` |
 
 ## 2026 defaults (new repos)
 
@@ -65,6 +70,7 @@ Pick these. Do not offer a menu.
 | Spell-check | [typos](https://github.com/crate-ci/typos) | — |
 | Format (code) | Language overlay (`git-repo-setup-go` / `-typescript` / `-python`) | — |
 | Format (json/md/toml/yaml) | [dprint](https://dprint.dev/) when those files are first-class | Prettier already owns them |
+| Debug | Shared `.vscode/launch.json` + `extensions.json` ([debug.md](debug.md)) | Merge into an existing `.vscode/`; do not replace named configs |
 
 Do not stack Lefthook with husky or the Python `pre-commit` framework.
 Do not put `just` recipes *and* a Makefile that both claim `ci`.
@@ -95,6 +101,7 @@ New repo:
 - [ ] git init -b main --ref-format=reftable
 - [ ] .gitignore, .gitattributes, .editorconfig
 - [ ] .mise.toml (lefthook, just, gitleaks, typos, + language runtime)
+- [ ] .vscode/extensions.json + launch.json (debug.md; overlay fills configs)
 - [ ] Justfile with bootstrap / check / test / ci
 - [ ] lefthook.yml (pre-commit + commit-msg + pre-push)
 - [ ] README (how to bootstrap) and LICENSE if the repo is public
@@ -133,10 +140,12 @@ Justfile, or migrate husky → Lefthook unless the user asked.
 ```
 Existing repo:
 - [ ] Inventory hook manager, task runner, CI, ignore/attributes/editorconfig
+- [ ] Inventory encore.app, go.mod / cmd/, package.json (skip node_modules), pyproject.toml, existing .vscode/
 - [ ] Fill gaps only (missing .gitattributes, .editorconfig, secret scan)
 - [ ] If no hook manager: add Lefthook, do not also add husky
 - [ ] If no task runner: add Justfile (or Makefile if the user asked for make)
 - [ ] If a task runner exists: add missing recipe *names*, keep the file
+- [ ] Debug: follow debug.md Decide — add launch.json if missing, else keep existing names and append missing configs
 - [ ] Point CI at `just ci` / `make ci` if CI currently inlines the same steps
 - [ ] lefthook install --force  (or honor the existing manager's install)
 - [ ] gitleaks git --no-banner .  (history audit; report only, do not rewrite)
@@ -203,6 +212,7 @@ branch `main`, squash merge, push protection, branch protection requiring the
 - Duplicate CI steps that already live in `just ci`.
 - Ignore hook failure, or document `--no-verify` as the workflow.
 - Vendor a second copy of this skill into the target repo.
+- Gitignore `.vscode/`, omit `launch.json` on a new repo, or overwrite an existing `launch.json` instead of merging named configs.
 
 ## Old patterns
 

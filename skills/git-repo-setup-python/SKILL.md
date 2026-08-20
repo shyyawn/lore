@@ -2,16 +2,18 @@
 name: git-repo-setup-python
 description: >-
   Python overlay for git-repo-setup: uv, ruff format/check, pytest, Python
-  gitignore, Lefthook without Node. Use when bootstrapping or retrofitting
-  Git hooks / just / Make / Lefthook in a Python project, or when the repo
-  has pyproject.toml, uv.lock, *.py, or Poetry/requirements files.
+  gitignore, Lefthook without Node, Cursor/debugpy launch.json. Use when
+  bootstrapping or retrofitting Git hooks / just / Make / Lefthook in a
+  Python project, or when the repo has pyproject.toml, uv.lock, *.py, or
+  Poetry/requirements files, or the user asks to debug Python, set
+  breakpoints, or add launch.json.
 ---
 
 # Git repo setup — Python
 
-Follow `git-repo-setup` for the kit. This file fills the **Python** commands.
-Commit-msg regex: `conventional-commits` / `tooling.md` (no commitlint unless
-Node is already first-class).
+Follow `git-repo-setup` for the kit. This file fills the **Python** commands
+and [debug.md](debug.md). Commit-msg regex: `conventional-commits` /
+`tooling.md` (no commitlint unless Node is already first-class).
 
 ## First step
 
@@ -33,6 +35,7 @@ Justfile.
 | Test | `pytest` | `unittest` already the suite |
 | Commit-msg | Lefthook regex | commitizen already in the project — honor it, do not stack |
 | Types | `ty` / `pyright` / `mypy` only if already configured | Do not add a typechecker as part of git bootstrap |
+| Debug | `.vscode/launch.json` ([debug.md](debug.md)): current file + pytest | Honor existing named configs |
 
 Do not add Node, husky, or commitlint to a Python-only repo.
 
@@ -116,9 +119,15 @@ ci: check test
 Poetry: `poetry install` / `poetry run ruff` / `poetry run pytest`. Keep
 recipe **names**. Do not add uv beside a working Poetry lock.
 
+## Debug
+
+Write `.vscode/extensions.json` + `launch.json` from [debug.md](debug.md)
+on greenfield. Polyglot: one `launch.json`, merge configurations.
+
 ## Do not
 
 - Black + Ruff format on the same files.
 - `pip install` without a lockfile on `bootstrap`.
 - commitlint / husky in a Python-only tree.
 - A typechecker added "because the git kit should be complete".
+- Omit `.vscode/launch.json` on a new Python repo, or overwrite an existing one instead of merging named configs.

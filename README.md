@@ -68,10 +68,10 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | Skill | Use |
 | --- | --- |
 | [conventional-commits](skills/conventional-commits) | Go/Python/TS overlay on the official `conventional-commit-message` skill (install that first — [Start here](#start-here-cursor)) |
-| [git-repo-setup](skills/git-repo-setup) | 2026 Git repo kit: init, hooks, mise, just/Make, ignore/attributes |
-| [git-repo-setup-go](skills/git-repo-setup-go) | Go overlay: gofmt, go vet, go test / encore test |
-| [git-repo-setup-typescript](skills/git-repo-setup-typescript) | TypeScript overlay: Biome, tsc, vitest, commitlint |
-| [git-repo-setup-python](skills/git-repo-setup-python) | Python overlay: uv, ruff, pytest |
+| [git-repo-setup](skills/git-repo-setup) | 2026 Git repo kit: init, hooks, mise, just/Make, ignore/attributes, shared debugger |
+| [git-repo-setup-go](skills/git-repo-setup-go) | Go overlay: gofmt, go vet, go test / encore test, Delve `launch.json` |
+| [git-repo-setup-typescript](skills/git-repo-setup-typescript) | TypeScript overlay: Biome, tsc, vitest, commitlint, Node `launch.json` |
+| [git-repo-setup-python](skills/git-repo-setup-python) | Python overlay: uv, ruff, pytest, debugpy `launch.json` |
 | [go-idioms](skills/go-idioms) | Idiomatic Go 1.18–1.26 and 2024–2026 layout |
 | [go-100-mistakes-avoid](skills/go-100-mistakes-avoid) | Overlay on `go-idioms`: common Go mistakes still in force in 2026 |
 | [go-unit-tests](skills/go-unit-tests) | Overlay on `go-idioms`: 2024–2026 Go tests (tables, synctest, fuzz, what to skip) |
@@ -79,7 +79,7 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [go-ddd](skills/go-ddd) | Overlay on `go-backend`: DDD Lite when a domain earns an aggregate |
 | [go-mono-repo](skills/go-mono-repo) | Overlay on `go-idioms`: one module by default, `go.work` only when modules version apart |
 | [typescript-idioms](skills/typescript-idioms) | Idiomatic TypeScript 5–7 and 2024–2026 layout |
-| [encore-go](skills/encore-go) | Encore.go backends |
+| [encore-go](skills/encore-go) | Encore.go backends (never F5; attach config is `git-repo-setup-go`) |
 | [encore-go-app-structure](skills/encore-go-app-structure) | Encore Go package layout |
 | [temporal-go](skills/temporal-go) | Temporal Go SDK |
 | [temporal-go-app-structure](skills/temporal-go-app-structure) | Temporal Go package layout |
