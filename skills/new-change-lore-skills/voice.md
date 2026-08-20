@@ -87,7 +87,7 @@ a stage. Default is **no** on jumping ahead.`
 | A choice with an escape hatch | `Job \| Default \| Honor instead when` |
 | Compiler / platform / process law | **Hard rules** bullets, not a menu |
 | Competing tool the platform already covers | **Do not add** table (`Need \| Use \| Do not add`) |
-| Code the model will emit unasked | **LLM traps** |
+| What the model will emit unasked | **LLM traps** (wrong code *or* a 40-page vision) |
 | Process (restyle, skip a stage, wrong skill) | **Do not** |
 
 Pick these. Do not offer a menu. Honor what is already there.

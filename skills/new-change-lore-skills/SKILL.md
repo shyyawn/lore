@@ -14,14 +14,13 @@ description: >-
 # New / change lore skills
 
 How **this repo** writes `skills/`. Load this for **any** new or changed
-lore skill — Go, TypeScript, Encore, or a playbook with none of those
-(`requirement-to-architecture-to-design`). Frontmatter: Cursor
-`create-skill`. Look: [voice.md](voice.md). Kind headings:
-[kinds.md](kinds.md). Names, families, sources: [family.md](family.md).
-Do not copy vendor or plugin skills into `skills/` (README **Who wins**).
+lore skill — stack or playbook. Frontmatter: Cursor `create-skill`.
+Look: [voice.md](voice.md). Kinds: [kinds.md](kinds.md). Final form,
+names, sources: [family.md](family.md). Do not copy vendor or plugin
+skills into `skills/` (README **Who wins**).
 
 `create-skill` defaults `disable-model-invocation: true`. Lore **omits**
-it so skills auto-invoke. Domain catalogs stay in those skills.
+it so skills auto-invoke. Do not inline another skill's catalog here.
 
 Canon look: `git-repo-setup`, `go-ddd`, `go-idioms` — copy the
 sentences, not the domain. Editing an existing skill: copy **that
@@ -32,6 +31,8 @@ file's** headings, not this stub.
 1. Directory `skills/<name>/` = YAML `name` (lowercase hyphens). Durable:
    `go-idioms`, not `go-2026`. Pipeline: stages in the name
    (`requirement-to-architecture-to-design`). [family.md](family.md).
+   Write the **final form**. Do not ship a dated mega-skill and split
+   later.
 2. Pick the kind ([kinds.md](kinds.md)). Closest sibling of **that**
    kind exists → copy **its** headings. No sibling (new playbook) → this
    stub + [voice.md](voice.md). Do not paste `go-idioms` headings onto a
@@ -57,9 +58,11 @@ bullets for never-generate. 2–4 line lead, then a heading.
 One rule once. Skip a section that has nothing to say. Title may say
 `2026`. Directory and YAML `name` must not.
 
-Folded YAML `description: >-`. Third person. WHAT + WHEN. Overlay:
-`Overlay on parent`. Pipeline: the stages as triggers. Include the
-skill's own name.
+Folded YAML `description: >-`. Third person. WHAT + WHEN. Triggers are
+domain terms the agent will see. Overlay adds `Overlay on parent`.
+Pipeline adds the stage names. This skill's own name is a trigger
+because "lore skill prose" would not find `go-idioms` — do not put
+every skill's name in its description.
 
 ## `SKILL.md`
 
@@ -93,18 +96,20 @@ Stages: [stages.md](stages.md).
 - Skip a stage as a drive-by.
 ````
 
-Overlay on a parent: `Follow parent. This file fills **X**.` plus
-`Overlay on parent` in the description. Code overlays: [kinds.md](kinds.md).
+This stub is the **no-sibling** case (new playbook). A language, kit,
+or overlay skill copies the closest canon in [kinds.md](kinds.md), not
+this template. Overlay lead: `Follow parent. This file fills **X**.`
+plus `Overlay on parent` in the description.
 
 Skip a section that has nothing to say. `VERSION` in templates, never
 the string `latest`. Sibling `.md` files hold catalogs and file bodies —
-link once, one level deep. JSON that already lives in another skill:
-`../git-repo-setup-go/debug.md`, do not recopy.
+link once, one level deep. Cross-skill JSON that already exists:
+`../git-repo-setup-go/debug.md` (kit only). Do not recopy.
 
 create-skill's 500-line cap is the ceiling. Lore spines are shorter:
-catalog overlay ~60–80, language ~130–180, hub/platform/app-structure
-~180–270. If SKILL.md jumps ~80 lines for one topic, that body belongs
-in a sibling.
+catalog overlay ~60–80, language ~130–180, hub/platform/app-structure/
+playbook ~180–270. If SKILL.md jumps ~80 lines for one topic, that body
+belongs in a sibling.
 
 | Section | Holds | Skip unless |
 | --- | --- | --- |
@@ -121,24 +126,21 @@ in a sibling.
 | Version table | Pin → Always use / Not yet | Language skills |
 | **Default shapes** | Concrete artifact from official sources | Platform, app-structure, pipeline |
 | Templates | File body the agent writes | Kit / overlay / playbook artifacts |
-| **After every edit** | The gate | Skills that produce artifacts |
+| **After every edit** | Gate for the **target** (gofmt, encore check) | Skills that edit that target. Lore itself: `make install` |
 | **When it breaks** | Symptom → cause | Traps the agent will hit |
 | Checklists | Ticks in a fenced block | Workflows and review overlays |
-| **Do not add** | Competing tool already covered | Platform / language |
-| **LLM traps** | Never-generate list | Almost every skill |
+| **Do not add** | Competing tool already covered | Platform / language / playbook method |
+| **LLM traps** | Never-generate list | Language, platform, domain, playbook. Hub kit often skips |
 | **Do not** | Process (restyle, skip a stage, wrong skill) | — |
-| **Old patterns** | `<details>` | Hub skills only |
+| **Old patterns** | `<details>` | Kit hub (`git-repo-setup`). Authoring hub: Final form table |
 
 Kind recipes and sibling filenames: [kinds.md](kinds.md).
-
-Code polyglot: `also apply X. One lefthook.yml, one Justfile.` Language
-ticks live in the overlay, not the hub checklist.
 
 Copy and tick:
 
 ```
 New lore skill:
-- [ ] Durable name; dir = YAML name ([family.md](family.md))
+- [ ] Final form now — not `foo-2026` to rename, not a blob to split later
 - [ ] Kind; copy that kind's headings — or this stub + voice.md
 - [ ] Looks like lore ([voice.md](voice.md)), even if the domain is new
 - [ ] Sources named; inventory existing; not a plugin fork
@@ -163,6 +165,7 @@ Change lore skill:
 | New skill ignores existing artifacts / the pin | First step did not inventory |
 | Two skills own the same rule | Child did not name the override |
 | Directory still has a year (`go-2026`) | Dated names were renamed away. Durable noun. |
+| New skill is a mega-file "to split later" | Split on pressure **now** ([family.md](family.md#final-form)) |
 | Skill restates `create-skill` Examples / Overview | Lore skips those. [voice.md](voice.md). |
 | Catalog row grew an essay | One-line action, not a blog |
 | New skill reads like a tutorial | Short sentences, table, Do not. No Overview. |
@@ -171,7 +174,7 @@ Change lore skill:
 
 ## LLM traps — never generate these
 
-- Year in the directory / YAML `name`
+- Year in the directory / YAML `name`; a follow-up "we'll rename it"
 - `disable-model-invocation: true` copied from create-skill's default
 - Overview / Background / Notes / Examples / "It is important that"
 - Bold whole sentences, emoji, ALL CAPS
@@ -184,6 +187,8 @@ Change lore skill:
 
 ## Do not
 
+- Replay this repo's changelog (dated name → rename → split → tighten).
+  Write the final form. Pressures: [family.md](family.md#final-form).
 - Invent a second skill shape. Copy the sibling of that kind — or this
   stub + [voice.md](voice.md) when there is no sibling.
 - Hang a non-code playbook under `go-idioms` / `encore-go`.

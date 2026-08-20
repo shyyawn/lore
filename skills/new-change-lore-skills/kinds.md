@@ -7,6 +7,7 @@ a design pipeline.
 
 | Kind | Canon | Sibling files |
 | --- | --- | --- |
+| Authoring | this skill | `voice.md`, `kinds.md`, `family.md` |
 | Workflow / playbook | none yet — closest shapes: `git-repo-setup` workflows, `go-ddd` earn, app-structure growth | `stages.md`, `artifacts.md` |
 | Language idiom | `go-idioms`, `typescript-idioms` | `versions.md`, `modernizers.md`, `architecture.md` |
 | Platform coding | `encore-go`, `temporal-go` | `primitives.md`, `infrastructure.md`, `determinism.md`, `workers.md`, short `debug.md` |
@@ -17,9 +18,9 @@ a design pipeline.
 | Domain overlay | `go-backend`, `go-ddd`, `go-unit-tests`, `go-100-mistakes-avoid`, `go-mono-repo` | `internals.md`, `lite.md`, `methods.md`, `domains.md`, `catalog.md`, `layouts.md` |
 | Vendor overlay | `conventional-commits` | `tooling.md` |
 
-Look is always [voice.md](voice.md). The rows below the playbook row are
-this repo's **current** stack family, not a requirement that every new
-skill hang under Go.
+Look is always [voice.md](voice.md). Authoring is this skill — do not
+write a second one. Language idiom and below are the **current** stack,
+not a requirement that every new skill hang under Go.
 
 ## Three lists
 
@@ -43,8 +44,10 @@ their Go content.
 2. **First step**: inventory existing artifacts (PRD, ADRs, Figma,
    `docs/`). Honor them. **Stop** if a more specific skill owns this.
 3. **Division of labor** or stage table: who owns which artifact.
-4. **Earn** the next stage. Default is **no** skip. Fenced checklist;
-   tick yes on ≥2, or stay on the current stage.
+4. **Earn** a later stage when it is expensive (architecture, DDD).
+   Default is **no** skip of an earlier stage. Fenced checklist; tick
+   yes on ≥2 to enter the expensive stage, or stay. Do not copy
+   go-ddd's two-ticks onto "write the PRD" — that stage is the start.
 5. **Default shapes**: the artifact template. Long bodies →
    `artifacts.md` / `stages.md`.
 6. **When it breaks**: skipped a stage, two owners of the same artifact.
@@ -164,7 +167,8 @@ commands and [debug.md](debug.md). Language idioms stay in `go-idioms`.
 
 ## Domain overlay
 
-Open: `go-backend` / `go-100-mistakes-avoid` / `go-unit-tests`.
+Open: `go-backend` / `go-ddd` / `go-mono-repo` / `go-100-mistakes-avoid`
+/ `go-unit-tests`.
 
 - Lead: Overlay on `parent`. What the parent still owns. Catalog link.
 - **What this skill owns** (Own / Leave) when the boundary is easy to

@@ -4,6 +4,43 @@ How lore skills relate, what to call a new one, and how they were
 researched. Shape: [SKILL.md](SKILL.md). Look: [voice.md](voice.md).
 Kinds: [kinds.md](kinds.md).
 
+## Final form
+
+Write the **final form** the first time. Same rule as `go-idioms`: do
+not emit `go-2026` and wait for a rename.
+
+The Aug 17–19 path (dated name → troubleshooting → split layout →
+hub/overlay → catalog overlays → tighten) is **paid-for pressure**.
+Do not replay it as a lifecycle. Apply the pressure **while authoring**.
+
+| Pressure (do this now) | Not (we already did this) |
+| --- | --- |
+| Durable name (`go-idioms`). Title may say 2026 | Directory `go-2026` / `encore-go-2026` |
+| Coding skill + app-structure when layout fights coding | One mega file that scaffolds *and* restyles |
+| Combined skill when two platforms meet | Stuff Temporal into `encore-go` |
+| Overlay / don't fork vendor | Copy a plugin or `conventional-commit-message` into `skills/` |
+| Table / template / one-line rule | Essay SKILL.md, "tighten later" |
+| Sibling when one topic is ~80 lines | Blob SKILL.md, "split later" |
+| Child names the override; parent points back | Silent contradiction; copied catalogs |
+| Overlay drops rows the parent already solved | Language-fixed mistakes restated |
+| Debug JSON in overlay `debug.md` | Recite JSON in SKILL.md |
+| Hub + language overlay; one Lefthook, one Justfile | A kit per language, stacked hook runners |
+| `When it breaks` for traps the agent will hit | No troubleshooting until the first incident |
+| Earn / default **no** for an expensive next stage | Always-on DDD / always-on second `go.mod` |
+
+How to land on that form in **one pass**:
+
+1. Research ([Sources](#sources-research)). Inventory. Honor existing.
+2. Durable name. Kind ([kinds.md](kinds.md)). New domain → hub or
+   playbook, not a hang-off `go-idioms`.
+3. Spine in [voice.md](voice.md). Lead, First step, table or Hard rules,
+   Do not. Catalogs in siblings from the first write.
+4. Two jobs or ~80 lines for one topic → split **in this pass**.
+5. Parent pointer + README row + `make install`.
+
+Tighten is for a **change** to a skill that already drifted. It is not
+a planned phase of a new skill.
+
 ## New domain
 
 The overlay table below is this repo's **current** stack. A skill that
@@ -14,7 +51,7 @@ is not Go, TypeScript, Encore, or Temporal does **not** hang under
 | --- | --- |
 | Same job, narrower fill | Overlay. Child names the override. Parent points back. |
 | New job, no parent | Lone playbook. Stub + [voice.md](voice.md). |
-| New job that will grow overlays | Hub first (`git-repo-setup` shape). Overlays later. |
+| New job that will grow overlays | Hub **now** (`git-repo-setup` shape). A later overlay is a **new** skill when that facet exists — not a phase of the hub |
 | Two jobs that meet | Combined skill (`encore-temporal-go-app-structure` shape). |
 | Already owned in the tree | **Stop.** Follow that skill. |
 
