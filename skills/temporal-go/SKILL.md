@@ -46,6 +46,7 @@ sagas) beside it.
 ```bash
 gofmt -w <files>
 go fix ./<packages>
+go vet ./<packages>
 workflowcheck ./<packages>   # skip if the tool is not in the module yet
 go test ./<packages>
 ```
@@ -53,10 +54,12 @@ go test ./<packages>
 Write the deterministic form the first time. Do not write native `go`/`time`
 in a workflow and wait for replay to fail.
 
-Add `workflowcheck` as a `tool` in `go.mod` when `go` is 1.24+:
+Add `workflowcheck` as a `tool` in `go.mod` when `go` is 1.24+. Pin
+`VERSION` to the `go.temporal.io/sdk` line already in `go.mod`. Do not
+use `@latest`.
 
 ```bash
-go get -tool go.temporal.io/sdk/contrib/tools/workflowcheck@latest
+go get -tool go.temporal.io/sdk/contrib/tools/workflowcheck@VERSION
 ```
 
 ## Hard rules

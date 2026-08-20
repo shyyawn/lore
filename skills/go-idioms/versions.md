@@ -68,7 +68,6 @@ Libraries never call `slog.SetDefault()` — `main` owns that.
 | Before | After |
 | --- | --- |
 | collect keys then sort | `slices.Sorted(maps.Keys(m))` |
-| `for _, p := range strings.Split(s, sep)` (1.24 seq) | prefer `SplitSeq` once on 1.24 |
 | custom intern maps | `"unique"` for canonical comparable values |
 | `for i := len(s)-1; i >= 0; i--` | `for i, v := range slices.Backward(s)` |
 | buffered timer channel assumptions | timers are synchronous; do not rely on `Reset` racing a receive |
@@ -85,6 +84,7 @@ New packages: `iter` (`Seq`, `Seq2`, `Pull`), `unique`, `structs`. Implement ite
 | `for i := 0; i < b.N; i++` + `b.ResetTimer()` | `for b.Loop()` |
 | `tools.go` with `_ "golangci-lint"` | `tool` directive in `go.mod`; run `go tool <name>` |
 | `filepath.Join(root, userPath)` without jail | `os.OpenRoot` / `os.Root` |
+| `for _, p := range strings.Split(s, sep)` | `for p := range strings.SplitSeq(s, sep)` |
 | `crypto/rand` hex helpers | `rand.Text` where a readable secret is enough |
 | `testing/synctest` via `GOEXPERIMENT` | available experimental; prefer 1.25 stable API |
 

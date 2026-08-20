@@ -18,7 +18,7 @@ lore/
 
 | Path | Installs as | What belongs here |
 | --- | --- | --- |
-| `skills/<name>/` | `~/.cursor/skills/<name>/` and `~/.agents/skills/<name>/` | Repeatable domain playbooks. Cursor also loads `.claude/skills` and `.codex/skills`. |
+| `skills/<name>/` | `~/.cursor/skills/<name>/` | Repeatable domain playbooks. Cursor also loads `.claude/skills` and `.codex/skills`. |
 | `rules/*.mdc` | `~/.cursor/rules/` or a project's `.cursor/rules/` | Short always-on or glob-scoped constraints. Dynamic “apply intelligently” rules are skills instead. |
 | `agents/` | `~/.cursor/agents/` | Subagent personas. Add when you have one. |
 | `mcp.json` | `~/.cursor/mcp.json` or `.cursor/mcp.json` | Which servers to attach. Use `${env:NAME}` for secrets. Never commit keys. |
@@ -100,12 +100,12 @@ make install
 
 | Target | Does |
 | --- | --- |
-| `make install` | Copy every skill into `~/.cursor/skills` and `~/.agents/skills` |
+| `make install` | Copy every skill into `~/.cursor/skills` |
 | `make status` | Show which installed copies have drifted from the repo |
-| `make uninstall` | Remove this repo's skills from both locations |
+| `make uninstall` | Remove this repo's skills from `~/.cursor/skills` |
 | `make list` | List the skills in this repo |
 
-`~/.agents/skills` is the portable location (Cursor, Claude Code, Codex). `~/.cursor/skills` is Cursor-only. `install` writes both, and leaves skills it does not own (symlinks to other repos) alone.
+`~/.cursor/skills` is Cursor-only. `~/.agents/skills` is the portable location (Cursor, Claude Code, Codex). `install` writes `~/.cursor/skills` only. Re-enable `AGENTS_SKILLS` in the Makefile to write both. Leaves skills it does not own (symlinks to other repos) alone.
 
 These are **copies, not symlinks** — a running agent keeps a stable snapshot while you edit. The trade-off is drift: re-run `make install` after every change, and `make status` reports what is stale. Symlink instead (`ln -sfn`) if you would rather edits go live immediately.
 

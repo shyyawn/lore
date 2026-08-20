@@ -206,6 +206,7 @@ Workflow and Activity types.
 ```bash
 gofmt -w <files>
 go fix ./<packages>
+go vet ./<packages>
 workflowcheck ./<packages>   # skip if not in the module yet
 go test ./<packages>
 ```
