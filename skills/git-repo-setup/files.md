@@ -4,7 +4,8 @@ Write these at the **repository root** unless noted. Substitute the language
 runtime and formatter; keep recipe names and Lefthook hook names.
 
 Pin mise versions at bootstrap: `mise latest lefthook just gitleaks typos`
-(and the language). Never commit the string `latest`.
+(and the language overlay tools, e.g. `golangci-lint`). Never commit the
+string `latest`.
 
 ## `.gitignore`
 
@@ -36,7 +37,8 @@ mise.toml.local
 
 Do not ignore `.vscode/`. Commit shared `extensions.json` and `launch.json`
 ([debug.md](debug.md); overlay fills them). Ignore personal `*.code-workspace`
-either way. Do not commit `settings.json` unless the team already shares it.
+either way. Do not commit `settings.json` unless the team already shares it
+(and never with a home-directory mise shim path).
 
 After writing, `git check-ignore -v -- .env` must match.
 
@@ -62,6 +64,7 @@ After writing, `git check-ignore -v -- .env` must match.
 
 # generated / vendored — adjust paths to the repo
 # encore.gen/** linguist-generated=true
+# **/*.sql.go linguist-generated=true
 # dist/** linguist-generated=true
 # vendor/** linguist-vendored=true
 ```
@@ -141,6 +144,7 @@ bootstrap:
     mise install
     lefthook install --force
     # language deps: go mod download / npm ci / uv sync
+    # if .env.example exists: cp -n .env.example .env  (no clobber)
 
 check:
     typos
@@ -242,6 +246,22 @@ If `.github/workflows` exists, add:
 
 only when `actionlint` is pinned in mise.
 
+## Language linter config
+
+Not optional. Same class as Lefthook and the Justfile: overlay writes it
+when that language is in the tree. Full contents live in
+`git-repo-setup-go` / `-typescript` / `-python`. Do not skip these because
+they are missing from a greenfield listing here.
+
+| Language | File | When |
+| --- | --- | --- |
+| Go | `.golangci.yml` | Always on a Go repo unless a linter already gates that language |
+| TypeScript | `biome.json` / `biome.jsonc` | Always on a TS repo unless Prettier and/or ESLint already gate it |
+| Python | Ruff in `pyproject.toml` | Always on a Python repo unless Black/flake8/pylint already gate it |
+
+Polyglot: write **each** matching row. One linter per language, not one
+linter for the repo.
+
 ## README bootstrap section
 
 ```markdown
@@ -315,15 +335,23 @@ automatic. Do not set it globally from this skill.
 
 ## `.vscode/extensions.json`
 
-Language overlay fills `recommendations`. Empty array is wrong — the
-overlay always has at least Go (`golang.go`) or Python (`ms-python.python`).
-TypeScript may be `[]` (Cursor already debugs Node).
+Required when the [scan](debug.md#scan-extensions) yields any id. Create
+on greenfield; merge ids on an existing file.
+
+Overlay defaults plus scan (see `debug.md`). Typical Go + mise repo:
 
 ```json
 {
-  "recommendations": []
+  "recommendations": [
+    "golang.go",
+    "golangci.golangci-lint-vscode",
+    "tombi-toml.tombi"
+  ]
 }
 ```
+
+Polyglot: one file, concatenate, unique ids. Do not recommend a CUE
+extension for `*.cue`, or Even Better TOML.
 
 ## `.vscode/launch.json`
 

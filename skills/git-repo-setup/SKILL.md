@@ -3,11 +3,13 @@ name: git-repo-setup
 description: >-
   Bootstraps and retrofits Git repositories to 2026 defaults: main + reftable
   on init, SSH commit signing, .gitignore/.gitattributes/.editorconfig,
-  Lefthook hooks, mise-pinned tools, one task runner (just; Make if already
-  present), and a shared Cursor/VS Code debugger (`.vscode/launch.json`). Use
-  when creating a new repo, running git init, adding hooks, a Makefile or
-  Justfile, lefthook, husky, pre-commit, gitleaks, mise, debug, breakpoints,
-  launch.json, or when the user asks to set up or modernize an existing
+  Lefthook hooks, mise-pinned tools, one linter per language (overlay default
+  if that language has none), one task runner (just; Make if already present),
+  and a shared
+  Cursor/VS Code debugger (`.vscode/launch.json`). Use when creating a new
+  repo, running git init, adding hooks, a Makefile or Justfile, lefthook,
+  husky, pre-commit, gitleaks, mise, debug, breakpoints, launch.json, a
+  linter, or when the user asks to set up or modernize an existing
   repository's Git, debugger, or local dev tooling. Also use when an existing
   repo has no `.vscode/launch.json` or the user asks to scan and add debug
   configs.
@@ -38,9 +40,11 @@ Commit messages: `conventional-commits` skill. Do not restyle those messages her
 3. Inventory what is already there before writing files: `.gitignore`,
    `.gitattributes`, `.editorconfig`, `lefthook.yml` / `.husky/` /
    `.pre-commit-config.yaml`, `Justfile` / `Makefile` / `Taskfile.yml`,
-   `.mise.toml` / `.tool-versions`, `.vscode/`, `.github/workflows`.
+   `.mise.toml` / `.tool-versions`, `.vscode/`, `.github/workflows`,
+   `.golangci.yml`, `biome.json` / `biome.jsonc`, `eslint.config.*`,
+   `.prettierrc*`, Ruff/Black in `pyproject.toml`.
    **Honor a working stack.** One hook manager, one task runner, one
-   `launch.json`.
+   `launch.json`, one `extensions.json`, one linter **per language**.
 4. Language overlay (read that skill; do not invent formatter/test commands):
 
    | Detect | Overlay |
@@ -48,7 +52,7 @@ Commit messages: `conventional-commits` skill. Do not restyle those messages her
    | `go.mod` / `*.go` / `encore.app` | `git-repo-setup-go` |
    | `package.json` + TypeScript/JS (`tsconfig.json`, `*.ts`, `*.tsx`, `svelte.config.*`) | `git-repo-setup-typescript` |
    | `pyproject.toml` / `uv.lock` / `*.py` | `git-repo-setup-python` |
-   | More than one | Apply each overlay. Still one `lefthook.yml`, one Justfile/Makefile, one `launch.json` |
+   | More than one | Apply each overlay. Still one `lefthook.yml`, one Justfile/Makefile, one `launch.json`, one `extensions.json`. One linter per language (golangci **and** Biome/Ruff), not one linter for the whole repo |
 
 ## 2026 defaults (new repos)
 
@@ -69,8 +73,9 @@ Pick these. Do not offer a menu.
 | Secrets (forge) | GitHub push protection / GitLab secret detection | — |
 | Spell-check | [typos](https://github.com/crate-ci/typos) | — |
 | Format (code) | Language overlay (`git-repo-setup-go` / `-typescript` / `-python`) | — |
+| Lint | Language overlay: **one per language**, added if that language has none | Honor the linter/formatter already gating that language |
 | Format (json/md/toml/yaml) | [dprint](https://dprint.dev/) when those files are first-class | Prettier already owns them |
-| Debug | Shared `.vscode/launch.json` + `extensions.json` ([debug.md](debug.md)) | Merge into an existing `.vscode/`; do not replace named configs |
+| Debug | Shared `.vscode/launch.json` + `extensions.json` ([debug.md](debug.md)) | Merge into an existing `.vscode/`; do not replace named configs or recommendation ids |
 
 Do not stack Lefthook with husky or the Python `pre-commit` framework.
 Do not put `just` recipes *and* a Makefile that both claim `ci`.
@@ -101,6 +106,7 @@ New repo:
 - [ ] git init -b main --ref-format=reftable
 - [ ] .gitignore, .gitattributes, .editorconfig
 - [ ] .mise.toml (lefthook, just, gitleaks, typos, + language runtime)
+- [ ] Language linter(s): overlay default per language if that language has none
 - [ ] .vscode/extensions.json + launch.json (debug.md; overlay fills configs)
 - [ ] Justfile with bootstrap / check / test / ci
 - [ ] lefthook.yml (pre-commit + commit-msg + pre-push)
@@ -145,7 +151,9 @@ Existing repo:
 - [ ] If no hook manager: add Lefthook, do not also add husky
 - [ ] If no task runner: add Justfile (or Makefile if the user asked for make)
 - [ ] If a task runner exists: add missing recipe *names*, keep the file
-- [ ] Debug: follow debug.md Decide — add launch.json if missing, else keep existing names and append missing configs
+- [ ] Debug: follow debug.md Decide — add launch.json and extensions.json if missing; else keep existing names/ids and append missing configs/recommendations
+- [ ] Lint: per language, if that overlay has no linter, add its default; do not stack a second linter on the same language
+- [ ] If `.env.example` exists and there is no local env file: `cp -n .env.example .env` (or `.env.local` if that is already the name)
 - [ ] Point CI at `just ci` / `make ci` if CI currently inlines the same steps
 - [ ] lefthook install --force  (or honor the existing manager's install)
 - [ ] gitleaks git --no-banner .  (history audit; report only, do not rewrite)
@@ -212,7 +220,8 @@ branch `main`, squash merge, push protection, branch protection requiring the
 - Duplicate CI steps that already live in `just ci`.
 - Ignore hook failure, or document `--no-verify` as the workflow.
 - Vendor a second copy of this skill into the target repo.
-- Gitignore `.vscode/`, omit `launch.json` on a new repo, or overwrite an existing `launch.json` instead of merging named configs.
+- Gitignore `.vscode/`, omit `launch.json` or `extensions.json` on a new repo that needs them, or overwrite those files instead of merging.
+- Skip an overlay linter when that language has none, or stack a second linter on the same language.
 
 ## Old patterns
 

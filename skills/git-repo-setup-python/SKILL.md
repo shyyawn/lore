@@ -20,10 +20,13 @@ and [debug.md](debug.md). Commit-msg regex: `conventional-commits` /
 1. Apply `git-repo-setup`.
 2. Read `pyproject.toml` and the lockfile (`uv.lock`, `poetry.lock`,
    `pdm.lock`, `requirements.txt`). Honor the installer already in use.
-3. Read Ruff/Black/isort/ruff config in `pyproject.toml`. **One formatter.**
+3. Read Ruff/Black/isort/flake8/pylint config in `pyproject.toml`.
+   **One formatter + linter.** If none, add Ruff. Do not add Ruff next to
+   Black or flake8.
 
 Polyglot: also apply the Go or TypeScript overlay. One `lefthook.yml`, one
-Justfile.
+Justfile, one `launch.json`, one `extensions.json`. Ruff **and** the other
+language's linter (one per language).
 
 ## 2026 Python defaults
 
@@ -122,7 +125,9 @@ recipe **names**. Do not add uv beside a working Poetry lock.
 ## Debug
 
 Write `.vscode/extensions.json` + `launch.json` from [debug.md](debug.md)
-on greenfield. Polyglot: one `launch.json`, merge configurations.
+on greenfield. App: Current File. Tests: pytest (or unittest).
+Polyglot: one `launch.json`, one `extensions.json`, merge. One linter per
+language.
 
 ## Do not
 
@@ -130,4 +135,4 @@ on greenfield. Polyglot: one `launch.json`, merge configurations.
 - `pip install` without a lockfile on `bootstrap`.
 - commitlint / husky in a Python-only tree.
 - A typechecker added "because the git kit should be complete".
-- Omit `.vscode/launch.json` on a new Python repo, or overwrite an existing one instead of merging named configs.
+- Omit `.vscode/launch.json` or `extensions.json` on a new Python repo, or overwrite an existing one instead of merging named configs.

@@ -106,9 +106,9 @@ tool (
 )
 ```
 
-`go get -tool golang.org/x/vuln/cmd/govulncheck` then `go tool govulncheck ./...`. Same for golangci-lint if the repo wants it. No `curl | sh` in the Makefile.
+`go get -tool golang.org/x/vuln/cmd/govulncheck` then `go tool govulncheck ./...`. golangci-lint is the `git-repo-setup-go` linter: pin with mise (or `tool` if the module already pins it that way). No `curl | sh` in the Makefile.
 
-CI that serious 2025–2026 modules run: `gofmt`/`goimports` check, `go test ./...`, `go vet ./...`, `go tool govulncheck ./...`. Add `-race` where goroutines exist.
+CI that serious 2025–2026 modules run: `gofmt`/`goimports` check, `go vet ./...`, `golangci-lint run`, `go test ./...`, `go tool govulncheck ./...` when tooled. Add `-race` where goroutines exist.
 
 ## What 2024–2026 code stopped reaching for
 

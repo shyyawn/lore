@@ -3,15 +3,22 @@
 Every new repo ships a **shared** debugger config. Humans and agents use the
 same attach/launch names. Cursor is the VS Code debug UI (`Ctrl+Shift+D`).
 
-Language overlay writes the configurations: [git-repo-setup-go/debug.md](../git-repo-setup-go/debug.md),
+Language overlay writes **app and test** configurations:
+[git-repo-setup-go/debug.md](../git-repo-setup-go/debug.md),
 [git-repo-setup-typescript/debug.md](../git-repo-setup-typescript/debug.md),
 [git-repo-setup-python/debug.md](../git-repo-setup-python/debug.md).
+App attach/launch does not run tests — each overlay adds a separate test
+config.
 
 ## Committed files
 
-Write both on a **new** repo. If `.vscode/` already exists, **merge** named
-configs and recommendations; do not wipe custom ones. Missing file on an
-existing repo: add it (same as a missing Justfile recipe).
+Write **both** `.vscode/launch.json` and `.vscode/extensions.json`.
+`extensions.json` is overlay defaults **plus** a file scan ([Scan](#scan-extensions)).
+Omit `extensions.json` only when the union of ids is empty. A kit
+TypeScript repo writes `.mise.toml`, Justfile, and `biome.json`, so that
+union is not empty.
+Polyglot: one file, union of ids. Missing file on an existing repo: add it.
+Existing file: keep every id, append missing ones.
 
 | File | Commit | Role |
 | --- | --- | --- |
@@ -42,18 +49,52 @@ launch.json:
 - [ ] Git root (not apps/web, not a Go service dir)
 - [ ] encore.app → add Connect to Encore. Do not Launch Encore packages.
 - [ ] Each extra package main (cmd/<name>, non-Encore) → Launch named after that binary, program = that dir
-- [ ] Each package.json that is a real app (has vitest / vite / svelte.config / a debug script)
-      → Node configs with cwd = that package dir (not the Git root if the app is nested)
-- [ ] pyproject.toml / pytest → Python configs with cwd = that project dir
+- [ ] Each Go package with tests and no Encore init → Debug tests: <path> (`mode: test`). Skip service packages that Load config / Meta / sqldb at init — those are `encore test` only
+- [ ] Each package.json that is a real app (has vite / svelte.config / a debug script)
+      → Node launch with cwd = that package dir
+- [ ] Each package.json with vitest → vitest <dir>; else `node --test` if that is the suite
+- [ ] pyproject.toml / pytest → Python: pytest (unittest instead if that is the suite)
 - [ ] Existing launch.json → keep every existing name; append only missing names
 - [ ] Unique name per config (vitest web vs vitest api if two packages)
 ```
 
 ```
 extensions.json:
-- [ ] Union of overlay recommendations (golang.go, ms-python.python, …)
-- [ ] Dedup by extension id
+- [ ] Git root, next to launch.json. Create if missing.
+- [ ] Overlay defaults + [Scan](#scan-extensions) hits. Dedup by id.
+- [ ] Keep ids already in the file; append missing ones.
+- [ ] Skip the file only if the union is empty
 ```
+
+## Scan extensions
+
+Inventory committed files (skip `node_modules/`, `vendor/`, `.encore/`).
+Add every hit. Do not invent extras from a 2026 blog list.
+
+| Detect | Add | Notes |
+| --- | --- | --- |
+| `go.mod` / `*.go` / `encore.app` | `golang.go` | gopls + Delve |
+| `pyproject.toml` / `*.py` | `ms-python.python` | Debugger (debugpy). Pulls Pylance; do not also list Pylance |
+| Ruff in the Python overlay (`ruff` in `pyproject.toml` / mise, no Black-as-formatter) | `charliermarsh.ruff` | 2026 Python lint/format in the editor |
+| `svelte.config.*` | `svelte.svelte-vscode` | Skip if the Cursor Svelte plugin is already the team install |
+| `.mise.toml` / `*.toml` | `tombi-toml.tombi` | 2026 TOML. Not Even Better TOML |
+| `biome.json` / `biome.jsonc` | `biomejs.biome` | TS overlay default formatter |
+| `eslint.config.*` | `dbaeumer.vscode-eslint` | Only when ESLint is already the repo's linter |
+| `.prettierrc*` / `prettier` in package.json | `esbenp.prettier-vscode` | Only when Prettier is already the formatter |
+| `.golangci.yml` / `golangci-lint` in mise or `go.mod` `tool` | `golangci.golangci-lint-vscode` | Go overlay default. Add the linter first if the repo has none |
+| `Justfile` / `justfile` | `nefrob.vscode-just` | Kit task runner; syntax, not a second runner |
+
+**Do not add**
+
+| Temptation | Why |
+| --- | --- |
+| CUE (`cuelang.org.cue` or similar) because of `*.cue` | Prompts for a `cue` CLI. Encore evaluates `config.cue`. Optional global `cue` is personal, not a repo recommendation |
+| `tamasfe.even-better-toml` | Stale; Tombi is the 2026 TOML extension |
+| Encore / Temporal marketplace plugins | `/add-plugin`, not `extensions.json` |
+| GitLens, Error Lens, themes, YAML-for-K8s, Pylance as a second id, Vitest Explorer | Not this kit. Python extension already suggests Pylance. Vitest is the launch config |
+| Committed `go.alternateTools` / `go.lintTool` in `settings.json` | Mise shim paths are per-machine. golangci-lint is the VS Code extension + `just check` |
+
+## One Git-root launch.json
 
 Go + TypeScript in one repo is the common case (Encore + Svelte, or
 `cmd/` + `web/`). One file, both `type: go` and `type: node` entries.

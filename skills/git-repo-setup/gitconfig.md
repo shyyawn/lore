@@ -197,3 +197,17 @@ When writing a file (user asked for machine setup), keep it this small:
 XDG path `~/.config/git/config` is the 2026 location. If `~/.gitconfig`
 already exists and is the file they edit, update that instead. Do not
 create both.
+
+## Private Go modules (optional, machine)
+
+Only when `go mod download` fails because the module is on private GitLab
+or GitHub. Prefer SSH for that host; do not set this unasked (it rewrites
+every HTTPS clone of that host).
+
+```gitconfig
+[url "ssh://git@gitlab.com/"]
+    insteadOf = https://gitlab.com/
+```
+
+Repo pin: mise `[env] GOPRIVATE = "gitlab.com/org"` (`git-repo-setup-go`).
+Tokens stay in `~/.netrc` or a Git credential helper, never in the repo.
