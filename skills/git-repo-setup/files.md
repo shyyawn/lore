@@ -248,19 +248,14 @@ only when `actionlint` is pinned in mise.
 
 ## Language linter config
 
-Not optional. Same class as Lefthook and the Justfile: overlay writes it
-when that language is in the tree. Full contents live in
-`git-repo-setup-go` / `-typescript` / `-python`. Do not skip these because
-they are missing from a greenfield listing here.
+Overlay writes these. Contents: `git-repo-setup-go` / `-typescript` /
+`-python`. Polyglot: each matching row.
 
 | Language | File | When |
 | --- | --- | --- |
-| Go | `.golangci.yml` | Always on a Go repo unless a linter already gates that language |
-| TypeScript | `biome.json` / `biome.jsonc` | Always on a TS repo unless Prettier and/or ESLint already gate it |
-| Python | Ruff in `pyproject.toml` | Always on a Python repo unless Black/flake8/pylint already gate it |
-
-Polyglot: write **each** matching row. One linter per language, not one
-linter for the repo.
+| Go | `.golangci.yml` | Unless a linter already gates Go |
+| TypeScript | `biome.json` / `biome.jsonc` | Unless Prettier and/or ESLint already gate it |
+| Python | Ruff in `pyproject.toml` | Unless Black/flake8/pylint already gate it |
 
 ## README bootstrap section
 
@@ -335,10 +330,8 @@ automatic. Do not set it globally from this skill.
 
 ## `.vscode/extensions.json`
 
-Required when the [scan](debug.md#scan-extensions) yields any id. Create
-on greenfield; merge ids on an existing file.
-
-Overlay defaults plus scan (see `debug.md`). Typical Go + mise repo:
+Required when the [scan](debug.md#scan-extensions) yields any id. Merge
+ids on an existing file. Typical Go + mise repo:
 
 ```json
 {

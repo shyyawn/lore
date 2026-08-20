@@ -1,20 +1,15 @@
 # Debug — Python
 
-Shared Cursor mechanics: `git-repo-setup` [debug.md](../git-repo-setup/debug.md).
-This file is the Python `launch.json` / `extensions.json`.
-
-Recommend `ms-python.python` (ships debugpy). Do not pin debugpy in mise
-unless the project already depends on it.
-
-**Python: Current File does not run the test suite.** Add pytest (or
-unittest) next to it. Merge names.
+Hub: `git-repo-setup` [debug.md](../git-repo-setup/debug.md). Recommend
+`ms-python.python`. Do not pin debugpy in mise unless the project already
+depends on it. Add pytest (or unittest) next to Current File. Merge names.
 
 ## Tests
 
-| Suite | Debug how |
+| Suite | Config |
 | --- | --- |
-| pytest | `Python: pytest` in `launch.json`. Breakpoints in the test and the code under test. |
-| unittest | `module: unittest` instead of pytest. Do not ship both. |
+| pytest | `Python: pytest` |
+| unittest | `module: unittest` (do not ship both) |
 
 ```json
 {
@@ -27,9 +22,8 @@ unittest) next to it. Merge names.
 }
 ```
 
-`cwd` = the directory that has `pyproject.toml` when nested. Honor `uv`
-(PATH after bootstrap) or `"python": "${workspaceFolder}/.venv/bin/python"`.
-Do not invent a conda env.
+Nested: `cwd` = the `pyproject.toml` directory. Honor `uv` or
+`"python": "${workspaceFolder}/.venv/bin/python"`. No conda.
 
 ## App / current file
 
@@ -48,14 +42,12 @@ Do not invent a conda env.
 }
 ```
 
-Plus the [Tests](#tests) pytest (or unittest) config.
+Plus the [Tests](#tests) config.
 
 ## `extensions.json`
 
-Scan: [git-repo-setup debug.md](../git-repo-setup/debug.md#scan-extensions).
-Python default `ms-python.python`. Add `charliermarsh.ruff` when Ruff is
-the formatter (the overlay default). Add Tombi when `*.toml` / `.mise.toml`
-exists.
+Hub [scan](../git-repo-setup/debug.md#scan-extensions). Default
+`ms-python.python` + `charliermarsh.ruff` when Ruff is the formatter.
 
 ```json
 {

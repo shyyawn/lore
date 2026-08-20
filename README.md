@@ -67,6 +67,7 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 
 | Skill | Use |
 | --- | --- |
+| [new-change-lore-skills](skills/new-change-lore-skills) | Create or change skills in this repo (table, template, one rule once) |
 | [conventional-commits](skills/conventional-commits) | Go/Python/TS overlay on the official `conventional-commit-message` skill (install that first — [Start here](#start-here-cursor)) |
 | [git-repo-setup](skills/git-repo-setup) | 2026 Git repo kit: init, hooks, mise, just/Make, ignore/attributes, linters, shared debugger |
 | [git-repo-setup-go](skills/git-repo-setup-go) | Go overlay: gofmt, go vet, golangci-lint, go test / encore test, Delve `launch.json` |

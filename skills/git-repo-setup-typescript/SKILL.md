@@ -26,8 +26,7 @@ commands and [debug.md](debug.md). Language idioms stay in
    exist, add Biome. Do not add Biome next to Prettier.
 
 Polyglot (TypeScript + `go.mod`): also apply `git-repo-setup-go`. One
-`lefthook.yml`, one Justfile, one `launch.json`, one `extensions.json`.
-Biome **and** golangci-lint (one linter per language).
+`lefthook.yml`, one Justfile.
 
 Svelte (`svelte.config.js` / `svelte.config.ts`): same overlay. Include
 `*.svelte` in the formatter glob. Do not invent a second hook runner for
@@ -156,12 +155,7 @@ check:
 
 ## Debug
 
-Write `.vscode/launch.json` from [debug.md](debug.md) on greenfield.
-App: Launch current file / Vite. Tests: vitest or `node --test`.
-`extensions.json`: overlay defaults plus the hub scan. Omit the file only
-when the union of ids is empty. A kit TS repo has `.mise.toml`, Justfile,
-and `biome.json`, so that union is not empty.
-Polyglot with Go: one `launch.json` and one `extensions.json`, merge.
+[debug.md](debug.md). App: current file / Vite. Tests: vitest or `node --test`.
 
 ## Do not
 
@@ -170,5 +164,5 @@ Polyglot with Go: one `launch.json` and one `extensions.json`, merge.
 - Biome **and** Prettier on the same globs.
 - commitlint in a Go/Python-only tree that happens to contain one `package.json`
   for docs. If Node is not a first-class toolchain, use the Lefthook regex.
-- Omit `.vscode/launch.json` on a new TypeScript repo, or overwrite an existing one instead of merging named configs.
-- Omit `extensions.json` on a kit TypeScript repo (scan is not empty). Omit it only when the union of ids is empty.
+- Omit `.vscode/launch.json` on a new TypeScript repo, or overwrite instead of merging.
+- Omit `extensions.json` when the hub scan is non-empty.

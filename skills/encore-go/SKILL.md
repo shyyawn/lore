@@ -5,8 +5,7 @@ description: >-
   infrastructure-from-code, service packages, //encore:api, service structs,
   sqldb/pubsub/cron/secrets, rlog, and encore.dev/beta/errs. Use when generating,
   editing, reviewing, or scaffolding Encore Go; when the user mentions Encore,
-  encore.dev, encore.app, //encore:api, sqldb, pubsub, encore run, encore test,
-  debug, delve, breakpoints, or Cursor/VS Code attach.
+  encore.dev, encore.app, //encore:api, sqldb, pubsub, encore run, or encore test.
 ---
 
 # Encore Go 2026
@@ -63,9 +62,8 @@ when you only need to know the app is valid.
 
 ## Debug in Cursor
 
-The repo kit writes **Connect to Encore** (`git-repo-setup-go`
-[debug.md](../git-repo-setup-go/debug.md)). Encore traps: [debug.md](debug.md).
-Official: <https://encore.dev/docs/go/how-to/debug>.
+**Connect to Encore**: `git-repo-setup-go` [debug.md](../git-repo-setup-go/debug.md).
+Traps: [debug.md](debug.md). Official: <https://encore.dev/docs/go/how-to/debug>.
 
 ## Hard rules
 

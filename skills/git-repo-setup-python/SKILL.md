@@ -25,8 +25,7 @@ and [debug.md](debug.md). Commit-msg regex: `conventional-commits` /
    Black or flake8.
 
 Polyglot: also apply the Go or TypeScript overlay. One `lefthook.yml`, one
-Justfile, one `launch.json`, one `extensions.json`. Ruff **and** the other
-language's linter (one per language).
+Justfile.
 
 ## 2026 Python defaults
 
@@ -124,10 +123,7 @@ recipe **names**. Do not add uv beside a working Poetry lock.
 
 ## Debug
 
-Write `.vscode/extensions.json` + `launch.json` from [debug.md](debug.md)
-on greenfield. App: Current File. Tests: pytest (or unittest).
-Polyglot: one `launch.json`, one `extensions.json`, merge. One linter per
-language.
+[debug.md](debug.md). App: Current File. Tests: pytest (or unittest).
 
 ## Do not
 
@@ -135,4 +131,4 @@ language.
 - `pip install` without a lockfile on `bootstrap`.
 - commitlint / husky in a Python-only tree.
 - A typechecker added "because the git kit should be complete".
-- Omit `.vscode/launch.json` or `extensions.json` on a new Python repo, or overwrite an existing one instead of merging named configs.
+- Omit `.vscode/launch.json` or `extensions.json` on a new Python repo, or overwrite instead of merging.
