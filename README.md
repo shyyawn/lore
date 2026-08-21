@@ -73,6 +73,7 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [git-repo-setup-go](skills/git-repo-setup-go) | Go overlay: gofmt, go vet, golangci-lint, go test / encore test, Delve `launch.json` |
 | [git-repo-setup-typescript](skills/git-repo-setup-typescript) | TypeScript overlay: Biome, tsc, vitest, commitlint, Node `launch.json` |
 | [git-repo-setup-python](skills/git-repo-setup-python) | Python overlay: uv, ruff, pytest, debugpy `launch.json` |
+| [create-readme-and-other-markdown-documentation](skills/create-readme-and-other-markdown-documentation) | README, community health files, changelogs, ADRs, agent files, and docs/ trees |
 | [go-idioms](skills/go-idioms) | Idiomatic Go 1.18–1.26 and 2024–2026 layout |
 | [go-100-mistakes-avoid](skills/go-100-mistakes-avoid) | Overlay on `go-idioms`: common Go mistakes still in force in 2026 |
 | [go-unit-tests](skills/go-unit-tests) | Overlay on `go-idioms`: 2024–2026 Go tests (tables, synctest, fuzz, what to skip) |

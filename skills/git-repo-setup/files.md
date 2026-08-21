@@ -259,6 +259,9 @@ Overlay writes these. Contents: `git-repo-setup-go` / `-typescript` /
 
 ## README bootstrap section
 
+Full README: `create-readme-and-other-markdown-documentation`. This
+block is only the Develop section the kit requires.
+
 ```markdown
 ## Develop
 

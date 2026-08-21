@@ -1,14 +1,15 @@
 # Kinds
 
-Pick the closest canon. Copy **its** headings. No canon yet (new
-playbook) → [SKILL.md](SKILL.md) stub + [voice.md](voice.md). Do not
-mix a hub checklist into a language skill, or `go-idioms` headings into
-a design pipeline.
+Pick the closest canon. Copy **its** headings. No canon yet →
+[SKILL.md](SKILL.md) stub + [voice.md](voice.md). Do not mix a hub
+checklist into a language skill, `go-idioms` headings into a design
+pipeline, or the docs playbook's file catalog onto a requirements
+pipeline.
 
 | Kind | Canon | Sibling files |
 | --- | --- | --- |
 | Authoring | this skill | `voice.md`, `kinds.md`, `family.md` |
-| Workflow / playbook | none yet — closest shapes: `git-repo-setup` workflows, `go-ddd` earn, app-structure growth | `stages.md`, `artifacts.md` |
+| Workflow / playbook | `create-readme-and-other-markdown-documentation` (future: `requirement-to-architecture-to-design`) | `files.md`, `readme.md`, `english.md`, `stacks.md` |
 | Language idiom | `go-idioms`, `typescript-idioms` | `versions.md`, `modernizers.md`, `architecture.md` |
 | Platform coding | `encore-go`, `temporal-go` | `primitives.md`, `infrastructure.md`, `determinism.md`, `workers.md`, short `debug.md` |
 | App-structure | `encore-go-app-structure`, `temporal-go-app-structure` | usually none — trees live in SKILL.md |
@@ -35,9 +36,10 @@ the model will actually generate that thing.
 
 ## Workflow / playbook
 
-No language required. Stages, artifacts, earn-the-next. Future:
+Open: `create-readme-and-other-markdown-documentation`. No language
+required. Stages, artifacts, earn-the-next. Future:
 `requirement-to-architecture-to-design`. Copy the shapes below, not
-their Go content.
+their docs or Go content.
 
 1. Lead ([voice.md](voice.md)): what the pipeline is. Pointers. Sources.
    Not a vendor encyclopedia (TOGAF dump, a blog "architecture process").
@@ -207,7 +209,8 @@ Semantic, not create-skill's `reference.md` / `examples.md`.
 | `methods.md` / `domains.md` | How / where to test |
 | `internals.md` / `lite.md` | Overlay recipes |
 | `layouts.md` | Trees |
-| `files.md` / `gitconfig.md` | File bodies the agent writes |
+| `files.md` / `gitconfig.md` | File bodies the agent writes (hub). Docs playbook: which `.md` file |
+| `readme.md` / `english.md` / `stacks.md` | README shapes, Google English, language/renderer |
 | `debug.md` | JSON or traps (see Debug split) |
 | `primitives.md` / `infrastructure.md` / `determinism.md` / `workers.md` | Platform catalogs |
 | `tooling.md` | Vendor-overlay recipes |

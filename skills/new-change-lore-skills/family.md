@@ -72,6 +72,7 @@ cell. Add a child. Point both ways.
 | `git-repo-setup-go` | language overlay | `git-repo-setup` | Go commands + Delve JSON |
 | `git-repo-setup-typescript` | language overlay | `git-repo-setup` | Biome/tsc/vitest + Node JSON |
 | `git-repo-setup-python` | language overlay | `git-repo-setup` | uv/ruff/pytest + debugpy JSON |
+| `create-readme-and-other-markdown-documentation` | workflow / playbook | — | README and other Markdown. Kit still owns bootstrap existence |
 | `go-idioms` | language | — | Go 1.18–1.26 + 2024–2026 flatten layout |
 | `typescript-idioms` | language | — | TypeScript 5–7 + 2024–2026 flatten layout |
 | `go-100-mistakes-avoid` | domain overlay | `go-idioms` | Still-in-force mistakes. Not language-fixed rows. |
@@ -95,6 +96,7 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | Several `go.mod` / `go.work` | `go-mono-repo` |
 | Commit message / squash PR title | `conventional-commits` (official skill first) |
 | Hooks, mise, just, `launch.json` | `git-repo-setup` + language overlay |
+| `README.md` / health files / `docs/**/*.md` content | `create-readme-and-other-markdown-documentation` |
 
 ## Naming
 

@@ -20,6 +20,8 @@ local recipes.
 File contents: [files.md](files.md). Machine `git config`: [gitconfig.md](gitconfig.md).
 Debugger: [debug.md](debug.md) (Cursor/VS Code; overlay fills `launch.json`).
 Commit messages: `conventional-commits` skill. Do not restyle those messages here.
+Documentation **content**: `create-readme-and-other-markdown-documentation`.
+This kit only requires a Develop section to exist.
 
 ## First step
 
