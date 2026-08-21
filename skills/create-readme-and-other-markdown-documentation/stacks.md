@@ -35,6 +35,13 @@ show on pkg.go.dev — prefer those over a second copy in README.
 Commands (`package main`): README is the CLI shape. Godoc is still the
 import docs if the module exposes a library.
 
+Private modules: `GOPRIVATE` so `go` skips the public proxy. Auth is
+machine-local — SSH `insteadOf` or `~/.netrc`
+(`git-repo-setup` [gitconfig.md](../git-repo-setup/gitconfig.md)).
+README may say that GOPRIVATE is required. Do not paste tokens or a
+host-specific env name (`GITLAB_READ_TOKEN`). Honor GitHub, GitLab, or
+the company host that is already there.
+
 ## Encore
 
 README Usage: `encore run`. Do not document provisioned infra as YAML.

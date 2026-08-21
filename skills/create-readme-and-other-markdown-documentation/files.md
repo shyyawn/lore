@@ -3,9 +3,17 @@
 Which Markdown file, when, where. README bodies: [readme.md](readme.md).
 English: [english.md](english.md). Stacks: [stacks.md](stacks.md).
 
-GitHub health files may live in the root, `.github/`, or `docs/`
-(precedence: `.github/`, then root, then `docs/`). Issue templates must
-be `.github/ISSUE_TEMPLATE/`. `LICENSE` is root only.
+Health files live in the root, the forge folder, or `docs/`.
+`LICENSE` is root only.
+
+| Forge | Templates and CI | Honor |
+| --- | --- | --- |
+| GitHub | `.github/` (issue templates: `.github/ISSUE_TEMPLATE/`) | Precedence: `.github/`, root, `docs/` |
+| GitLab | `.gitlab/` (MR: `.gitlab/merge_request_templates/`) | Do not add `.github/` as a drive-by |
+
+Flavor: GitHub → GFM. GitLab → GitLab Flavored Markdown. Shared
+subset: headings, tables, fences, `<details>`. Do not mix GitHub-only
+alerts into a GitLab-only renderer, or `github/docs` Liquid anywhere.
 
 ## Default vs skip
 
@@ -19,6 +27,7 @@ be `.github/ISSUE_TEMPLATE/`. `LICENSE` is root only.
 | `CHANGELOG.md` | Library / versioned product | App with GitHub Releases only, and they want that |
 | `AGENTS.md` | When agents will work in the repo | Kit optional row; do not duplicate skills |
 | `.github/PULL_REQUEST_TEMPLATE.md` | GitHub remote | `git-repo-setup` stub is enough |
+| `.gitlab/merge_request_templates/` | GitLab remote | Do not also add `.github/` |
 | `.github/ISSUE_TEMPLATE/` | Public with issue traffic | — |
 | `SUPPORT.md` | Public with a support channel besides Issues | Issues-only |
 | `GOVERNANCE.md` | Project with roles / a steering group | Single maintainer |
@@ -37,7 +46,7 @@ be `.github/ISSUE_TEMPLATE/`. `LICENSE` is root only.
 | Headings | Sentence case. `##` then `###`. Do not skip. Unique on the page |
 | Links | Descriptive text. Not "click here". `docs/x.md` is file-relative; `/docs/x.md` is repo-root |
 | Images | Alt text. Absolute `https://` URLs if this file is mirrored to a registry |
-| Code | Fenced, with a language tag. Match the pin. Explanation above the fence |
+| Code | Fenced, with a language tag. Match the pin. Explanation above the fence. Directory trees: `text`, not `html` |
 | Command | No `$`. No comment on the same copy-paste line. Placeholders `BRANCH_NAME` |
 | Lists | Numbered = sequence. Bullets = unordered. Tables = pairs. Task lists: Issues/PRs, not README |
 | Dates | ISO `2026-08-21` |

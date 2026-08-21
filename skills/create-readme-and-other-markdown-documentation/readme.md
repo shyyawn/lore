@@ -29,8 +29,8 @@ row.
 | Public library | Install from the registry, one call, link to API docs | Full API, every option |
 | Public CLI | Install, one command, `--help` pointer, exit-status notes if they matter | Man page dump |
 | Public app / SaaS | What the product is, who it is for, screenshot or GIF, how to try it | Internal runbooks |
-| Private app | What it is, how to run locally, who owns it | CoC, FUNDING, marketing |
-| Monorepo root | Map of packages, how to bootstrap the workspace | Each package's API |
+| Private app | What it is, how to run locally, who owns it | CoC, FUNDING, marketing, registry install |
+| Monorepo root | Map of packages, how to bootstrap the workspace | Each package's API or a second full tree |
 | Publishable package in a monorepo | That package's install + example | Workspace kit commands |
 | Template / cookiecutter | What you get, how to use the template | The generated app's user docs |
 | Skill / agent library | What the skills cover, how to install | A copy of every `SKILL.md` |
@@ -38,7 +38,18 @@ row.
 | Docs-only repo | Map of the site, how to preview | Duplicate the site homepage |
 
 Private: skip CoC, FUNDING, usually CONTRIBUTING. Keep README + Develop.
-SECURITY still if outsiders can report.
+SECURITY still if outsiders can report. No registry **Install** — the
+first commands are Develop.
+
+Monorepo root: one top-level tree (`text` fence, not `html`). Package
+trees belong in that package's README, or in `<details>` if they must
+stay on the root page. Machine-only auth (tokens, `~/.netrc`, git
+`insteadOf`) is a **pointer** at `git-repo-setup` `gitconfig.md` — do
+not paste secrets, do not invent a host-specific token name. House
+branch/commit/tag rules: `CONTRIBUTING.md`, or a short Contributing
+section if that file was skipped.
+
+A second agent file that restates the tree will drift (one `AGENTS.md`).
 
 Public that wants contributors: link CONTRIBUTING, CoC, SECURITY. Do
 not paste those files into README.
@@ -90,8 +101,8 @@ root README. Do not copy the root README into every folder.
 | Citation | Link to `CITATION.cff` |
 | Acknowledgments | Third-party work you must credit |
 
-Skip: Roadmap, full changelog, CoC body, security-reporting procedure,
-maintainer diary.
+Skip: Roadmap / "features yet to be added", full changelog, CoC body,
+security-reporting procedure, maintainer diary.
 
 ## Default skeleton
 

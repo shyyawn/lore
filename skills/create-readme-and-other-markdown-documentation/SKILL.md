@@ -29,7 +29,7 @@ Kit bootstrap section: `git-repo-setup`. Lore `SKILL.md`:
 
 1. Inventory what is already there. Honor it.
 
-   `README.md`, `docs/`, `.github/`, `CHANGELOG.md` / `HISTORY.md` /
+   `README.md`, `docs/`, `.github/`, `.gitlab/`, `CHANGELOG.md` / `HISTORY.md` /
    `NEWS.md`, `CONTRIBUTING.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`,
    `AGENTS.md` / `CLAUDE.md`, `LICENSE`, `STYLE.md` / Vale, the docs
    site config (`mkdocs.yml`, `docusaurus.config.*`, `hugo.toml`).
@@ -50,7 +50,7 @@ Kit bootstrap section: `git-repo-setup`. Lore `SKILL.md`:
 | Job | Default | Honor instead when |
 | --- | --- | --- |
 | English | Google developer style ([english.md](english.md)) | `STYLE.md`, Vale, or a Microsoft/Apple product already sets the guide |
-| Flavor | GFM for GitHub-rendered files | Docs site already on MDX, rST, or AsciiDoc |
+| Flavor | Forge Markdown (GitHub = GFM; GitLab = GLFM) | Docs site already on MDX, rST, or AsciiDoc |
 | README | Shape for this kind ([readme.md](readme.md)) | Existing README works — fill gaps only |
 | Health files | Public: CONTRIBUTING, CoC, SECURITY | Private: skip CoC / FUNDING / usually CONTRIBUTING |
 | Changelog | Keep a Changelog `CHANGELOG.md` | `HISTORY.md` / Releases-only already works |
@@ -136,11 +136,12 @@ Material. None yet and already a JS app → ask. Diátaxis folders:
 
 ## LLM traps — never generate these
 
-- A badges wall, emoji headings, or "Welcome to my awesome project"
+- A badges wall, emoji headings, or "Welcome to the …"
 - `$ git clone`, `foo` / `<YourName>` placeholders, two `## Example`
 - Title Case headings; British/American mix; "simply" / "just" / "easy"
 - A mermaid fence or footnotes in a README that npm/PyPI also renders
-- A GitHub Wiki as the docs site
+- A GitHub Wiki as the docs site; an `html` fence around a directory tree
+- A "features yet to be added" task list in README
 - Recopying CONTRIBUTING or the API into README
 - `INSTALL.md` + `USAGE.md` + `HACKING.md` beside a README that should
   hold those
