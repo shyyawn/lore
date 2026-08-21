@@ -34,20 +34,35 @@ be `.github/ISSUE_TEMPLATE/`. `LICENSE` is root only.
 | Rule | Do |
 | --- | --- |
 | Title | One `#`. Matches the page, not always the filename (`README.md` H1 is the project) |
-| Headings | Sentence case. `##` then `###`. Do not skip |
-| Links | Descriptive text. Not "click here". Relative for in-repo paths |
+| Headings | Sentence case. `##` then `###`. Do not skip. Unique on the page |
+| Links | Descriptive text. Not "click here". `docs/x.md` is file-relative; `/docs/x.md` is repo-root |
 | Images | Alt text. Absolute `https://` URLs if this file is mirrored to a registry |
-| Code | Fenced, with a language tag. Match the pin |
-| Lists | Numbered = sequence. Bullets = unordered. Tables = pairs |
+| Code | Fenced, with a language tag. Match the pin. Explanation above the fence |
+| Command | No `$`. No comment on the same copy-paste line. Placeholders `BRANCH_NAME` |
+| Lists | Numbered = sequence. Bullets = unordered. Tables = pairs. Task lists: Issues/PRs, not README |
 | Dates | ISO `2026-08-21` |
-| Empty | Do not leave a heading with no body |
+| Empty | Do not leave a heading with no body. Text between a heading and its subheading |
+| HTML | `<details>` only. No `<div align>`, `<center>`, `<br>` as layout |
+| Footnotes | Do not. A sentence or a GFM alert |
 | Frontmatter | Only if the renderer needs it (MkDocs, Docusaurus, Hugo). Never on GitHub health files |
-| Alerts | GFM `> [!NOTE]` only on GitHub-rendered files. Sparingly |
+| Alerts | GFM `> [!NOTE]` only on GitHub-rendered files. Sparingly. Not consecutive |
 | Wrap | Honor existing. Do not reflow a working README |
 
-GFM alerts (GitHub only): `NOTE`, `TIP`, `IMPORTANT`, `WARNING`,
-`CAUTION`. They are not CommonMark. MkDocs uses `!!!`. Docusaurus uses
-`:::`. Do not mix.
+## GFM vs GitHub renderer
+
+[GFM spec](https://github.github.com/gfm/): CommonMark plus tables, task
+lists, strikethrough, autolinks, tag filter.
+
+GitHub **also** draws, but these are not the spec: alerts, Mermaid,
+math, footnotes. Use them only when the file is GitHub-rendered.
+Do not put a mermaid fence or `$math$` in a README that npm, PyPI,
+or crates.io mirrors.
+
+GFM alerts: `NOTE`, `TIP`, `IMPORTANT`, `WARNING`, `CAUTION`. MkDocs
+uses `!!!`. Docusaurus uses `:::`. Do not mix.
+
+Writing rules GitHub, Google, and GitLab share: [english.md](english.md).
+Do not copy `github/docs` Liquid / `AUTOTITLE` into a normal repo.
 
 ## `README.md`
 
@@ -222,3 +237,4 @@ what you expected, pin / OS, how to reproduce.
 | `NEWS.md` (new) | `CHANGELOG.md` |
 | `README.rst` beside `README.md` | One README. Honor rST-only if that is the ecosystem |
 | `llms.txt` in the Git root of an app | The published site's `/llms.txt` |
+| GitHub Wiki | Earned `docs/` or a docs site. Wikis skip the same PR gate |

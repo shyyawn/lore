@@ -17,9 +17,10 @@ Repo Markdown for humans and forges. Do not dump a wiki into
 [files.md](files.md). README shapes: [readme.md](readme.md). Language
 and framework: [stacks.md](stacks.md).
 
-Sources: Google developer documentation style guide, GitHub community
-health files and GFM, Diátaxis, Keep a Changelog 1.1, MADR 4, Contributor
-Covenant 3.0, AGENTS.md. Not their trees, not a Docusaurus starter.
+Sources: Google developer documentation style guide, GitHub
+writing-on-GitHub (GFM), community health files, Diátaxis, Keep a
+Changelog 1.1, MADR 4, Contributor Covenant 3.0, AGENTS.md. Not
+`github/docs` Liquid, not their trees, not a Docusaurus starter.
 
 Kit bootstrap section: `git-repo-setup`. Lore `SKILL.md`:
 `new-change-lore-skills`. Commit format: `conventional-commits`.
@@ -96,9 +97,11 @@ Material. None yet and already a JS app → ask. Diátaxis folders:
   not mix MDX or MkDocs `!!!` into `README.md`.
 - One `#` title. Then `##`. Do not skip heading levels.
 - Examples compile against the pin. Commands the reader is told to run
-  must work.
-- Relative links for in-repo files. Absolute image URLs when the
-  README is mirrored (npm, PyPI, crates.io).
+  must work. No `$` in a copy-paste fence.
+- Relative links for in-repo files (`docs/x.md` vs `/docs/x.md`).
+  Absolute image URLs when the README is mirrored (npm, PyPI, crates.io).
+- Mermaid, math, and GFM alerts only on GitHub-rendered files. Not in
+  a README a registry mirrors.
 - Do not invent a license, a CoC, or a security policy. Copy the
   official template and fill placeholders.
 
@@ -134,7 +137,10 @@ Material. None yet and already a JS app → ask. Diátaxis folders:
 ## LLM traps — never generate these
 
 - A badges wall, emoji headings, or "Welcome to my awesome project"
+- `$ git clone`, `foo` / `<YourName>` placeholders, two `## Example`
 - Title Case headings; British/American mix; "simply" / "just" / "easy"
+- A mermaid fence or footnotes in a README that npm/PyPI also renders
+- A GitHub Wiki as the docs site
 - Recopying CONTRIBUTING or the API into README
 - `INSTALL.md` + `USAGE.md` + `HACKING.md` beside a README that should
   hold those
