@@ -4,11 +4,12 @@ description: >-
   TypeScript overlay for git-repo-setup: Biome (or the repo's Prettier),
   tsc --noEmit, vitest/node --test, Playwright e2e when playwright.config
   exists, pnpm/npm lockfile, commitlint when Node is first-class,
-  Cursor/VS Code/Zed Node/vitest launch.json. Use when bootstrapping or
-  retrofitting Git hooks / just / Lefthook in a TypeScript or JS repo, or
-  when the repo has package.json, tsconfig.json, *.ts, *.tsx,
-  svelte.config, or the user asks to debug TypeScript, set breakpoints, or
-  add launch.json.
+  Cursor/VS Code/Zed Node/vitest/Next/Expo launch.json. Use when
+  bootstrapping or retrofitting Git hooks / just / Lefthook in a
+  TypeScript or JS repo, or when the repo has package.json,
+  tsconfig.json, *.ts, *.tsx, svelte.config, next, expo, or the user
+  asks to debug TypeScript, Next, Expo, iOS, Android, set breakpoints,
+  or add launch.json.
 ---
 
 # Git repo setup — TypeScript
@@ -35,6 +36,10 @@ Svelte (`svelte.config.js` / `svelte.config.ts`): same overlay. Include
 `*.svelte` in the formatter glob. Do not invent a second hook runner for
 the Svelte app. Coding: `svelte`. Layout: `sveltekit-app-structure`.
 
+Next (`next` in `package.json`) or Expo (`expo`): same overlay. Debug
+JSON: [debug.md](debug.md). Coding: project `AGENTS.md` / `expo/skills`.
+Journeys: `e2e-tests`.
+
 ## 2026 TypeScript defaults
 
 | Job | Default | Honor instead when |
@@ -47,7 +52,7 @@ the Svelte app. Coding: `svelte`. Layout: `sveltekit-app-structure`.
 | E2E | `npx playwright test` if `playwright.config.*` exists | Honor the existing `e2e` / `test:e2e` script. Expo iOS / Android: Maestro / the EAS workflow already there |
 | Commit-msg | commitlint + Lefthook (`conventional-commits` / `tooling.md`) | Use commitlint here; do not fall back to the Go/Python regex |
 | JSON/MD/YAML | Biome or the existing Prettier | `dprint` already owns those files |
-| Debug | `.vscode/launch.json` ([debug.md](debug.md)): current file + vitest / `node --test` | Honor existing named configs |
+| Debug | `.vscode/launch.json` ([debug.md](debug.md)): current file + vitest / jest / `node --test`; Next / Expo when those deps exist | Honor existing named configs |
 
 Do not add Husky. Lefthook is the hook runner. Do not add a second of
 Biome/Prettier/ESLint/dprint that formats the same globs.
@@ -173,7 +178,9 @@ check:
 
 ## Debug
 
-[debug.md](debug.md). App: current file / Vite. Tests: vitest or `node --test`.
+[debug.md](debug.md). App: current file / Vite / Next / Expo. Tests:
+vitest, jest-expo, or `node --test`. Zed: same `launch.json`; no extra
+file.
 
 ## Do not
 
@@ -184,4 +191,5 @@ check:
   for docs. If Node is not a first-class toolchain, use the Lefthook regex.
 - Omit `.vscode/launch.json` on a new TypeScript repo, or overwrite instead of merging.
 - Omit `extensions.json` when the hub scan is non-empty.
+- Omit Next / Expo launch names when those deps exist, or add React Native Tools next to Expo Tools.
 - Playwright / Cypress as a drive-by on a library with no UI (`e2e-tests`).

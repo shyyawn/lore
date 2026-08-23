@@ -22,6 +22,9 @@ is **absent**. Do not add `.zed/debug.json`. Zed has no workspace
 | `go` | Delve |
 | `debugpy` | Debugpy |
 | `node` / `pwa-node` | JavaScript |
+| `chrome` | JavaScript (if the adapter accepts it) |
+| `node-terminal` | none — Cursor / VS Code |
+| `expo` | none — Expo Tools. Zed: RN DevTools (`j`) |
 
 | File | Commit |
 | --- | --- |
@@ -48,7 +51,9 @@ launch.json:
 - [ ] Go tests with no Encore init → Debug tests: <path> (`mode: test`)
 - [ ] Encore service package tests → encore test only (no mode: test)
 - [ ] package.json app → Node, cwd = that dir
-- [ ] vitest → vitest <dir>; else node --test if that is the suite
+- [ ] next → Next.js server-side + client-side + full stack
+- [ ] expo → Debug Expo app (attach; iOS / Android / device) + Expo Web if they debug web
+- [ ] vitest → vitest <dir>; else jest / jest-expo if that is the suite; else node --test
 - [ ] pytest (or unittest if that is the suite)
 - [ ] keep existing names; append missing; unique names
 ```
@@ -102,6 +107,7 @@ ids from a blog list.
 | `pyproject.toml` / `*.py` | `ms-python.python` |
 | Ruff (overlay default; not Black-as-formatter) | `charliermarsh.ruff` |
 | `svelte.config.*` | `svelte.svelte-vscode` (skip if the Cursor Svelte plugin is the team install) |
+| `expo` in package.json | `expo.vscode-expo-tools` |
 | `.mise.toml` / `*.toml` | `tombi-toml.tombi` |
 | `biome.json` / `biome.jsonc` | `biomejs.biome` |
 | `eslint.config.*` | `dbaeumer.vscode-eslint` |
@@ -111,7 +117,8 @@ ids from a blog list.
 
 **Do not add:** CUE extension, `tamasfe.even-better-toml`, Encore/Temporal
 marketplace plugins (`/add-plugin`), GitLens, Error Lens, themes, Pylance
-as a second id, Vitest Explorer.
+as a second id, Vitest / Jest Explorer, a Next marketplace plugin,
+`msjsdiag.vscode-react-native`, Radon IDE, Firefox Debugger.
 
 ## Do not
 

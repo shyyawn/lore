@@ -71,7 +71,7 @@ Do not invent a parallel `go-idioms`, a second `encore-go`, or a second
 | `conventional-commits` | vendor overlay | `conventional-commit-message` (install, don't copy) | Go/Python/TS scopes, HEREDOC, no Node on Go/Python |
 | `git-repo-setup` | hub | — | Kit: init, Lefthook, mise, just/Make, ignore, debugger policy |
 | `git-repo-setup-go` | language overlay | `git-repo-setup` | Go commands + Delve JSON |
-| `git-repo-setup-typescript` | language overlay | `git-repo-setup` | Biome/tsc/vitest + Node JSON |
+| `git-repo-setup-typescript` | language overlay | `git-repo-setup` | Biome/tsc/vitest + Node / Next / Expo JSON |
 | `git-repo-setup-python` | language overlay | `git-repo-setup` | uv/ruff/pytest + debugpy JSON |
 | `create-readme-and-other-markdown-documentation` | workflow / playbook | — | README and other Markdown. Kit still owns bootstrap existence |
 | `go-idioms` | language | — | Go 1.18–1.26 + 2024–2026 flatten layout |
