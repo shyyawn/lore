@@ -1,12 +1,13 @@
 ---
 name: go-idioms
 description: >-
-  Writes, restyles, and reviews Go using idioms from Go 1.18 through 1.26
-  (generics, any, slog, slices/maps, iterators, ServeMux, errors.AsType,
-  WaitGroup.Go, go fix) and 2024–2026 architecture practices (stdlib-first,
-  cmd/internal layout, consumer-side interfaces, context-first I/O). Use when
-  generating, editing, reviewing, or modernizing Go; when the user mentions
-  idiomatic Go, 2026 Go, go fix, slog, iterators, or matching go.mod.
+  Writes, restyles, and reviews Go using idioms from Go 1.18 through 1.27
+  (generics, generic methods, any, slog, slices/maps, iterators, ServeMux,
+  errors.AsType, WaitGroup.Go, uuid, encoding/json/v2, go fix) and 2024–2026
+  architecture practices (stdlib-first, cmd/internal layout, consumer-side
+  interfaces, context-first I/O). Use when generating, editing, reviewing, or
+  modernizing Go; when the user mentions idiomatic Go, 2026 Go, go fix, slog,
+  iterators, or matching go.mod.
 ---
 
 # Go 2026
@@ -24,7 +25,8 @@ Read `go.mod`. Target that version. Do not bump `go` to unlock an idiom.
 
 | `go` | Always use | Not yet |
 | --- | --- | --- |
-| 1.26+ | everything below plus `errors.AsType`, `new(expr)`, `go fix` modernizers | 1.27 generic methods unless `go` is 1.27+ |
+| 1.27+ | everything below plus generic methods, nested struct-literal keys, `"uuid"`, `encoding/json/v2`, `strings.CutLast`, 1.27 `go fix` | `simd` |
+| 1.26 | `errors.AsType`, `new(expr)`, `go fix` modernizers | generic methods, `"uuid"`, `encoding/json/v2` |
 | 1.25 | `sync.WaitGroup.Go`, `testing/synctest` (stable) | `errors.AsType`, `new(expr)` |
 | 1.24 | `t.Context()`, `b.Loop()`, `omitzero`, `tool` in go.mod, `os.Root`, `strings.SplitSeq` | `WaitGroup.Go` |
 | 1.23 | `iter.Seq`/`Seq2`, `for range` over iterators, `unique`, `slices.Sorted` | 1.24 testing APIs |
@@ -49,7 +51,8 @@ Write the modern form the first time. Do not write old Go and wait for `go fix`.
 
 | Symptom | Usually means |
 | --- | --- |
-| `undefined: errors.AsType`, `new(expr)` rejected | `go.mod` targets below the version that added it. Write to the module's version; do not bump `go`. |
+| `undefined: errors.AsType`, `new(expr)`, `uuid.New`, `encoding/json/v2` | `go.mod` targets below the version that added it. Write to the module's version; do not bump `go`. |
+| `method must have no type parameters` | Generic method on a `go` below 1.27. Keep the helper as a package function. |
 | `missing go.sum entry for module providing package …` | A dependency was added but not resolved. `go mod tidy` — never hand-edit `go.sum`. |
 | `go vet`: `conversion from X (int) to string yields a string of one rune` | `string(someIntType)` where you meant `.String()` or `strconv.Itoa`. Compiles, passes tests, wrong in production. |
 | `go fix -diff` still non-empty after a pass | Modernizers do not cascade. Re-run until empty. |
@@ -59,6 +62,8 @@ Write the modern form the first time. Do not write old Go and wait for `go fix`.
 
 - `any`, never `interface{}` (including comments).
 - Generics for containers, helpers, and constraints — not class hierarchies or "to look modern".
+- Type params on a **method** (1.27+), not only the type. They cannot implement interfaces. Below 1.27, keep the helper as a package function.
+- Struct-literal keys may be any valid field selector (1.27+). Below 1.27, nest the embedded composite.
 - `for i := range n` for 0-based counting. Keep `for i := 1; i <= n; i++` when the domain is 1-based.
 - Byte index over a string: `for i := range len(s)`, **not** `for i := range s`.
 - No `x := x` inside range loops (1.22+).
@@ -79,6 +84,8 @@ Stdlib-first: do not add a dependency the standard library now covers.
 | Errors | `fmt.Errorf("%w")`, `errors.Join`, `errors.AsType` | `pkg/errors` |
 | CLI | `flag` for one-off tools; Cobra when a real command tree already exists | a new CLI framework beside an existing one |
 | Random | `math/rand/v2` (non-crypto), `crypto/rand` (secrets) | math/rand global Seed |
+| UUID | `"uuid"` (1.27+): `uuid.New()`, `uuid.Parse` | `github.com/google/uuid` on 1.27+ |
+| JSON | `encoding/json`; 1.27+ new code may use `encoding/json/v2` | jsoniter |
 | Tools | `tool` directive in go.mod (1.24) | `tools.go` blank imports |
 
 Layout is earned: `cmd/` for binaries, `internal/` for private code. `pkg/` only when you deliberately publish. No `util/`, `common/`, `helpers/`. Do not invent `domain/` / `usecase/` / `adapter/` trees unless the repo is already that shape. Service internals: `go-backend`. Aggregates: `go-ddd`. More than one module: `go-mono-repo`.
@@ -123,10 +130,12 @@ How to write them: `go-unit-tests`. Encore runner: `encore-go`. Temporal:
 - Copying `sync.Mutex` (embed or pointer)
 - `http.DefaultClient` with no timeout
 - New `pkg/errors`, `logrus`, `gorilla/mux`, or a util package
+- `github.com/google/uuid` on a 1.27+ module (`"uuid"`)
 
 ## Do not
 
 - Restyle unrelated files, or rewrite comments that already tell the truth.
+- Rewrite working `encoding/json` to v2 as a drive-by.
 - Extract a helper until the third copy.
 - Add generics, interfaces, or typed-string "enums" only to look modern.
 - Run `go fix` on `vendor/`.

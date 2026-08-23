@@ -141,8 +141,7 @@ func TestExpires(t *testing.T) {
 	synctest.Test(t, func(t *testing.T) {
 		c := New(time.Second)
 		c.Set("k", "v")
-		time.Sleep(time.Second)
-		synctest.Wait()
+		synctest.Sleep(time.Second) // 1.27+; else time.Sleep + Wait
 		if _, ok := c.Get("k"); ok {
 			t.Fatal("still present")
 		}
@@ -158,10 +157,10 @@ func TestExpires(t *testing.T) {
   the bubble), `sync.Cond.Wait`. **Not** durable: `Mutex`, network I/O,
   syscalls, channels created **outside** the bubble.
 - Operating on a bubbled channel/timer from outside panics.
-- 1.27+: `synctest.Sleep(d)` is `time.Sleep(d)` + `Wait()` — prefer it so
-  the test settles after the same instant as the code under test.
-- Below 1.25: a ready `chan struct{}`, or inject `now time.Time` into pure
-  functions. Do not add a Clock interface only to avoid `Sleep`.
+- 1.27+: `synctest.Sleep(d)` — `time.Sleep(d)` + `Wait()`.
+- Below 1.27: `time.Sleep` + `Wait`. Below 1.25: a ready `chan struct{}`,
+  or inject `now time.Time` into pure functions. Do not add a Clock
+  interface only to avoid `Sleep`.
 
 `go test -race` on packages that start goroutines. A race is a bug.
 

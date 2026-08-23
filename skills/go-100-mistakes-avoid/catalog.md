@@ -132,9 +132,9 @@ into essays.
 | 78 | Not enabling the race flag | `go test -race` on packages that start goroutines (`ci`). |
 | 79 | Not using test execution modes | `t.Parallel()` when isolated. `-shuffle=on` in CI. Do not parallel tests that share globals. |
 | 80 | Not using table-driven tests | `t.Run` tables. Do not copy-paste cases. |
-| 81 | Sleeping in unit tests | No `time.Sleep` to wait for a goroutine. `testing/synctest`. Ready channel if `go` is below 1.25. |
+| 81 | Sleeping in unit tests | No `time.Sleep` to wait for a goroutine. `synctest.Sleep` when `go` is 1.27+. Else `synctest.Test` + `Wait`. Ready channel if `go` is below 1.25. |
 | 82 | Not dealing with the time API efficiently | Inject a clock. Do not call `time.Now()` deep in logic you need to test. |
-| 83 | Not using testing utility packages | `httptest.NewRecorder` / `NewServer`, `iotest`. Do not listen a real port in unit tests. |
+| 83 | Not using testing utility packages | `httptest.NewRecorder` / `NewTestServer` (1.27+; else `NewServer` + Cleanup), `iotest`. Do not listen a real port in unit tests. |
 | 84 | Writing inaccurate benchmarks | Setup outside the loop. `for b.Loop()`. Report allocations. Do not optimize from a bad bench. |
 | 85 | Not exploring all the Go testing features | `t.Helper`, `t.Cleanup`, `t.TempDir`, `t.Setenv`, `t.Context`. Fuzz parsers and codecs. |
 

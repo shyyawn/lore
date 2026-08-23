@@ -1,4 +1,4 @@
-# go fix modernizers (Go 1.26)
+# go fix modernizers (Go 1.26+)
 
 Run `go tool fix help` for the live list on this toolchain. Write these forms
 directly; `go fix` is the backstop. Version meaning of each rewrite:
@@ -12,13 +12,13 @@ go fix -diff ./<packages>        # must be empty when done
 Modernizers do not cascade in one pass (`minmax` is the usual example). Re-run
 until `-diff` is empty.
 
-Disabled by default in 1.26 `go fix`, so write them by hand when they apply:
-`fmtappendf`, `bloop`, `appendclipped`.
+**1.26** toolchain: `fmtappendf`, `bloop`, `appendclipped` are disabled by
+default — write them by hand. Analyzer name is `waitgroup`. `atomictypes` may
+be missing; still write `atomic.Int64` methods (1.19+).
 
-On a **1.27** toolchain, names may differ (`waitgroup` → `waitgroupgo`;
-`atomictypes`, `embedlit`, `slicesbackward`, `unsafefuncs` added; `fmtappendf`
-dropped). Still write the After form. Do not emit 1.27-only language on a 1.26
-module.
+**1.27** toolchain: `waitgroup` → `waitgroupgo`. Adds `atomictypes`,
+`embedlit`, `slicesbackward`, `unsafefuncs`. Drops `fmtappendf`. Still write
+the After form. Do not emit 1.27-only language on a 1.26 module.
 
 ## Language
 
@@ -31,6 +31,9 @@ module.
 | `newexpr` | helper that returns `&v` | `new(v)` |
 | `plusbuild` | `// +build linux` | `//go:build linux` |
 | `inline` | call to a `//go:fix inline` wrapper | inlined callee |
+| `atomictypes` | `var n int64; atomic.AddInt64(&n, 1)` | `var n atomic.Int64; n.Add(1)` |
+| `embedlit` | `T{U: U{x: 1}}` | `T{x: 1}` (1.27+ nested keys) |
+| `unsafefuncs` | `unsafe.Pointer(uintptr(p) + n)` | `unsafe.Add(p, n)` |
 
 ## Slices, maps, iterators
 
@@ -52,7 +55,7 @@ module.
 | `stringscutprefix` | `HasPrefix` + `TrimPrefix` | `strings.CutPrefix` (same for suffix) |
 | `stringsseq` | `for _, p := range strings.Split(s, sep)` | `for p := range strings.SplitSeq(s, sep)` |
 | `stringsbuilder` | `s += p` in a loop | `strings.Builder` |
-| `fmtappendf` | `[]byte(fmt.Sprintf(...))` | `fmt.Appendf(nil, ...)` |
+| `fmtappendf` | `[]byte(fmt.Sprintf(...))` | `fmt.Appendf(nil, ...)` (1.26 `go fix` only) |
 
 ## Net, errors, concurrency, tests
 
@@ -60,9 +63,8 @@ module.
 | --- | --- | --- |
 | `hostport` | `fmt.Sprintf("%s:%d", host, port)` | `net.JoinHostPort(host, strconv.Itoa(port))` |
 | `errorsastype` | `var e *E; errors.As(err, &e)` | `e, ok := errors.AsType[*E](err)` |
-| `waitgroup` | `wg.Add(1); go func() { defer wg.Done(); ... }()` | `wg.Go(func() { ... })` |
+| `waitgroupgo` | `wg.Add(1); go func() { defer wg.Done(); ... }()` | `wg.Go(func() { ... })` |
 | `testingcontext` | `ctx, cancel := context.WithCancel(...)` in a test | `ctx := t.Context()` |
 | `bloop` | `for i := 0; i < b.N; i++` | `for b.Loop()` |
 
-`atomictypes` (`atomic.Int64` methods) may not be in 1.26 `go tool fix`; still
-write the typed form for new code (1.19+).
+1.26 `go tool fix` still names the WaitGroup analyzer `waitgroup`. Same After.

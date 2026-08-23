@@ -65,7 +65,7 @@ Prefer **one extra module at a named directory**, not `services/` +
 `libs/` ceremony. Most products never get here.
 
 ```
-go 1.26
+go 1.27
 
 use (
     .

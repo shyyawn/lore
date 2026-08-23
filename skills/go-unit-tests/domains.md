@@ -23,9 +23,9 @@ Assert status, the headers you own, and the decoded body. Do not re-test
 service rules already covered in the domain package — the handler test
 owns mapping (401 vs 404 vs 409) and routing.
 
-Client code: `httptest.NewServer` (or `NewTLSServer`). Close with
+Client code: 1.27+ `httptest.NewTestServer(t, h)` (in-memory, auto
+`Cleanup`, synctest-safe). Below 1.27: `NewServer` / `NewTLSServer` +
 `t.Cleanup(srv.Close)`. Use `srv.Client()`. Do not listen a fixed port.
-1.27+: `httptest.NewTestServer` for in-memory / `synctest` (no real TCP).
 
 Do not `http.Get` in a unit test. Do not assert that ServeMux matched a
 pattern you did not write.

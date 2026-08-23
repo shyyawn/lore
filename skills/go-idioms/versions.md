@@ -109,12 +109,18 @@ Swiss-table maps are the runtime default — no source change.
 
 Green Tea GC is the default — no source change. Do not set `GOEXPERIMENT=nogreenteagc` in new modules.
 
-## 1.27 — only if `go` is 1.27+
+## 1.27 — generic methods, nested literals, uuid, json/v2
 
-Draft as of 2026-08. Do **not** emit on a 1.26 module (`stdversion` will fail):
+| Before | After |
+| --- | --- |
+| package-level `N[T](r *Rand, n T) T` next to a type | `(r *Rand) N[Int intType](n Int) Int` |
+| `Gopher{Habitat: Habitat{Burrow: "x"}}` | `Gopher{Burrow: "x"}` (any valid field selector) |
+| `[]F{GenericFn[int]}` / `F(GenericFn[int])` | `[]F{GenericFn}` when the dest type is known |
+| `github.com/google/uuid` | `"uuid"` (`New`, `Parse`, `NewV7`) |
+| `encoding/json` for new Options / stricter defaults | `encoding/json/v2` (`Marshal` / `Unmarshal` + Options) |
+| `strings.LastIndex` + slice | `strings.CutLast` / `bytes.CutLast` |
+| `go fix` `waitgroup` | `waitgroupgo`; plus `atomictypes`, `embedlit`, `slicesbackward`, `unsafefuncs` |
+| several `require` blocks in `go.mod` | `go mod tidy` keeps at most two (direct, indirect) |
 
-- Generic methods (type params on the method, not the receiver). They cannot implement interfaces.
-- `go fix` may rename `waitgroup` → `waitgroupgo` and add `atomictypes`, `embedlit`, `slicesbackward`, `unsafefuncs`.
-- `goroutineleak` pprof profile is GA.
-
+Generic methods cannot implement interfaces. Tests: `go-unit-tests`.
 When `go.mod` still says 1.26, keep generic helpers as package functions.

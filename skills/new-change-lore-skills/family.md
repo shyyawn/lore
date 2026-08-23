@@ -74,7 +74,7 @@ Do not invent a parallel `go-idioms`, a second `encore-go`, or a second
 | `git-repo-setup-typescript` | language overlay | `git-repo-setup` | Biome/tsc/vitest + Node / Next / SvelteKit / Expo JSON |
 | `git-repo-setup-python` | language overlay | `git-repo-setup` | uv/ruff/pytest + debugpy JSON |
 | `create-readme-and-other-markdown-documentation` | workflow / playbook | — | README and other Markdown. Kit still owns bootstrap existence |
-| `go-idioms` | language | — | Go 1.18–1.26 + 2024–2026 flatten layout |
+| `go-idioms` | language | — | Go 1.18–1.27 + 2024–2026 flatten layout |
 | `typescript-idioms` | language | — | TypeScript 5–7 + 2024–2026 flatten layout |
 | `typescript-unit-tests` | domain overlay | `typescript-idioms` | Vitest / Jest / `node:test`, what to skip. Journeys stay `e2e-tests`. |
 | `e2e-tests` | workflow / playbook | official Playwright skills (install) | When to add journeys; house locators. Not a Playwright dump. |

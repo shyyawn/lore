@@ -54,7 +54,7 @@ lefthook = "VERSION"
 just = "VERSION"
 gitleaks = "VERSION"
 typos = "VERSION"
-go = "1.26"   # exact: the go.mod `go` line
+go = "1.27"   # exact: the go.mod `go` line
 golangci-lint = "VERSION"   # mise latest golangci-lint
 ```
 

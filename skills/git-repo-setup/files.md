@@ -112,7 +112,7 @@ lefthook = "VERSION"
 just = "VERSION"
 gitleaks = "VERSION"
 typos = "VERSION"
-# go = "1.26"
+# go = "1.27"
 # node = "24"
 # python = "3.13"
 ```

@@ -31,7 +31,7 @@ table shape, fakes, race, and what to assert.
 | `go` | Always use | Not yet |
 | --- | --- | --- |
 | 1.27+ | `synctest.Sleep`, `httptest.NewTestServer` (in-memory, synctest-safe) | — |
-| 1.26 | `t.ArtifactDir`, `testing/cryptotest.SetGlobalRandom` | 1.27 helpers |
+| 1.26 | `t.ArtifactDir`, `testing/cryptotest.SetGlobalRandom` | `synctest.Sleep`, `NewTestServer` |
 | 1.25 | `synctest.Test` / `Wait` (stable), `t.Attr`, `t.Output` | `cryptotest` |
 | 1.24 | `t.Context()`, `b.Context()`, `for b.Loop()`, `t.Chdir` | stable synctest |
 | 1.23 | `httptest.NewRequestWithContext` | `t.Context` |
@@ -121,6 +121,8 @@ Fix in place. Do not add comments that restate the table `name`.
 | `t.Setenv` / `t.Chdir` panic | `t.Parallel` on this test or a parent. Drop Parallel. |
 | `undefined: synctest.Test` | `go` < 1.25, or leftover `synctest.Run`. |
 | `undefined: cryptotest.SetGlobalRandom` | `go` < 1.26. Don't fake `crypto/rand` by hand. |
+| `undefined: synctest.Sleep` | `go` < 1.27. `time.Sleep` + `synctest.Wait`. |
+| `undefined: httptest.NewTestServer` | `go` < 1.27. `NewServer` + `t.Cleanup(srv.Close)`. |
 | Race detector hit | Real bug. No "benign" races. Don't `sync.Mutex` the test to hide it. |
 | Coverage gap on a `switch` / error path | Missing table row, not a new mock. |
 | Encore: panic `apps must be run using the encore command` | `go test` instead of `encore test`. |
@@ -131,6 +133,7 @@ Fix in place. Do not add comments that restate the table `name`.
 - `testify` / `gomock` / `mockery` / `go-cmp` added to a module that does not already use them
 - `err.Error() == "..."`, `strings.Contains(err.Error(), ...)`
 - `httptest.NewRequest` when the handler needs cancel — use `NewRequestWithContext(t.Context(), ...)` (1.23+)
+- `httptest.NewServer` on 1.27+ when `NewTestServer` would do (in-memory / synctest)
 - Calling a `PathValue` handler as a bare func (mux never ran)
 - `sqlmock` / generated mocks of a 15-method store the production type defined
 - `t.Parallel()` plus `t.Setenv`, `t.Chdir`, or `cryptotest.SetGlobalRandom`
