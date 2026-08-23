@@ -30,8 +30,8 @@ them with `node:http` as a drive-by restyle. Do not introduce Nest for a
 
 ## Layout
 
-SvelteKit is `sveltekit-app-structure`. Expo Router and Next `app/`
-are the official vendor skills (`expo/skills`, `react-best-practices`).
+SvelteKit is `sveltekit-app-structure`. Expo Router is `expo/skills`.
+Next `app/` is the project's `AGENTS.md` plus bundled `next` docs.
 Do not apply this `src/<noun>/` tree to `src/routes` or those `app/`
 trees.
 

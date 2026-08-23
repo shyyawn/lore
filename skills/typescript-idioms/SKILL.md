@@ -21,8 +21,10 @@ Full catalogs: [versions.md](versions.md) (5.0→now), [modernizers.md](moderniz
 (rewrites), [architecture.md](architecture.md) (2024–2026 structure).
 Svelte / SvelteKit: `svelte`. Layout: `sveltekit-app-structure`.
 Expo / React Native-with-Expo: official `expo/skills` (install — lore
-README). Web React / Next: official `react-best-practices`. Do not
-flatten those `app/` trees with this file's `src/<noun>/`.
+README). Web React: official `react-best-practices`. Next.js: project
+`AGENTS.md` + official `vercel/next.js` skills; performance still
+`react-best-practices`. Do not flatten those `app/` trees with this
+file's `src/<noun>/`.
 
 ## First step
 
