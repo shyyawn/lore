@@ -1,7 +1,7 @@
 # Domains
 
 What to assert per kind of code. Shapes: [methods.md](methods.md).
-Journeys stay `e2e-tests`. Next / Expo / Encore.ts keep their owners.
+Journeys stay `e2e-tests`. Next / Expo setup stays in the pin's docs.
 
 ## Pure domain / validation
 
@@ -58,13 +58,36 @@ journey. Journeys: `e2e-tests` (`npx sv add playwright`).
 Do not restyle working jsdom tests into browser mode as a drive-by.
 Do not enable `experimental.async` to make a test compile (`svelte`).
 
-## Next.js / Expo
+## Vite React (no Next)
 
-**Stop.** Next: project `AGENTS.md` + official Vitest / Playwright
-guides. Expo unit: `expo/skills` (Jest). Expo native e2e: Maestro,
-not this file.
+House tables still apply. New app: Vitest. Honor Jest.
 
-Do not flatten `app/` into `src/<noun>/` to make a test "idiomatic".
+Component: `@testing-library/react` + `userEvent`. `getByRole`, not
+`innerHTML` / Enzyme. Extract logic first.
+
+Do not add Next `app/` or Jest as a drive-by. Journeys: `e2e-tests`.
+
+## Next.js
+
+House tables still apply. Setup: the pin's Testing guide (`AGENTS.md`
+/ bundled `next` docs). New: Vitest. Honor Jest.
+
+- Sync components, hooks, server actions as functions: unit here.
+- `async` Server Components: `e2e-tests`. Official Next. Not jsdom.
+- Do not flatten `app/` into `src/<noun>/`.
+- Do not recopy that Testing guide into lore.
+
+## Expo (web / iOS / Android)
+
+House tables still apply. Unit: `jest-expo` (`npx expo install
+jest-expo jest`). Honor the preset already there
+(`jest-expo/universal`, or ios / android / web / node).
+
+- Do not add Vitest as a restyle.
+- Native journeys: `e2e-tests` (Maestro). Expo Web journeys:
+  Playwright.
+- Bare React Native without Expo: **ignore**.
+- Do not flatten Expo Router `app/` into `src/<noun>/`.
 
 ## Encore.ts
 
@@ -82,10 +105,10 @@ files that stub the same key.
 
 ## What lives in the default job
 
-| Default `vitest run` / `jest` / `node --test` | Opt-in integration / e2e |
+| Default `vitest run` / `jest` / `jest-expo` / `node --test` | Opt-in integration / e2e |
 | --- | --- |
 | Domain tables, handler in-process, fakes, fake timers | Real Postgres, real S3, multi-process |
-| jsdom / Testing Library / Vitest browser (component) | Playwright journeys (`e2e-tests`) |
+| jsdom / Testing Library / Vitest browser (component) | Playwright journeys; Expo native Maestro (`e2e-tests`) |
 
 Unit tests never live under `tests/` as Playwright specs. Playwright
 specs never replace the unit table.

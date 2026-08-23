@@ -43,8 +43,8 @@ the Svelte app. Coding: `svelte`. Layout: `sveltekit-app-structure`.
 | Package manager | Lockfile / `packageManager` field | New, no lockfile: `pnpm` for workspaces, `npm` for a single package |
 | Format + lint | [Biome](https://biomejs.dev/) | Prettier and/or ESLint already in the repo |
 | Types | `npx tsc --noEmit -p <tsconfig>` (or the `typecheck` script) | — |
-| Test | `vitest` if present, else `node --test`, else `npm test` | — |
-| E2E | `npx playwright test` if `playwright.config.*` exists | Honor the existing `e2e` / `test:e2e` script. Expo native: `expo/skills` |
+| Test | `vitest` if present, else `node --test`, else `npm test` | `expo` → `jest` / `jest-expo`. Honor `npm test` |
+| E2E | `npx playwright test` if `playwright.config.*` exists | Honor the existing `e2e` / `test:e2e` script. Expo iOS / Android: Maestro / the EAS workflow already there |
 | Commit-msg | commitlint + Lefthook (`conventional-commits` / `tooling.md`) | Use commitlint here; do not fall back to the Go/Python regex |
 | JSON/MD/YAML | Biome or the existing Prettier | `dprint` already owns those files |
 | Debug | `.vscode/launch.json` ([debug.md](debug.md)): current file + vitest / `node --test` | Honor existing named configs |

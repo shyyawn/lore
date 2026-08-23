@@ -149,7 +149,7 @@ second entry or a publish boundary appears. No `utils/`, `helpers/`, `common/`,
 
 How to write them: `typescript-unit-tests`. Browser journeys:
 `e2e-tests`. Kit runner: `git-repo-setup-typescript`. Next / Expo:
-vendor.
+house in those skills; setup from the pin.
 
 ## LLM traps — never generate these
 
