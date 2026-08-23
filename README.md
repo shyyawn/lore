@@ -13,6 +13,7 @@ lore/
 ├── skills/<name>/SKILL.md     # Agent Skills (required name + description)
 ├── rules/*.mdc                # always-on or glob-scoped rules
 ├── agents/                    # subagent definitions
+├── scripts/                   # make setup (lore + vendor skills)
 └── mcp.json                   # MCP *client* config when you add it (not committed secrets)
 ```
 
@@ -21,6 +22,7 @@ lore/
 | `skills/<name>/` | `~/.cursor/skills/<name>/` | Repeatable domain playbooks. Cursor also loads `.claude/skills` and `.codex/skills`. |
 | `rules/*.mdc` | `~/.cursor/rules/` or a project's `.cursor/rules/` | Short always-on or glob-scoped constraints. Dynamic “apply intelligently” rules are skills instead. |
 | `agents/` | `~/.cursor/agents/` | Subagent personas. Add when you have one. |
+| `scripts/` | not copied | `make setup` and vendor skill install. Not agent knowledge. |
 | `mcp.json` | `~/.cursor/mcp.json` or `.cursor/mcp.json` | Which servers to attach. Use `${env:NAME}` for secrets. Never commit keys. |
 
 Slash prompts / `.cursor/commands/` are legacy. New user-invoked workflows are skills with `disable-model-invocation: true` in frontmatter.
@@ -33,13 +35,23 @@ Three layers. That is the whole agent setup.
 2. **Official Cursor plugins** — live tooling and vendor how-tos that this repo does not duplicate.
 3. **Official vendor skills** — Conventional Commits format; Expo / React Native / EAS; Vercel React performance; Next.js workflows; Playwright CLI. Not Cursor plugins.
 
-Install this repo (`make install` below), then:
+On a new machine, clone this repo, then run one command for all scriptable setup:
+
+```bash
+git clone git@github.com:shyyawn/lore.git
+cd lore
+make setup
+```
+
+That installs this repo's skills and the vendor packs, then prints the plugin steps. Plugins are not part of `make setup`. User-scope plugins may sync when you sign into Cursor on a new machine. If the plugins are missing, in agent chat:
 
 ```
 /add-plugin encore
 /add-plugin temporal
 /add-plugin svelte
 ```
+
+Vendor commands (`make install-vendor-skills`):
 
 ```bash
 npx skills add conventional-changelog/conventional-changelog \
@@ -48,7 +60,7 @@ npx skills add conventional-changelog/conventional-changelog \
 npx skills add expo/skills -g --agent cursor
 
 npx skills add vercel-labs/agent-skills \
-  --skill react-best-practices -g --agent cursor
+  --skill vercel-react-best-practices -g --agent cursor
 
 npx skills add vercel/next.js -g --agent cursor
 
@@ -63,8 +75,8 @@ Plugins are user-scope from agent chat. The `npx skills add … -g --agent curso
 | [temporal](https://cursor.com/marketplace/temporal) plugin | Official Temporal SDK, CLI, and Cloud skill (`temporal-developer`) | `npx skills add temporalio/skill-temporal-developer` or the Temporal docs MCP |
 | [svelte](https://cursor.com/marketplace/svelte) plugin | Svelte MCP, skills, and the `svelte-file-editor` agent | Extra Svelte skill packs or a second Svelte MCP |
 | [`conventional-commit-message`](https://github.com/conventional-changelog/conventional-changelog/tree/master/skills/conventional-commit-message) skill | Commit *format*: types by release impact, `!` / `BREAKING CHANGE`, scopes, commitlint check | Random skills.sh / Lobe copies; `committing-with-commitlint` globally (only in a repo that already has commitlint) |
-| [`expo/skills`](https://github.com/expo/skills) | Expo SDK, Expo Router, native UI, upgrades, EAS (build, submit, hosting, workflows). Router skill is `expo-overview` | Extra Expo packs; Lobe / skills.sh copies; Vercel `react-native-guidelines` beside this pack |
-| [`react-best-practices`](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices) | Web React and Next performance (RSC, waterfalls, `Activity`). From [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | The rest of that repo (`writing-guidelines`, `vercel-deploy-claimable`, …) unless you asked |
+| [`expo/skills`](https://github.com/expo/skills) | Expo SDK, Expo Router, native UI, upgrades, EAS (build, submit, hosting, workflows). Router skill is `expo-overview` | Extra Expo packs; Lobe / skills.sh copies; `vercel-react-native-skills` beside this pack |
+| [`vercel-react-best-practices`](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices) | Web React and Next performance (RSC, waterfalls, `Activity`). From [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | The rest of that repo (`writing-guidelines`, `deploy-to-vercel`, …) unless you asked |
 | [`vercel/next.js`](https://github.com/vercel/next.js/tree/canary/skills) skills | Next **workflows**: `next-dev-loop`, Cache Components and Partial Prefetching adoption. Framework APIs stay in the project's `AGENTS.md` | Retired [`next-skills`](https://github.com/vercel-labs/next-skills); a lore App Router encyclopedia |
 | Official [Playwright skills](https://playwright.dev/docs/getting-started-cli) | Playwright CLI, codegen, traces, session (`playwright-cli install --skills`) | LambdaTest / QASkills Playwright packs; a lore Playwright API dump |
 
@@ -72,7 +84,7 @@ Optional scanner for React changes: [`react-doctor`](https://cursor.com/marketpl
 
 That combination covers the stack. You do **not** need more plugins, skill catalogs, or MCP servers to start.
 
-**Who wins when they overlap:** lore skills own Go package layout and Encore+Temporal structure (`encore-go-app-structure`, `temporal-go-app-structure`, `encore-temporal-go-app-structure`), the Svelte **pin and Kit tree** (`svelte`, `sveltekit-app-structure`), TypeScript **what to test** (`typescript-unit-tests`), when to add **journeys** (`e2e-tests`), and the Conventional Commits *overlay* (`conventional-commits`: Go `/v2`, Python/TS releasers, Lefthook without Node). The plugins own live inspection (Encore MCP), official Temporal CLI/SDK encyclopedias, and Svelte runes / autofixer / live docs. `conventional-commit-message` owns the commit format. Official Playwright skills own CLI / codegen / traces. `expo/skills` owns Expo, React Native-with-Expo, EAS, and native Maestro. `react-best-practices` owns web React and Next performance. Next.js **APIs and App Router** are the project's `AGENTS.md` plus bundled `next` docs. `vercel/next.js` skills own the verify loop and Cache Components / Partial Prefetching workflows. TypeScript language stays `typescript-idioms` — do not flatten Next `app/` or Expo Router `app/` with its `src/<noun>/` tree. CSS language stays `css-idioms`. There is no lore React, Expo, or Next overlay: those vendors already own pin and layout. Do not copy plugin or vendor skills into `skills/` — `make uninstall` would wipe a fork, and you would be maintaining vendor docs.
+**Who wins when they overlap:** lore skills own Go package layout and Encore+Temporal structure (`encore-go-app-structure`, `temporal-go-app-structure`, `encore-temporal-go-app-structure`), the Svelte **pin and Kit tree** (`svelte`, `sveltekit-app-structure`), TypeScript **what to test** (`typescript-unit-tests`), when to add **journeys** (`e2e-tests`), and the Conventional Commits *overlay* (`conventional-commits`: Go `/v2`, Python/TS releasers, Lefthook without Node). The plugins own live inspection (Encore MCP), official Temporal CLI/SDK encyclopedias, and Svelte runes / autofixer / live docs. `conventional-commit-message` owns the commit format. Official Playwright skills own CLI / codegen / traces. `expo/skills` owns Expo, React Native-with-Expo, EAS, and native Maestro. `vercel-react-best-practices` owns web React and Next performance. Next.js **APIs and App Router** are the project's `AGENTS.md` plus bundled `next` docs. `vercel/next.js` skills own the verify loop and Cache Components / Partial Prefetching workflows. TypeScript language stays `typescript-idioms` — do not flatten Next `app/` or Expo Router `app/` with its `src/<noun>/` tree. CSS language stays `css-idioms`. There is no lore React, Expo, or Next overlay: those vendors already own pin and layout. Do not copy plugin or vendor skills into `skills/` — `make uninstall` would wipe a fork, and you would be maintaining vendor docs.
 
 Plugins are Cursor-only (`/add-plugin` is not available in the Cursor CLI). `npx skills add` works from any terminal. After installing plugins, restart the agent chat if MCP tools do not appear.
 
@@ -110,9 +122,9 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 
 ## Install
 
-Cursor plugins are the other half of setup — see [Start here](#start-here-cursor). This section is only the skills in this repo.
+Cursor plugins are the other half of setup — see [Start here](#start-here-cursor).
 
-Cursor can import a GitHub repo whose skills live under `skills/`. Or install locally:
+Cursor can import a GitHub repo whose skills live under `skills/`. Or install this repo's skills locally:
 
 ```bash
 git clone git@github.com:shyyawn/lore.git
@@ -120,9 +132,14 @@ cd lore
 make install
 ```
 
+For lore + vendor skills on a new machine, use `make setup`. See [Start here](#start-here-cursor).
+
 | Target | Does |
 | --- | --- |
+| `make setup` | Lore skills + vendor skills; prints Cursor plugin steps (plugins still manual) |
 | `make install` | Copy every skill into `~/.cursor/skills` |
+| `make install-vendor-skills` | Install official vendor skills (Conventional Commits, Expo, Vercel, Playwright) into `~/.cursor/skills` |
+| `make print-cursor-plugins` | Show `/add-plugin` steps only (no install) |
 | `make status` | Show which installed copies have drifted from the repo |
 | `make uninstall` | Remove this repo's skills from `~/.cursor/skills` |
 | `make list` | List the skills in this repo |

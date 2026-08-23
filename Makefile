@@ -20,11 +20,23 @@ SKILL_DESTS   := $(CURSOR_SKILLS)
 # SKILL_DESTS   := $(CURSOR_SKILLS) $(AGENTS_SKILLS)
 
 .DEFAULT_GOAL := help
-.PHONY: help install status uninstall list
+.PHONY: help setup install install-vendor-skills print-cursor-plugins status uninstall list
 
 ## help: list targets
 help:
 	@grep -E '^## ' $(MAKEFILE_LIST) | sed 's/^## /  /'
+
+## setup: lore skills + vendor skills; print Cursor plugin steps (plugins still manual)
+setup:
+	@bash scripts/setup.sh
+
+## print-cursor-plugins: show /add-plugin steps (no install — CLI cannot install plugins yet)
+print-cursor-plugins:
+	@bash scripts/print-cursor-plugins.sh
+
+## install-vendor-skills: install official vendor skills into ~/.cursor/skills
+install-vendor-skills:
+	@bash scripts/install-vendor-skills.sh
 
 ## install: copy skills (and any rules) into ~/.cursor
 install:

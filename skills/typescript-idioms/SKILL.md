@@ -23,9 +23,9 @@ Svelte / SvelteKit: `svelte`. Layout: `sveltekit-app-structure`.
 Tests: `typescript-unit-tests`. Journeys: `e2e-tests`.
 CSS: `css-idioms`.
 Expo / React Native-with-Expo: official `expo/skills` (install — lore
-README). Web React: official `react-best-practices`. Next.js: project
-`AGENTS.md` + official `vercel/next.js` skills; performance still
-`react-best-practices`. Do not flatten those `app/` trees with this
+README). Web React / Next performance: official
+`vercel-react-best-practices`. Next.js: project `AGENTS.md` + official
+`vercel/next.js` skills. Do not flatten those `app/` trees with this
 file's `src/<noun>/`. More than one `package.json`: `typescript-mono-repo`.
 
 ## First step
