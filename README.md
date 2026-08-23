@@ -95,6 +95,7 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [go-backend](skills/go-backend) | Overlay on `go-idioms`: inside a Go service (handlers, persistence, shutdown) |
 | [go-ddd](skills/go-ddd) | Overlay on `go-backend`: DDD Lite when a domain earns an aggregate |
 | [go-mono-repo](skills/go-mono-repo) | Overlay on `go-idioms`: one module by default, `go.work` only when modules version apart |
+| [typescript-mono-repo](skills/typescript-mono-repo) | Overlay on `typescript-idioms`: one package.json by default, pnpm workspaces when two apps appear, Turborepo only when CI time hurts |
 | [typescript-idioms](skills/typescript-idioms) | Idiomatic TypeScript 5–7 and 2024–2026 layout |
 | [typescript-unit-tests](skills/typescript-unit-tests) | Overlay on `typescript-idioms`: 2024–2026 TS tests (Vitest / Jest / `node:test`, what to skip) |
 | [e2e-tests](skills/e2e-tests) | When to add browser / device journeys (Playwright web; Expo Maestro). Install official Playwright skills first — [Start here](#start-here-cursor) |

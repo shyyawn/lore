@@ -36,7 +36,9 @@ Do not apply this `src/<noun>/` tree to `src/routes` or those `app/`
 trees.
 
 Official instinct: start as a few modules next to `package.json`. Grow into
-this when there is a second binary or a publish boundary:
+this when there is a second binary or a publish boundary. More than one
+`package.json` / `pnpm-workspace.yaml`: `typescript-mono-repo`. Default
+stays **this** tree (one package).
 
 ```
 src/index.ts           # wiring only; flags, logger, process handlers, exit

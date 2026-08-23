@@ -30,7 +30,8 @@ drive-by.
 
 `encore.app` in the same workspace: Encore owns HTTP APIs. This tree is
 the UI. Call `encore gen client`. Do not put `//encore:api` here. No
-combined skill yet.
+combined skill yet. Several `package.json` / `pnpm-workspace.yaml`:
+`typescript-mono-repo`. This file stays the Kit app.
 
 ## Hard rules
 

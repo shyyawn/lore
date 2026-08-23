@@ -86,6 +86,7 @@ Do not invent a parallel `go-idioms`, a second `encore-go`, or a second
 | `go-backend` | domain overlay | `go-idioms` | Inside a service. Encore still owns process layout. |
 | `go-ddd` | domain overlay | `go-backend` | Aggregates. Default is no. |
 | `go-mono-repo` | domain overlay | `go-idioms` | How many `go.mod`. Encore stays one `encore.app`. |
+| `typescript-mono-repo` | domain overlay | `typescript-idioms` | How many `package.json`. pnpm workspaces; Turbo earned. |
 | `encore-go` | platform | `go-idioms` | Layout, HTTP, log, errors, tests |
 | `temporal-go` | platform | `go-idioms` | Inside workflow functions: determinism |
 | `encore-go-app-structure` | app-structure | `encore-go` | Package layout. Coding stays in `encore-go`. |
@@ -108,6 +109,8 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | `encore.app` + `expo` | Encore skills for the API; `expo/skills` for the UI |
 | `encore.app` + `next` | Encore skills for the API; Next `AGENTS.md` + `vercel/next.js` for the UI |
 | Several `go.mod` / `go.work` | `go-mono-repo` |
+| Several `package.json` / `pnpm-workspace.yaml` / `turbo.json` / `nx.json` | `typescript-mono-repo` |
+| `next` + `expo` in one repo | `typescript-mono-repo`; coding stays Next `AGENTS.md` + `expo/skills` |
 | Commit message / squash PR title | `conventional-commits` (official skill first) |
 | Hooks, mise, just, `launch.json`, Zed debugger | `git-repo-setup` + language overlay |
 | `*.test.ts` / vitest / jest (writing) | `typescript-unit-tests` |
@@ -125,7 +128,7 @@ Directory = YAML `name`. Lowercase hyphens. Max 64 chars.
 | Pipeline | `requirement-to-architecture-to-design` | `rta`, `design-2026`, `helper` |
 | Hub | `git-repo-setup` | `git-kit`, `repo-helpers` |
 | Hub + facet | `git-repo-setup-go` | `go-git-hooks` (hides the hub) |
-| Domain overlay | `go-unit-tests`, `typescript-unit-tests`, `go-backend`, `go-ddd` | Fusing into the parent |
+| Domain overlay | `go-unit-tests`, `typescript-unit-tests`, `go-backend`, `go-ddd`, `typescript-mono-repo` | Fusing into the parent |
 | Avoid catalog | `go-100-mistakes-avoid` | `go-mistakes` (vague) |
 | App-structure | `encore-go-app-structure`, `sveltekit-app-structure` | `encore-go-layout`, `svelte-ui-kit-typescript` |
 | Combined | `encore-temporal-go-app-structure` | Stuffing B into A's file |

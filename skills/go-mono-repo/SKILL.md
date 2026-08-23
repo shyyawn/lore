@@ -53,7 +53,7 @@ boundary until you publish.
 | --- | --- |
 | One product, several binaries | One module — `go-idioms` `architecture.md` |
 | Encore backend | One `encore.app`, services = packages |
-| Encore + Svelte (or other `package.json`) | One Go module + JS workspace. `git-repo-setup-go` + `git-repo-setup-typescript`. Not `go.work`. One `.vscode/launch.json` at the Git root (`git-repo-setup` debug.md) |
+| Encore + Svelte (or other `package.json`) | One Go module + JS workspace (`typescript-mono-repo`). `git-repo-setup-go` + `git-repo-setup-typescript`. Not `go.work`. One `.vscode/launch.json` at the Git root (`git-repo-setup` debug.md) |
 | Lockstep modules that publish separately | Multi-module + committed `go.work` |
 | Published libraries, most people work on one | Multi-module; gitignore `go.work` or ship `go.work.example` |
 | Hermetic polyglot at Google/Uber scale | Bazel (`rules_go`, Gazelle). Do not invent for a greenfield app |

@@ -16,7 +16,7 @@ pipeline.
 | Combined stack | `encore-temporal-go-app-structure` | none — seam + division of labor in SKILL.md |
 | Hub kit | `git-repo-setup` | `files.md`, `gitconfig.md`, `debug.md` |
 | Language overlay on hub | `git-repo-setup-go` / `-typescript` / `-python` | overlay `debug.md` (the JSON) |
-| Domain overlay | `go-backend`, `go-ddd`, `go-unit-tests`, `typescript-unit-tests`, `go-100-mistakes-avoid`, `go-mono-repo` | `internals.md`, `lite.md`, `methods.md`, `domains.md`, `catalog.md`, `layouts.md` |
+| Domain overlay | `go-backend`, `go-ddd`, `go-unit-tests`, `typescript-unit-tests`, `go-100-mistakes-avoid`, `go-mono-repo`, `typescript-mono-repo` | `internals.md`, `lite.md`, `methods.md`, `domains.md`, `catalog.md`, `layouts.md` |
 | Vendor overlay | `conventional-commits` | `tooling.md` |
 
 Look is always [voice.md](voice.md). Authoring is this skill — do not
@@ -178,13 +178,14 @@ commands and [debug.md](debug.md). Language idioms stay in `go-idioms`.
 
 ## Domain overlay
 
-Open: `go-backend` / `go-ddd` / `go-mono-repo` / `go-100-mistakes-avoid`
-/ `go-unit-tests` / `typescript-unit-tests`.
+Open: `go-backend` / `go-ddd` / `go-mono-repo` / `typescript-mono-repo`
+/ `go-100-mistakes-avoid` / `go-unit-tests` / `typescript-unit-tests`.
 
 - Lead: Overlay on `parent`. What the parent still owns. Catalog link.
 - **What this skill owns** (Own / Leave) when the boundary is easy to
   mix up (`go-backend` vs `encore-go`).
-- **Earn …** when the default is **no** (`go-ddd`, `go-mono-repo`):
+- **Earn …** when the default is **no** (`go-ddd`, `go-mono-repo`,
+  `typescript-mono-repo`):
   fenced checklist, tick yes on at least two, or stop.
 - Review workflow: fenced ticks. Fix in place. Do not add comments that
   only restate the catalog title.

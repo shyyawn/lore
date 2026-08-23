@@ -18,7 +18,8 @@ Follow `git-repo-setup` for the kit. This file fills the **TypeScript**
 commands and [debug.md](debug.md). Language idioms stay in
 `typescript-idioms`. How to write unit tests: `typescript-unit-tests`.
 Journeys: `e2e-tests`. Commitlint wiring is in `conventional-commits` /
-`tooling.md`.
+`tooling.md`. Several `package.json` files or a workspace:
+`typescript-mono-repo`.
 
 ## First step
 
@@ -28,6 +29,9 @@ Journeys: `e2e-tests`. Commitlint wiring is in `conventional-commits` /
 3. Read the formatter that already exists: `biome.json` / `biome.jsonc`,
    `.prettierrc*`, `eslint.config.*`. **One formatter.** If none of those
    exist, add Biome. Do not add Biome next to Prettier.
+4. If there is more than one `package.json`, or `pnpm-workspace.yaml` /
+   `workspaces` / `turbo.json` / `nx.json`, stop and follow
+   `typescript-mono-repo` before writing Just/Lefthook recipes.
 
 Polyglot (TypeScript + `go.mod`): also apply `git-repo-setup-go`. One
 `lefthook.yml`, one Justfile.
