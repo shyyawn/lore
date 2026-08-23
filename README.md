@@ -29,7 +29,7 @@ Slash prompts / `.cursor/commands/` are legacy. New user-invoked workflows are s
 
 Three layers. That is the whole agent setup.
 
-1. **This repo's skills** — how we write Go, TypeScript, Encore, Temporal, and Svelte, plus a Conventional Commits *overlay* for those languages and a 2026 Git repo kit.
+1. **This repo's skills** — how we write Go, TypeScript, CSS, Encore, Temporal, and Svelte, plus a Conventional Commits *overlay* for those languages and a 2026 Git repo kit.
 2. **Official Cursor plugins** — live tooling and vendor how-tos that this repo does not duplicate.
 3. **Official vendor skills** — Conventional Commits format; Expo / React Native / EAS; Vercel React performance; Next.js workflows. Not Cursor plugins.
 
@@ -69,7 +69,7 @@ Optional scanner for React changes: [`react-doctor`](https://cursor.com/marketpl
 
 That combination covers the stack. You do **not** need more plugins, skill catalogs, or MCP servers to start.
 
-**Who wins when they overlap:** lore skills own Go package layout and Encore+Temporal structure (`encore-go-app-structure`, `temporal-go-app-structure`, `encore-temporal-go-app-structure`), the Svelte **pin and Kit tree** (`svelte`, `sveltekit-app-structure`), and the Conventional Commits *overlay* (`conventional-commits`: Go `/v2`, Python/TS releasers, Lefthook without Node). The plugins own live inspection (Encore MCP), official Temporal CLI/SDK encyclopedias, and Svelte runes / autofixer / live docs. `conventional-commit-message` owns the commit format. `expo/skills` owns Expo, React Native-with-Expo, and EAS (pin, Router tree, native UI, upgrades). `react-best-practices` owns web React and Next performance. Next.js **APIs and App Router** are the project's `AGENTS.md` plus bundled `next` docs. `vercel/next.js` skills own the verify loop and Cache Components / Partial Prefetching workflows. TypeScript language stays `typescript-idioms` — do not flatten Next `app/` or Expo Router `app/` with its `src/<noun>/` tree. There is no lore React, Expo, or Next overlay: those vendors already own pin and layout. Do not copy plugin or vendor skills into `skills/` — `make uninstall` would wipe a fork, and you would be maintaining vendor docs.
+**Who wins when they overlap:** lore skills own Go package layout and Encore+Temporal structure (`encore-go-app-structure`, `temporal-go-app-structure`, `encore-temporal-go-app-structure`), the Svelte **pin and Kit tree** (`svelte`, `sveltekit-app-structure`), and the Conventional Commits *overlay* (`conventional-commits`: Go `/v2`, Python/TS releasers, Lefthook without Node). The plugins own live inspection (Encore MCP), official Temporal CLI/SDK encyclopedias, and Svelte runes / autofixer / live docs. `conventional-commit-message` owns the commit format. `expo/skills` owns Expo, React Native-with-Expo, and EAS (pin, Router tree, native UI, upgrades). `react-best-practices` owns web React and Next performance. Next.js **APIs and App Router** are the project's `AGENTS.md` plus bundled `next` docs. `vercel/next.js` skills own the verify loop and Cache Components / Partial Prefetching workflows. TypeScript language stays `typescript-idioms` — do not flatten Next `app/` or Expo Router `app/` with its `src/<noun>/` tree. CSS language stays `css-idioms`. There is no lore React, Expo, or Next overlay: those vendors already own pin and layout. Do not copy plugin or vendor skills into `skills/` — `make uninstall` would wipe a fork, and you would be maintaining vendor docs.
 
 Plugins are Cursor-only (`/add-plugin` is not available in the Cursor CLI). `npx skills add` works from any terminal. After installing plugins, restart the agent chat if MCP tools do not appear.
 
@@ -93,6 +93,7 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [go-ddd](skills/go-ddd) | Overlay on `go-backend`: DDD Lite when a domain earns an aggregate |
 | [go-mono-repo](skills/go-mono-repo) | Overlay on `go-idioms`: one module by default, `go.work` only when modules version apart |
 | [typescript-idioms](skills/typescript-idioms) | Idiomatic TypeScript 5–7 and 2024–2026 layout |
+| [css-idioms](skills/css-idioms) | Idiomatic CSS Baseline 2024–2026 (nesting, `@layer`, view transitions, anchors). Not Sass or Tailwind |
 | [svelte](skills/svelte) | Overlay on the Svelte plugin + `typescript-idioms`: Svelte 5 / Kit 2 pin, experimental default-no |
 | [sveltekit-app-structure](skills/sveltekit-app-structure) | SvelteKit `src/routes` / `$lib` layout (coding stays in `svelte` + the plugin) |
 | [encore-go](skills/encore-go) | Encore.go backends (never F5 / Zed F4; attach config is `git-repo-setup-go`) |

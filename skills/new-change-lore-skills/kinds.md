@@ -10,7 +10,7 @@ pipeline.
 | --- | --- | --- |
 | Authoring | this skill | `voice.md`, `kinds.md`, `family.md` |
 | Workflow / playbook | `create-readme-and-other-markdown-documentation` (future: `requirement-to-architecture-to-design`) | `files.md`, `readme.md`, `english.md`, `stacks.md` |
-| Language idiom | `go-idioms`, `typescript-idioms` | `versions.md`, `modernizers.md`, `architecture.md` |
+| Language idiom | `go-idioms`, `typescript-idioms`, `css-idioms` | `versions.md`, `modernizers.md`, `architecture.md` |
 | Platform coding | `encore-go`, `temporal-go`, `svelte` | Encore/Temporal catalogs; `svelte`: none (plugin owns runes) |
 | App-structure | `encore-go-app-structure`, `temporal-go-app-structure`, `sveltekit-app-structure` | usually none — trees live in SKILL.md |
 | Combined stack | `encore-temporal-go-app-structure` | none — seam + division of labor in SKILL.md |

@@ -17,7 +17,7 @@ plugin into `skills/`.
 
 Sources: official Svelte 5 / SvelteKit docs via the plugin MCP. Not
 `svelte-core-bestpractices`. Layout: `sveltekit-app-structure`. Kit:
-`git-repo-setup-typescript`.
+`git-repo-setup-typescript`. CSS in `<style>`: `css-idioms`.
 
 ## First step
 

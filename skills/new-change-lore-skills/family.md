@@ -44,9 +44,9 @@ a planned phase of a new skill.
 ## New domain
 
 The overlay table below is this repo's **current** stack. A skill that
-is not Go, TypeScript, Encore, Temporal, or Svelte does **not** hang
-under `go-idioms`. It is a hub, a lone playbook, or the start of a new
-family.
+is not Go, TypeScript, CSS, Encore, Temporal, or Svelte does **not**
+hang under `go-idioms`. It is a hub, a lone playbook, or the start of
+a new family.
 
 | Situation | Do |
 | --- | --- |
@@ -76,6 +76,7 @@ Do not invent a parallel `go-idioms`, a second `encore-go`, or a second
 | `create-readme-and-other-markdown-documentation` | workflow / playbook | — | README and other Markdown. Kit still owns bootstrap existence |
 | `go-idioms` | language | — | Go 1.18–1.26 + 2024–2026 flatten layout |
 | `typescript-idioms` | language | — | TypeScript 5–7 + 2024–2026 flatten layout |
+| `css-idioms` | language | — | Baseline 2024–2026 CSS + layers / tokens. Not a Sass or Tailwind fork |
 | `svelte` | platform | `typescript-idioms` + Svelte plugin | Pin, experimental default-no, `$app/state`. Not a fork of the plugin |
 | `sveltekit-app-structure` | app-structure | `svelte` | `src/routes` / `$lib`. Coding stays in `svelte` + plugin |
 | `go-100-mistakes-avoid` | domain overlay | `go-idioms` | Still-in-force mistakes. Not language-fixed rows. |
@@ -108,6 +109,7 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | Commit message / squash PR title | `conventional-commits` (official skill first) |
 | Hooks, mise, just, `launch.json`, Zed debugger | `git-repo-setup` + language overlay |
 | `README.md` / health files / `docs/**/*.md` content | `create-readme-and-other-markdown-documentation` |
+| `*.css` / `<style>` / component CSS | `css-idioms`. Tailwind already there: honor. NativeWind setup: `expo-tailwind-setup` |
 
 ## Naming
 
@@ -145,6 +147,7 @@ here too.
    | kubernetes `go.work` + `staging/` | Lockstep publish siblings | Copy unless you actually publish |
    | github/gitignore, Lefthook, mise, just docs | File bodies and pin commands | A second hook runner |
    | Svelte `kit/project-structure`, `sv create` | `src/routes`, `$lib`, `$lib/server` | Plugin runes catalog; Kit 3 `@next` trees |
+| web.dev Baseline, MDN CSS | Baseline-gated nesting, color, motion, anchors | A Sass 7-1 tree; a Tailwind encyclopedia |
 
    A playbook: name the method (C4, ADR template, a named case study).
    Leave the vendor encyclopedia and the blog's folder schema.
@@ -190,6 +193,7 @@ pass on those names.
 | Source | Owns | Do not also |
 | --- | --- | --- |
 | This repo | Practice in `skills/` (stack or playbook) | Copy plugin encyclopedias into `skills/` |
+| This repo `css-idioms` | Baseline-gated CSS | A Sass 7-1 dump; a Tailwind fork; Chromium-only `if()` as default |
 | Encore / Temporal / Svelte Cursor plugins | Live MCP, official vendor how-tos | `npx add-skill` of the same vendor |
 | Svelte plugin | Runes, autofixer, live docs | A lore `svelte-core-bestpractices` |
 | This repo `svelte` / `sveltekit-app-structure` | Pin, experimental default-no, Kit tree | Kit 3 `@next`; a runes catalog |
