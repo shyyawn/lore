@@ -86,7 +86,7 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [conventional-commits](skills/conventional-commits) | Go/Python/TS overlay on the official `conventional-commit-message` skill (install that first — [Start here](#start-here-cursor)) |
 | [git-repo-setup](skills/git-repo-setup) | 2026 Git repo kit: init, hooks, mise, just/Make, ignore/attributes, linters, shared debugger |
 | [git-repo-setup-go](skills/git-repo-setup-go) | Go overlay: gofmt, go vet, golangci-lint, go test / encore test, Delve `launch.json` |
-| [git-repo-setup-typescript](skills/git-repo-setup-typescript) | TypeScript overlay: Biome, tsc, vitest, Playwright `e2e` when present, commitlint, Node / Next / Expo `launch.json` |
+| [git-repo-setup-typescript](skills/git-repo-setup-typescript) | TypeScript overlay: Biome, tsc, vitest, Playwright `e2e` when present, commitlint, Node / Next / SvelteKit / Expo `launch.json` |
 | [git-repo-setup-python](skills/git-repo-setup-python) | Python overlay: uv, ruff, pytest, debugpy `launch.json` |
 | [create-readme-and-other-markdown-documentation](skills/create-readme-and-other-markdown-documentation) | README, community health files, changelogs, ADRs, agent files, and docs/ trees |
 | [go-idioms](skills/go-idioms) | Idiomatic Go 1.18–1.26 and 2024–2026 layout |

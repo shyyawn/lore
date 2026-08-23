@@ -1,18 +1,15 @@
 # Debug — TypeScript
 
-Hub: `git-repo-setup` [debug.md](../git-repo-setup/debug.md). Cursor, VS
-Code, and Zed debug Node; do not add a second JS debugger. Add test configs
-next to app launch. Merge names.
-
-Sources: Next [Debugging](https://nextjs.org/docs/app/guides/debugging),
-Expo [Tools](https://docs.expo.dev/debugging/tools), Expo Tools
-`type: expo` attach. Not React Native Tools. Not Radon.
+Hub: `git-repo-setup` [debug.md](../git-repo-setup/debug.md). This file is
+the TypeScript JSON. Cursor / VS Code / Zed consume it. Do not add a
+second JS debugger. Add test configs next to app launch. Merge names.
 
 | Detect | App | Tests |
 | --- | --- | --- |
 | `next` | [Next.js](#nextjs) | vitest if present, else jest |
-| `expo` | [Expo](#expo) (iOS / Android / device) | `jest-expo` / jest |
-| Vite / Svelte | [Svelte / Vite](#svelte--vite) | vitest |
+| `expo` | [Expo](#expo) | `jest-expo` / jest |
+| `@sveltejs/kit` | [SvelteKit](#sveltekit) | vitest |
+| `svelte.config` without Kit | [Vite + Svelte](#vite--svelte) | vitest |
 | Node lib | [Node / app](#node--app) | vitest, else `node --test` |
 
 ## Tests
@@ -23,7 +20,7 @@ Expo [Tools](https://docs.expo.dev/debugging/tools), Expo Tools
 | Jest / `jest-expo` | `jest current file` |
 | `node --test` | `"args": ["--test", "${relativeFile}"]` |
 | Encore.ts | `encore test` (do not add Go Connect to Encore) |
-| Playwright | `npx playwright test --debug` (official Playwright skills). Not a launch config |
+| Playwright | `npx playwright test --debug`. Not a launch config |
 
 ```json
 {
@@ -49,10 +46,8 @@ Expo [Tools](https://docs.expo.dev/debugging/tools), Expo Tools
 }
 ```
 
-Nested `package.json`: set `cwd` / `program` to that package. One vitest
-or jest config per package that has that runner, `name` = `vitest <dir>`
-or `jest <dir>`. Honor existing `"debug"` / `"test"` scripts. Expo:
-`jest-expo` is still this jest config.
+Nested `package.json`: `cwd` / `program` = that package, `name` =
+`vitest <dir>` or `jest <dir>`. Honor `"debug"` / `"test"` scripts.
 
 ## Node / app
 
@@ -76,9 +71,8 @@ Plus the [Tests](#tests) config. Nested app: `cwd` = that package dir.
 
 ## Next.js
 
-Official minus Firefox (that needs an extra extension). Honor the
-lockfile (`pnpm dev --inspect` / `yarn dev --inspect`). Nested app:
-`"cwd": "${workspaceFolder}/apps/web"`. Port not 3000: change the URL.
+Official: [Debugging](https://nextjs.org/docs/app/guides/debugging).
+Honor the lockfile. Nested: `"cwd": "${workspaceFolder}/apps/web"`.
 
 ```json
 {
@@ -115,16 +109,17 @@ lockfile (`pnpm dev --inspect` / `yarn dev --inspect`). Nested app:
 }
 ```
 
-Plus the [Tests](#tests) config. `debugWithChrome` is the house pick
-(official default is Edge). Do not add Firefox Debugger.
-
-Zed runs the `type: node` full-stack name. `node-terminal` / Chrome
-`serverReadyAction` are Cursor / VS Code.
+Plus [Tests](#tests). Do not add Firefox Debugger.
 
 ## Expo
 
-One **attach** for iOS, Android, and a device. Expo Tools does not
-launch. Start Metro, open the app (`i` / `a` / QR), then F5.
+Official: [Tools](https://docs.expo.dev/debugging/tools). One **attach**.
+Do not launch.
+
+```bash
+npx expo start
+# then i (simulator) or a (emulator), or scan the QR
+```
 
 ```json
 {
@@ -137,18 +132,6 @@ launch. Start Metro, open the app (`i` / `a` / QR), then F5.
 }
 ```
 
-```bash
-npx expo start
-# then i (simulator) or a (emulator), or scan the QR
-```
-
-Nested app: `projectRoot` = that package. Honor a Metro port the repo
-already uses. Official stable path: React Native DevTools (`j` in the
-Expo terminal). Cursor / VS Code attach is alpha.
-
-Expo Web: start `npx expo start --web`, then Chrome. Journeys stay
-Playwright (`e2e-tests`).
-
 ```json
 {
   "name": "Expo: debug web",
@@ -159,39 +142,71 @@ Playwright (`e2e-tests`).
 }
 ```
 
-Plus `jest current file`. Do not add `type: reactnative` or a second
-config per platform.
+Plus `jest current file`. Nested: `projectRoot` = that package. Do not
+add `type: reactnative`.
 
-Zed has no `expo` adapter. Same `launch.json`; use RN DevTools. Do not
-add `.zed/debug.json` to fake it.
+## SvelteKit
 
-## Svelte / Vite
+Official: [Breakpoint Debugging](https://svelte.dev/docs/kit/debugging).
+Honor the lockfile. Nested: `"cwd": "${workspaceFolder}/apps/web"`.
 
-Honor the Svelte plugin. Launch the Vite script the repo already uses.
-Chrome-only only for a static SPA with no Node server.
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "SvelteKit: debug",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev"
+    },
+    {
+      "name": "SvelteKit: debug client-side",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173"
+    },
+    {
+      "name": "SvelteKit: debug (node)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+      "args": ["dev"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    }
+  ]
+}
+```
 
-## Zed
+Plus `vitest current file`. `{@debug}` / `$inspect` stay in the plugin.
+Do not add a compound or `vavite`.
 
-No extra files. Hub: do not add `.zed/debug.json` or a workspace
-`extensions.json`. Built-in JavaScript adapter reads `type: node` /
-`pwa-node` (vitest, jest, Next full stack, current file). F4 lists
-`package.json` scripts and detected Jest / Vitest / Node tests.
+## Vite + Svelte
 
-| `type` | Zed |
-| --- | --- |
-| `node` / `pwa-node` | yes |
-| `chrome` | yes if the JS adapter accepts it |
-| `node-terminal` | no — Cursor / VS Code |
-| `expo` | no — RN DevTools (`j`) |
+No `@sveltejs/kit`. Same Vite command. Do not add Kit.
+
+```json
+{
+  "name": "Vite: debug",
+  "type": "node-terminal",
+  "request": "launch",
+  "command": "npm run dev"
+}
+```
+
+Chrome and `Vite: debug (node)` match SvelteKit, `Vite:` prefix.
 
 ## `extensions.json`
 
-Hub [scan](../git-repo-setup/debug.md#scan-extensions). Omit the file only
-if the union is empty (a kit TS repo is not).
+Hub [scan](../git-repo-setup/debug.md#scan-extensions). Svelte:
+`svelte.svelte-vscode` unless the Cursor Svelte plugin is the team
+install. Next: no extra id.
 
 ```json
 {
   "recommendations": [
+    "svelte.svelte-vscode",
     "expo.vscode-expo-tools",
     "biomejs.biome",
     "tombi-toml.tombi",
@@ -199,24 +214,3 @@ if the union is empty (a kit TS repo is not).
   ]
 }
 ```
-
-Svelte: `svelte.svelte-vscode` unless the Cursor Svelte plugin is the
-team install. Next: no extra id (built-in Node / Chrome). Zed ignores
-this file.
-
-## When it breaks
-
-| Symptom | Usually means |
-| --- | --- |
-| Expo F5: launch not supported | Attach only. Metro + device first |
-| `type expo` unknown | Missing `expo.vscode-expo-tools` |
-| Next breakpoints miss in Zed | Child workers. Cursor / VS Code full stack, or attach after `next dev --inspect` |
-| Jest debug never hits | Missing `--runInBand`, or Vitest on an Expo app |
-
-## Do not
-
-- `msjsdiag.vscode-react-native` / `type: reactnative` next to Expo Tools
-- Radon IDE, Firefox Debugger, Jest / Vitest Explorer
-- A Next marketplace plugin
-- Separate iOS vs Android launch names
-- `.zed/debug.json` so Zed can "see" Expo

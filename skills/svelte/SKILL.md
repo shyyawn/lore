@@ -42,7 +42,7 @@ the UI. No combined skill yet.
 | Own | Leave |
 | --- | --- |
 | Pin, experimental default-**no**, `$app/state` | Runes, snippets, `{@attach}` (plugin) |
-| Stop-and-follow `svelte-file-editor` | Formatter / hooks (`git-repo-setup-typescript`) |
+| Stop-and-follow `svelte-file-editor` | Formatter / hooks / `launch.json` (`git-repo-setup-typescript`) |
 | Kit 3 `@next` is **Not yet** | TypeScript language (`typescript-idioms`) |
 | | `src/routes` / `$lib` (`sveltekit-app-structure`) |
 | | Unit tests (`typescript-unit-tests`); journeys (`e2e-tests`) |

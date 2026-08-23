@@ -52,6 +52,8 @@ launch.json:
 - [ ] Encore service package tests → encore test only (no mode: test)
 - [ ] package.json app → Node, cwd = that dir
 - [ ] next → Next.js server-side + client-side + full stack
+- [ ] @sveltejs/kit → SvelteKit: debug + client-side + debug (node)
+- [ ] svelte.config without Kit → Vite: debug (same shape; do not add Kit)
 - [ ] expo → Debug Expo app (attach; iOS / Android / device) + Expo Web if they debug web
 - [ ] vitest → vitest <dir>; else jest / jest-expo if that is the suite; else node --test
 - [ ] pytest (or unittest if that is the suite)

@@ -36,9 +36,8 @@ Svelte (`svelte.config.js` / `svelte.config.ts`): same overlay. Include
 `*.svelte` in the formatter glob. Do not invent a second hook runner for
 the Svelte app. Coding: `svelte`. Layout: `sveltekit-app-structure`.
 
-Next (`next` in `package.json`) or Expo (`expo`): same overlay. Debug
-JSON: [debug.md](debug.md). Coding: project `AGENTS.md` / `expo/skills`.
-Journeys: `e2e-tests`.
+Next (`next` in `package.json`) or Expo (`expo`): same overlay. Coding:
+project `AGENTS.md` / `expo/skills`. Journeys: `e2e-tests`.
 
 ## 2026 TypeScript defaults
 
@@ -52,7 +51,7 @@ Journeys: `e2e-tests`.
 | E2E | `npx playwright test` if `playwright.config.*` exists | Honor the existing `e2e` / `test:e2e` script. Expo iOS / Android: Maestro / the EAS workflow already there |
 | Commit-msg | commitlint + Lefthook (`conventional-commits` / `tooling.md`) | Use commitlint here; do not fall back to the Go/Python regex |
 | JSON/MD/YAML | Biome or the existing Prettier | `dprint` already owns those files |
-| Debug | `.vscode/launch.json` ([debug.md](debug.md)): current file + vitest / jest / `node --test`; Next / Expo when those deps exist | Honor existing named configs |
+| Debug | `.vscode/launch.json` ([debug.md](debug.md)): current file + vitest / jest / `node --test`; Next / SvelteKit / Vite / Expo when those deps exist | Honor existing named configs |
 
 Do not add Husky. Lefthook is the hook runner. Do not add a second of
 Biome/Prettier/ESLint/dprint that formats the same globs.
@@ -178,9 +177,8 @@ check:
 
 ## Debug
 
-[debug.md](debug.md). App: current file / Vite / Next / Expo. Tests:
-vitest, jest-expo, or `node --test`. Zed: same `launch.json`; no extra
-file.
+[debug.md](debug.md). App: current file / Vite / SvelteKit / Next /
+Expo. Tests: vitest, jest-expo, or `node --test`.
 
 ## Do not
 
@@ -191,5 +189,5 @@ file.
   for docs. If Node is not a first-class toolchain, use the Lefthook regex.
 - Omit `.vscode/launch.json` on a new TypeScript repo, or overwrite instead of merging.
 - Omit `extensions.json` when the hub scan is non-empty.
-- Omit Next / Expo launch names when those deps exist, or add React Native Tools next to Expo Tools.
+- Omit Next / SvelteKit / Vite / Expo launch names when those deps exist, or add React Native Tools next to Expo Tools.
 - Playwright / Cypress as a drive-by on a library with no UI (`e2e-tests`).
