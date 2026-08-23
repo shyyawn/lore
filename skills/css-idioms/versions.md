@@ -1,4 +1,4 @@
-# Baseline 2024 → now — what to write
+# Baseline 2022 → now — what to write
 
 Gate every row on the project's browserslist / Baseline query. Do not
 use a feature newer than that pin. Write the **After** form.
@@ -6,17 +6,27 @@ use a feature newer than that pin. Write the **After** form.
 
 Dates are **Baseline Newly available** (all core engines), from web.dev
 Baseline year pages and Interop wrap-ups. Widely available is Newly
-plus 30 months.
+plus 30 months. 2022 rows use interop dates (`@layer`, 2022-03).
 
-## Already Baseline before 2024 (write these on any modern pin)
+## 2022 — `@layer`, `:is()`, `:where()`
+
+| Before | After |
+| --- | --- |
+| `!important` and selector wars | `@layer` (`reset`, `tokens`, `components`) (interop 2022-03) |
+| `h1 ~ h2, h1 ~ h3, h2 ~ h3, …` | `:is(h1, h2, h3) ~ :is(h1, h2, h3)` |
+| a reset that must not bump specificity | `:where()` (specificity **zero**) |
+| per-control `accent-color` hacks | `accent-color` on the form / `:root` |
+
+## 2023 — nesting, `:has()`, size `@container`
 
 | Before | After |
 | --- | --- |
 | Sass nesting / repeated parent selectors | native nesting + `&` (Newly 2023-08) |
 | JS / extra class for "parent contains X" | `:has()` (Newly 2023-12) |
-| viewport `@media` for a card's width | size `@container` (Newly 2023) |
-| `!important` and selector wars | `@layer` (`reset`, `tokens`, `components`) |
-| hex / `rgb` pairs, Sass color math | `oklch`, `color-mix()`, relative color |
+| viewport `@media` for a card's width | size `@container` (Newly 2023-02) |
+| hex / `rgb` pairs, Sass `mix()` / `darken()` | `oklch()`, `color-mix()` |
+
+Relative color (`oklch(from …)`) waits for the 2024 pin.
 
 ## 2024 — `@property`, color functions, entry motion
 

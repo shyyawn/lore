@@ -76,7 +76,7 @@ Do not invent a parallel `go-idioms`, a second `encore-go`, or a second
 | `create-readme-and-other-markdown-documentation` | workflow / playbook | — | README and other Markdown. Kit still owns bootstrap existence |
 | `go-idioms` | language | — | Go 1.18–1.26 + 2024–2026 flatten layout |
 | `typescript-idioms` | language | — | TypeScript 5–7 + 2024–2026 flatten layout |
-| `css-idioms` | language | — | Baseline 2024–2026 CSS + layers / tokens. Not a Sass or Tailwind fork |
+| `css-idioms` | language | — | Baseline 2022–2026 CSS + layers / tokens. Not a Sass or Tailwind fork |
 | `svelte` | platform | `typescript-idioms` + Svelte plugin | Pin, experimental default-no, `$app/state`. Not a fork of the plugin |
 | `sveltekit-app-structure` | app-structure | `svelte` | `src/routes` / `$lib`. Coding stays in `svelte` + plugin |
 | `go-100-mistakes-avoid` | domain overlay | `go-idioms` | Still-in-force mistakes. Not language-fixed rows. |

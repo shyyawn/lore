@@ -1,8 +1,8 @@
 ---
 name: css-idioms
 description: >-
-  Writes, restyles, and reviews CSS using idioms from Baseline 2024 through
-  2026 (nesting, :has, container queries, @layer, @property, color-mix,
+  Writes, restyles, and reviews CSS using idioms from Baseline 2022 through
+  2026 (@layer, :is, nesting, :has, container queries, @property, color-mix,
   light-dark, view transitions, @scope, shape, anchor positioning) and
   2024–2026 architecture practices (layers, typed tokens, platform-first).
   Use when generating, editing, reviewing, or modernizing CSS or style
@@ -13,10 +13,10 @@ description: >-
 # CSS 2026
 
 Write CSS as if the project's Baseline / browserslist already allows it.
-Do not emit pre-nesting tutorial CSS (`float` layout, Sass-only nesting,
-untyped `--color` that must interpolate, a JS tooltip for a popover).
+Do not emit pre-`@layer` tutorial CSS (`!important` wars, Sass-only
+nesting, untyped `--color` that must interpolate, a JS tooltip).
 
-Full catalogs: [versions.md](versions.md) (Baseline 2024→now),
+Full catalogs: [versions.md](versions.md) (Baseline 2022→now),
 [modernizers.md](modernizers.md) (rewrites), [architecture.md](architecture.md)
 (2024–2026 structure). Svelte markup: `svelte`. Tailwind already in the
 repo: honor it. Expo NativeWind setup: official `expo-tailwind-setup`.
@@ -30,8 +30,11 @@ Target that pin. Do not bump browserslist to unlock an idiom.
 
 | Pin | Always use | Not yet |
 | --- | --- | --- |
-| No pin / `baseline newly available` | everything **Baseline 2024–2026** below | `if()`, `@function`, `@mixin`, `sibling-index()`, `corner-shape`, `interpolate-size`, masonry, CSS Paint |
-| `baseline widely available` | nesting, `:has()`, size `@container`, `@layer`, `color-mix()`, `oklch` | Baseline 2025–2026-only (`@scope`, `shape()`, anchors, view transitions) unless already in the file |
+| No pin / `baseline newly available` | everything **Baseline 2022–2026** below | `if()`, `@function`, `@mixin`, `sibling-index()`, `corner-shape`, `interpolate-size`, masonry, CSS Paint |
+| `baseline widely available` | `@layer`, `:is()`, `:where()`, nesting, `:has()`, size `@container`, `color-mix()`, `oklch` | Baseline 2024+ not yet widely (`@property`, `light-dark()`, 2025–2026) unless already in the file |
+| Baseline 2022 in the pin | `@layer`, `:is()`, `:where()`, `accent-color` | 2023+ |
+| Baseline 2023 in the pin | plus nesting, `:has()`, size `@container`, `color-mix()`, `oklch` | 2024+ |
+| Baseline 2024 in the pin | plus `@property`, `light-dark()`, `@starting-style`, `text-wrap`, subgrid | 2025–2026; Chromium-only |
 | Baseline 2025 in the pin | plus same-document view transitions, popover, `content-visibility`, `view-transition-class` | Baseline 2026-only; Chromium-only |
 | Baseline 2026 in the pin | plus `@scope`, `shape()`, `field-sizing`, style `@container`, `contrast-color()`, anchor positioning level 1, `:open` | `if()`, `@function`, `@mixin` (no engine), Paint worklet |
 | Chromium-only already in the file | honor `if()` / `@function` behind `@supports` | `@mixin` / `@apply` as CSS mixins |
@@ -39,23 +42,14 @@ Target that pin. Do not bump browserslist to unlock an idiom.
 Experimental flags and Chrome-only drafts are out of scope unless the
 file already uses them. Default is **no**.
 
-## What this skill owns
-
-| Own | Leave |
-| --- | --- |
-| CSS language, cascade, Baseline gate | Tailwind / NativeWind **setup** (`expo-tailwind-setup`) |
-| Tokens, `@layer`, nesting in `.css` / `<style>` | Svelte runes (`svelte`); React / Next components |
-| Motion that CSS now owns | Canvas 2D / WebGL pixel drawing |
-| | RN `StyleSheet` (not CSS) |
-
 ## After every CSS edit
 
 ```bash
 npx biome check <files>   # or stylelint / the repo's css script
 ```
 
-Honor the formatter already there. Do not add Stylelint or a second
-formatter. Write the modern form the first time.
+Honor the formatter already there. Do not add Biome or Stylelint to
+unlock a gate. Write the modern form the first time.
 
 ## When it breaks
 
@@ -68,14 +62,24 @@ formatter. Write the modern form the first time.
 | Colors do not interpolate | Untyped custom property. `@property` with `syntax: "<color>"` |
 | Sass file "needed" for nesting | Native nesting is Baseline. Do not add Sass for that |
 
-## Language (Baseline 2024 → 2026)
+## What this skill owns
 
+| Own | Leave |
+| --- | --- |
+| CSS language, cascade, Baseline gate | Tailwind / NativeWind **setup** (`expo-tailwind-setup`) |
+| Tokens, `@layer`, nesting in `.css` / `<style>` | Svelte runes (`svelte`); React / Next components |
+| Motion that CSS now owns | Canvas 2D / WebGL pixel drawing; RN `StyleSheet` |
+
+## Language (Baseline 2022 → 2026)
+
+- `@layer` for cascade (`reset`, `tokens`, `components`). No `!important`
+  to win a layer fight.
+- `:is()` / `:where()` for selector lists. `:where()` when specificity
+  must stay **zero**.
 - Native nesting and `&`. No new Sass file for nesting.
 - `:has()` for parent / sibling state. No JS class for "contains X".
 - Size `@container` for component width. `@media` for the viewport and
   `prefers-*`.
-- `@layer` for cascade (`reset`, `tokens`, `components`). No `!important`
-  to win a layer fight.
 - `@property` for tokens that interpolate or must stay a type.
 - `oklch` / `color-mix()` / relative color (`oklch(from var(--c) l c h)`).
   No new hex-pair light/dark sheets when `light-dark()` is in the pin.
@@ -120,7 +124,7 @@ Layout is earned: one entry sheet plus colocated CSS. No `abstracts/` /
 - Sass `@mixin` / `@extend` / `$var` in a new `.css` file
 - CSS `@mixin` / `@apply` (mixins have **no** engine)
 - `if()` or `@function` as the only path
-- `float` layout; `!important` to beat `@layer`
+- `float` layout; `!important` to beat `@layer`; long sibling lists instead of `:is()`
 - `position: absolute` tooltips when the pin has anchors + popover
 - `window.matchMedia` for colors `light-dark()` covers
 - Canvas / a chart lib for a `clip-path`

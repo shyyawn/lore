@@ -1,4 +1,4 @@
-# Rewrites (Baseline 2024 → 2026)
+# Rewrites (Baseline 2022 → 2026)
 
 CSS has no `go fix`. Write these forms directly. Stylelint / Biome /
 the repo CSS lint is the backstop. Version meaning of each rewrite:
@@ -11,7 +11,7 @@ Do not "modernize" by bumping browserslist or adding Sass.
 | Before | After |
 | --- | --- |
 | Sass / Less nesting | native nesting + `&` |
-| `$brand: #06f` | `@property --brand { syntax: "<color>"; inherits: true; initial-value: oklch(…); }` then `var(--brand)` |
+| `$brand: #06f` | `--brand` + `var(--brand)`; `@property` on a 2024+ pin when it must interpolate |
 | Sass `@mixin` for a token block | nest, or a shared `@layer tokens` file |
 | Sass `darken()` / `mix()` | `oklch(from var(--c) calc(l - 0.1) c h)`, `color-mix(in oklch, var(--c) 80%, black)` |
 | `@extend` | nest or a shared class. Do not `@extend` |
@@ -22,6 +22,8 @@ Do not "modernize" by bumping browserslist or adding Sass.
 | --- | --- |
 | `.card--has-image` set from JS | `.card:has(img)` |
 | `.parent .child` repeated | nest `.child` under `.parent` |
+| `h1 ~ h2, h1 ~ h3, h2 ~ h3, …` | `:is(h1, h2, h3) ~ :is(h1, h2, h3)` |
+| a reset selector that wins too often | `:where(h1, h2, h3)` |
 | `#id` / `!important` to win | `@layer` order; one layer bump |
 | unscoped `.title` leaking | `@scope (.card) { .title { } }` on a 2026 pin |
 

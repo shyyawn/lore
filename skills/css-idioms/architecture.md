@@ -100,8 +100,8 @@ already registers a worklet.
 ## Conditionals
 
 Order: `@supports` / `@media` / size or style `@container`, then a
-custom property toggle. `if()` is Chromium — enhancement inside
-`@supports (if(1: 1))` only when the file already uses it.
+custom property toggle. `if()` is Chromium. Honor it behind
+`@supports` only when the file already uses it.
 
 `@function` is the same gate. CSS `@mixin` does not exist in any
 engine. Do not emit it.

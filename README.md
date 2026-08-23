@@ -93,7 +93,7 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [go-ddd](skills/go-ddd) | Overlay on `go-backend`: DDD Lite when a domain earns an aggregate |
 | [go-mono-repo](skills/go-mono-repo) | Overlay on `go-idioms`: one module by default, `go.work` only when modules version apart |
 | [typescript-idioms](skills/typescript-idioms) | Idiomatic TypeScript 5–7 and 2024–2026 layout |
-| [css-idioms](skills/css-idioms) | Idiomatic CSS Baseline 2024–2026 (nesting, `@layer`, view transitions, anchors). Not Sass or Tailwind |
+| [css-idioms](skills/css-idioms) | Idiomatic CSS Baseline 2022–2026 (`@layer`, nesting, view transitions, anchors). Not Sass or Tailwind |
 | [svelte](skills/svelte) | Overlay on the Svelte plugin + `typescript-idioms`: Svelte 5 / Kit 2 pin, experimental default-no |
 | [sveltekit-app-structure](skills/sveltekit-app-structure) | SvelteKit `src/routes` / `$lib` layout (coding stays in `svelte` + the plugin) |
 | [encore-go](skills/encore-go) | Encore.go backends (never F5 / Zed F4; attach config is `git-repo-setup-go`) |
