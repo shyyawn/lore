@@ -13,7 +13,7 @@ to unlock a snippet.
 | `go.temporal.io/sdk` | docs.temporal.io | README: worker + dev server. Do not recopy the SDK |
 | `pyproject.toml` / `*.py` | Docstrings (PEP 257). Sphinx or MkDocs when earned | PyPI readme = this README unless they set another |
 | `package.json` + TS/JS | TSDoc / JSDoc for public API | npm renders README. `exports` / `types` in package.json, not prose |
-| `svelte.config.*` | Svelte component docs in `.svelte` | README is the app. Do not fork the Svelte tutorial |
+| `svelte.config.*` | Svelte component docs in `.svelte` | README is the app. Coding: `svelte`. Layout: `sveltekit-app-structure` |
 | `Cargo.toml` | rustdoc | README = why; rustdoc = how. Do not `include_str!` by default |
 | `*.csproj` / `*.fsproj` | XML docs | Honor existing DocFX / docfx.json |
 | `mkdocs.yml` | MkDocs Markdown + `!!!` admonitions | Do not write GFM alerts in those pages |
@@ -77,8 +77,8 @@ kit.
 
 README: what the app is, `pnpm dev`, env vars in a table. Component
 contracts stay next to the component. Do not copy the Svelte tutorial
-into `docs/`. Honor `svelte-file-editor` / the Svelte plugin for `.svelte`
-files.
+into `docs/`. Coding: `svelte` + the Svelte plugin. Layout:
+`sveltekit-app-structure`.
 
 ## Rust
 

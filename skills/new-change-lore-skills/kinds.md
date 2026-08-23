@@ -11,8 +11,8 @@ pipeline.
 | Authoring | this skill | `voice.md`, `kinds.md`, `family.md` |
 | Workflow / playbook | `create-readme-and-other-markdown-documentation` (future: `requirement-to-architecture-to-design`) | `files.md`, `readme.md`, `english.md`, `stacks.md` |
 | Language idiom | `go-idioms`, `typescript-idioms` | `versions.md`, `modernizers.md`, `architecture.md` |
-| Platform coding | `encore-go`, `temporal-go` | `primitives.md`, `infrastructure.md`, `determinism.md`, `workers.md`, short `debug.md` |
-| App-structure | `encore-go-app-structure`, `temporal-go-app-structure` | usually none — trees live in SKILL.md |
+| Platform coding | `encore-go`, `temporal-go`, `svelte` | Encore/Temporal catalogs; `svelte`: none (plugin owns runes) |
+| App-structure | `encore-go-app-structure`, `temporal-go-app-structure`, `sveltekit-app-structure` | usually none — trees live in SKILL.md |
 | Combined stack | `encore-temporal-go-app-structure` | none — seam + division of labor in SKILL.md |
 | Hub kit | `git-repo-setup` | `files.md`, `gitconfig.md`, `debug.md` |
 | Language overlay on hub | `git-repo-setup-go` / `-typescript` / `-python` | overlay `debug.md` (the JSON) |
@@ -21,7 +21,8 @@ pipeline.
 
 Look is always [voice.md](voice.md). Authoring is this skill — do not
 write a second one. Language idiom and below are the **current** stack,
-not a requirement that every new skill hang under Go.
+not a requirement that every new skill hang under Go. Svelte hangs
+under `typescript-idioms` + the plugin, not under `go-idioms`.
 
 ## Three lists
 
@@ -85,29 +86,36 @@ the pin. `architecture.md` is 2024–2026 structure, not hexagonal fashion.
 
 ## Platform coding
 
-Open: `encore-go` or `temporal-go`.
+Open: `encore-go`, `temporal-go`, or `svelte`.
 
-- Follow the language skill, then **overrides** `go-idioms` on named
-  axes (Encore: layout, HTTP, log, tests; Temporal workflows: no `slog`
-  / `go` / `time.Now`). Bidirectional: language `architecture.md` points
-  at the platform skill for that layout.
+- Follow the language skill, then **overrides** on named axes (Encore:
+  layout, HTTP, log, tests; Temporal workflows: no `slog` / `go` /
+  `time.Now`; Svelte: pin, experimental default-**no**, `$app/state`).
+  Bidirectional: language `architecture.md` points at the platform
+  skill for that layout.
 - **Hard rules** (compiler / runtime), not a defaults table.
 - **Default shapes**: concrete code from official docs / samples.
-- **Do not add** table. **LLM traps**. Catalogs in siblings.
+  `svelte` skips this — the plugin owns runes.
+- **Do not add** table. **LLM traps**. Catalogs in siblings. `svelte`
+  has none.
 - Encore traps that are not JSON: short `debug.md`, pointing at
   `git-repo-setup-go` debug.md for attach.
+- `svelte` is also a vendor overlay: install the Svelte plugin; do not
+  fork `svelte-core-bestpractices`.
 
 ## App-structure
 
-Open: `encore-go-app-structure`. Coding idioms stay in the sibling
-coding skill. This file is layout and package boundaries.
+Open: `encore-go-app-structure` or `sveltekit-app-structure`. Coding
+idioms stay in the sibling coding skill. This file is layout and
+package / route boundaries.
 
 - **Sources:** official docs + named starters. Not a fork of the coding
   skill.
 - **Hard rules**. **Choose a layout** (situation → tree). Small vs large
   official trees. **Growth** stages. **After layout changes**.
 - **Do not**: restyle a working flat app into the large tree as a
-  drive-by. Apply `go-idioms` `cmd/` to Encore HTTP.
+  drive-by. Apply `go-idioms` `cmd/` to Encore HTTP, or
+  `typescript-idioms` `src/<noun>/` to `src/routes`.
 
 If `go.temporal.io/sdk` is already in an Encore app, **stop** and follow
 `encore-temporal-go-app-structure`. Do not duplicate that seam here.

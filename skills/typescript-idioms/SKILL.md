@@ -19,6 +19,7 @@ installed `typescript` version. Do not emit pre-5 tutorial TypeScript
 
 Full catalogs: [versions.md](versions.md) (5.0→now), [modernizers.md](modernizers.md)
 (rewrites), [architecture.md](architecture.md) (2024–2026 structure).
+Svelte / SvelteKit: `svelte`. Layout: `sveltekit-app-structure`.
 
 ## First step
 

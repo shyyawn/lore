@@ -31,7 +31,7 @@ Polyglot (TypeScript + `go.mod`): also apply `git-repo-setup-go`. One
 
 Svelte (`svelte.config.js` / `svelte.config.ts`): same overlay. Include
 `*.svelte` in the formatter glob. Do not invent a second hook runner for
-the Svelte app.
+the Svelte app. Coding: `svelte`. Layout: `sveltekit-app-structure`.
 
 ## 2026 TypeScript defaults
 

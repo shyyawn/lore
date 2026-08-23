@@ -29,7 +29,7 @@ Slash prompts / `.cursor/commands/` are legacy. New user-invoked workflows are s
 
 Three layers. That is the whole agent setup.
 
-1. **This repo's skills** — how we write Go, TypeScript, Encore, and Temporal, plus a Conventional Commits *overlay* for those languages and a 2026 Git repo kit.
+1. **This repo's skills** — how we write Go, TypeScript, Encore, Temporal, and Svelte, plus a Conventional Commits *overlay* for those languages and a 2026 Git repo kit.
 2. **Three official Cursor plugins** — live tooling and vendor how-tos that this repo does not duplicate.
 3. **One official vendor skill** — Conventional Commits format, from conventional-changelog. Not a Cursor plugin.
 
@@ -57,7 +57,7 @@ Plugins are user-scope from agent chat. The `npx skills add … -g --agent curso
 
 That combination covers the stack. You do **not** need more plugins, skill catalogs, or MCP servers to start.
 
-**Who wins when they overlap:** lore skills own Go package layout and Encore+Temporal structure (`encore-go-app-structure`, `temporal-go-app-structure`, `encore-temporal-go-app-structure`), and the Conventional Commits *overlay* (`conventional-commits`: Go `/v2`, Python/TS releasers, Lefthook without Node). The plugins own live inspection (Encore MCP), official Temporal CLI/SDK encyclopedias, and Svelte UI. `conventional-commit-message` owns the commit format. Do not copy plugin or vendor skills into `skills/` — `make uninstall` would wipe a fork, and you would be maintaining vendor docs.
+**Who wins when they overlap:** lore skills own Go package layout and Encore+Temporal structure (`encore-go-app-structure`, `temporal-go-app-structure`, `encore-temporal-go-app-structure`), the Svelte **pin and Kit tree** (`svelte`, `sveltekit-app-structure`), and the Conventional Commits *overlay* (`conventional-commits`: Go `/v2`, Python/TS releasers, Lefthook without Node). The plugins own live inspection (Encore MCP), official Temporal CLI/SDK encyclopedias, and Svelte runes / autofixer / live docs. `conventional-commit-message` owns the commit format. Do not copy plugin or vendor skills into `skills/` — `make uninstall` would wipe a fork, and you would be maintaining vendor docs.
 
 Plugins are Cursor-only (`/add-plugin` is not available in the Cursor CLI). `npx skills add` works from any terminal. After installing plugins, restart the agent chat if MCP tools do not appear.
 
@@ -81,6 +81,8 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [go-ddd](skills/go-ddd) | Overlay on `go-backend`: DDD Lite when a domain earns an aggregate |
 | [go-mono-repo](skills/go-mono-repo) | Overlay on `go-idioms`: one module by default, `go.work` only when modules version apart |
 | [typescript-idioms](skills/typescript-idioms) | Idiomatic TypeScript 5–7 and 2024–2026 layout |
+| [svelte](skills/svelte) | Overlay on the Svelte plugin + `typescript-idioms`: Svelte 5 / Kit 2 pin, experimental default-no |
+| [sveltekit-app-structure](skills/sveltekit-app-structure) | SvelteKit `src/routes` / `$lib` layout (coding stays in `svelte` + the plugin) |
 | [encore-go](skills/encore-go) | Encore.go backends (never F5 / Zed F4; attach config is `git-repo-setup-go`) |
 | [encore-go-app-structure](skills/encore-go-app-structure) | Encore Go package layout |
 | [temporal-go](skills/temporal-go) | Temporal Go SDK |

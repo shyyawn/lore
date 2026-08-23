@@ -44,8 +44,9 @@ a planned phase of a new skill.
 ## New domain
 
 The overlay table below is this repo's **current** stack. A skill that
-is not Go, TypeScript, Encore, or Temporal does **not** hang under
-`go-idioms`. It is a hub, a lone playbook, or the start of a new family.
+is not Go, TypeScript, Encore, Temporal, or Svelte does **not** hang
+under `go-idioms`. It is a hub, a lone playbook, or the start of a new
+family.
 
 | Situation | Do |
 | --- | --- |
@@ -61,8 +62,8 @@ It is not an overlay on `encore-go`. A later
 
 ## Overlay family (current stack)
 
-Do not invent a parallel `go-idioms` or a second `encore-go`. Find the
-cell. Add a child. Point both ways.
+Do not invent a parallel `go-idioms`, a second `encore-go`, or a second
+`svelte`. Find the cell. Add a child. Point both ways.
 
 | Skill | Kind | Parent | Overrides / fills |
 | --- | --- | --- | --- |
@@ -75,6 +76,8 @@ cell. Add a child. Point both ways.
 | `create-readme-and-other-markdown-documentation` | workflow / playbook | — | README and other Markdown. Kit still owns bootstrap existence |
 | `go-idioms` | language | — | Go 1.18–1.26 + 2024–2026 flatten layout |
 | `typescript-idioms` | language | — | TypeScript 5–7 + 2024–2026 flatten layout |
+| `svelte` | platform | `typescript-idioms` + Svelte plugin | Pin, experimental default-no, `$app/state`. Not a fork of the plugin |
+| `sveltekit-app-structure` | app-structure | `svelte` | `src/routes` / `$lib`. Coding stays in `svelte` + plugin |
 | `go-100-mistakes-avoid` | domain overlay | `go-idioms` | Still-in-force mistakes. Not language-fixed rows. |
 | `go-unit-tests` | domain overlay | `go-idioms` | Tables, synctest, fuzz, what to skip. Encore runner stays `encore-go`. |
 | `go-backend` | domain overlay | `go-idioms` | Inside a service. Encore still owns process layout. |
@@ -93,6 +96,9 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | `encore.app` | `encore-go` + `encore-go-app-structure` (not `go-idioms` `cmd/`) |
 | `go.temporal.io/sdk` without `encore.app` | `temporal-go` + `temporal-go-app-structure` |
 | Both | `encore-temporal-go-app-structure` |
+| `svelte.config.*` + `@sveltejs/kit` | `svelte` + `sveltekit-app-structure` |
+| `svelte.config.*` without Kit | `svelte` (Vite). Do not add Kit as a drive-by |
+| `encore.app` + `svelte.config.*` | Encore skills for the API; `svelte` + `sveltekit-app-structure` for the UI |
 | Several `go.mod` / `go.work` | `go-mono-repo` |
 | Commit message / squash PR title | `conventional-commits` (official skill first) |
 | Hooks, mise, just, `launch.json`, Zed debugger | `git-repo-setup` + language overlay |
@@ -104,13 +110,13 @@ Directory = YAML `name`. Lowercase hyphens. Max 64 chars.
 
 | Pattern | Example | Not |
 | --- | --- | --- |
-| Durable noun | `go-idioms`, `encore-go`, `temporal-go` | `go-2026`, `encore-go-2026` (renamed away) |
+| Durable noun | `go-idioms`, `encore-go`, `temporal-go`, `svelte` | `go-2026`, `svelte-typescript` |
 | Pipeline | `requirement-to-architecture-to-design` | `rta`, `design-2026`, `helper` |
 | Hub | `git-repo-setup` | `git-kit`, `repo-helpers` |
 | Hub + facet | `git-repo-setup-go` | `go-git-hooks` (hides the hub) |
 | Domain overlay | `go-unit-tests`, `go-backend`, `go-ddd` | Fusing into the parent |
 | Avoid catalog | `go-100-mistakes-avoid` | `go-mistakes` (vague) |
-| App-structure | `encore-go-app-structure` | `encore-go-layout` (inconsistent suffix) |
+| App-structure | `encore-go-app-structure`, `sveltekit-app-structure` | `encore-go-layout`, `svelte-ui-kit-typescript` |
 | Combined | `encore-temporal-go-app-structure` | Stuffing B into A's file |
 
 Title may include the current line (`# Go 2026`). The **directory**
@@ -133,6 +139,7 @@ here too.
    | Three Dots Labs Wild Workouts **DDD Lite** articles | Aggregates, VOs, events as values, Get/Save | `app/` / `domain/` / `adapters/`, Watermill, Firebase |
    | kubernetes `go.work` + `staging/` | Lockstep publish siblings | Copy unless you actually publish |
    | github/gitignore, Lefthook, mise, just docs | File bodies and pin commands | A second hook runner |
+   | Svelte `kit/project-structure`, `sv create` | `src/routes`, `$lib`, `$lib/server` | Plugin runes catalog; Kit 3 `@next` trees |
 
    A playbook: name the method (C4, ADR template, a named case study).
    Leave the vendor encyclopedia and the blog's folder schema.
@@ -179,6 +186,8 @@ pass on those names.
 | --- | --- | --- |
 | This repo | Practice in `skills/` (stack or playbook) | Copy plugin encyclopedias into `skills/` |
 | Encore / Temporal / Svelte Cursor plugins | Live MCP, official vendor how-tos | `npx add-skill` of the same vendor |
+| Svelte plugin | Runes, autofixer, live docs | A lore `svelte-core-bestpractices` |
+| This repo `svelte` / `sveltekit-app-structure` | Pin, experimental default-no, Kit tree | Kit 3 `@next`; a runes catalog |
 | `conventional-commit-message` | Commit **format** | A lore fork of its type table |
 
 `make uninstall` would wipe a fork. You would be maintaining vendor

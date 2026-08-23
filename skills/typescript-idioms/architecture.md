@@ -30,6 +30,9 @@ them with `node:http` as a drive-by restyle. Do not introduce Nest for a
 
 ## Layout
 
+SvelteKit is `sveltekit-app-structure`. Do not apply this `src/<noun>/`
+tree to `src/routes`.
+
 Official instinct: start as a few modules next to `package.json`. Grow into
 this when there is a second binary or a publish boundary:
 
