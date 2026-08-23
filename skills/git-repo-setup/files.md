@@ -31,14 +31,16 @@ mise.toml.local
 .DS_Store
 *.swp
 .idea/
+.zed/
 
 # language build output (keep what github/gitignore already covers)
 ```
 
 Do not ignore `.vscode/`. Commit shared `extensions.json` and `launch.json`
-([debug.md](debug.md); overlay fills them). Ignore personal `*.code-workspace`
-either way. Do not commit `settings.json` unless the team already shares it
-(and never with a home-directory mise shim path).
+([debug.md](debug.md); overlay fills them). Ignore `.zed/` and personal
+`*.code-workspace`. Do not commit `.vscode/settings.json` unless the team
+already shares it (and never with a home-directory mise shim path). Zed
+reads `launch.json`; do not add `.zed/debug.json`.
 
 After writing, `git check-ignore -v -- .env` must match.
 
@@ -275,8 +277,9 @@ Needs [mise](https://mise.jdx.dev/). Then:
 Name the real recipe file (`just` vs `make`). Do not list Lefthook
 commands for humans — `bootstrap` installs them.
 
-Debug: Run and Debug uses the committed `.vscode/launch.json` (overlay
-[debug.md](debug.md)). Do not document a personal F5 config in README.
+Debug: Run and Debug (Cursor / VS Code) and debugger: start (Zed) use the
+committed `.vscode/launch.json` (overlay [debug.md](debug.md)). Do not
+document a personal F5 / F4 config in README.
 
 ## GitHub Actions
 

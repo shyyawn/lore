@@ -157,13 +157,14 @@ commands and [debug.md](debug.md). Language idioms stay in `go-idioms`.
 - Do not repeat hub rules (one Lefthook, one Justfile, do not nest
   repos). Do not add Node/husky/commitlint to a Go or Python-only repo.
 - Polyglot: also apply the other overlay. Still one `lefthook.yml`, one
-  Justfile, one `.vscode/launch.json` at the Git root.
+  Justfile, one `.vscode/launch.json` at the Git root. Zed reads that
+  file. Do not add `.zed/debug.json`.
 
 ### Debug split
 
 | File | Holds |
 | --- | --- |
-| Hub `debug.md` | One `launch.json`, scan extensions, `dlv` / `cue` install, do not gitignore `.vscode/` |
+| Hub `debug.md` | One `launch.json` (Cursor / VS Code / Zed), scan extensions, `dlv` / `cue` install, do not gitignore `.vscode/`, do not add `.zed/debug.json` |
 | Overlay `debug.md` | That language's JSON (Encore attach, `cmd/` launch, vitest, debugpy) |
 | Platform `debug.md` (`encore-go`) | Traps only. Point at the overlay JSON |
 

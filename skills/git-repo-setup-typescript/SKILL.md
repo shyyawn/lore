@@ -3,10 +3,11 @@ name: git-repo-setup-typescript
 description: >-
   TypeScript overlay for git-repo-setup: Biome (or the repo's Prettier),
   tsc --noEmit, vitest/node --test, pnpm/npm lockfile, commitlint when Node
-  is first-class, Cursor Node/vitest launch.json. Use when bootstrapping or
-  retrofitting Git hooks / just / Lefthook in a TypeScript or JS repo, or
-  when the repo has package.json, tsconfig.json, *.ts, *.tsx, svelte.config,
-  or the user asks to debug TypeScript, set breakpoints, or add launch.json.
+  is first-class, Cursor/VS Code/Zed Node/vitest launch.json. Use when
+  bootstrapping or retrofitting Git hooks / just / Lefthook in a TypeScript
+  or JS repo, or when the repo has package.json, tsconfig.json, *.ts, *.tsx,
+  svelte.config, or the user asks to debug TypeScript, set breakpoints, or
+  add launch.json.
 ---
 
 # Git repo setup — TypeScript

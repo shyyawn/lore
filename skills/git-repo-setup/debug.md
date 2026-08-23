@@ -1,4 +1,4 @@
-# Debug (Cursor / VS Code)
+# Debug (Cursor / VS Code / Zed)
 
 Shared `.vscode/launch.json` + `extensions.json` at the Git root. Overlay
 fills JSON: [git-repo-setup-go/debug.md](../git-repo-setup-go/debug.md),
@@ -10,19 +10,35 @@ adds a test config.
 One `launch.json`, one `extensions.json`. Merge named configs and ids;
 do not replace. Omit `extensions.json` only if the scan union is empty.
 
+## Editors
+
+Cursor and VS Code read `launch.json` natively. Zed
+[Debugger](https://zed.dev/docs/debugger) loads it when `.zed/debug.json`
+is **absent**. Do not add `.zed/debug.json`. Zed has no workspace
+`extensions.json`. Go / Python / JS adapters are built-in.
+
+| `type` | Zed adapter |
+| --- | --- |
+| `go` | Delve |
+| `debugpy` | Debugpy |
+| `node` / `pwa-node` | JavaScript |
+
 | File | Commit |
 | --- | --- |
 | `.vscode/extensions.json` | yes |
 | `.vscode/launch.json` | yes |
 | `.vscode/settings.json` | no (unless the team already shares it) |
+| `.zed/debug.json` | no |
+| `.zed/settings.json` | no |
 | `*.code-workspace` | no |
 
-Do not gitignore `.vscode/`. Ignore `*.code-workspace`.
+Do not gitignore `.vscode/`. Ignore `.zed/` and `*.code-workspace`. Honor
+a committed `.zed/debug.json` that is already there.
 
 ## Decide
 
 Workspace root = Git root (`git rev-parse --show-toplevel`). Never a
-per-package `.vscode/`. Existing repo: fill the gap, same list.
+per-package `.vscode/` or `.zed/`. Existing repo: fill the gap, same list.
 
 ```
 launch.json:
@@ -101,5 +117,6 @@ as a second id, Vitest Explorer.
 
 - Pin `dlv` or `cue` in the app `.mise.toml`.
 - A second `launch.json` under a package directory.
+- `.zed/debug.json` (hides `launch.json` from Zed).
 - Commit `go.alternateTools`.
 - `--inspect` / `print()` as the team debugger.

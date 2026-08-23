@@ -52,7 +52,7 @@ start with `/`; flags go **after** the path (`curl /orders -X POST -d '...'`).
 | Symptom | Usually means |
 | --- | --- |
 | `failed to start cluster: database did not come up … dial error: timeout` | Encore provisions local infrastructure in Docker with a bounded startup window; a cold or slow start can exceed it. Check whether the container is actually running before treating this as a code or migration fault — if it is, re-run. If it persists, the cause is Docker itself: not running, out of resources, or the port already taken. |
-| `encore apps must be run using the encore command` (panic) | `go test` instead of `encore test`, or F5 / Launch Package. Every Encore primitive panics outside the runtime — `go build` and `go vet` are still fine. Attach: `git-repo-setup-go` [debug.md](../git-repo-setup-go/debug.md). |
+| `encore apps must be run using the encore command` (panic) | `go test` instead of `encore test`, or F5 / Launch Package / Zed F4. Every Encore primitive panics outside the runtime — `go build` and `go vet` are still fine. Attach: `git-repo-setup-go` [debug.md](../git-repo-setup-go/debug.md). |
 | The parser rejects a resource | `sqldb.NewDatabase` / `pubsub.NewTopic` / `cache.NewCluster` declared inside a function. They are package-level `var`s. |
 | An API is unreachable from another service | You reached for HTTP instead of importing the package and calling the function, or the caller is not actually a service. `private` is not the cause — that is exactly how services and cron are meant to call. Never "fix" this by flipping the endpoint to `public`. |
 | Client sees 500 where you meant 404 / 409 | A bare `error` escaped the endpoint. Map it: `sqldb.ErrNoRows` → `errs.NotFound`, unique violation → `errs.AlreadyExists`. |
@@ -60,10 +60,11 @@ start with `/`; flags go **after** the path (`curl /orders -X POST -d '...'`).
 `encore check` compiles, boots and migrates — a faster signal than `encore run`
 when you only need to know the app is valid.
 
-## Debug in Cursor
+## Debug in Cursor / Zed
 
 **Connect to Encore**: `git-repo-setup-go` [debug.md](../git-repo-setup-go/debug.md).
 Traps: [debug.md](debug.md). Official: <https://encore.dev/docs/go/how-to/debug>.
+Zed: <https://zed.dev/docs/languages/go#debugging>.
 
 ## Hard rules
 

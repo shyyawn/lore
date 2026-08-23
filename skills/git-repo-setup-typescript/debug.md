@@ -1,8 +1,8 @@
 # Debug — TypeScript
 
-Hub: `git-repo-setup` [debug.md](../git-repo-setup/debug.md). Cursor
-debugs Node; do not add a second JS debugger. Add test configs next to
-app launch. Merge names.
+Hub: `git-repo-setup` [debug.md](../git-repo-setup/debug.md). Cursor, VS
+Code, and Zed debug Node; do not add a second JS debugger. Add test configs
+next to app launch. Merge names.
 
 ## Tests
 

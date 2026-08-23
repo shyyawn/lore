@@ -3,9 +3,10 @@ name: git-repo-setup-go
 description: >-
   Go overlay for git-repo-setup: gofmt, go vet, golangci-lint v2, go test
   (encore test when encore.app exists), go.mod tool pins, Go gitignore,
-  Cursor/Delve launch.json. Use when bootstrapping or retrofitting Git
-  hooks / just / Make / Lefthook in a Go module, or when the repo has
-  go.mod, *.go, or encore.app.
+  Cursor/VS Code/Zed Delve launch.json. Use when bootstrapping or
+  retrofitting Git hooks / just / Make / Lefthook in a Go module, or when
+  the repo has go.mod, *.go, or encore.app, or the user asks to debug Go
+  in Zed.
 ---
 
 # Git repo setup — Go
@@ -190,7 +191,7 @@ Existing Makefile: add these **names**, keep Make. `go test` line becomes
 ## Debug
 
 [debug.md](debug.md). `command -v dlv` ([hub](../git-repo-setup/debug.md#dlv)).
-Encore: **Connect to Encore**, never F5.
+Encore: **Connect to Encore**, never F5 / Zed F4.
 
 ## Do not
 

@@ -2,10 +2,10 @@
 name: git-repo-setup-python
 description: >-
   Python overlay for git-repo-setup: uv, ruff format/check, pytest, Python
-  gitignore, Lefthook without Node, Cursor/debugpy launch.json. Use when
-  bootstrapping or retrofitting Git hooks / just / Make / Lefthook in a
-  Python project, or when the repo has pyproject.toml, uv.lock, *.py, or
-  Poetry/requirements files, or the user asks to debug Python, set
+  gitignore, Lefthook without Node, Cursor/VS Code/Zed debugpy launch.json.
+  Use when bootstrapping or retrofitting Git hooks / just / Make / Lefthook
+  in a Python project, or when the repo has pyproject.toml, uv.lock, *.py,
+  or Poetry/requirements files, or the user asks to debug Python, set
   breakpoints, or add launch.json.
 ---
 

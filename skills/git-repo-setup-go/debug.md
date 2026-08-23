@@ -1,15 +1,16 @@
 # Debug — Go
 
 Hub: `git-repo-setup` [debug.md](../git-repo-setup/debug.md). This file is
-the Go JSON. Recommend `golang.go`. `command -v dlv`; install:
-[hub `dlv`](../git-repo-setup/debug.md#dlv). Do not pin `dlv` in the app
-`.mise.toml`. `*.cue` without `cue`: [hub `cue`](../git-repo-setup/debug.md#cue)
-— no CUE extension.
+the Go JSON. Cursor / VS Code / Zed consume it. Recommend `golang.go`.
+`command -v dlv`; install: [hub `dlv`](../git-repo-setup/debug.md#dlv). Do
+not pin `dlv` in the app `.mise.toml`. `*.cue` without `cue`:
+[hub `cue`](../git-repo-setup/debug.md#cue) — no CUE extension.
 
 ## `encore.app`
 
-Do **not** F5 / Launch Package. Official:
-[Debug with Delve](https://encore.dev/docs/go/how-to/debug).
+Do **not** F5 / Launch Package / Zed F4 on a service package. Official:
+[Debug with Delve](https://encore.dev/docs/go/how-to/debug). Zed:
+[Go debugging](https://zed.dev/docs/languages/go#debugging).
 
 ```bash
 encore run --debug=break

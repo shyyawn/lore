@@ -81,7 +81,7 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [go-ddd](skills/go-ddd) | Overlay on `go-backend`: DDD Lite when a domain earns an aggregate |
 | [go-mono-repo](skills/go-mono-repo) | Overlay on `go-idioms`: one module by default, `go.work` only when modules version apart |
 | [typescript-idioms](skills/typescript-idioms) | Idiomatic TypeScript 5–7 and 2024–2026 layout |
-| [encore-go](skills/encore-go) | Encore.go backends (never F5; attach config is `git-repo-setup-go`) |
+| [encore-go](skills/encore-go) | Encore.go backends (never F5 / Zed F4; attach config is `git-repo-setup-go`) |
 | [encore-go-app-structure](skills/encore-go-app-structure) | Encore Go package layout |
 | [temporal-go](skills/temporal-go) | Temporal Go SDK |
 | [temporal-go-app-structure](skills/temporal-go-app-structure) | Temporal Go package layout |

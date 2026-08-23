@@ -95,7 +95,7 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | Both | `encore-temporal-go-app-structure` |
 | Several `go.mod` / `go.work` | `go-mono-repo` |
 | Commit message / squash PR title | `conventional-commits` (official skill first) |
-| Hooks, mise, just, `launch.json` | `git-repo-setup` + language overlay |
+| Hooks, mise, just, `launch.json`, Zed debugger | `git-repo-setup` + language overlay |
 | `README.md` / health files / `docs/**/*.md` content | `create-readme-and-other-markdown-documentation` |
 
 ## Naming

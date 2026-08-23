@@ -1,8 +1,9 @@
 # Debug — Python
 
-Hub: `git-repo-setup` [debug.md](../git-repo-setup/debug.md). Recommend
-`ms-python.python`. Do not pin debugpy in mise unless the project already
-depends on it. Add pytest (or unittest) next to Current File. Merge names.
+Hub: `git-repo-setup` [debug.md](../git-repo-setup/debug.md). Cursor / VS
+Code / Zed consume it. Recommend `ms-python.python`. Do not pin debugpy in
+mise unless the project already depends on it. Add pytest (or unittest)
+next to Current File. Merge names.
 
 ## Tests
 

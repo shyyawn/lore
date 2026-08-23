@@ -4,11 +4,11 @@ description: >-
   Bootstraps and retrofits Git repositories to 2026 defaults: main + reftable
   on init, SSH commit signing, .gitignore/.gitattributes/.editorconfig,
   Lefthook hooks, mise-pinned tools, one linter per language, one task runner
-  (just; Make if already present), and a shared Cursor/VS Code debugger.
+  (just; Make if already present), and a shared Cursor/VS Code/Zed debugger.
   Use when creating a new repo, running git init, adding hooks, a Makefile
   or Justfile, lefthook, husky, pre-commit, gitleaks, mise, debug,
-  launch.json, or a linter, or when the user asks to set up or modernize an
-  existing repository's Git, debugger, or local dev tooling.
+  launch.json, debug.json, Zed, or a linter, or when the user asks to set
+  up or modernize an existing repository's Git, debugger, or local dev tooling.
 ---
 
 # Git repo setup (2026)
@@ -18,7 +18,7 @@ invent a second Makefile, a second hook runner, or CI steps that diverge from
 local recipes.
 
 File contents: [files.md](files.md). Machine `git config`: [gitconfig.md](gitconfig.md).
-Debugger: [debug.md](debug.md) (Cursor/VS Code; overlay fills `launch.json`).
+Debugger: [debug.md](debug.md) (Cursor/VS Code/Zed; overlay fills `launch.json`).
 Commit messages: `conventional-commits` skill. Do not restyle those messages here.
 Documentation **content**: `create-readme-and-other-markdown-documentation`.
 This kit only requires a Develop section to exist.
@@ -38,7 +38,7 @@ This kit only requires a Develop section to exist.
 3. Inventory what is already there before writing files: `.gitignore`,
    `.gitattributes`, `.editorconfig`, `lefthook.yml` / `.husky/` /
    `.pre-commit-config.yaml`, `Justfile` / `Makefile` / `Taskfile.yml`,
-   `.mise.toml` / `.tool-versions`, `.vscode/`, `.github/workflows`,
+   `.mise.toml` / `.tool-versions`, `.vscode/`, `.zed/`, `.github/workflows`,
    `.golangci.yml`, `biome.json` / `biome.jsonc`, `eslint.config.*`,
    `.prettierrc*`, Ruff/Black in `pyproject.toml`.
    **Honor a working stack.** One hook manager, one task runner.
@@ -72,7 +72,7 @@ Pick these. Do not offer a menu.
 | Format (code) | Language overlay (`git-repo-setup-go` / `-typescript` / `-python`) | — |
 | Lint | Overlay default if that language has none | Honor the linter already gating that language |
 | Format (json/md/toml/yaml) | [dprint](https://dprint.dev/) when those files are first-class | Prettier already owns them |
-| Debug | Shared `.vscode/launch.json` + `extensions.json` ([debug.md](debug.md)) | Merge existing names/ids |
+| Debug | Shared `.vscode/launch.json` + `extensions.json` ([debug.md](debug.md)). Zed reads `launch.json` | Merge existing names/ids; honor a committed `.zed/debug.json` |
 
 Do not stack Lefthook with husky or the Python `pre-commit` framework.
 Do not put `just` recipes *and* a Makefile that both claim `ci`.
@@ -143,7 +143,7 @@ Justfile, or migrate husky → Lefthook unless the user asked.
 ```
 Existing repo:
 - [ ] Inventory hook manager, task runner, CI, ignore/attributes/editorconfig
-- [ ] Inventory encore.app, go.mod / cmd/, package.json (skip node_modules), pyproject.toml, existing .vscode/
+- [ ] Inventory encore.app, go.mod / cmd/, package.json (skip node_modules), pyproject.toml, existing .vscode/ / .zed/
 - [ ] Fill gaps only (missing .gitattributes, .editorconfig, secret scan)
 - [ ] If no hook manager: add Lefthook, do not also add husky
 - [ ] If no task runner: add Justfile (or Makefile if the user asked for make)
@@ -217,7 +217,7 @@ branch `main`, squash merge, push protection, branch protection requiring the
 - Duplicate CI steps that already live in `just ci`.
 - Ignore hook failure, or document `--no-verify` as the workflow.
 - Vendor a second copy of this skill into the target repo.
-- Gitignore `.vscode/`, omit `launch.json` / `extensions.json` on a new repo, or overwrite instead of merging.
+- Gitignore `.vscode/`, add `.zed/debug.json`, omit `launch.json` / `extensions.json` on a new repo, or overwrite instead of merging.
 - Skip the overlay linter when that language has none, or stack a second linter on the same language.
 
 ## Old patterns
