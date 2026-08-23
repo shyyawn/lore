@@ -99,6 +99,9 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | `svelte.config.*` + `@sveltejs/kit` | `svelte` + `sveltekit-app-structure` |
 | `svelte.config.*` without Kit | `svelte` (Vite). Do not add Kit as a drive-by |
 | `encore.app` + `svelte.config.*` | Encore skills for the API; `svelte` + `sveltekit-app-structure` for the UI |
+| `expo` in `package.json` | Official `expo/skills` (install — README **Start here**). Do not fork into `skills/` |
+| `next` or web `react` without `expo` | Official `react-best-practices` (install — README **Start here**). Do not flatten `app/` |
+| `encore.app` + `expo` | Encore skills for the API; `expo/skills` for the UI |
 | Several `go.mod` / `go.work` | `go-mono-repo` |
 | Commit message / squash PR title | `conventional-commits` (official skill first) |
 | Hooks, mise, just, `launch.json`, Zed debugger | `git-repo-setup` + language overlay |
@@ -189,6 +192,8 @@ pass on those names.
 | Svelte plugin | Runes, autofixer, live docs | A lore `svelte-core-bestpractices` |
 | This repo `svelte` / `sveltekit-app-structure` | Pin, experimental default-no, Kit tree | Kit 3 `@next`; a runes catalog |
 | `conventional-commit-message` | Commit **format** | A lore fork of its type table |
+| Official `expo/skills` | Expo / RN-with-Expo pin, Router tree, native UI, EAS | A lore `expo-overview` or `expo-router` |
+| Official `react-best-practices` | Web React / Next performance | A lore dump of Vercel's rule files |
 
 `make uninstall` would wipe a fork. You would be maintaining vendor
 docs. Overlay the gap (`conventional-commits`) or point at the plugin.

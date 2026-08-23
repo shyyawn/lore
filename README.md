@@ -30,8 +30,8 @@ Slash prompts / `.cursor/commands/` are legacy. New user-invoked workflows are s
 Three layers. That is the whole agent setup.
 
 1. **This repo's skills** — how we write Go, TypeScript, Encore, Temporal, and Svelte, plus a Conventional Commits *overlay* for those languages and a 2026 Git repo kit.
-2. **Three official Cursor plugins** — live tooling and vendor how-tos that this repo does not duplicate.
-3. **One official vendor skill** — Conventional Commits format, from conventional-changelog. Not a Cursor plugin.
+2. **Official Cursor plugins** — live tooling and vendor how-tos that this repo does not duplicate.
+3. **Official vendor skills** — Conventional Commits format; Expo / React Native / EAS; Vercel React and Next performance. Not Cursor plugins.
 
 Install this repo (`make install` below), then:
 
@@ -44,9 +44,14 @@ Install this repo (`make install` below), then:
 ```bash
 npx skills add conventional-changelog/conventional-changelog \
   --skill conventional-commit-message -g --agent cursor
+
+npx skills add expo/skills -g --agent cursor
+
+npx skills add vercel-labs/agent-skills \
+  --skill react-best-practices -g --agent cursor
 ```
 
-Plugins are user-scope from agent chat. The `npx skills add … -g --agent cursor` line is user-scope too: it lands in `~/.cursor/skills/conventional-commit-message` (every project). Omit `-g` only if you want it in one repo's `.agents/skills/`.
+Plugins are user-scope from agent chat. The `npx skills add … -g --agent cursor` lines are user-scope too: they land in `~/.cursor/skills` (every project). Omit `-g` only if you want them in one repo's `.agents/skills/`.
 
 | Source | Covers | Do not also install |
 | --- | --- | --- |
@@ -54,14 +59,18 @@ Plugins are user-scope from agent chat. The `npx skills add … -g --agent curso
 | [temporal](https://cursor.com/marketplace/temporal) plugin | Official Temporal SDK, CLI, and Cloud skill (`temporal-developer`) | `npx skills add temporalio/skill-temporal-developer` or the Temporal docs MCP |
 | [svelte](https://cursor.com/marketplace/svelte) plugin | Svelte MCP, skills, and the `svelte-file-editor` agent | Extra Svelte skill packs or a second Svelte MCP |
 | [`conventional-commit-message`](https://github.com/conventional-changelog/conventional-changelog/tree/master/skills/conventional-commit-message) skill | Commit *format*: types by release impact, `!` / `BREAKING CHANGE`, scopes, commitlint check | Random skills.sh / Lobe copies; `committing-with-commitlint` globally (only in a repo that already has commitlint) |
+| [`expo/skills`](https://github.com/expo/skills) | Expo SDK, Expo Router, native UI, upgrades, EAS (build, submit, hosting, workflows). Router skill is `expo-overview` | Extra Expo packs; Lobe / skills.sh copies; Vercel `react-native-guidelines` beside this pack |
+| [`react-best-practices`](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices) | Web React and Next performance (RSC, waterfalls, `Activity`). From [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | The rest of that repo (`writing-guidelines`, `vercel-deploy-claimable`, …) unless you asked |
+
+Optional scanner for React changes: [`react-doctor`](https://cursor.com/marketplace/react-doctor) (`/add-plugin react-doctor`, or `npx react-doctor install`). Expo MCP is optional live docs and EAS when you open an Expo app — see [Cursor and Expo](https://docs.expo.dev/agents/cursor). Do not add a second Expo skills pack to get the MCP.
 
 That combination covers the stack. You do **not** need more plugins, skill catalogs, or MCP servers to start.
 
-**Who wins when they overlap:** lore skills own Go package layout and Encore+Temporal structure (`encore-go-app-structure`, `temporal-go-app-structure`, `encore-temporal-go-app-structure`), the Svelte **pin and Kit tree** (`svelte`, `sveltekit-app-structure`), and the Conventional Commits *overlay* (`conventional-commits`: Go `/v2`, Python/TS releasers, Lefthook without Node). The plugins own live inspection (Encore MCP), official Temporal CLI/SDK encyclopedias, and Svelte runes / autofixer / live docs. `conventional-commit-message` owns the commit format. Do not copy plugin or vendor skills into `skills/` — `make uninstall` would wipe a fork, and you would be maintaining vendor docs.
+**Who wins when they overlap:** lore skills own Go package layout and Encore+Temporal structure (`encore-go-app-structure`, `temporal-go-app-structure`, `encore-temporal-go-app-structure`), the Svelte **pin and Kit tree** (`svelte`, `sveltekit-app-structure`), and the Conventional Commits *overlay* (`conventional-commits`: Go `/v2`, Python/TS releasers, Lefthook without Node). The plugins own live inspection (Encore MCP), official Temporal CLI/SDK encyclopedias, and Svelte runes / autofixer / live docs. `conventional-commit-message` owns the commit format. `expo/skills` owns Expo, React Native-with-Expo, and EAS (pin, Router tree, native UI, upgrades). `react-best-practices` owns web React and Next performance. TypeScript language stays `typescript-idioms` — do not flatten Next `app/` or Expo Router `app/` with its `src/<noun>/` tree. There is no lore React or Expo overlay yet: Expo already owns pin and layout, so a `svelte`-shaped file would recopy `expo-overview`. Do not copy plugin or vendor skills into `skills/` — `make uninstall` would wipe a fork, and you would be maintaining vendor docs.
 
 Plugins are Cursor-only (`/add-plugin` is not available in the Cursor CLI). `npx skills add` works from any terminal. After installing plugins, restart the agent chat if MCP tools do not appear.
 
-Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal server start-dev`), Docker for local Postgres, Node for Svelte. Install those when you open a real app, not as agent knowledge.
+Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal server start-dev`), Docker for local Postgres, Node for Svelte or React, Expo CLI / EAS when you open an Expo app. Install those when you open a real app, not as agent knowledge.
 
 ## Skills
 
