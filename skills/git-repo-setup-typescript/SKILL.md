@@ -2,10 +2,11 @@
 name: git-repo-setup-typescript
 description: >-
   TypeScript overlay for git-repo-setup: Biome (or the repo's Prettier),
-  tsc --noEmit, vitest/node --test, pnpm/npm lockfile, commitlint when Node
-  is first-class, Cursor/VS Code/Zed Node/vitest launch.json. Use when
-  bootstrapping or retrofitting Git hooks / just / Lefthook in a TypeScript
-  or JS repo, or when the repo has package.json, tsconfig.json, *.ts, *.tsx,
+  tsc --noEmit, vitest/node --test, Playwright e2e when playwright.config
+  exists, pnpm/npm lockfile, commitlint when Node is first-class,
+  Cursor/VS Code/Zed Node/vitest launch.json. Use when bootstrapping or
+  retrofitting Git hooks / just / Lefthook in a TypeScript or JS repo, or
+  when the repo has package.json, tsconfig.json, *.ts, *.tsx,
   svelte.config, or the user asks to debug TypeScript, set breakpoints, or
   add launch.json.
 ---
@@ -14,7 +15,8 @@ description: >-
 
 Follow `git-repo-setup` for the kit. This file fills the **TypeScript**
 commands and [debug.md](debug.md). Language idioms stay in
-`typescript-idioms`. Commitlint wiring is in `conventional-commits` /
+`typescript-idioms`. How to write unit tests: `typescript-unit-tests`.
+Journeys: `e2e-tests`. Commitlint wiring is in `conventional-commits` /
 `tooling.md`.
 
 ## First step
@@ -42,6 +44,7 @@ the Svelte app. Coding: `svelte`. Layout: `sveltekit-app-structure`.
 | Format + lint | [Biome](https://biomejs.dev/) | Prettier and/or ESLint already in the repo |
 | Types | `npx tsc --noEmit -p <tsconfig>` (or the `typecheck` script) | — |
 | Test | `vitest` if present, else `node --test`, else `npm test` | — |
+| E2E | `npx playwright test` if `playwright.config.*` exists | Honor the existing `e2e` / `test:e2e` script. Expo native: `expo/skills` |
 | Commit-msg | commitlint + Lefthook (`conventional-commits` / `tooling.md`) | Use commitlint here; do not fall back to the Go/Python regex |
 | JSON/MD/YAML | Biome or the existing Prettier | `dprint` already owns those files |
 | Debug | `.vscode/launch.json` ([debug.md](debug.md)): current file + vitest / `node --test` | Honor existing named configs |
@@ -75,6 +78,15 @@ build/
 .turbo/
 coverage/
 *.tsbuildinfo
+```
+
+When `playwright.config.*` exists, also ignore:
+
+```gitignore
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
 ```
 
 Commit `.nvmrc` / `.node-version` only if the repo already uses them **instead
@@ -134,11 +146,16 @@ check:
 test:
     npx vitest run
 
+e2e:
+    npx playwright test   # only if playwright.config.* exists
+
 ci: check test
 ```
 
-Honor scripts already in `package.json` (`lint`, `typecheck`, `test`). Point
-`check` / `test` at those names instead of inventing parallel commands.
+Honor scripts already in `package.json` (`lint`, `typecheck`, `test`,
+`e2e`). Point `check` / `test` / `e2e` at those names instead of
+inventing parallel commands. Do not put `e2e` in `ci` unless the repo
+already does. Journeys are earned (`e2e-tests`).
 
 Biome `ci` is the non-mutating full-tree gate (CI, agents). Pre-commit uses
 `biome check --write` on staged files.
@@ -167,3 +184,4 @@ check:
   for docs. If Node is not a first-class toolchain, use the Lefthook regex.
 - Omit `.vscode/launch.json` on a new TypeScript repo, or overwrite instead of merging.
 - Omit `extensions.json` when the hub scan is non-empty.
+- Playwright / Cypress as a drive-by on a library with no UI (`e2e-tests`).

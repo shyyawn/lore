@@ -45,9 +45,10 @@ package.json           # "type": "module", "imports": { "#/*": "./src/*" }
 tsconfig.json
 ```
 
-- Tests live next to the code (`foo.test.ts`). Integration tests that must not
-  run in the default `vitest` / `node --test` use a separate project or
-  `*.integration.test.ts` the CI job opts into.
+- Tests live next to the code (`foo.test.ts`). How to write them:
+  `typescript-unit-tests`. Integration tests that must not run in the
+  default `vitest` / `node --test` use a separate project or
+  `*.integration.test.ts` the CI job opts into. Journeys: `e2e-tests`.
 - `src/index.ts` / `src/cli.ts` stays small: construct deps, run, exit.
   Business logic is not in the entry once it has tests.
 - Libraries publish via `package.json` `"exports"` (and `"imports"` for

@@ -17,7 +17,9 @@ plugin into `skills/`.
 
 Sources: official Svelte 5 / SvelteKit docs via the plugin MCP. Not
 `svelte-core-bestpractices`. Layout: `sveltekit-app-structure`. Kit:
-`git-repo-setup-typescript`. CSS in `<style>`: `css-idioms`.
+`git-repo-setup-typescript`. Tests: `typescript-unit-tests`. Journeys:
+`e2e-tests` (`npx sv add vitest` / `playwright`). CSS in `<style>`:
+`css-idioms`.
 
 ## First step
 
@@ -43,6 +45,7 @@ the UI. No combined skill yet.
 | Stop-and-follow `svelte-file-editor` | Formatter / hooks (`git-repo-setup-typescript`) |
 | Kit 3 `@next` is **Not yet** | TypeScript language (`typescript-idioms`) |
 | | `src/routes` / `$lib` (`sveltekit-app-structure`) |
+| | Unit tests (`typescript-unit-tests`); journeys (`e2e-tests`) |
 
 ## Pin
 

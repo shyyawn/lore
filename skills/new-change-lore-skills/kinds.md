@@ -16,7 +16,7 @@ pipeline.
 | Combined stack | `encore-temporal-go-app-structure` | none — seam + division of labor in SKILL.md |
 | Hub kit | `git-repo-setup` | `files.md`, `gitconfig.md`, `debug.md` |
 | Language overlay on hub | `git-repo-setup-go` / `-typescript` / `-python` | overlay `debug.md` (the JSON) |
-| Domain overlay | `go-backend`, `go-ddd`, `go-unit-tests`, `go-100-mistakes-avoid`, `go-mono-repo` | `internals.md`, `lite.md`, `methods.md`, `domains.md`, `catalog.md`, `layouts.md` |
+| Domain overlay | `go-backend`, `go-ddd`, `go-unit-tests`, `typescript-unit-tests`, `go-100-mistakes-avoid`, `go-mono-repo` | `internals.md`, `lite.md`, `methods.md`, `domains.md`, `catalog.md`, `layouts.md` |
 | Vendor overlay | `conventional-commits` | `tooling.md` |
 
 Look is always [voice.md](voice.md). Authoring is this skill — do not
@@ -38,9 +38,9 @@ the model will actually generate that thing.
 ## Workflow / playbook
 
 Open: `create-readme-and-other-markdown-documentation`. No language
-required. Stages, artifacts, earn-the-next. Future:
-`requirement-to-architecture-to-design`. Copy the shapes below, not
-their docs or Go content.
+required. Stages, artifacts, earn-the-next. Also `e2e-tests` (same
+headings, thinner). Future: `requirement-to-architecture-to-design`.
+Copy the shapes below, not their docs or Go content.
 
 1. Lead ([voice.md](voice.md)): what the pipeline is. Pointers. Sources.
    Not a vendor encyclopedia (TOGAF dump, a blog "architecture process").
@@ -179,7 +179,7 @@ commands and [debug.md](debug.md). Language idioms stay in `go-idioms`.
 ## Domain overlay
 
 Open: `go-backend` / `go-ddd` / `go-mono-repo` / `go-100-mistakes-avoid`
-/ `go-unit-tests`.
+/ `go-unit-tests` / `typescript-unit-tests`.
 
 - Lead: Overlay on `parent`. What the parent still owns. Catalog link.
 - **What this skill owns** (Own / Leave) when the boundary is easy to

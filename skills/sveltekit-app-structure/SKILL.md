@@ -17,7 +17,7 @@ do not flatten `src/routes` into `src/<noun>/`.
 Sources: official `kit/project-structure`, `kit/routing`,
 `kit/creating-a-project`, `kit/server-only-modules`. Not the plugin
 runes catalog. New app: `npx sv create`. Not their extra add-ons unless
-asked.
+asked. Unit tests: `typescript-unit-tests`. Journeys: `e2e-tests`.
 
 ## First step
 
@@ -80,14 +80,15 @@ my-app/
     app.html
     hooks.server.ts      # optional
   static/
-  tests/                 # Playwright if the repo already has it
+  tests/                 # Playwright if the repo already has it (`e2e-tests`)
   package.json
   svelte.config.js
   tsconfig.json          # extends .svelte-kit/tsconfig.json
   vite.config.ts
 ```
 
-Unit tests colocate (`foo.test.ts`) when Vitest is in the repo.
+Unit tests colocate (`foo.test.ts`) when Vitest is in the repo
+(`typescript-unit-tests`).
 
 ## Shared code
 

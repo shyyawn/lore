@@ -76,6 +76,8 @@ Do not invent a parallel `go-idioms`, a second `encore-go`, or a second
 | `create-readme-and-other-markdown-documentation` | workflow / playbook | — | README and other Markdown. Kit still owns bootstrap existence |
 | `go-idioms` | language | — | Go 1.18–1.26 + 2024–2026 flatten layout |
 | `typescript-idioms` | language | — | TypeScript 5–7 + 2024–2026 flatten layout |
+| `typescript-unit-tests` | domain overlay | `typescript-idioms` | Vitest / Jest / `node:test`, what to skip. Journeys stay `e2e-tests`. |
+| `e2e-tests` | workflow / playbook | official Playwright skills (install) | When to add journeys; house locators. Not a Playwright dump. |
 | `css-idioms` | language | — | Baseline 2022–2026 CSS + layers / tokens. Not a Sass or Tailwind fork |
 | `svelte` | platform | `typescript-idioms` + Svelte plugin | Pin, experimental default-no, `$app/state`. Not a fork of the plugin |
 | `sveltekit-app-structure` | app-structure | `svelte` | `src/routes` / `$lib`. Coding stays in `svelte` + plugin |
@@ -99,7 +101,7 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | Both | `encore-temporal-go-app-structure` |
 | `svelte.config.*` + `@sveltejs/kit` | `svelte` + `sveltekit-app-structure` |
 | `svelte.config.*` without Kit | `svelte` (Vite). Do not add Kit as a drive-by |
-| `encore.app` + `svelte.config.*` | Encore skills for the API; `svelte` + `sveltekit-app-structure` for the UI |
+| `encore.app` + `svelte.config.*` | Encore skills for the API; `svelte` + `sveltekit-app-structure` for the UI; journeys: `e2e-tests` |
 | `expo` in `package.json` | Official `expo/skills` (install — README **Start here**). Do not fork into `skills/` |
 | `next` in `package.json` | Project `AGENTS.md` + bundled `next` docs. Workflows: official `vercel/next.js` skills. Performance: `react-best-practices`. Do not fork retired `next-skills` |
 | web `react` without `next` or `expo` | Official `react-best-practices`. Do not flatten a Vite `src/` into Next `app/` |
@@ -108,6 +110,8 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | Several `go.mod` / `go.work` | `go-mono-repo` |
 | Commit message / squash PR title | `conventional-commits` (official skill first) |
 | Hooks, mise, just, `launch.json`, Zed debugger | `git-repo-setup` + language overlay |
+| `*.test.ts` / vitest / jest (writing) | `typescript-unit-tests` |
+| `playwright.config.*` / Cypress / e2e journeys | `e2e-tests` |
 | `README.md` / health files / `docs/**/*.md` content | `create-readme-and-other-markdown-documentation` |
 | `*.css` / `<style>` / component CSS | `css-idioms`. Tailwind already there: honor. NativeWind setup: `expo-tailwind-setup` |
 
@@ -121,7 +125,7 @@ Directory = YAML `name`. Lowercase hyphens. Max 64 chars.
 | Pipeline | `requirement-to-architecture-to-design` | `rta`, `design-2026`, `helper` |
 | Hub | `git-repo-setup` | `git-kit`, `repo-helpers` |
 | Hub + facet | `git-repo-setup-go` | `go-git-hooks` (hides the hub) |
-| Domain overlay | `go-unit-tests`, `go-backend`, `go-ddd` | Fusing into the parent |
+| Domain overlay | `go-unit-tests`, `typescript-unit-tests`, `go-backend`, `go-ddd` | Fusing into the parent |
 | Avoid catalog | `go-100-mistakes-avoid` | `go-mistakes` (vague) |
 | App-structure | `encore-go-app-structure`, `sveltekit-app-structure` | `encore-go-layout`, `svelte-ui-kit-typescript` |
 | Combined | `encore-temporal-go-app-structure` | Stuffing B into A's file |
@@ -202,6 +206,9 @@ pass on those names.
 | Official `react-best-practices` | Web React / Next performance | A lore dump of Vercel's rule files |
 | Next `AGENTS.md` + bundled docs | App Router, caching APIs, pin-matched docs | A lore Next encyclopedia; retired `next-skills` |
 | Official `vercel/next.js` skills | `next-dev-loop`, Cache Components / Partial Prefetching workflows | Recopying those into `skills/` |
+| This repo `typescript-unit-tests` | What to test in TypeScript | A Jest / Vitest encyclopedia |
+| This repo `e2e-tests` | When to add journeys; house locators | A lore Playwright API dump |
+| Official Playwright skills | CLI, codegen, traces | LambdaTest / QASkills packs; a lore fork |
 
 `make uninstall` would wipe a fork. You would be maintaining vendor
 docs. Overlay the gap (`conventional-commits`) or point at the plugin.

@@ -20,6 +20,7 @@ installed `typescript` version. Do not emit pre-5 tutorial TypeScript
 Full catalogs: [versions.md](versions.md) (5.0→now), [modernizers.md](modernizers.md)
 (rewrites), [architecture.md](architecture.md) (2024–2026 structure).
 Svelte / SvelteKit: `svelte`. Layout: `sveltekit-app-structure`.
+Tests: `typescript-unit-tests`. Journeys: `e2e-tests`.
 CSS: `css-idioms`.
 Expo / React Native-with-Expo: official `expo/skills` (install — lore
 README). Web React: official `react-best-practices`. Next.js: project
@@ -146,14 +147,9 @@ second entry or a publish boundary appears. No `utils/`, `helpers/`, `common/`,
 
 ## Tests
 
-- Colocate `foo.test.ts` next to `foo.ts`. Match the repo's runner (Vitest for
-  new packages; do not rip out existing Jest).
-- Fake implementations over generated mocks. Mock `fetch` / clocks at the I/O
-  boundary, not every domain type.
-- Assert behaviour the type system cannot. Do not type-test with `as` inside
-  production code to make a test compile.
-- `AbortSignal` in tests: abort and assert cancellation, don't `sleep` to "wait
-  for a request".
+How to write them: `typescript-unit-tests`. Browser journeys:
+`e2e-tests`. Kit runner: `git-repo-setup-typescript`. Next / Expo:
+vendor.
 
 ## LLM traps — never generate these
 

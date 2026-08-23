@@ -29,9 +29,9 @@ Slash prompts / `.cursor/commands/` are legacy. New user-invoked workflows are s
 
 Three layers. That is the whole agent setup.
 
-1. **This repo's skills** — how we write Go, TypeScript, CSS, Encore, Temporal, and Svelte, plus a Conventional Commits *overlay* for those languages and a 2026 Git repo kit.
+1. **This repo's skills** — how we write Go, TypeScript, CSS, Encore, Temporal, and Svelte, plus TypeScript unit tests, e2e policy, a Conventional Commits *overlay* for those languages, and a 2026 Git repo kit.
 2. **Official Cursor plugins** — live tooling and vendor how-tos that this repo does not duplicate.
-3. **Official vendor skills** — Conventional Commits format; Expo / React Native / EAS; Vercel React performance; Next.js workflows. Not Cursor plugins.
+3. **Official vendor skills** — Conventional Commits format; Expo / React Native / EAS; Vercel React performance; Next.js workflows; Playwright CLI. Not Cursor plugins.
 
 Install this repo (`make install` below), then:
 
@@ -51,6 +51,8 @@ npx skills add vercel-labs/agent-skills \
   --skill react-best-practices -g --agent cursor
 
 npx skills add vercel/next.js -g --agent cursor
+
+npx --yes @playwright/cli install --skills -g
 ```
 
 Plugins are user-scope from agent chat. The `npx skills add … -g --agent cursor` lines are user-scope too: they land in `~/.cursor/skills` (every project). Omit `-g` only if you want them in one repo's `.agents/skills/`.
@@ -64,12 +66,13 @@ Plugins are user-scope from agent chat. The `npx skills add … -g --agent curso
 | [`expo/skills`](https://github.com/expo/skills) | Expo SDK, Expo Router, native UI, upgrades, EAS (build, submit, hosting, workflows). Router skill is `expo-overview` | Extra Expo packs; Lobe / skills.sh copies; Vercel `react-native-guidelines` beside this pack |
 | [`react-best-practices`](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices) | Web React and Next performance (RSC, waterfalls, `Activity`). From [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | The rest of that repo (`writing-guidelines`, `vercel-deploy-claimable`, …) unless you asked |
 | [`vercel/next.js`](https://github.com/vercel/next.js/tree/canary/skills) skills | Next **workflows**: `next-dev-loop`, Cache Components and Partial Prefetching adoption. Framework APIs stay in the project's `AGENTS.md` | Retired [`next-skills`](https://github.com/vercel-labs/next-skills); a lore App Router encyclopedia |
+| Official [Playwright skills](https://playwright.dev/docs/getting-started-cli) | Playwright CLI, codegen, traces, session (`playwright-cli install --skills`) | LambdaTest / QASkills Playwright packs; a lore Playwright API dump |
 
 Optional scanner for React changes: [`react-doctor`](https://cursor.com/marketplace/react-doctor) (`/add-plugin react-doctor`, or `npx react-doctor install`). Expo MCP is optional live docs and EAS when you open an Expo app — see [Cursor and Expo](https://docs.expo.dev/agents/cursor). Do not add a second Expo skills pack to get the MCP. Next.js 16.3+: `next dev` writes `AGENTS.md` that points at `node_modules/next/dist/docs/`. That is the pin-matched encyclopedia — see [AI agents](https://nextjs.org/docs/app/guides/ai-agents). Do not install the retired knowledge pack.
 
 That combination covers the stack. You do **not** need more plugins, skill catalogs, or MCP servers to start.
 
-**Who wins when they overlap:** lore skills own Go package layout and Encore+Temporal structure (`encore-go-app-structure`, `temporal-go-app-structure`, `encore-temporal-go-app-structure`), the Svelte **pin and Kit tree** (`svelte`, `sveltekit-app-structure`), and the Conventional Commits *overlay* (`conventional-commits`: Go `/v2`, Python/TS releasers, Lefthook without Node). The plugins own live inspection (Encore MCP), official Temporal CLI/SDK encyclopedias, and Svelte runes / autofixer / live docs. `conventional-commit-message` owns the commit format. `expo/skills` owns Expo, React Native-with-Expo, and EAS (pin, Router tree, native UI, upgrades). `react-best-practices` owns web React and Next performance. Next.js **APIs and App Router** are the project's `AGENTS.md` plus bundled `next` docs. `vercel/next.js` skills own the verify loop and Cache Components / Partial Prefetching workflows. TypeScript language stays `typescript-idioms` — do not flatten Next `app/` or Expo Router `app/` with its `src/<noun>/` tree. CSS language stays `css-idioms`. There is no lore React, Expo, or Next overlay: those vendors already own pin and layout. Do not copy plugin or vendor skills into `skills/` — `make uninstall` would wipe a fork, and you would be maintaining vendor docs.
+**Who wins when they overlap:** lore skills own Go package layout and Encore+Temporal structure (`encore-go-app-structure`, `temporal-go-app-structure`, `encore-temporal-go-app-structure`), the Svelte **pin and Kit tree** (`svelte`, `sveltekit-app-structure`), TypeScript **what to test** (`typescript-unit-tests`), when to add **journeys** (`e2e-tests`), and the Conventional Commits *overlay* (`conventional-commits`: Go `/v2`, Python/TS releasers, Lefthook without Node). The plugins own live inspection (Encore MCP), official Temporal CLI/SDK encyclopedias, and Svelte runes / autofixer / live docs. `conventional-commit-message` owns the commit format. Official Playwright skills own CLI / codegen / traces. `expo/skills` owns Expo, React Native-with-Expo, EAS, and native Maestro. `react-best-practices` owns web React and Next performance. Next.js **APIs and App Router** are the project's `AGENTS.md` plus bundled `next` docs. `vercel/next.js` skills own the verify loop and Cache Components / Partial Prefetching workflows. TypeScript language stays `typescript-idioms` — do not flatten Next `app/` or Expo Router `app/` with its `src/<noun>/` tree. CSS language stays `css-idioms`. There is no lore React, Expo, or Next overlay: those vendors already own pin and layout. Do not copy plugin or vendor skills into `skills/` — `make uninstall` would wipe a fork, and you would be maintaining vendor docs.
 
 Plugins are Cursor-only (`/add-plugin` is not available in the Cursor CLI). `npx skills add` works from any terminal. After installing plugins, restart the agent chat if MCP tools do not appear.
 
@@ -83,7 +86,7 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [conventional-commits](skills/conventional-commits) | Go/Python/TS overlay on the official `conventional-commit-message` skill (install that first — [Start here](#start-here-cursor)) |
 | [git-repo-setup](skills/git-repo-setup) | 2026 Git repo kit: init, hooks, mise, just/Make, ignore/attributes, linters, shared debugger |
 | [git-repo-setup-go](skills/git-repo-setup-go) | Go overlay: gofmt, go vet, golangci-lint, go test / encore test, Delve `launch.json` |
-| [git-repo-setup-typescript](skills/git-repo-setup-typescript) | TypeScript overlay: Biome, tsc, vitest, commitlint, Node `launch.json` |
+| [git-repo-setup-typescript](skills/git-repo-setup-typescript) | TypeScript overlay: Biome, tsc, vitest, Playwright `e2e` when present, commitlint, Node `launch.json` |
 | [git-repo-setup-python](skills/git-repo-setup-python) | Python overlay: uv, ruff, pytest, debugpy `launch.json` |
 | [create-readme-and-other-markdown-documentation](skills/create-readme-and-other-markdown-documentation) | README, community health files, changelogs, ADRs, agent files, and docs/ trees |
 | [go-idioms](skills/go-idioms) | Idiomatic Go 1.18–1.26 and 2024–2026 layout |
@@ -93,6 +96,8 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [go-ddd](skills/go-ddd) | Overlay on `go-backend`: DDD Lite when a domain earns an aggregate |
 | [go-mono-repo](skills/go-mono-repo) | Overlay on `go-idioms`: one module by default, `go.work` only when modules version apart |
 | [typescript-idioms](skills/typescript-idioms) | Idiomatic TypeScript 5–7 and 2024–2026 layout |
+| [typescript-unit-tests](skills/typescript-unit-tests) | Overlay on `typescript-idioms`: 2024–2026 TS tests (Vitest / Jest / `node:test`, what to skip) |
+| [e2e-tests](skills/e2e-tests) | When to add browser / device journeys (Playwright web; Expo Maestro). Install official Playwright skills first — [Start here](#start-here-cursor) |
 | [css-idioms](skills/css-idioms) | Idiomatic CSS Baseline 2022–2026 (`@layer`, nesting, view transitions, anchors). Not Sass or Tailwind |
 | [svelte](skills/svelte) | Overlay on the Svelte plugin + `typescript-idioms`: Svelte 5 / Kit 2 pin, experimental default-no |
 | [sveltekit-app-structure](skills/sveltekit-app-structure) | SvelteKit `src/routes` / `$lib` layout (coding stays in `svelte` + the plugin) |
