@@ -24,6 +24,7 @@ plus 30 months. 2022 rows use interop dates (`@layer`, 2022-03).
 | Sass nesting / repeated parent selectors | native nesting + `&` (Newly 2023-08) |
 | JS / extra class for "parent contains X" | `:has()` (Newly 2023-12) |
 | viewport `@media` for a card's width | size `@container` (Newly 2023-02) |
+| `grid-template` copied onto every child | `grid-template-columns: subgrid` (Newly 2023-12) |
 | hex / `rgb` pairs, Sass `mix()` / `darken()` | `oklch()`, `color-mix()` |
 
 Relative color (`oklch(from …)`) waits for the 2024 pin.
@@ -35,8 +36,7 @@ Relative color (`oklch(from …)`) waits for the 2024 pin.
 | untyped `--color` that will not interpolate | `@property --color { syntax: "<color>"; inherits: true; initial-value: … }` (Newly 2024-07) |
 | `.dark { --bg: … }` duplicate token sheet | `color-scheme: light dark` + `light-dark(white, black)` |
 | `display: none` then pop-in with no first frame | `@starting-style` on the entering rule |
-| `text-wrap: wrap` on a heading that orphans | `text-wrap: pretty` (or `balance` if that is all the pin has) |
-| `grid-template` copied onto every child | `grid-template-columns: subgrid` when tracks must match |
+| `text-wrap: wrap` on a heading that orphans | `text-wrap: balance` |
 
 `@property` and `light-dark()` are Baseline 2024. They are **not**
 Widely available until 30 months later — skip them on a strict Widely
@@ -77,7 +77,8 @@ Level 2 (`container-type: anchored`) is **not** all engines — Not yet.
 | Feature | Status (2026-08) | Write instead |
 | --- | --- | --- |
 | `if(style/media/supports)` | Chromium 137+ | `@media` / `@supports` / style CQ |
-| `@function` | Chromium ~139+ | custom property; honor if already in the file |
+| `@function` | Chromium 139+ | custom property; honor if already in the file |
+| `text-wrap: pretty` | Chromium + Safari; no Firefox | `text-wrap: balance` |
 | `@mixin` / `@apply` (CSS mixins) | no engine | nest; do not add Sass for it |
 | `sibling-index()` / `sibling-count()` | Chromium 138+, Safari 26.2+, Firefox 154 (2026-08) | `:nth-child` until the pin includes them |
 | `corner-shape` / `superellipse()` | Chromium | `border-radius` |

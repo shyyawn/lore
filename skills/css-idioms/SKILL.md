@@ -30,11 +30,11 @@ Target that pin. Do not bump browserslist to unlock an idiom.
 
 | Pin | Always use | Not yet |
 | --- | --- | --- |
-| No pin / `baseline newly available` | everything **Baseline 2022–2026** below | `if()`, `@function`, `@mixin`, `sibling-index()`, `corner-shape`, `interpolate-size`, masonry, CSS Paint |
-| `baseline widely available` | `@layer`, `:is()`, `:where()`, nesting, `:has()`, size `@container`, `color-mix()`, `oklch` | Baseline 2024+ not yet widely (`@property`, `light-dark()`, 2025–2026) unless already in the file |
+| No pin / `baseline newly available` | everything **Baseline 2022–2026** below | `if()`, `@function`, `@mixin`, `sibling-index()`, `corner-shape`, `interpolate-size`, masonry, CSS Paint, `text-wrap: pretty` |
+| `baseline widely available` | `@layer`, `:is()`, `:where()`, nesting, `:has()`, size `@container`, `color-mix()`, `oklch`, subgrid | Baseline 2024+ not yet widely (`@property`, `light-dark()`, 2025–2026) unless already in the file |
 | Baseline 2022 in the pin | `@layer`, `:is()`, `:where()`, `accent-color` | 2023+ |
-| Baseline 2023 in the pin | plus nesting, `:has()`, size `@container`, `color-mix()`, `oklch` | 2024+ |
-| Baseline 2024 in the pin | plus `@property`, `light-dark()`, `@starting-style`, `text-wrap`, subgrid | 2025–2026; Chromium-only |
+| Baseline 2023 in the pin | plus nesting, `:has()`, size `@container`, `color-mix()`, `oklch`, subgrid | 2024+ |
+| Baseline 2024 in the pin | plus `@property`, `light-dark()`, `@starting-style`, `text-wrap: balance` | 2025–2026; Chromium-only |
 | Baseline 2025 in the pin | plus same-document view transitions, popover, `content-visibility`, `view-transition-class` | Baseline 2026-only; Chromium-only |
 | Baseline 2026 in the pin | plus `@scope`, `shape()`, `field-sizing`, style `@container`, `contrast-color()`, anchor positioning level 1, `:open` | `if()`, `@function`, `@mixin` (no engine), Paint worklet |
 | Chromium-only already in the file | honor `if()` / `@function` behind `@supports` | `@mixin` / `@apply` as CSS mixins |
@@ -84,8 +84,8 @@ unlock a gate. Write the modern form the first time.
 - `oklch` / `color-mix()` / relative color (`oklch(from var(--c) l c h)`).
   No new hex-pair light/dark sheets when `light-dark()` is in the pin.
 - `color-scheme: light dark` plus `light-dark()` for the two schemes.
-- `text-wrap: pretty` on headings / short UI; `balance` when the pin
-  has it and `pretty` is not.
+- `text-wrap: balance` on headings. `pretty` is not Baseline (no
+  Firefox).
 - Subgrid when a child must share the parent's tracks.
 - Same-document view transitions when the pin is 2025+. Name the
   shared element. Cross-document: `@view-transition { navigation: auto }`
