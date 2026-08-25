@@ -114,7 +114,7 @@ gitleaks = "VERSION"
 typos = "VERSION"
 # go = "1.27"
 # node = "24"
-# python = "3.13"
+# python = "3.14"
 ```
 
 mise pins tools. Recipes live in the Justfile/Makefile, not `[tasks.*]` here.

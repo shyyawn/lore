@@ -30,13 +30,13 @@ Target that pin. Do not bump browserslist to unlock an idiom.
 
 | Pin | Always use | Not yet |
 | --- | --- | --- |
-| No pin / `baseline newly available` | everything **Baseline 2022–2026** below | `if()`, `@function`, `@mixin`, `sibling-index()`, `corner-shape`, `interpolate-size`, masonry, CSS Paint, `text-wrap: pretty` |
+| No pin / `baseline newly available` | everything **Baseline 2022–2026** below | `if()`, `@function`, `@mixin`, `corner-shape`, `interpolate-size`, masonry, CSS Paint, `text-wrap: pretty` |
 | `baseline widely available` | `@layer`, `:is()`, `:where()`, nesting, `:has()`, size `@container`, `color-mix()`, `oklch`, subgrid | Baseline 2024+ not yet widely (`@property`, `light-dark()`, 2025–2026) unless already in the file |
 | Baseline 2022 in the pin | `@layer`, `:is()`, `:where()`, `accent-color` | 2023+ |
 | Baseline 2023 in the pin | plus nesting, `:has()`, size `@container`, `color-mix()`, `oklch`, subgrid | 2024+ |
 | Baseline 2024 in the pin | plus `@property`, `light-dark()`, `@starting-style`, `text-wrap: balance` | 2025–2026; Chromium-only |
 | Baseline 2025 in the pin | plus same-document view transitions, popover, `content-visibility`, `view-transition-class` | Baseline 2026-only; Chromium-only |
-| Baseline 2026 in the pin | plus `@scope`, `shape()`, `field-sizing`, style `@container`, `contrast-color()`, anchor positioning level 1, `:open` | `if()`, `@function`, `@mixin` (no engine), Paint worklet |
+| Baseline 2026 in the pin | plus `@scope`, `shape()`, `field-sizing`, style `@container`, `contrast-color()`, anchor positioning level 1, `:open`, `sibling-index()` / `sibling-count()` | `if()`, `@function`, `@mixin` (no engine), Paint worklet |
 | Chromium-only already in the file | honor `if()` / `@function` behind `@supports` | `@mixin` / `@apply` as CSS mixins |
 
 Experimental flags and Chrome-only drafts are out of scope unless the
@@ -95,6 +95,8 @@ unlock a gate. Write the modern form the first time.
 - `@scope` (2026) to keep a component's selectors inside its root.
 - `shape()` for `clip-path` / `offset-path`. Not a Canvas for a clip.
 - `field-sizing: content` when a control should size to its value.
+- `sibling-index()` / `sibling-count()` in `calc()` for stagger and
+  sibling math. Not a JS loop that sets `--i`.
 
 ## Architecture (2024–2026)
 
@@ -108,6 +110,7 @@ now covers ([architecture.md](architecture.md)).
 | Light / dark colors | `light-dark()` + `color-scheme` | `.dark` token duplicates |
 | Parent state | `:has()` | JS "has-child" classes |
 | Overlay position | `popover` + `position-anchor` | Floating UI for new CSS-only UI |
+| Stagger / sibling math | `sibling-index()` / `sibling-count()` (2026) | JS looping children to set `--i` |
 | Page / state morph | view transitions | a FLIP library for the same job |
 | Scroll-linked opacity / transform | `animation-timeline` when Baseline | `scroll` listeners for that |
 | Inline condition | `@supports` / `@media` / style CQ | `if()` as the only path |

@@ -86,6 +86,8 @@ Stdlib-first: do not add a dependency the standard library now covers.
 | Random | `math/rand/v2` (non-crypto), `crypto/rand` (secrets) | math/rand global Seed |
 | UUID | `"uuid"` (1.27+): `uuid.New()`, `uuid.Parse` | `github.com/google/uuid` on 1.27+ |
 | JSON | `encoding/json`; 1.27+ new code may use `encoding/json/v2` | jsoniter |
+| JSON tokens | `encoding/json/jsontext` (1.27+) | a third JSON tokenizer |
+| Post-quantum signatures | `crypto/mldsa` (1.27+) | a third-party PQ lib on 1.27+ |
 | Tools | `tool` directive in go.mod (1.24) | `tools.go` blank imports |
 
 Layout is earned: `cmd/` for binaries, `internal/` for private code. `pkg/` only when you deliberately publish. No `util/`, `common/`, `helpers/`. Do not invent `domain/` / `usecase/` / `adapter/` trees unless the repo is already that shape. Service internals: `go-backend`. Aggregates: `go-ddd`. More than one module: `go-mono-repo`.

@@ -140,7 +140,7 @@ Validate new `.svelte` files with the plugin autofixer (`svelte`).
 - Importing `$lib/server` from `+page.svelte`
 - A second `svelte.config` or a second `src/routes`
 - Feature / domain / usecase folder trees on a greenfield Kit app
-- Kit 3 `$app/manifest` / `$app/service-worker` on a 2.x pin
+- Kit 3 `$app/manifest` / `$app/service-worker` / `#lib` on a 2.x pin
 - `+server.ts` as the default for a browser `<form>`
 - Restyling colocated route files into `$lib` as a drive-by
 - Applying `typescript-idioms` `src/index.ts` + `src/<noun>/` to Kit

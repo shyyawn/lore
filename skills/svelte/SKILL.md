@@ -43,7 +43,7 @@ the UI. No combined skill yet.
 | --- | --- |
 | Pin, experimental default-**no**, `$app/state` | Runes, snippets, `{@attach}` (plugin) |
 | Stop-and-follow `svelte-file-editor` | Formatter / hooks / `launch.json` (`git-repo-setup-typescript`) |
-| Kit 3 `@next` is **Not yet** | TypeScript language (`typescript-idioms`) |
+| Kit 3 `@next` / RC is **Not yet** | TypeScript language (`typescript-idioms`) |
 | | `src/routes` / `$lib` (`sveltekit-app-structure`) |
 | | Unit tests (`typescript-unit-tests`); journeys (`e2e-tests`) |
 
@@ -53,7 +53,7 @@ the UI. No combined skill yet.
 | --- | --- | --- |
 | `svelte` 5.x | Runes (plugin). `createContext` on 5.40+ | Svelte 6 (async flag drops there) |
 | 5.36+ and `experimental.async` already on | `await` in components, `hydratable` | Turning the flag on |
-| `@sveltejs/kit` 2.x | `$app/state` (2.12+), `load`, form actions | Kit 3 `@next` (`$app/manifest`, `refreshAll`, `goto({ state })`) |
+| `@sveltejs/kit` 2.x | `$app/state` (2.12+), `load`, form actions | Kit 3 RC (`@next`): `$app/manifest`, `refreshAll`, `goto({ state })`, `#lib` |
 | Kit 2.27+ and `remoteFunctions` already on | Remote functions | Turning the flag on |
 
 Write the modern form the first time. Do not emit Svelte 4 and wait.
@@ -75,7 +75,7 @@ Format with the repo's formatter. Do not add a second one.
 | --- | --- |
 | `await` in markup / `$derived` fails | Flag is off. Use `{#await}` or `load`. Do not enable `experimental.async` as a drive-by |
 | `$app/stores` types or no updates | Kit 2.12+. Switch to `$app/state` |
-| Kit 3 API on a 2.x pin | **Not yet.** Stay on 2.x docs |
+| Kit 3 API on a 2.x pin | **Not yet** (RC as of 2026-08). Stay on 2.x docs |
 | Svelte templates fail on TypeScript 7.0 | No compiler API until 7.1. Hatch: `typescript-idioms` |
 
 ## Hard rules

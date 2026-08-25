@@ -53,7 +53,7 @@ Do not "modernize" by bumping browserslist or adding Sass.
 | `scroll` listener setting `opacity` / `transform` | `animation-timeline: view()` when the pin has it; else a short time animation |
 | FLIP / `getBoundingClientRect` morph | `view-transition-name` + `startViewTransition` (2025) |
 | full-page cut on same-origin MPA | `@view-transition { navigation: auto }` (2026 pin) |
-| `:nth-child(1) { animation-delay: 0.1s }` … | `animation-delay: calc(sibling-index() * 80ms)` only when the pin has tree counting |
+| `:nth-child(1) { animation-delay: 0.1s }` … | `animation-delay: calc(sibling-index() * 80ms)` on a 2026 pin |
 | no first frame on `display` / popover | `@starting-style` |
 
 ## Do not rewrite these as a drive-by
