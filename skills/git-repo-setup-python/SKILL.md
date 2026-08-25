@@ -49,7 +49,7 @@ lefthook = "VERSION"
 just = "VERSION"
 gitleaks = "VERSION"
 typos = "VERSION"
-python = "3.14"   # pin requires-python, not latest
+python = "3.13"   # pin requires-python, not latest
 uv = "VERSION"
 ```
 
