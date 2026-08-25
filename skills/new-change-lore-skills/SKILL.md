@@ -47,6 +47,7 @@ file's** headings, not this stub.
 5. A new fact is a table row, a template, or a Hard-rules bullet. A
    paragraph of why does not belong ([voice.md](voice.md)).
 
+Before editing: `make install` if `~/.cursor/skills` is empty.
 After a lore skill change: `make install`.
 
 ## Voice
