@@ -7,7 +7,7 @@ description: >-
   2024–2026 architecture practices (layers, typed tokens, platform-first).
   Use when generating, editing, reviewing, or modernizing CSS or style
   blocks; when the user mentions idiomatic CSS, 2026 CSS, if(), @function,
-  view transitions, or matching browserslist.
+  view transitions, sibling-index, or matching browserslist.
 ---
 
 # CSS 2026

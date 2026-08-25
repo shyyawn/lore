@@ -10,6 +10,7 @@ Matches how public skill libraries are published ([anthropics/skills](https://gi
 
 ```
 lore/
+├── .cursor/environment.json   # Cloud Agent: make install after checkout
 ├── skills/<name>/SKILL.md     # Agent Skills (required name + description)
 ├── rules/*.mdc                # always-on or glob-scoped rules
 ├── agents/                    # subagent definitions
@@ -19,6 +20,7 @@ lore/
 
 | Path | Installs as | What belongs here |
 | --- | --- | --- |
+| `.cursor/environment.json` | Cloud Agent `install` | Runs `make install` after checkout so lore skills land in `~/.cursor/skills`. Not a skill. |
 | `skills/<name>/` | `~/.cursor/skills/<name>/` | Repeatable domain playbooks. Cursor also loads `.claude/skills` and `.codex/skills`. |
 | `rules/*.mdc` | `~/.cursor/rules/` or a project's `.cursor/rules/` | Short always-on or glob-scoped constraints. Dynamic “apply intelligently” rules are skills instead. |
 | `agents/` | `~/.cursor/agents/` | Subagent personas. Add when you have one. |
@@ -111,7 +113,7 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [typescript-idioms](skills/typescript-idioms) | Idiomatic TypeScript 5–7 and 2024–2026 layout |
 | [typescript-unit-tests](skills/typescript-unit-tests) | Overlay on `typescript-idioms`: 2024–2026 TS tests (Vitest / Jest / `node:test`, what to skip) |
 | [e2e-tests](skills/e2e-tests) | When to add browser / device journeys (Playwright web; Expo Maestro). Install official Playwright skills first — [Start here](#start-here-cursor) |
-| [css-idioms](skills/css-idioms) | Idiomatic CSS Baseline 2022–2026 (`@layer`, nesting, view transitions, anchors). Not Sass or Tailwind |
+| [css-idioms](skills/css-idioms) | Idiomatic CSS Baseline 2022–2026 (`@layer`, nesting, view transitions, anchors, `sibling-index()`). Not Sass or Tailwind |
 | [svelte](skills/svelte) | Overlay on the Svelte plugin + `typescript-idioms`: Svelte 5 / Kit 2 pin, experimental default-no |
 | [sveltekit-app-structure](skills/sveltekit-app-structure) | SvelteKit `src/routes` / `$lib` layout (coding stays in `svelte` + the plugin) |
 | [encore-go](skills/encore-go) | Encore.go backends (never F5 / Zed F4; attach config is `git-repo-setup-go`) |
@@ -133,6 +135,8 @@ make install
 ```
 
 For lore + vendor skills on a new machine, use `make setup`. See [Start here](#start-here-cursor).
+
+A Cloud Agent runs `make install` from [`.cursor/environment.json`](.cursor/environment.json) after checkout. That copies this repo's skills into `~/.cursor/skills` so they auto-invoke ([`new-change-lore-skills`](skills/new-change-lore-skills) before any skill edit). It does not install vendor packs or plugins — those stay `make setup` / `/add-plugin` on a machine with a UI.
 
 | Target | Does |
 | --- | --- |
