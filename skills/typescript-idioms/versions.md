@@ -152,14 +152,5 @@ Flags: `--checkers` (default 4), `--builders` (project references),
 `--singleThreaded` (debug / tiny CI). Pin `--checkers` across machines if you
 need bit-identical diagnostics. `--checkers` × `--builders` multiplies memory.
 
-No public programmatic API. Do not `ts.createProgram` against 7.0. Wait for 7.1
-(expected later in 2026) or stay on the 6.0 API package.
-
-## 7.1 — only if `typescript` is 7.1+
-
-Do **not** emit 7.1-only APIs on a 7.0 install:
-
-- New (different) programmatic compiler API. Tools migrate off
-  `@typescript/typescript6` when the project's `typescript` is 7.1+ **and**
-  the tool supports it.
-- Until then, side-by-side 6.0 + 7.0 is the supported path.
+No public programmatic API. Do not `ts.createProgram` against 7.0.
+Stay on the 6.0 API package (`@typescript/typescript6`).

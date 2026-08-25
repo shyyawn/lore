@@ -185,6 +185,7 @@ Change lore skill:
   onto a non-Go playbook
 - A second copy of a skill instead of an overlay
 - Hexagonal / TOGAF / clean-architecture folders as the default lore layout
+- Experimental APIs or versions that have not shipped
 
 ## Do not
 
@@ -201,5 +202,6 @@ Change lore skill:
 - Restyle unrelated skills in the name of a tighten pass.
 - Bump a pin (language, SDK, or a playbook's chosen method) to unlock a
   line in the skill.
+- Teach experimental APIs or versions that have not shipped.
 - Teach a vendor encyclopedia unless the target already has it (and the
   sibling skill already says so).

@@ -79,7 +79,7 @@ Do not invent a parallel `go-idioms`, a second `encore-go`, or a second
 | `typescript-unit-tests` | domain overlay | `typescript-idioms` | Vitest / Jest / `node:test`, what to skip. Journeys stay `e2e-tests`. |
 | `e2e-tests` | workflow / playbook | official Playwright skills (install) | When to add journeys; house locators. Not a Playwright dump. |
 | `css-idioms` | language | — | Baseline 2022–2026 CSS + layers / tokens. Not a Sass or Tailwind fork |
-| `svelte` | platform | `typescript-idioms` + Svelte plugin | Pin, experimental default-no, `$app/state`. Not a fork of the plugin |
+| `svelte` | platform | `typescript-idioms` + Svelte plugin | Pin, `$app/state`. Not a fork of the plugin |
 | `sveltekit-app-structure` | app-structure | `svelte` | `src/routes` / `$lib`. Coding stays in `svelte` + plugin |
 | `go-100-mistakes-avoid` | domain overlay | `go-idioms` | Still-in-force mistakes. Not language-fixed rows. |
 | `go-unit-tests` | domain overlay | `go-idioms` | Tables, synctest, fuzz, what to skip. Encore runner stays `encore-go`. |
@@ -153,13 +153,14 @@ here too.
    | Three Dots Labs Wild Workouts **DDD Lite** articles | Aggregates, VOs, events as values, Get/Save | `app/` / `domain/` / `adapters/`, Watermill, Firebase |
    | kubernetes `go.work` + `staging/` | Lockstep publish siblings | Copy unless you actually publish |
    | github/gitignore, Lefthook, mise, just docs | File bodies and pin commands | A second hook runner |
-   | Svelte `kit/project-structure`, `sv create` | `src/routes`, `$lib`, `$lib/server` | Plugin runes catalog; next-major Kit trees |
+   | Svelte `kit/project-structure`, `sv create` | `src/routes`, `$lib`, `$lib/server` | Plugin runes catalog |
 | web.dev Baseline, MDN CSS | Baseline-gated nesting, color, motion, anchors | A Sass 7-1 tree; a Tailwind encyclopedia |
 
    A playbook: name the method (C4, ADR template, a named case study).
    Leave the vendor encyclopedia and the blog's folder schema.
 
-3. **Version-gate on the pin** (code skills). Teach versions that exist.
+3. **Version-gate on the pin** (code skills). Teach shipped stables.
+   Do not teach experimental APIs or versions that have not shipped.
    Do not bump `go.mod` / `typescript` / the SDK to unlock a line.
    Playbooks: do not bump the chosen method to unlock a fashion.
 4. **Write the modern form the first time.** Do not emit the old form
@@ -203,7 +204,7 @@ pass on those names.
 | This repo `css-idioms` | Baseline-gated CSS | A Sass 7-1 dump; a Tailwind fork; Chromium-only `if()` as default |
 | Encore / Temporal / Svelte Cursor plugins | Live MCP, official vendor how-tos | `npx add-skill` of the same vendor |
 | Svelte plugin | Runes, autofixer, live docs | A lore `svelte-core-bestpractices` |
-| This repo `svelte` / `sveltekit-app-structure` | Pin, experimental default-no, Kit tree | The next Kit major; a runes catalog |
+| This repo `svelte` / `sveltekit-app-structure` | Pin, `$app/state`, Kit tree | A runes catalog |
 | `conventional-commit-message` | Commit **format** | A lore fork of its type table |
 | Official `expo/skills` | Expo / RN-with-Expo pin, Router tree, native UI, EAS | A lore `expo-overview` or `expo-router` |
 | Official `vercel-react-best-practices` | Web React / Next performance | A lore dump of Vercel's rule files |

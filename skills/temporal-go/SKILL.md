@@ -241,7 +241,6 @@ patch Activity implementations, retry policies, or timer durations.
 - Query handler that mutates state or calls `ExecuteActivity`
 - Retry loops around `ExecuteActivity`
 - Random UUID as Workflow ID for an entity that should be unique
-- `workflow.GetRandomStream` / `workflow.IsReadOnly` unless the module already uses them (experimental as of SDK 1.48)
 - `tctl`, `UseBuildIDForVersioning`, `gogo/protobuf`
 - Child Workflows across Namespaces — use Nexus
 - Cron `workflow.Sleep` loops — use the Schedule API

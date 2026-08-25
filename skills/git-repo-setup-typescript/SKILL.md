@@ -120,7 +120,7 @@ pre-commit:
 
 Svelte: add `svelte` to the glob (`*.{ts,tsx,js,jsx,json,css,svelte}`). Honor
 the Svelte plugin the repo already uses (`prettier-plugin-svelte`, Biome
-experimental, or `eslint-plugin-svelte`). Do not swap it.
+Svelte plugin, or `eslint-plugin-svelte`). Do not swap it.
 
 commit-msg (this is a Node repo — commitlint, not the regex):
 

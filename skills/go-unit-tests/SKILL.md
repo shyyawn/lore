@@ -38,8 +38,7 @@ table shape, fakes, race, and what to assert.
 | 1.22 | per-iteration loop vars (no `tt := tt`) | — |
 | 1.18–1.21 | fuzz (`FuzzXxx`), `t.Setenv`, `t.TempDir`, `t.Cleanup` | later APIs |
 
-Do not emit `synctest.Run` (1.24 experiment). Do not set
-`GOEXPERIMENT=synctest`.
+Do not emit `synctest.Run`. Use `synctest.Test` / `synctest.Wait` on 1.25+.
 
 ## After every test edit
 
@@ -137,7 +136,7 @@ Fix in place. Do not add comments that restate the table `name`.
 - Calling a `PathValue` handler as a bare func (mux never ran)
 - `sqlmock` / generated mocks of a 15-method store the production type defined
 - `t.Parallel()` plus `t.Setenv`, `t.Chdir`, or `cryptotest.SetGlobalRandom`
-- `synctest.Run`, `GOEXPERIMENT=synctest`, `Wait(t)` (it is `synctest.Wait()`)
+- `synctest.Run`, `Wait(t)` (it is `synctest.Wait()`)
 - `for i := 0; i < b.N; i++` in new benchmarks — `for b.Loop()`
 - `os.MkdirTemp` / hardcoded `/tmp/...` — `t.TempDir()`
 - `os.Setenv` / `os.Chdir` without restore — `t.Setenv` / `t.Chdir`

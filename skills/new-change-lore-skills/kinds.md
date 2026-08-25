@@ -71,8 +71,8 @@ Open: `go-idioms`. Title may say the current line (`# Go 2026`).
    Go / pre-5 TypeScript.
 2. Pointers to `versions.md` / `modernizers.md` / `architecture.md`.
 3. **First step**: read the pin. Version table (`Always use` / `Not yet`).
-   Experimental `GOEXPERIMENT` APIs are out of scope unless the module
-   already enables them.
+   Teach shipped stables. Do not teach experimental APIs or versions
+   that have not shipped.
 4. **After every … edit**: the bash gate. "Write the modern form the
    first time."
 5. **When it breaks**: compiler / flag symptoms.
@@ -90,7 +90,7 @@ Open: `encore-go`, `temporal-go`, or `svelte`.
 
 - Follow the language skill, then **overrides** on named axes (Encore:
   layout, HTTP, log, tests; Temporal workflows: no `slog` / `go` /
-  `time.Now`; Svelte: pin, experimental default-**no**, `$app/state`).
+  `time.Now`; Svelte: pin, `$app/state`).
   Bidirectional: language `architecture.md` points at the platform
   skill for that layout.
 - **Hard rules** (compiler / runtime), not a defaults table.

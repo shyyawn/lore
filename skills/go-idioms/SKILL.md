@@ -25,16 +25,14 @@ Read `go.mod`. Target that version. Do not bump `go` to unlock an idiom.
 
 | `go` | Always use | Not yet |
 | --- | --- | --- |
-| 1.27+ | everything below plus generic methods, nested struct-literal keys, `"uuid"`, `encoding/json/v2`, `strings.CutLast`, 1.27 `go fix` | `simd` |
+| 1.27+ | everything below plus generic methods, nested struct-literal keys, `"uuid"`, `encoding/json/v2`, `strings.CutLast`, 1.27 `go fix` | — |
 | 1.26 | `errors.AsType`, `new(expr)`, `go fix` modernizers | generic methods, `"uuid"`, `encoding/json/v2` |
 | 1.25 | `sync.WaitGroup.Go`, `testing/synctest` (stable) | `errors.AsType`, `new(expr)` |
 | 1.24 | `t.Context()`, `b.Loop()`, `omitzero`, `tool` in go.mod, `os.Root`, `strings.SplitSeq` | `WaitGroup.Go` |
 | 1.23 | `iter.Seq`/`Seq2`, `for range` over iterators, `unique`, `slices.Sorted` | 1.24 testing APIs |
-| 1.22 | `for i := range n`, per-iteration loop vars, `http.ServeMux` method+path, `math/rand/v2` | range-over-func (preview only) |
+| 1.22 | `for i := range n`, per-iteration loop vars, `http.ServeMux` method+path, `math/rand/v2` | range-over-func (1.23+) |
 | 1.21 | `any`, `min`/`max`/`clear`, `log/slog`, `slices`, `maps`, `cmp`, `context.WithoutCancel` | loop-var change is not default yet |
 | 1.18–1.20 | generics, `any`, `errors.Join` (1.20), fuzzing | std `slices`/`maps` (still x/exp) |
-
-Experimental `GOEXPERIMENT` APIs are out of scope unless the module already enables them.
 
 ## After every Go edit
 

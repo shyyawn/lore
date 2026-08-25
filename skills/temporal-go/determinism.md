@@ -24,9 +24,6 @@ Illegal in the workflow function and anything it calls (except through
 - mutating package-level vars
 - anonymous functions passed to `ExecuteLocalActivity`
 
-Experimental `workflow.GetRandomStream` (SDK 1.48) is **Not yet** unless
-the file already uses it. Default stays SideEffect or an Activity.
-
 Helpers used from a workflow are workflow code. Do not share a helper between
 a workflow and an Activity if it uses the wall clock or I/O.
 

@@ -35,7 +35,7 @@ Target that compiler. Do not bump `typescript` to unlock an idiom.
 
 | `typescript` | Always use | Not yet |
 | --- | --- | --- |
-| 7.0+ | everything below plus native `tsc`, `--checkers`/`--builders`, Unicode template inference, 6.0 defaults as hard errors | 7.1 programmatic API; keep `@typescript/typescript6` beside 7.0 for eslint/Vue/Svelte/Astro/Angular templates |
+| 7.0+ | everything below plus native `tsc`, `--checkers`/`--builders`, Unicode template inference, 6.0 defaults as hard errors | keep `@typescript/typescript6` beside 7.0 for eslint/Vue/Svelte/Astro/Angular templates |
 | 6.0 | Temporal types, `#/` subpath imports, 6.0 defaults (`strict`, `module: esnext`, `types: []`), `stableTypeOrdering` when comparing emit to 7.0 | native `tsc`; `ignoreDeprecations: "6.0"` is a hatch, not new code |
 | 5.9 | `import defer`, `--module node20` | Temporal in `lib` |
 | 5.8 | `erasableSyntaxOnly`, `--module node18`, granular return checks | |
@@ -67,7 +67,7 @@ Write the modern form the first time. Do not write `enum` / `namespace` /
 | `erasableSyntaxOnly` errors on `enum` / `namespace` / parameter properties | Non-erasable syntax. Rewrite ([modernizers.md](modernizers.md)); do not turn the flag off. |
 | `Cannot find name 'process'` / `'describe'` after a 6.0/7.0 bump | `types` now defaults to `[]`. List what you need (`["node"]`), never `"types": ["*"]` in new config. |
 | `baseUrl` / `moduleResolution: node` / `target: es5` hard error | 6.0 deprecations are errors in 7.0. Fix the tsconfig; do not set `ignoreDeprecations` on 7.0 (it does not exist). |
-| typescript-eslint / Vue / Svelte / Astro / Angular templates fail on 7.0 | No public compiler API until 7.1. Alias `typescript` to `@typescript/typescript6` and keep 7.0 as `@typescript/native` for `tsc`. |
+| typescript-eslint / Vue / Svelte / Astro / Angular templates fail on 7.0 | No public compiler API on 7.0. Alias `typescript` to `@typescript/typescript6` and keep 7.0 as `@typescript/native` for `tsc`. |
 | `stableTypeOrdering` makes 6.0 25% slower | Use it only when diffing 6.0 vs 7.0 emit. 7.0 has it on permanently. |
 | Node runs `.ts` then blows up on `enum` | Runtime type-stripping is not `tsc`. Keep `erasableSyntaxOnly`. |
 

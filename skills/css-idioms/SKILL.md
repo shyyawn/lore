@@ -39,7 +39,7 @@ Target that pin. Do not bump browserslist to unlock an idiom.
 | Baseline 2026 in the pin | plus `@scope`, `shape()`, `field-sizing`, style `@container`, `contrast-color()`, anchor positioning level 1, `:open`, `sibling-index()` / `sibling-count()` | `if()`, `@function`, `@mixin` (no engine), Paint worklet |
 | Chromium-only already in the file | honor `if()` / `@function` behind `@supports` | `@mixin` / `@apply` as CSS mixins |
 
-Experimental flags and Chrome-only drafts are out of scope unless the
+Chrome-only features that are not Baseline stay out unless the
 file already uses them. Default is **no**.
 
 ## After every CSS edit

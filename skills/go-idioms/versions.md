@@ -86,7 +86,6 @@ New packages: `iter` (`Seq`, `Seq2`, `Pull`), `unique`, `structs`. Implement ite
 | `filepath.Join(root, userPath)` without jail | `os.OpenRoot` / `os.Root` |
 | `for _, p := range strings.Split(s, sep)` | `for p := range strings.SplitSeq(s, sep)` |
 | `crypto/rand` hex helpers | `rand.Text` where a readable secret is enough |
-| `testing/synctest` via `GOEXPERIMENT` | available experimental; prefer 1.25 stable API |
 
 Swiss-table maps are the runtime default — no source change.
 
@@ -95,7 +94,7 @@ Swiss-table maps are the runtime default — no source change.
 | Before | After |
 | --- | --- |
 | `wg.Add(1); go func() { defer wg.Done(); ... }()` | `wg.Go(func() { ... })` |
-| `time.Sleep` in concurrent tests | `synctest.Test` / `synctest.Wait` (API as in the 1.25 stdlib, not the 1.24 experiment) |
+| `time.Sleep` in concurrent tests | `synctest.Test` / `synctest.Wait` (1.25 stdlib API) |
 | `go vet` missing waitgroup/hostport | those analyzers ship in vet; `go fix` applies hostport |
 
 ## 1.26 — new(expr), AsType, go fix, self-ref constraints
@@ -107,7 +106,7 @@ Swiss-table maps are the runtime default — no source change.
 | hand-maintained old idioms | `go fix ./...` until `-diff` is empty |
 | `interface{ Add(A) A }` workarounds for CRTP | `type Adder[A Adder[A]] interface { Add(A) A }` |
 
-Green Tea GC is the default — no source change. Do not set `GOEXPERIMENT=nogreenteagc` in new modules.
+Green Tea GC is the default — no source change. Do not disable it in new modules.
 
 ## 1.27 — generic methods, nested literals, uuid, json/v2
 
@@ -120,7 +119,7 @@ Green Tea GC is the default — no source change. Do not set `GOEXPERIMENT=nogre
 | `encoding/json` for new Options / stricter defaults | `encoding/json/v2` (`Marshal` / `Unmarshal` + Options) |
 | streaming JSON tokens | `encoding/json/jsontext` |
 | a third-party post-quantum sig lib | `crypto/mldsa` (FIPS 204) |
-| `encoding/json` error-text golden tests | same v1 API; 1.27 backs it with v2. Error strings may differ. `GOEXPERIMENT=nojsonv2` hatch |
+| `encoding/json` error-text golden tests | same v1 API; 1.27 backs it with v2. Error strings may differ. |
 | `strings.LastIndex` + slice | `strings.CutLast` / `bytes.CutLast` |
 | `go fix` `waitgroup` | `waitgroupgo`; plus `atomictypes`, `embedlit`, `slicesbackward`, `unsafefuncs` |
 | several `require` blocks in `go.mod` | `go mod tidy` keeps at most two (direct, indirect) |

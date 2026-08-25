@@ -56,7 +56,7 @@ Vitest browser mode is a **component** runner. It is not an e2e
 journey. Journeys: `e2e-tests` (`npx sv add playwright`).
 
 Do not restyle working jsdom tests into browser mode as a drive-by.
-Do not enable `experimental.async` to make a test compile (`svelte`).
+Do not change `svelte.config` to make a test compile.
 
 ## Vite React (no Next)
 
