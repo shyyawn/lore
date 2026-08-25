@@ -67,7 +67,6 @@ Format with the repo's formatter. Do not add a second one.
 
 | Symptom | Usually means |
 | --- | --- |
-| `await` in markup / `$derived` fails | Use `{#await}` or `load` |
 | `$app/stores` types or no updates | Kit 2.12+. Switch to `$app/state` |
 | Svelte templates fail on TypeScript 7.0 | No public compiler API on 7.0. Hatch: `typescript-idioms` |
 
@@ -89,7 +88,7 @@ Format with the repo's formatter. Do not add a second one.
 | Runes / snippets / attach | Plugin + MCP | A lore runes catalog |
 | Page / nav state (Kit 2.12+) | `$app/state` | `$app/stores` |
 | Shared UI state | `createContext`, `$state` class | `writable()` / `readable()` in new code |
-| Async UI | `{#await}` or `load` | `await` in markup as the default |
+| Async UI | `{#await}` or `load` | `fetch` in `onMount` for page data |
 | Mutations from the page | Form actions | A REST `+server` for a `<form>` |
 | Component types | `$props()`, `PageProps` | `export let` |
 
@@ -97,7 +96,6 @@ Format with the repo's formatter. Do not add a second one.
 
 - `export let`, `on:click`, `<slot>`, `$:`, `$$props` / `$$restProps`
 - `$app/stores` on Kit 2.12+
-- `await` in markup / `$derived` as the default
 - A fork of `svelte-core-bestpractices` under `skills/`
 - `writable()` as the default shared-state tool
 - Bumping `svelte` / `@sveltejs/kit` to unlock a line

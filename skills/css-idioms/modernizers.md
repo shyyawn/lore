@@ -42,7 +42,7 @@ Do not "modernize" by bumping browserslist or adding Sass.
 | `@media (min-width: 400px)` on a card | `@container (min-width: 24rem)` |
 | `position: absolute` + JS flip | `position-anchor` + `position-area` + `position-try-fallbacks` (2026) |
 | `title` / a tooltip library | `popover` + invoker / `:popover-open` (2025) |
-| `height: auto` animation that jumps | transform / opacity; `interpolate-size` only if already in the file |
+| `height: auto` animation that jumps | transform / opacity |
 | `textarea` JS autosize | `field-sizing: content` (2026) |
 | `clip-path: path("M…")` | `clip-path: shape(…)` (2026) |
 
@@ -50,7 +50,7 @@ Do not "modernize" by bumping browserslist or adding Sass.
 
 | Before | After |
 | --- | --- |
-| `scroll` listener setting `opacity` / `transform` | `animation-timeline: view()` when the pin has it; else a short time animation |
+| `scroll` listener setting `opacity` / `transform` | a short time animation |
 | FLIP / `getBoundingClientRect` morph | `view-transition-name` + `startViewTransition` (2025) |
 | full-page cut on same-origin MPA | `@view-transition { navigation: auto }` (2026 pin) |
 | `:nth-child(1) { animation-delay: 0.1s }` … | `animation-delay: calc(sibling-index() * 80ms)` on a 2026 pin |

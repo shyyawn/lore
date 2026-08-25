@@ -32,13 +32,13 @@ table shape, fakes, race, and what to assert.
 | --- | --- | --- |
 | 1.27+ | `synctest.Sleep`, `httptest.NewTestServer` (in-memory, synctest-safe) | — |
 | 1.26 | `t.ArtifactDir`, `testing/cryptotest.SetGlobalRandom` | `synctest.Sleep`, `NewTestServer` |
-| 1.25 | `synctest.Test` / `Wait` (stable), `t.Attr`, `t.Output` | `cryptotest` |
-| 1.24 | `t.Context()`, `b.Context()`, `for b.Loop()`, `t.Chdir` | stable synctest |
+| 1.25 | `synctest.Test` / `Wait`, `t.Attr`, `t.Output` | `cryptotest` |
+| 1.24 | `t.Context()`, `b.Context()`, `for b.Loop()`, `t.Chdir` | `synctest.Test` / `Wait` |
 | 1.23 | `httptest.NewRequestWithContext` | `t.Context` |
 | 1.22 | per-iteration loop vars (no `tt := tt`) | — |
 | 1.18–1.21 | fuzz (`FuzzXxx`), `t.Setenv`, `t.TempDir`, `t.Cleanup` | later APIs |
 
-Do not emit `synctest.Run`. Use `synctest.Test` / `synctest.Wait` on 1.25+.
+Use `synctest.Test` / `synctest.Wait` on 1.25+.
 
 ## After every test edit
 
@@ -118,7 +118,7 @@ Fix in place. Do not add comments that restate the table `name`.
 | Flaky around a timer / sleep | Real clock. `synctest.Test`. |
 | `synctest` deadlock / Test panics | A goroutine is blocked on a mutex, I/O, or a channel created **outside** the bubble (not durably blocked). |
 | `t.Setenv` / `t.Chdir` panic | `t.Parallel` on this test or a parent. Drop Parallel. |
-| `undefined: synctest.Test` | `go` < 1.25, or leftover `synctest.Run`. |
+| `undefined: synctest.Test` | `go` < 1.25. |
 | `undefined: cryptotest.SetGlobalRandom` | `go` < 1.26. Don't fake `crypto/rand` by hand. |
 | `undefined: synctest.Sleep` | `go` < 1.27. `time.Sleep` + `synctest.Wait`. |
 | `undefined: httptest.NewTestServer` | `go` < 1.27. `NewServer` + `t.Cleanup(srv.Close)`. |
@@ -136,7 +136,7 @@ Fix in place. Do not add comments that restate the table `name`.
 - Calling a `PathValue` handler as a bare func (mux never ran)
 - `sqlmock` / generated mocks of a 15-method store the production type defined
 - `t.Parallel()` plus `t.Setenv`, `t.Chdir`, or `cryptotest.SetGlobalRandom`
-- `synctest.Run`, `Wait(t)` (it is `synctest.Wait()`)
+- `Wait(t)` (it is `synctest.Wait()`)
 - `for i := 0; i < b.N; i++` in new benchmarks — `for b.Loop()`
 - `os.MkdirTemp` / hardcoded `/tmp/...` — `t.TempDir()`
 - `os.Setenv` / `os.Chdir` without restore — `t.Setenv` / `t.Chdir`

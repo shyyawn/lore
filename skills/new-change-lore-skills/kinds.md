@@ -71,8 +71,7 @@ Open: `go-idioms`. Title may say the current line (`# Go 2026`).
    Go / pre-5 TypeScript.
 2. Pointers to `versions.md` / `modernizers.md` / `architecture.md`.
 3. **First step**: read the pin. Version table (`Always use` / `Not yet`).
-   Teach shipped stables. Do not teach experimental APIs or versions
-   that have not shipped.
+   Teach shipped stables. Name only APIs that pin can emit.
 4. **After every … edit**: the bash gate. "Write the modern form the
    first time."
 5. **When it breaks**: compiler / flag symptoms.

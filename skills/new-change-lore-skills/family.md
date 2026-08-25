@@ -160,7 +160,7 @@ here too.
    Leave the vendor encyclopedia and the blog's folder schema.
 
 3. **Version-gate on the pin** (code skills). Teach shipped stables.
-   Do not teach experimental APIs or versions that have not shipped.
+   Name only APIs that pin can emit.
    Do not bump `go.mod` / `typescript` / the SDK to unlock a line.
    Playbooks: do not bump the chosen method to unlock a fashion.
 4. **Write the modern form the first time.** Do not emit the old form
@@ -201,7 +201,7 @@ pass on those names.
 | Source | Owns | Do not also |
 | --- | --- | --- |
 | This repo | Practice in `skills/` (stack or playbook) | Copy plugin encyclopedias into `skills/` |
-| This repo `css-idioms` | Baseline-gated CSS | A Sass 7-1 dump; a Tailwind fork; Chromium-only `if()` as default |
+| This repo `css-idioms` | Baseline-gated CSS | A Sass 7-1 dump; a Tailwind fork |
 | Encore / Temporal / Svelte Cursor plugins | Live MCP, official vendor how-tos | `npx add-skill` of the same vendor |
 | Svelte plugin | Runes, autofixer, live docs | A lore `svelte-core-bestpractices` |
 | This repo `svelte` / `sveltekit-app-structure` | Pin, `$app/state`, Kit tree | A runes catalog |

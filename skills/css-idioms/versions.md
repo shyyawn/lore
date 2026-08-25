@@ -71,20 +71,5 @@ Cross-document / `:active-view-transition` wait for the 2026 pin.
 | `:nth-child(n)` delay / JS `--i` on each child | `sibling-index()` / `sibling-count()` in `calc()` |
 
 Anchor positioning **level 1** is Baseline 2026 (Firefox, 2026-01).
-Level 2 (`container-type: anchored`) is **not** all engines — Not yet.
 `sibling-index()` / `sibling-count()` became Newly available 2026-08
 (MDN). Skip them on a strict Widely pin unless the file already has them.
-
-## Not Baseline (do not emit as the only path)
-
-| Feature | Status (2026-08) | Write instead |
-| --- | --- | --- |
-| `if(style/media/supports)` | Chromium 137+ | `@media` / `@supports` / style CQ |
-| `@function` | Chromium 139+ | custom property; honor if already in the file |
-| `text-wrap: pretty` | Chromium + Safari; no Firefox | `text-wrap: balance` |
-| `@mixin` / `@apply` (CSS mixins) | no engine | nest; do not add Sass for it |
-| `corner-shape` / `superellipse()` | Chromium | `border-radius` |
-| `interpolate-size: allow-keywords` | Chromium | `grid-template-rows: 0fr` / transform |
-| `animation-timeline: scroll()` / `view()` | Interop 2026; not all engines as default | `@media (prefers-reduced-motion)` time animation; honor scroll-driven if already in the file |
-| CSS Paint / `paint()` | limited | Canvas 2D or a static `shape()` |
-| masonry `grid-template-rows` | not Baseline | JS masonry only if the repo already has it |

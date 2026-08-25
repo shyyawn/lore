@@ -82,10 +82,6 @@ View transitions: name the shared element, start the transition, style
 `::view-transition-old(*)` / `::view-transition-new(*)` only when the
 default crossfade is wrong.
 
-Scroll-driven timelines: only when the pin has them or the file
-already uses them. They are not a replacement for a short enter
-animation on a Widely-available pin.
-
 ## Canvas and drawing
 
 | Need | Use |
@@ -94,14 +90,7 @@ animation on a Widely-available pin.
 | Gradient / grain / simple ornament | CSS gradients, `border-image` |
 | Pixels, charts, shaders, video frames | Canvas 2D, OffscreenCanvas, WebGL |
 
-CSS Paint (`paint()`) is **not** the default. Honor it if the repo
-already registers a worklet.
-
 ## Conditionals
 
 Order: `@supports` / `@media` / size or style `@container`, then a
-custom property toggle. `if()` is Chromium. Honor it behind
-`@supports` only when the file already uses it.
-
-`@function` is the same gate. CSS `@mixin` does not exist in any
-engine. Do not emit it.
+custom property toggle.
