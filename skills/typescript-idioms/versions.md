@@ -157,14 +157,7 @@ No public programmatic API. Do not `ts.createProgram` against 7.0. Wait for 7.1
 
 ## 7.1 — only if `typescript` is 7.1+
 
-Draft as of 2026-08-25. Do **not** emit 7.1-only APIs on a 7.0 install.
-
-| Milestone | Date |
-| --- | --- |
-| beta | 2026-09-09 |
-| RC | 2026-10-20 |
-| stable | 2026-11-10 |
-
+Do **not** emit 7.1-only APIs on a 7.0 install:
 
 - New (different) programmatic compiler API. Tools migrate off
   `@typescript/typescript6` when the project's `typescript` is 7.1+ **and**

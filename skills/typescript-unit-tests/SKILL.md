@@ -43,8 +43,7 @@ Testing guide (pin), Expo `jest-expo`. Not their trees.
 
 | `vitest` | Always use | Not yet |
 | --- | --- | --- |
-| 4.x | `test.projects`, `provider: playwright()` from `@vitest/browser-playwright`, `import { … } from 'vitest/browser'` | `provider: 'playwright'`, `@vitest/browser/context` in new config; Vitest 5 RC |
-| 5.x RC | — | Stable 5. Stay on 4.x APIs |
+| 4.x | `test.projects`, `provider: playwright()` from `@vitest/browser-playwright`, `import { … } from 'vitest/browser'` | `provider: 'playwright'`, `@vitest/browser/context` in new config |
 | 3.2–3.x | `test.projects`, `provider: 'playwright'`, `@vitest/browser` | 4.x factory provider |
 | 3.0–3.1 | The `workspace` file the repo already has | Renaming it as a drive-by |
 | none, new Vite / Svelte / Next app | Add Vitest. Honor the lockfile's major if a parent already pins it | Jest |
@@ -53,7 +52,6 @@ Testing guide (pin), Expo `jest-expo`. Not their trees.
 | Jest already the suite | Honor Jest (`jest.fn`, `jest.useFakeTimers`) | A Vitest migrate |
 
 Do not emit Vitest 4 provider factories on a 3.x pin.
-Do not emit Vitest 5 APIs on a 4.x pin.
 
 ## What this skill owns
 
@@ -164,7 +162,7 @@ Fix in place. Do not add comments that restate the table `name`.
 - jsdom tests of `async` Server Components
 - Flattening Next / Expo `app/` so a test looks "idiomatic"
 - Bare React Native / Detox unasked
-- Bumping `vitest` to unlock a 4.x or 5.x line
+- Bumping `vitest` to unlock a 4.x line
 
 ## Do not
 

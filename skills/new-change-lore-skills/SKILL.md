@@ -185,6 +185,7 @@ Change lore skill:
   onto a non-Go playbook
 - A second copy of a skill instead of an overlay
 - Hexagonal / TOGAF / clean-architecture folders as the default lore layout
+- RC / beta / preview APIs, `@next` encyclopedias, or ship calendars
 
 ## Do not
 

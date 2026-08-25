@@ -162,6 +162,8 @@ here too.
 3. **Version-gate on the pin** (code skills). Teach versions that exist.
    Do not bump `go.mod` / `typescript` / the SDK to unlock a line.
    Playbooks: do not bump the chosen method to unlock a fashion.
+   Do not put RC, beta, or preview APIs in skills. **Not yet** is a
+   pin row, not a ship calendar.
 4. **Write the modern form the first time.** Do not emit the old form
    and wait for a fixer.
 5. **Solved vs still-in-force.** Overlay catalogs drop rows the parent
