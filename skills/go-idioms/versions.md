@@ -118,6 +118,9 @@ Green Tea GC is the default — no source change. Do not set `GOEXPERIMENT=nogre
 | `[]F{GenericFn[int]}` / `F(GenericFn[int])` | `[]F{GenericFn}` when the dest type is known |
 | `github.com/google/uuid` | `"uuid"` (`New`, `Parse`, `NewV7`) |
 | `encoding/json` for new Options / stricter defaults | `encoding/json/v2` (`Marshal` / `Unmarshal` + Options) |
+| streaming JSON tokens | `encoding/json/jsontext` |
+| a third-party post-quantum sig lib | `crypto/mldsa` (FIPS 204) |
+| `encoding/json` error-text golden tests | same v1 API; 1.27 backs it with v2. Error strings may differ. |
 | `strings.LastIndex` + slice | `strings.CutLast` / `bytes.CutLast` |
 | `go fix` `waitgroup` | `waitgroupgo`; plus `atomictypes`, `embedlit`, `slicesbackward`, `unsafefuncs` |
 | several `require` blocks in `go.mod` | `go mod tidy` keeps at most two (direct, indirect) |
