@@ -9,7 +9,7 @@ pipeline.
 | Kind | Canon | Sibling files |
 | --- | --- | --- |
 | Authoring | this skill | `voice.md`, `kinds.md`, `family.md` |
-| Workflow / playbook | `create-readme-and-other-markdown-documentation` (future: `requirement-to-architecture-to-design`) | `files.md`, `readme.md`, `english.md`, `stacks.md` |
+| Workflow / playbook | `create-readme-and-other-markdown-documentation` (also `e2e-tests`, staff playbooks, `requirement-to-architecture-to-design`) | create-readme: `files.md`, `readme.md`, `english.md`, `stacks.md`; staff: `types.md`, `collections.md`, `algorithms.md`, `stages.md` |
 | Language idiom | `go-idioms`, `typescript-idioms`, `css-idioms` | `versions.md`, `modernizers.md`, `architecture.md` |
 | Platform coding | `encore-go`, `temporal-go`, `svelte` | Encore/Temporal catalogs; `svelte`: none (plugin owns runes) |
 | App-structure | `encore-go-app-structure`, `temporal-go-app-structure`, `sveltekit-app-structure` | usually none — trees live in SKILL.md |
@@ -39,7 +39,8 @@ the model will actually generate that thing.
 
 Open: `create-readme-and-other-markdown-documentation`. No language
 required. Stages, artifacts, earn-the-next. Also `e2e-tests` (same
-headings, thinner). Future: `requirement-to-architecture-to-design`.
+headings, thinner). Staff playbooks and
+`requirement-to-architecture-to-design` (same headings).
 Copy the shapes below, not their docs or Go content.
 
 1. Lead ([voice.md](voice.md)): what the pipeline is. Pointers. Sources.
@@ -220,6 +221,8 @@ Semantic, not create-skill's `reference.md` / `examples.md`.
 | `internals.md` / `lite.md` | Overlay recipes |
 | `layouts.md` | Trees |
 | `files.md` / `gitconfig.md` | File bodies the agent writes (hub). Docs playbook: which `.md` file |
+| `types.md` | Column types (`data-modeling`) |
+| `collections.md` / `algorithms.md` | In-memory chooser (`choose-collections`) |
 | `readme.md` / `english.md` / `stacks.md` | README shapes, Google English, language/renderer |
 | `debug.md` | JSON or traps (see Debug split) |
 | `primitives.md` / `infrastructure.md` / `determinism.md` / `workers.md` | Platform catalogs |

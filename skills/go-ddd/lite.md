@@ -146,6 +146,8 @@ enforces them. Authz that is not a domain rule stays at the API
 
 ## CQRS (later)
 
+See `source-of-truth`.
+
 Split when a read cannot use the write aggregate without loading it for
 display, reporting, or a screen that needs a join the aggregate forbids.
 

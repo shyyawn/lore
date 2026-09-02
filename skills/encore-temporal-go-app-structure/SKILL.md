@@ -189,7 +189,8 @@ func (a *Activities) UpdateStatus(ctx context.Context, id, status string) error 
 ```
 
 The `orders` service owns Postgres and migrations. The workflow never
-touches `sqldb`. Saga compensation is workflow code calling compensating
+touches `sqldb`. See `source-of-truth` / `data-modeling`. Workflow
+Id: `identity`. Saga compensation is workflow code calling compensating
 activities (refund, unreserve) — same pattern as `ts/temporal`.
 
 ## Scale-out (OMS on top of the how-to)

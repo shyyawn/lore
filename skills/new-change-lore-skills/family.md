@@ -74,6 +74,15 @@ Do not invent a parallel `go-idioms`, a second `encore-go`, or a second
 | `git-repo-setup-typescript` | language overlay | `git-repo-setup` | Biome/tsc/vitest + Node / Next / SvelteKit / Expo JSON |
 | `git-repo-setup-python` | language overlay | `git-repo-setup` | uv/ruff/pytest + debugpy JSON |
 | `create-readme-and-other-markdown-documentation` | workflow / playbook | — | README and other Markdown. Kit still owns bootstrap existence |
+| `source-of-truth` | workflow / playbook | — | One writer per fact. GET hits one store. |
+| `data-modeling` | workflow / playbook | — | Logical schema. JSONB is a sealed snapshot. |
+| `identity` | workflow / playbook | — | Natural entity → business key. UUID extra. |
+| `api-contracts` | workflow / playbook | — | 4xx domain vs 5xx crash. Additive wire. |
+| `evolve-safely` | workflow / playbook | — | Expand/contract. Roll forward and back. |
+| `authz-boundaries` | workflow / playbook | — | Actor and tenant. Tenant in the query. |
+| `choose-collections` | workflow / playbook | — | In-memory chooser. Invent default no. |
+| `requirement-to-architecture-to-design` | workflow / playbook | — | Requirements then architecture then design. |
+| `review-change` | workflow / playbook | — | Tick catalogs 1–7 plus the language pin. |
 | `go-idioms` | language | — | Go 1.18–1.27 + 2024–2026 flatten layout |
 | `typescript-idioms` | language | — | TypeScript 5–7 + 2024–2026 flatten layout |
 | `typescript-unit-tests` | domain overlay | `typescript-idioms` | Vitest / Jest / `node:test`, what to skip. Journeys stay `e2e-tests`. |
@@ -116,6 +125,15 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | `*.test.ts` / vitest / jest (writing) | `typescript-unit-tests` |
 | `playwright.config.*` / Cypress / e2e journeys | `e2e-tests` |
 | `README.md` / health files / `docs/**/*.md` content | `create-readme-and-other-markdown-documentation` |
+| CQRS / dual-write / cache / outbox | `source-of-truth` |
+| schema / JSONB / `CREATE TABLE` / Prisma | `data-modeling` |
+| UUID default / workflow id / slug | `identity` |
+| endpoint / 4xx / pagination / `Idempotency-Key` | `api-contracts` |
+| expand-contract / rename column / API v2 | `evolve-safely` |
+| tenant / IDOR / public endpoint | `authz-boundaries` |
+| slice vs map / heap / custom sort | `choose-collections` |
+| design a system, no code yet | `requirement-to-architecture-to-design` |
+| review this / code review | `review-change` |
 | `*.css` / `<style>` / component CSS | `css-idioms`. Tailwind already there: honor. NativeWind setup: `expo-tailwind-setup` |
 
 ## Naming

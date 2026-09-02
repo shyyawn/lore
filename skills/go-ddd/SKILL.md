@@ -38,7 +38,7 @@ Earn DDD Lite:
 - [ ] A rule HTTP/SQL would forget (capacity, already-cancelled, paid-twice)
 - [ ] Identity that outlives a single request
 - [ ] Another package must react without importing this one (domain event)
-- [ ] Read model has actually diverged from the write model (CQRS — later)
+- [ ] Read model has actually diverged from the write model (CQRS — see `source-of-truth`)
 ```
 
 CRUD with required-field validation is **not** an aggregate. A struct
@@ -63,7 +63,7 @@ Full shapes: [lite.md](lite.md).
 
 | Skip | Until |
 | --- | --- |
-| CQRS, two models, separate read DB | A query cannot be answered from the write model without wrecking it |
+| CQRS, two models, separate read DB | A query cannot be answered from the write model without wrecking it — see `source-of-truth` |
 | Process manager / saga class | You already have Temporal workflows (`temporal-go`) or a real multi-step process |
 | Event bus for in-process calls | A function call still works |
 | Hexagonal `domain/` `usecase/` `adapter/` | The repo already has them, or an import cycle forced a port |
@@ -103,7 +103,7 @@ Go DDD Lite:
 - [ ] Events are values **returned** from methods; Save persists aggregate + outbox in one tx
 - [ ] Consumers of events are idempotent (at-least-once)
 - [ ] Bounded context = existing service / internal/<noun>, not new folders
-- [ ] No CQRS unless read/write models already diverged
+- [ ] No CQRS unless read/write models already diverged (see `source-of-truth`)
 - [ ] encore.app → no cmd/, no adapters/ tree, no Watermill
 ```
 

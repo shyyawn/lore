@@ -36,6 +36,9 @@ go.mod
 
 Do **not** create `domain/`, `usecase/`, `adapter/`, `controller/`, `repository/` layers for a small module. Flatten. Extract a package when an import cycle or a second binary forces it.
 
+Dual-store / cache: `source-of-truth`. Schema types: `data-modeling`.
+Slice vs map: `choose-collections`.
+
 Inside a service (handlers, persistence, shutdown): `go-backend`. When
 invariants appear: `go-ddd` — still inside the package, still no those
 folders. More than one `go.mod` / `go.work`: `go-mono-repo`. Default

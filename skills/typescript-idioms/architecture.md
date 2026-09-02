@@ -60,6 +60,9 @@ Do **not** create `domain/`, `usecase/`, `adapter/`, `controller/`,
 `repository/`, `utils/`, `helpers/`, `common/` layers for a small package.
 Flatten. Extract a module when an import cycle or a second entry forces it.
 
+Dual-store / cache: `source-of-truth`. Schema types: `data-modeling`.
+Slice vs map: `choose-collections`.
+
 Barrel `index.ts` re-exports are not a layout. They hide cycles, defeat
 `isolatedModules`, and slow `tsc`. Import the file that defines the symbol.
 

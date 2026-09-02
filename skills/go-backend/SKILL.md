@@ -66,8 +66,12 @@ item_test.go
 
 Handler: decode → call one function → map sentinels to status. No business
 rules in the handler. No `log.Fatal`. Recipes: [internals.md](internals.md).
+4xx vs 5xx: `api-contracts`. Actor / tenant: `authz-boundaries`.
 
 ## Persistence
+
+Schema types: `data-modeling`. Keys: `identity`. Expand/contract:
+`evolve-safely`.
 
 The package that **calls** storage declares the interface with the methods
 it needs. The SQL type is concrete and lives beside it (or in a sub-package
