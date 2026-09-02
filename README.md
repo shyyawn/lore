@@ -103,6 +103,7 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [create-readme-and-other-markdown-documentation](skills/create-readme-and-other-markdown-documentation) | README, community health files, changelogs, ADRs, agent files, and docs/ trees |
 | [source-of-truth](skills/source-of-truth) | One writer per fact; a GET hits one store; dual-write needs an outbox |
 | [data-modeling](skills/data-modeling) | Logical schema: table vs blob vs junction; one fact one type |
+| [identity](skills/identity) | Natural entity → business key; UUID is extra uniqueness |
 | [go-idioms](skills/go-idioms) | Idiomatic Go 1.18–1.27 and 2024–2026 layout |
 | [go-100-mistakes-avoid](skills/go-100-mistakes-avoid) | Overlay on `go-idioms`: common Go mistakes still in force in 2026 |
 | [go-unit-tests](skills/go-unit-tests) | Overlay on `go-idioms`: 2024–2026 Go tests (tables, synctest, fuzz, what to skip) |
