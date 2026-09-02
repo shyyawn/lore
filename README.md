@@ -109,6 +109,7 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [authz-boundaries](skills/authz-boundaries) | Actor and tenant on every read/write; tenant in the query |
 | [choose-collections](skills/choose-collections) | In-memory chooser: slice vs map vs set vs heap; invent default no |
 | [requirement-to-architecture-to-design](skills/requirement-to-architecture-to-design) | Requirements then architecture then design; do not skip a stage |
+| [review-change](skills/review-change) | Tick catalogs 1–7 plus the language pin; do not recopy them |
 | [go-idioms](skills/go-idioms) | Idiomatic Go 1.18–1.27 and 2024–2026 layout |
 | [go-100-mistakes-avoid](skills/go-100-mistakes-avoid) | Overlay on `go-idioms`: common Go mistakes still in force in 2026 |
 | [go-unit-tests](skills/go-unit-tests) | Overlay on `go-idioms`: 2024–2026 Go tests (tables, synctest, fuzz, what to skip) |
