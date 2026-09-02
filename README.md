@@ -106,6 +106,7 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [identity](skills/identity) | Natural entity → business key; UUID is extra uniqueness |
 | [api-contracts](skills/api-contracts) | HTTP/RPC: 4xx domain outcome vs 5xx crash; additive change |
 | [evolve-safely](skills/evolve-safely) | Expand/contract schema and API so old binaries keep working |
+| [authz-boundaries](skills/authz-boundaries) | Actor and tenant on every read/write; tenant in the query |
 | [go-idioms](skills/go-idioms) | Idiomatic Go 1.18–1.27 and 2024–2026 layout |
 | [go-100-mistakes-avoid](skills/go-100-mistakes-avoid) | Overlay on `go-idioms`: common Go mistakes still in force in 2026 |
 | [go-unit-tests](skills/go-unit-tests) | Overlay on `go-idioms`: 2024–2026 Go tests (tables, synctest, fuzz, what to skip) |
