@@ -64,8 +64,7 @@ Visa, notice, location, salary — not printed unless the user says so.
 
 ## Derived CVs
 
-Filenames: SKILL.md Defaults. Same stem `.pdf` / `.docx` only when
-those Defaults earn them.
+Filenames: SKILL.md Defaults.
 
 Do not copy a derived CV back over SOURCE.md. New facts learned
 while writing go into SOURCE.md first, then the CV.

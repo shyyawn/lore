@@ -58,12 +58,12 @@ source: [career.md](career.md). `<folder>` is the directory that holds
 | IC lane | JD title (Staff / Principal / Architect / Senior) | user named; else SOURCE Lanes |
 | Pages | **one** | Earn a second page |
 | Layout | reverse chronological, single column | Freelance client pitch may lead with Selected Projects |
-| Headings | Summary, Skills, Experience, Education | existing working labels that ATS still maps |
+| Headings | `## Summary`, `## Skills`, `## Experience`, `## Education` | existing working labels that ATS still maps |
 | Bullets | XYZ; 3–5 on the current role, 2–3 on the one before | — |
 | File to write | Markdown in `<folder>/out/` | user named a path |
 | Slug | `<company>-<role>-<variant>.md` | no JD → `base-<variant>.md` (add lane if needed) |
 | Share PDF | **no** | user asked for PDF / export |
-| PDF tool | `pandoc` | typst / weasyprint already on PATH |
+| PDF tool | `pandoc` + an engine on PATH (typst, weasyprint, pdflatex) | standalone typst if no `pandoc` |
 | Portal `.docx` | **no** | posting is a portal, or the user asked |
 | Freelance portal | Independent Consultant umbrella | one long client (≥12 months) already a named role |
 | Cover letter | **no** | portal requires it, or the user asked |
@@ -78,7 +78,7 @@ source: [career.md](career.md). `<folder>` is the directory that holds
 | ATS parse and headings | this skill ([ats.md](ats.md)) |
 | README / docs Markdown | `create-readme-and-other-markdown-documentation` |
 | Cover letter | this skill |
-| `.md` always; PDF / `.docx` when asked | this skill (`pandoc` for those) |
+| Markdown CV; `pandoc` export | this skill |
 
 ## Earn a second page
 
@@ -127,22 +127,23 @@ Padding is not a second page.
 Career file: [career.md](career.md). Output:
 
 ```
-Name | City | email | phone | LinkedIn | GitHub
+# Name
+City · email · phone · LinkedIn · GitHub
 
-Summary
+## Summary
 Two lines: lane, domain, years if known, one metric.
 
-Skills
+## Skills
 Grouped plain text (Languages, Platforms, Data, Practices).
 Only skills in bullets or true JD must-haves (base: bullets + lane).
 
-Experience
+## Experience
 Title, Company, Location, MM/YYYY–MM/YYYY
 One scope line (surface, team size, domain) when IC or Manager.
 - XYZ
 - XYZ
 
-Education
+## Education
 Degree, school, year. No coursework wall.
 ```
 
@@ -162,7 +163,6 @@ Customize CV:
 - [ ] Evidence selected (not dumped)
 - [ ] Draft written to <folder>/out/<slug>.md
 - [ ] ATS + density ticks ([ats.md](ats.md))
-- [ ] PDF / .docx only if asked (n/a otherwise)
 ```
 
 1. Tailor: map each must-have to one piece of evidence. A must-have
@@ -174,7 +174,6 @@ Customize CV:
 3. Write Summary last. Two lines. No "passionate". No Objective.
 4. Skills is a short grouped list, not a paragraph of forty tools.
 5. Run [ats.md](ats.md) Before send.
-6. Export PDF or `.docx` only if asked.
 
 Filenames: Defaults.
 
@@ -186,17 +185,17 @@ Filenames: Defaults.
   ([ats.md](ats.md)).
 - First 8–12 lines: lane + one metric + current title. If not, cut
   above Experience.
-- PDF / `.docx` only when asked:
+- Export only the formats Defaults earn:
 
 ```bash
-pandoc <slug>.md -o <slug>.pdf
 pandoc <slug>.md -o <slug>.docx
+pandoc <slug>.md -o <slug>.pdf --pdf-engine=typst
 ```
 
-Honor typst / weasyprint if that is already the PDF path. Run only
-the format they asked for. No `pandoc` → **stop**. Do not add a
-resume CLI. Select text in the PDF. If you cannot, the engine wrote
-an image.
+Use `--pdf-engine=weasyprint` or `pdflatex` if that is the engine on
+PATH. Standalone typst if `pandoc` is missing. No engine → **stop**.
+Do not add a TeX live or a resume CLI. Select text in the PDF. If
+you cannot, the engine wrote an image.
 
 ## When it breaks
 
@@ -213,7 +212,8 @@ an image.
 | Two pages of old jobs | Did not earn; did not shrink older roles |
 | Perfect and generic | 2026 AI-polish reject. Add a proper noun the source has |
 | Base page is the whole career | Did not pick evidence |
-| PDF text not selectable | Image / scanned PDF. Plain `pandoc`, not a template |
+| PDF text not selectable | Image / scanned PDF. Not a two-column template |
+| `pandoc` PDF fails | Missing `--pdf-engine` (typst / weasyprint / pdflatex) |
 
 ## LLM traps — never generate these
 
@@ -222,8 +222,8 @@ an image.
 - All three variants on one page, or all three files unasked
 - JD sentences pasted into Summary or bullets
 - A skills wall of every tool ever touched
-- Two-column / Canva / table / skill-bar / photo / icon / LaTeX
-  template layout
+- Two-column résumé template (Canva, moderncv). Pandoc's default
+  LaTeX article is fine
 - Contact in header or footer
 - Functional resume as the default
 - "Passionate engineer" / Objective / References on request

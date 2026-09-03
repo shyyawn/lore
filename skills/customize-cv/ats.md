@@ -14,7 +14,7 @@ trees.
 | --- | --- |
 | Exact-keyword density | Semantic overlap **plus** JD spelling you can defend |
 | Stuff and hidden white text | Detected; copy-paste of the JD can auto-reject |
-| Always PDF | Working file is Markdown. Portal `.docx` / share PDF only if asked |
+| Always PDF | Working file is Markdown. Export: SKILL.md Defaults |
 | One page always | One page default; two only if earned in SKILL.md |
 | Cover letter every app | Default **no** for engineering |
 | Functional / skills-first | Reverse chronological. Freelance uses an umbrella, not a skills dump |
@@ -29,18 +29,18 @@ bullets. Do not paste sentences.
 | Rule | Do | Do not |
 | --- | --- | --- |
 | Columns | One column, full width | Sidebar, two-column, text boxes |
-| Headings | Summary, Skills, Experience, Education | "What I bring", "Core competencies" as a H1 |
-| Contact | First lines of the body | Header, footer, icon row |
+| Headings | `## Summary`, `## Skills`, `## Experience`, `## Education` | "What I bring", "Core competencies" as a H1 |
+| Contact | First lines of the body. No `\|` pipes | Header, footer, icon row, a Markdown table |
 | Dates | `MM/YYYY–MM/YYYY` or `MM/YYYY–Present` | Year-only (`2019`) or `2019-Present` |
 | Fonts | Arial, Calibri, Georgia, Garamond, Times, 10–12 pt | Decorative fonts, skill bars |
 | Margins | 0.5–1 in | Packed 0.3 in walls |
 | Graphics | None | Photo, logo, chart, icon |
 | Tables | None in the CV | Skills in a grid |
-| File | Markdown. `.docx` / PDF only when SKILL.md Defaults earn them | Scanned PDF, `.pages`, image PDF |
+| File | Markdown. Export: SKILL.md Defaults | Scanned PDF, `.pages`, image PDF |
 
-Honor the posting's file type when exporting. Jobscan: single
-column, standard headings, contact in the body. Columns, headers,
-and tables are reported to scramble in Workday and older Taleo.
+Jobscan: single column, standard headings, contact in the body.
+Columns, headers, and tables are reported to scramble in Workday
+and older Taleo.
 
 ## Keywords
 
@@ -71,7 +71,6 @@ ATS + density:
 - [ ] Current role is the densest block
 - [ ] Every number is in the career source
 - [ ] Plain-text paste still reads in order
-- [ ] Portal .docx / text PDF only if asked (n/a otherwise)
 ```
 
 A made-up "87% ATS match" is not a tick.
