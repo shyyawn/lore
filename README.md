@@ -71,17 +71,28 @@ npx skills add vercel/next.js -g -y \
 npx skills add microsoft/playwright-cli \
   --skill playwright-cli -g -y \
   --agent cursor --agent claude-code --agent codex
+
+npx skills add encoredev/skills -g -y \
+  --agent claude-code --agent codex
+
+npx skills add temporalio/skill-temporal-developer \
+  --skill temporal-developer -g -y \
+  --agent claude-code --agent codex
+
+npx skills add sveltejs/ai-tools \
+  --skill svelte-core-bestpractices --skill svelte-code-writer \
+  -g -y --agent claude-code --agent codex
 ```
 
-`make uninstall-vendor-skills` runs `npx skills remove` for those packs on the same agents. It does not touch lore copies or plugins.
+`make uninstall-vendor-skills` runs `npx skills remove` for those packs on the same agents. It does not touch lore copies or Cursor plugins. Encore / Temporal / Svelte skills are not installed for Cursor (the plugins already have them). MCP is not part of this script.
 
 Plugins are user-scope from agent chat. The `npx skills add … -g` lines are user-scope too: they land in `~/.cursor/skills`, `~/.claude/skills`, and `~/.codex/skills`. Omit `-g` only if you want them in one repo's `.agents/skills/`.
 
 | Source | Covers | Do not also install |
 | --- | --- | --- |
-| [encore](https://cursor.com/marketplace/encore) plugin | Live MCP against `encore run` (services, DBs, traces, call endpoints), plus Encore's own rules/skills/commands | `npx add-skill encoredev/skills` or a second Encore MCP |
-| [temporal](https://cursor.com/marketplace/temporal) plugin | Official Temporal SDK, CLI, and Cloud skill (`temporal-developer`) | `npx skills add temporalio/skill-temporal-developer` or the Temporal docs MCP |
-| [svelte](https://cursor.com/marketplace/svelte) plugin | Svelte MCP, skills, and the `svelte-file-editor` agent | Extra Svelte skill packs or a second Svelte MCP |
+| [encore](https://cursor.com/marketplace/encore) plugin | Live MCP against `encore run`, plus Encore's own rules/skills/commands | `encoredev/skills` on Cursor; a second Encore MCP |
+| [temporal](https://cursor.com/marketplace/temporal) plugin | Official Temporal SDK, CLI, and Cloud skill (`temporal-developer`) | `temporal-developer` on Cursor; Temporal docs MCP |
+| [svelte](https://cursor.com/marketplace/svelte) plugin | Svelte MCP, skills, and the `svelte-file-editor` agent | Extra Svelte packs on Cursor; a second Svelte MCP |
 | [`conventional-commit-message`](https://github.com/conventional-changelog/conventional-changelog/tree/master/skills/conventional-commit-message) skill | Commit *format*: types by release impact, `!` / `BREAKING CHANGE`, scopes, commitlint check | Random skills.sh / Lobe copies; `committing-with-commitlint` globally (only in a repo that already has commitlint) |
 | [`expo/skills`](https://github.com/expo/skills) | Expo SDK, Expo Router, native UI, upgrades, EAS (build, submit, hosting, workflows). Router skill is `expo-overview` | Extra Expo packs; Lobe / skills.sh copies; `vercel-react-native-skills` beside this pack |
 | [`vercel-react-best-practices`](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices) | Web React and Next performance (RSC, waterfalls, `Activity`). From [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | The rest of that repo (`writing-guidelines`, `deploy-to-vercel`, …) unless you asked |

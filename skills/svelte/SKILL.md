@@ -80,8 +80,8 @@ Format with the repo's formatter. Do not add a second one.
 
 ## Hard rules
 
-- Install the Svelte plugin (`/add-plugin svelte`). Do not copy its
-  skills into this repo.
+- Install the Svelte plugin (`/add-plugin svelte`). Other agents:
+  `make install-vendor-skills`. Do not copy its skills into this repo.
 - New code is **runes**. The plugin owns the catalog.
 - Kit 2.12+: `import { page } from '$app/state'`. Not `$app/stores`.
 - Shared UI state: `createContext` or a `$state` class. Not `writable()`
