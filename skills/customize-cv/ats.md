@@ -39,8 +39,7 @@ bullets. Do not paste sentences.
 | File | Markdown. Export: SKILL.md Defaults | Scanned PDF, `.pages`, image PDF |
 
 Jobscan: single column, standard headings, contact in the body.
-Columns, headers, and tables are reported to scramble in Workday
-and older Taleo.
+Columns, headers, and tables scramble the reading order.
 
 ## Keywords
 
