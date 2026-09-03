@@ -5,8 +5,9 @@ Parse first, then a human in seconds. With a JD, semantic screeners
 matter for recruiter search and older ATS. A base CV still follows
 this format. Do not treat keywords as a game.
 
-Job CVs only. Freelance profile: [freelance.md](freelance.md). Do
-not apply this file to an Upwork page or a pass-along listing.
+Job CVs only. Freelance profile: [freelance.md](freelance.md). Job
+LinkedIn: [linkedin.md](linkedin.md). Do not apply this file to an
+Upwork page, a pass-along listing, or a LinkedIn About.
 
 Sources: Jobscan ATS anatomy. Not a scanner product. Not their admin
 trees.
@@ -43,6 +44,9 @@ bullets. Do not paste sentences.
 
 Jobscan: single column, standard headings, contact in the body.
 Columns, headers, and tables scramble the reading order.
+Experience is the spine. Do not add a Projects-first block — that
+is [freelance.md](freelance.md). Staff+ fold shipped products into
+Experience bullets.
 
 ## Keywords
 
@@ -55,8 +59,10 @@ prove the lane, plus SOURCE inventory those bullets already use.
    context. Not ten times.
 4. Expand on first use when the JD uses both (`CI/CD` after
    `continuous integration`).
-5. Title: the real title, then a parenthetical only if it maps
-   without lying (`Staff Engineer (Platform / Identity)`).
+5. Title: Experience keeps the HR title. Summary lane matches the
+   JD. A parenthetical only if it maps without lying (`Staff Engineer
+   (Platform / Identity)`). Do not relabel VP/SVP as Staff in
+   Experience.
 
 Skills groups are plain comma lists. Empty groups omit.
 

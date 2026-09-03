@@ -30,6 +30,7 @@ Do not invent clients, reviews, or an Independent Consultant row.
 | Freelance profile, pass-along, friend PDF, LinkedIn Services | Pass-along | ATS headings, job title as headline |
 | Upwork, Fiverr, Toptal, marketplace | Marketplace | Pass-along dumped into a gig |
 | Contractor JD / ATS contract role | ATS CV ([variants.md](variants.md)) | Offer-first marketplace page |
+| Job LinkedIn (headline, About, Open to Work) | [linkedin.md](linkedin.md) | Service headline; ATS no-photo |
 
 ## Blocks
 

@@ -7,26 +7,29 @@ description: >-
   or reviewing a CV, resume, application, Upwork, Fiverr, Toptal,
   LinkedIn Services, or freelance profile; when the user mentions ATS,
   Staff Engineer, Principal, Software Architect, Engineering Manager,
-  freelance, gig, marketplace, contract CV, base CV, tailor resume, or
-  export PDF / docx.
+  VP, SVP, LinkedIn headline, About, Open to Work, freelance, gig,
+  marketplace, contract CV, base CV, tailor resume, or export PDF /
+  docx.
 ---
 
 # Customize CV 2026
 
-One **file** per ask. Job CV (IC / Manager) or freelance profile.
-Do not dump a career onto the page. Do not write a job CV when the
-ask is a listing.
+One **file** per ask. Job CV (IC / Manager), freelance profile, or
+job LinkedIn. Do not dump a career onto the page. Do not write a
+job CV when the ask is a listing.
 
 Sources: Laszlo Bock XYZ (`Accomplished [X] as measured by [Y] by
 doing [Z]`); Jobscan ATS anatomy (single column, standard headings);
 DORA (`dora.dev`) for Manager delivery numbers; Larson Staff Engineer
-archetypes for the IC lane. Freelance listing: Damongo Upwork 2026,
-Fiverr profile/gig guides, LinkedIn Services. Not Canva.
+archetypes for the IC lane. Job LinkedIn: headline / About practice.
+Freelance listing: Damongo Upwork 2026, Fiverr profile/gig guides,
+LinkedIn Services. Not Canva.
 
 Variants: [variants.md](variants.md). Profile:
-[freelance.md](freelance.md). Parse: [ats.md](ats.md). Career source:
-[career.md](career.md). `<folder>` is the directory that holds
-`SOURCE.md` (usually `career/`).
+[freelance.md](freelance.md). LinkedIn: [linkedin.md](linkedin.md).
+Parse: [ats.md](ats.md). Career source: [career.md](career.md).
+`<folder>` is the directory that holds `SOURCE.md` (usually
+`career/`).
 
 ## First step
 
@@ -37,44 +40,50 @@ Variants: [variants.md](variants.md). Profile:
 2. Freelance profile / Upwork / Fiverr / Toptal / LinkedIn Services /
    pass-along / "freelance page" → **stop** the job-CV workflow.
    Follow [freelance.md](freelance.md). Do not apply [ats.md](ats.md).
-3. Reviewing an existing **job** CV → [ats.md](ats.md) Before send.
+3. Job LinkedIn (headline, About, Featured, Open to Work) →
+   [linkedin.md](linkedin.md). Do not apply ATS no-photo. Do not use
+   [freelance.md](freelance.md) unless they asked for Services.
+4. Reviewing an existing **job** CV → [ats.md](ats.md) Before send.
    Honor the file. Do not rewrite as a drive-by.
-4. If a more specific skill already owns this, **stop**.
+5. If a more specific skill already owns this, **stop**.
 
    | Detect | Follow |
    | --- | --- |
    | README / ADR / docs body | `create-readme-and-other-markdown-documentation` |
    | Lore `skills/*/SKILL.md` | `new-change-lore-skills` |
-5. No career source → **stop** and ask for an existing CV, a LinkedIn
+6. No career source → **stop** and ask for an existing CV, a LinkedIn
    export, or notes. A paste is enough for this file. Write `SOURCE.md`
    when `career/` exists or the user wants repeat use
    ([career.md](career.md)). Do not invent dates, titles, employers,
    or metrics. Do not put that file in this lore repo.
-6. Job CV: JD present → split must-haves from nice-to-haves. No JD →
+7. Job CV: JD present → split must-haves from nice-to-haves. No JD →
    **base**. Name the variant ([variants.md](variants.md)). IC lane
-   from the JD title, else SOURCE Lanes, else ask.
-7. Copy the matching workflow. Tick it.
+   from the JD title, else SOURCE Lanes, else ask. VP/SVP is Manager
+   org-shape, not a fourth variant.
+8. Copy the matching workflow. Tick it.
 
 ## Defaults
 
 | Job | Default | Honor instead when |
 | --- | --- | --- |
 | Career source | `career/SOURCE.md` | paste for one file; `career/*.md` / `cv/` already there |
-| Artifact | job CV (IC / Manager) | freelance profile / marketplace / pass-along → [freelance.md](freelance.md) |
+| Artifact | job CV (IC / Manager) | freelance profile → [freelance.md](freelance.md); job LinkedIn → [linkedin.md](linkedin.md) |
 | Mode | tailor to the JD | no JD in the ask → base |
 | Variant | from the JD | user named; else SOURCE Lanes (ask if several) |
 | IC lane | JD title (Staff / Principal / Architect / Senior) | user named; else SOURCE Lanes |
+| Manager sub-lane | EM | JD or SOURCE says Head / VP / SVP → org-shape ([variants.md](variants.md)) |
 | Pages | **one** | Earn a second page (job CV only) |
 | Layout | reverse chronological, single column | job CV only. Profile: [freelance.md](freelance.md) |
 | Headings | `## Summary`, `## Skills`, `## Experience`, `## Education` | job CV only. Profile headings stay in [freelance.md](freelance.md) |
+| Projects section | **no** — fold into Experience | junior / career-switch; freelance → [freelance.md](freelance.md) |
 | Bullets | XYZ; 3–5 on the current role, 2–3 on the one before | job CV only |
 | File to write | Markdown in `<folder>/out/` | user named a path |
-| Slug | `<company>-<role>-<variant>.md` | no JD → `base-<variant>.md`; profile → [freelance.md](freelance.md) |
+| Slug | `<company>-<role>-<variant>.md` | no JD → `base-<variant>.md`; profile → [freelance.md](freelance.md); LinkedIn → [linkedin.md](linkedin.md) |
 | Share PDF | **no** | user asked for PDF / export |
 | PDF tool | `pandoc` + an engine on PATH (typst, weasyprint, pdflatex) | — |
 | Portal `.docx` | **no** | posting is a portal, or the user asked |
 | Cover letter | **no** | portal requires it, or the user asked |
-| LinkedIn rewrite | **no** | user asked to align dates; LinkedIn Services → [freelance.md](freelance.md) |
+| LinkedIn rewrite | **no** | job LinkedIn → [linkedin.md](linkedin.md); LinkedIn Services → [freelance.md](freelance.md) |
 
 ## Division of labor
 
@@ -84,6 +93,7 @@ Variants: [variants.md](variants.md). Profile:
 | Variant, lane, which evidence ships | this skill |
 | Job CV ATS parse and headings | this skill ([ats.md](ats.md)) |
 | Freelance profile copy | this skill ([freelance.md](freelance.md)) |
+| Job LinkedIn copy | this skill ([linkedin.md](linkedin.md)) |
 | README / docs Markdown | `create-readme-and-other-markdown-documentation` |
 | Cover letter | this skill |
 | Markdown file; `pandoc` export | this skill |
@@ -108,7 +118,7 @@ Padding is not a second page.
 | --- | --- |
 | One job CV per ask (tailor or base); pick evidence; ATS shape | Inventing a career |
 | Freelance profile (pass-along or marketplace) | A fourth variant (Director, Founder) unasked |
-| | Portfolio website; interview loops; LinkedIn date rewrite unasked |
+| Job LinkedIn when asked ([linkedin.md](linkedin.md)) | Portfolio website; interview loops; LinkedIn rewrite unasked |
 | | Canva / Teal / Resume Worded dumps |
 
 ## Hard rules
@@ -119,6 +129,8 @@ Padding is not a second page.
   page "for completeness".
 - Freelance profile is not a job CV. Do not apply [ats.md](ats.md)
   Experience-first or no-photo to [freelance.md](freelance.md).
+- Job LinkedIn is not a CV paste. Follow [linkedin.md](linkedin.md).
+  Do not apply ATS no-photo there.
 - With a JD: must-have terms appear only where the source can defend
   them. Mirror the posting's spelling when it is true (`Amazon Web
   Services` and `AWS` if both are accurate). Do not paste JD
@@ -157,14 +169,15 @@ One scope line (surface, team size, domain) when IC or Manager.
 Degree, school, year. No coursework wall.
 ```
 
-Freelance profile: [freelance.md](freelance.md). Do not use the job
-CV shape below for that ask. Artifacts (talks, OSS, ADRs) only when
-they prove the lane.
+Freelance profile: [freelance.md](freelance.md). Job LinkedIn:
+[linkedin.md](linkedin.md). Do not use the job CV shape below for
+those asks. Artifacts (talks, OSS, ADRs) only when they prove the
+lane.
 
 ## Write the CV
 
-Job CV only. Profile → [freelance.md](freelance.md). Stop this
-checklist.
+Job CV only. Profile → [freelance.md](freelance.md). LinkedIn →
+[linkedin.md](linkedin.md). Stop this checklist.
 
 Copy this checklist.
 
@@ -221,8 +234,11 @@ you cannot, the engine wrote an image.
 | Staff routed as Senior | Bullets are team-bound shipping ([variants.md](variants.md)) |
 | EM routed as IC | "I shipped" not team / hiring / retention |
 | Architect routed as Senior | Stack list, no named trade-off or ADR |
+| VP routed as Staff | Architecture internals; no org coordinates ([variants.md](variants.md)) |
+| Staff page opens with SVP org story | Did not pick the JD lane; Experience title is fine, Summary is not |
 | Freelance flagged as hopper | Per-client rows under 6 months (ATS contract CV) |
 | Freelance page looks like a job CV | Did not follow [freelance.md](freelance.md) |
+| LinkedIn dates disagree with the CV | Did not follow [linkedin.md](linkedin.md) |
 | Rejected for JD copy | Pasted posting; AI overlap trap |
 | Interview cannot defend a number | Invented or rounded-up metric |
 | Two pages of old jobs | Did not earn; did not shrink older roles |
@@ -245,9 +261,13 @@ you cannot, the engine wrote an image.
 - "Passionate engineer" / Objective / References on request
 - White-text keywords or prompt injection
 - LinkedIn rewrite unasked
+- A freelance service headline on a job LinkedIn
 - A fourth variant (Director, Founder, "hybrid IC+EM") unasked
 - Staff bullets that are louder Senior ("wrote APIs")
 - EM bullets that are IC ("I built the service")
+- VP org-shape on a Staff page, or Staff leverage as the lead on a VP page
+- Relabeling VP/SVP as Staff in Experience
+- Projects-first block on a job CV
 - Freelance as twelve two-month employers
 - A job CV written as a freelance profile (or the reverse)
 - Independent Consultant chapter with no SOURCE clients

@@ -20,8 +20,9 @@ commit this tree into the lore repo.
    into CV prose here.
 4. Tag each fact `ic` / `manager` / `freelance`. Two tags allowed.
 5. Gaps stay gaps. Ask rather than guess a percent.
-6. Then write the job CV (base if no JD, tailored if there is one)
-   or the freelance profile ([freelance.md](freelance.md)).
+6. Then write the job CV (base if no JD, tailored if there is one),
+   the freelance profile ([freelance.md](freelance.md)), or job
+   LinkedIn ([linkedin.md](linkedin.md)).
 
 ## Default file
 
@@ -38,6 +39,7 @@ Work authorization only if the user wants it on CVs.
 ## Lanes
 Which of IC / Manager / Freelance they actually want.
 IC sub-lane if they have one (Staff platform, Architect, …).
+Manager sub-lane if they have one (EM vs Head / VP / SVP).
 
 ## Roles
 Reverse chronological. Per role:

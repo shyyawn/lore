@@ -9,8 +9,10 @@ posting. Do not mix.
 
 | JD / ask | Variant | Not |
 | --- | --- | --- |
-| SWE, Senior, Staff, Principal, Architect | IC | Manager people-metrics |
+| SWE, Senior, Staff, Principal, Architect | IC | Manager people-metrics; VP org-shape as the lead |
 | Engineering Manager, Senior EM, Head of (people) | Manager | "I shipped the feature" as the lead |
+| VP, SVP, Head of Engineering | Manager (org-shape) | A fourth variant; Staff leverage as the lead |
+| JD is Staff/Architect; SOURCE title is VP/SVP | IC that lane. Experience keeps the HR title | Relabeling SVP as Staff in Experience |
 | Freelance profile, Upwork, Fiverr, pass-along | Freelance profile ([freelance.md](freelance.md)) | Job CV dumped onto the listing |
 | Contractor JD / ATS contract role | Freelance ATS CV | Twelve employer rows |
 | No JD; user or SOURCE says IC / Manager | that variant | Mixing lanes on one page |
@@ -52,7 +54,13 @@ bullet names a trade-off.
 ## Manager
 
 Prove the **team**. People, hiring, delivery. Technical judgment is
-one bullet, not the page.
+one bullet, not the page. Head / VP / SVP is this variant with
+**org-shape**, not a fourth file type.
+
+| Sub-lane | Lead with | Evidence |
+| --- | --- | --- |
+| Engineering Manager | The team | Retention, hires, promotions, DORA, team size over time |
+| Head / VP / SVP | Org shape and a company problem | Headcount start→end, reporting line, budget if SOURCE has it, delivery predictability, hiring throughput |
 
 | Pillar | Numbers that land | Not |
 | --- | --- | --- |
@@ -64,8 +72,10 @@ one bullet, not the page.
 Scope line: N engineers, N squads, product surface.
 
 Lead with team outcomes. "Grew 6 → 14; 92% retention; 4 promoted to
-Senior" then how. DORA only with numbers the source has. Do not
-invent a DORA dashboard.
+Senior" then how. VP: open with org coordinates (N engineers, who
+you reported to) then the before→after. DORA only with numbers the
+source has. Do not invent a DORA dashboard. Do not lead a VP page
+with architecture internals.
 
 A required AI-tooling or DEI line: only when the source has it.
 With a JD, only if the JD asks too. Not a 2026 fashion stamp.
@@ -113,7 +123,7 @@ hook.
 | Variant | X (outcome) | Y (measure) | Z (method) |
 | --- | --- | --- | --- |
 | IC | System or product change | Latency, cost, adoption, incidents | Decision, design, migration |
-| Manager | Team or org change | Retention, hires, DORA, promotions | Process, hiring, staffing |
+| Manager | Team or org change | Retention, hires, DORA, promotions, headcount | Process, hiring, staffing |
 | Freelance | Buyer change | Time-to-MVP, revenue, cost, uptime | Scope you were hired to do |
 
 3–5 bullets on the current role. 2–3 on the previous. Older: one

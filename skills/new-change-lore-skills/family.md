@@ -83,7 +83,7 @@ Do not invent a parallel `go-idioms`, a second `encore-go`, or a second
 | `choose-collections` | workflow / playbook | — | In-memory chooser. Invent default no. |
 | `requirement-to-architecture-to-design` | workflow / playbook | — | Requirements then architecture then design. |
 | `review-change` | workflow / playbook | — | Tick catalogs 1–7 plus the language pin. |
-| `customize-cv` | workflow / playbook | — | Career source → IC / Manager job CV, or a freelance profile. JD optional. Not a dump. |
+| `customize-cv` | workflow / playbook | — | Career source → IC / Manager job CV, freelance profile, or job LinkedIn. JD optional. Not a dump. |
 | `go-idioms` | language | — | Go 1.18–1.27 + 2024–2026 flatten layout |
 | `typescript-idioms` | language | — | TypeScript 5–7 + 2024–2026 flatten layout |
 | `python-idioms` | language | — | Python 3.10–3.14 + 2024–2026 flatten layout |
@@ -139,6 +139,7 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | review this / code review | `review-change` |
 | CV / resume / tailor to JD / ATS / base CV | `customize-cv` |
 | Upwork / Fiverr / Toptal / LinkedIn Services / freelance profile | `customize-cv` ([freelance.md](../customize-cv/freelance.md)) |
+| LinkedIn headline / About / Open to Work (job search) | `customize-cv` ([linkedin.md](../customize-cv/linkedin.md)) |
 | `*.css` / `<style>` / component CSS | `css-idioms`. Tailwind already there: honor. NativeWind setup: `expo-tailwind-setup` |
 
 ## Naming
