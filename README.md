@@ -19,7 +19,7 @@ lore/
 
 | Path | Installs as | What belongs here |
 | --- | --- | --- |
-| `skills/<name>/` | `~/.cursor/skills/<name>/` | Repeatable domain playbooks. Cursor also loads `.claude/skills` and `.codex/skills`. |
+| `skills/<name>/` | `~/.cursor/skills`, `~/.agents/skills`, `~/.claude/skills` | Repeatable domain playbooks. Cursor also loads `.claude/skills` and `.codex/skills`. |
 | `rules/*.mdc` | `~/.cursor/rules/` or a project's `.cursor/rules/` | Short always-on or glob-scoped constraints. Dynamic “apply intelligently” rules are skills instead. |
 | `agents/` | `~/.cursor/agents/` | Subagent personas. Add when you have one. |
 | `scripts/` | not copied | `make setup` and vendor skill install. Not agent knowledge. |
@@ -148,14 +148,14 @@ For lore + vendor skills on a new machine, use `make setup`. See [Start here](#s
 | Target | Does |
 | --- | --- |
 | `make setup` | Lore skills + vendor skills; prints Cursor plugin steps (plugins still manual) |
-| `make install` | Copy every skill into `~/.cursor/skills` |
+| `make install` | Copy every skill into Cursor, Codex, and Claude Code skill dirs |
 | `make install-vendor-skills` | Install official vendor skills (Conventional Commits, Expo, Vercel, Playwright) into `~/.cursor/skills` |
 | `make print-cursor-plugins` | Show `/add-plugin` steps only (no install) |
 | `make status` | Show which installed copies have drifted from the repo |
-| `make uninstall` | Remove this repo's skills from `~/.cursor/skills` |
+| `make uninstall` | Remove this repo's skills from those skill dirs |
 | `make list` | List the skills in this repo |
 
-`~/.cursor/skills` is Cursor-only. `~/.agents/skills` is the portable location (Cursor, Claude Code, Codex). `install` writes `~/.cursor/skills` only. Re-enable `AGENTS_SKILLS` in the Makefile to write both. Leaves skills it does not own (symlinks to other repos) alone.
+`make install` writes `~/.cursor/skills` (Cursor), `~/.agents/skills` (Codex; Cursor also reads it), and `~/.claude/skills` (Claude Code). Claude Code does not read `~/.agents/skills`. Leaves skills it does not own (symlinks to other repos) alone.
 
 These are **copies, not symlinks** — a running agent keeps a stable snapshot while you edit. The trade-off is drift: re-run `make install` after every change, and `make status` reports what is stale. Symlink instead (`ln -sfn`) if you would rather edits go live immediately.
 
