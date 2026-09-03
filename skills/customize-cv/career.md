@@ -20,7 +20,8 @@ commit this tree into the lore repo.
    into CV prose here.
 4. Tag each fact `ic` / `manager` / `freelance`. Two tags allowed.
 5. Gaps stay gaps. Ask rather than guess a percent.
-6. Then write the CV (base if no JD, tailored if there is one).
+6. Then write the job CV (base if no JD, tailored if there is one)
+   or the freelance profile ([freelance.md](freelance.md)).
 
 ## Default file
 
@@ -48,7 +49,10 @@ Reverse chronological. Per role:
 
 ## Freelance
 Entity name if any. Clients (or "fintech client") and whether the
-name may appear. Engagement dates and outcomes.
+name may appear. Engagement dates and outcomes. Offers they actually
+sell. Public product URLs / MAU that may appear as portfolio. Rate,
+timezone, languages, response window. Reviews only if they exist —
+never invent.
 
 ## Skills
 Honest inventory with years or last-used if known.

@@ -5,6 +5,9 @@ Parse first, then a human in seconds. With a JD, semantic screeners
 matter for recruiter search and older ATS. A base CV still follows
 this format. Do not treat keywords as a game.
 
+Job CVs only. Freelance profile: [freelance.md](freelance.md). Do
+not apply this file to an Upwork page or a pass-along listing.
+
 Sources: Jobscan ATS anatomy. Not a scanner product. Not their admin
 trees.
 
@@ -17,7 +20,7 @@ trees.
 | Always PDF | Working file is Markdown. Export: SKILL.md Defaults |
 | One page always | One page default; two only if earned in SKILL.md |
 | Cover letter every app | Default **no** for engineering |
-| Functional / skills-first | Reverse chronological. Freelance uses an umbrella, not a skills dump |
+| Functional / skills-first | Reverse chronological. ATS contract Freelance uses an umbrella, not a skills dump |
 | Polished generic AI CV | Recruiter red flag. Specific, defendable nouns |
 
 Aim for overlap on must-haves, not a score. Schellmann (NPR): some

@@ -1,8 +1,8 @@
 # Variants
 
 Three **variants**. Not five. Staff, Principal, Architect, and Senior
-share **IC**. Manager is people leadership. Freelance is a client or
-contract pitch.
+share **IC**. Manager is people leadership. Freelance is a client
+pitch. Profile: [freelance.md](freelance.md).
 
 Pick from the JD, or from the ask / SOURCE Lanes when there is no
 posting. Do not mix.
@@ -11,10 +11,12 @@ posting. Do not mix.
 | --- | --- | --- |
 | SWE, Senior, Staff, Principal, Architect | IC | Manager people-metrics |
 | Engineering Manager, Senior EM, Head of (people) | Manager | "I shipped the feature" as the lead |
-| Client pitch, contract, freelance project | Freelance | Twelve employer rows |
-| No JD; user or SOURCE says IC / Manager / Freelance | that variant | Mixing lanes on one page |
-| Full-time IC, career has freelance chapters | IC + umbrella Independent Consultant | Per-gig hopping |
-| Full-time EM, career has freelance chapters | Manager + umbrella | Relabeling consulting as headcount |
+| Freelance profile, Upwork, Fiverr, pass-along | Freelance profile ([freelance.md](freelance.md)) | Job CV dumped onto the listing |
+| Contractor JD / ATS contract role | Freelance ATS CV | Twelve employer rows |
+| No JD; user or SOURCE says IC / Manager | that variant | Mixing lanes on one page |
+| No JD; user or SOURCE says Freelance | Freelance profile ([freelance.md](freelance.md)) | Job CV; inventing Independent Consultant |
+| Full-time IC, SOURCE has real freelance clients | IC + umbrella Independent Consultant | Per-gig hopping; inventing clients |
+| Full-time EM, SOURCE has real freelance clients | Manager + umbrella | Relabeling consulting as headcount |
 
 ## IC
 
@@ -70,8 +72,17 @@ With a JD, only if the JD asks too. Not a 2026 fashion stamp.
 
 ## Freelance
 
-Prove **delivery for a buyer**. One Independent Consultant (or
-registered entity) chapter. Client names only if the source allows.
+Prove **delivery for a buyer**. A listing or a contract CV. Not a
+louder IC page.
+
+| Ask | Artifact |
+| --- | --- |
+| Profile, pass-along, marketplace, LinkedIn Services | [freelance.md](freelance.md) |
+| Contractor JD / ATS contract role | Umbrella CV below |
+| Full-time, SOURCE has real freelance clients | IC/Manager + umbrella |
+| Full-time, SOURCE has no clients | Do not invent Independent Consultant |
+
+ATS contract only:
 
 | Pitch | Shape |
 | --- | --- |
@@ -82,7 +93,7 @@ registered entity) chapter. Client names only if the source allows.
 Umbrella row: title, entity or Self-Employed, MM/YYYY–MM/YYYY span.
 Then 3–5 project bullets (problem, stack, outcome, duration). Volume
 line for the rest ("12 engagements, SaaS and fintech") — do not list
-every week.
+every week. Client names only if the source allows.
 
 | Ship | Drop |
 | --- | --- |

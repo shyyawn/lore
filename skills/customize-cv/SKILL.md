@@ -1,27 +1,31 @@
 ---
 name: customize-cv
 description: >-
-  Writes a software CV from a career source into one of three variants
-  (IC, Manager, Freelance), tailored to a job description when one
-  exists, otherwise a base variant, as Markdown. Use when writing,
-  customizing, or reviewing a CV, resume, or application with or
-  without a JD; when the user mentions ATS, Staff Engineer, Principal,
-  Software Architect, Engineering Manager, freelance, contract CV,
-  base CV, tailor resume, or export PDF / docx.
+  Writes a software CV (IC, Manager) or a freelance profile from a
+  career source, tailored to a job description when one exists,
+  otherwise a base variant, as Markdown. Use when writing, customizing,
+  or reviewing a CV, resume, application, Upwork, Fiverr, Toptal,
+  LinkedIn Services, or freelance profile; when the user mentions ATS,
+  Staff Engineer, Principal, Software Architect, Engineering Manager,
+  freelance, gig, marketplace, contract CV, base CV, tailor resume, or
+  export PDF / docx.
 ---
 
 # Customize CV 2026
 
-One **CV** per ask. With a JD, tailor. Without, a base variant.
-Do not dump a career onto the page.
+One **file** per ask. Job CV (IC / Manager) or freelance profile.
+Do not dump a career onto the page. Do not write a job CV when the
+ask is a listing.
 
 Sources: Laszlo Bock XYZ (`Accomplished [X] as measured by [Y] by
 doing [Z]`); Jobscan ATS anatomy (single column, standard headings);
 DORA (`dora.dev`) for Manager delivery numbers; Larson Staff Engineer
-archetypes for the IC lane. Not Canva.
+archetypes for the IC lane. Freelance listing: Damongo Upwork 2026,
+Fiverr profile/gig guides, LinkedIn Services. Not Canva.
 
-Variants: [variants.md](variants.md). Parse: [ats.md](ats.md). Career
-source: [career.md](career.md). `<folder>` is the directory that holds
+Variants: [variants.md](variants.md). Profile:
+[freelance.md](freelance.md). Parse: [ats.md](ats.md). Career source:
+[career.md](career.md). `<folder>` is the directory that holds
 `SOURCE.md` (usually `career/`).
 
 ## First step
@@ -30,44 +34,47 @@ source: [career.md](career.md). `<folder>` is the directory that holds
 
    `career/SOURCE.md` (or `career/*.md`), `cv/`, `resume/`, `CV.md`,
    `RESUME.md`, an existing file under `<folder>/out/`.
-2. Reviewing an existing CV → [ats.md](ats.md) Before send. Honor
-   the file. Do not rewrite as a drive-by.
-3. If a more specific skill already owns this, **stop**.
+2. Freelance profile / Upwork / Fiverr / Toptal / LinkedIn Services /
+   pass-along / "freelance page" → **stop** the job-CV workflow.
+   Follow [freelance.md](freelance.md). Do not apply [ats.md](ats.md).
+3. Reviewing an existing **job** CV → [ats.md](ats.md) Before send.
+   Honor the file. Do not rewrite as a drive-by.
+4. If a more specific skill already owns this, **stop**.
 
    | Detect | Follow |
    | --- | --- |
    | README / ADR / docs body | `create-readme-and-other-markdown-documentation` |
    | Lore `skills/*/SKILL.md` | `new-change-lore-skills` |
-4. No career source → **stop** and ask for an existing CV, a LinkedIn
-   export, or notes. A paste is enough for this CV. Write `SOURCE.md`
+5. No career source → **stop** and ask for an existing CV, a LinkedIn
+   export, or notes. A paste is enough for this file. Write `SOURCE.md`
    when `career/` exists or the user wants repeat use
    ([career.md](career.md)). Do not invent dates, titles, employers,
    or metrics. Do not put that file in this lore repo.
-5. JD present → split must-haves from nice-to-haves. No JD → **base**.
-   Name the variant ([variants.md](variants.md)). IC lane from the JD
-   title, else SOURCE Lanes, else ask.
-6. Copy the workflow below. Tick it.
+6. Job CV: JD present → split must-haves from nice-to-haves. No JD →
+   **base**. Name the variant ([variants.md](variants.md)). IC lane
+   from the JD title, else SOURCE Lanes, else ask.
+7. Copy the matching workflow. Tick it.
 
 ## Defaults
 
 | Job | Default | Honor instead when |
 | --- | --- | --- |
-| Career source | `career/SOURCE.md` | paste for one CV; `career/*.md` / `cv/` already there |
+| Career source | `career/SOURCE.md` | paste for one file; `career/*.md` / `cv/` already there |
+| Artifact | job CV (IC / Manager) | freelance profile / marketplace / pass-along → [freelance.md](freelance.md) |
 | Mode | tailor to the JD | no JD in the ask → base |
 | Variant | from the JD | user named; else SOURCE Lanes (ask if several) |
 | IC lane | JD title (Staff / Principal / Architect / Senior) | user named; else SOURCE Lanes |
-| Pages | **one** | Earn a second page |
-| Layout | reverse chronological, single column | Freelance client pitch may lead with Selected Projects |
-| Headings | `## Summary`, `## Skills`, `## Experience`, `## Education` | existing working labels that ATS still maps |
-| Bullets | XYZ; 3–5 on the current role, 2–3 on the one before | — |
+| Pages | **one** | Earn a second page (job CV only) |
+| Layout | reverse chronological, single column | job CV only. Profile: [freelance.md](freelance.md) |
+| Headings | `## Summary`, `## Skills`, `## Experience`, `## Education` | job CV only. Profile headings stay in [freelance.md](freelance.md) |
+| Bullets | XYZ; 3–5 on the current role, 2–3 on the one before | job CV only |
 | File to write | Markdown in `<folder>/out/` | user named a path |
-| Slug | `<company>-<role>-<variant>.md` | no JD → `base-<variant>.md` (add lane if needed) |
+| Slug | `<company>-<role>-<variant>.md` | no JD → `base-<variant>.md`; profile → [freelance.md](freelance.md) |
 | Share PDF | **no** | user asked for PDF / export |
 | PDF tool | `pandoc` + an engine on PATH (typst, weasyprint, pdflatex) | — |
 | Portal `.docx` | **no** | posting is a portal, or the user asked |
-| Freelance portal | Independent Consultant umbrella | one long client (≥12 months) already a named role |
 | Cover letter | **no** | portal requires it, or the user asked |
-| LinkedIn rewrite | **no** | user asked to align dates and titles |
+| LinkedIn rewrite | **no** | user asked to align dates; LinkedIn Services → [freelance.md](freelance.md) |
 
 ## Division of labor
 
@@ -75,10 +82,11 @@ source: [career.md](career.md). `<folder>` is the directory that holds
 | --- | --- |
 | Career facts (dates, titles, metrics) | `career/` or the user's paste |
 | Variant, lane, which evidence ships | this skill |
-| ATS parse and headings | this skill ([ats.md](ats.md)) |
+| Job CV ATS parse and headings | this skill ([ats.md](ats.md)) |
+| Freelance profile copy | this skill ([freelance.md](freelance.md)) |
 | README / docs Markdown | `create-readme-and-other-markdown-documentation` |
 | Cover letter | this skill |
-| Markdown CV; `pandoc` export | this skill |
+| Markdown file; `pandoc` export | this skill |
 
 ## Earn a second page
 
@@ -98,25 +106,27 @@ Padding is not a second page.
 
 | Own | Leave |
 | --- | --- |
-| One CV per ask (tailor or base); pick evidence; ATS shape | Inventing a career |
-| Three variants, IC lanes inside IC | A fourth variant (Director, Founder) unasked |
-| | LinkedIn, portfolio site, interview loops |
+| One job CV per ask (tailor or base); pick evidence; ATS shape | Inventing a career |
+| Freelance profile (pass-along or marketplace) | A fourth variant (Director, Founder) unasked |
+| | Portfolio website; interview loops; LinkedIn date rewrite unasked |
 | | Canva / Teal / Resume Worded dumps |
 
 ## Hard rules
 
-- Career source is the **writer**. The CV is derived. Do not add a
+- Career source is the **writer**. The file is derived. Do not add a
   skill, employer, date, or number that is not in the source.
 - One variant per file. Do not mix Manager people-metrics into an IC
   page "for completeness".
+- Freelance profile is not a job CV. Do not apply [ats.md](ats.md)
+  Experience-first or no-photo to [freelance.md](freelance.md).
 - With a JD: must-have terms appear only where the source can defend
   them. Mirror the posting's spelling when it is true (`Amazon Web
   Services` and `AWS` if both are accurate). Do not paste JD
   sentences.
 - Every bullet is XYZ. No metric → ask, or use a scope the source
   already has (N services, N engineers). Do not fabricate percents.
-- First half page does the work: lane, domain, one metric, current
-  role. A keyword wall above Experience fails.
+- Job CV: first half page does the work — lane, domain, one metric,
+  current role. A keyword wall above Experience fails.
 - A bullet the user cannot talk through in an interview does not
   ship. Generic AI polish is a 2026 reject.
 - When a PDF is written, it is **text** you can select. Same words
@@ -147,16 +157,21 @@ One scope line (surface, team size, domain) when IC or Manager.
 Degree, school, year. No coursework wall.
 ```
 
-Freelance extra sections: [variants.md](variants.md). Artifacts
-(talks, OSS, ADRs) only when they prove the lane.
+Freelance profile: [freelance.md](freelance.md). Do not use the job
+CV shape below for that ask. Artifacts (talks, OSS, ADRs) only when
+they prove the lane.
 
 ## Write the CV
+
+Job CV only. Profile → [freelance.md](freelance.md). Stop this
+checklist.
 
 Copy this checklist.
 
 ```
 Customize CV:
 - [ ] Career source inventoried (or asked)
+- [ ] Artifact is a job CV (not a freelance profile)
 - [ ] Mode: tailor (JD) or base (no JD)
 - [ ] JD must-haves vs nice-to-haves listed (n/a if base)
 - [ ] Variant + IC lane picked
@@ -184,7 +199,7 @@ Filenames: Defaults.
   bottom. If it scrambles, you used a table or a column
   ([ats.md](ats.md)).
 - First 8–12 lines: lane + one metric + current title. If not, cut
-  above Experience.
+  above Experience. Profile: [freelance.md](freelance.md) instead.
 - Export only the formats Defaults earn:
 
 ```bash
@@ -206,7 +221,8 @@ you cannot, the engine wrote an image.
 | Staff routed as Senior | Bullets are team-bound shipping ([variants.md](variants.md)) |
 | EM routed as IC | "I shipped" not team / hiring / retention |
 | Architect routed as Senior | Stack list, no named trade-off or ADR |
-| Freelance flagged as hopper | Per-client rows under 6 months |
+| Freelance flagged as hopper | Per-client rows under 6 months (ATS contract CV) |
+| Freelance page looks like a job CV | Did not follow [freelance.md](freelance.md) |
 | Rejected for JD copy | Pasted posting; AI overlap trap |
 | Interview cannot defend a number | Invented or rounded-up metric |
 | Two pages of old jobs | Did not earn; did not shrink older roles |
@@ -233,6 +249,10 @@ you cannot, the engine wrote an image.
 - Staff bullets that are louder Senior ("wrote APIs")
 - EM bullets that are IC ("I built the service")
 - Freelance as twelve two-month employers
+- A job CV written as a freelance profile (or the reverse)
+- Independent Consultant chapter with no SOURCE clients
+- Job title as an Upwork / pass-along headline
+- Invented reviews or freelance clients
 - Padding a second page with 2014 tickets
 - `@latest` "ATS score 100" theatre; a made-up match percentage
 - A resume-builder CLI added to the repo
@@ -243,6 +263,7 @@ you cannot, the engine wrote an image.
 
 - Invent a career because the user said "just write a CV".
 - Dump the whole source onto one page.
+- Write a job CV into a freelance listing as a drive-by.
 - Restyle a working CV into Canva as a drive-by.
 - Write the CV as a software README. ATS shape stays in this skill.
 - Recite Jobscan or Larson as an encyclopedia.
