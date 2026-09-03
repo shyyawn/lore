@@ -20,7 +20,7 @@ Maestro. Not a Playwright API dump. Not Cypress / Nightwatch /
 Selenium as a new default.
 
 Unit / component: `typescript-unit-tests` or `go-unit-tests`. Official
-Playwright skills: install (`playwright-cli install --skills -g`).
+Playwright skills: install (`make install-vendor-skills`).
 Do not copy them into `skills/`.
 
 ## First step

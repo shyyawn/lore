@@ -55,19 +55,27 @@ Vendor commands (`make install-vendor-skills`):
 
 ```bash
 npx skills add conventional-changelog/conventional-changelog \
-  --skill conventional-commit-message -g --agent cursor
+  --skill conventional-commit-message -g -y \
+  --agent cursor --agent claude-code --agent codex
 
-npx skills add expo/skills -g --agent cursor
+npx skills add expo/skills -g -y \
+  --agent cursor --agent claude-code --agent codex
 
 npx skills add vercel-labs/agent-skills \
-  --skill vercel-react-best-practices -g --agent cursor
+  --skill vercel-react-best-practices -g -y \
+  --agent cursor --agent claude-code --agent codex
 
-npx skills add vercel/next.js -g --agent cursor
+npx skills add vercel/next.js -g -y \
+  --agent cursor --agent claude-code --agent codex
 
-npx --yes @playwright/cli install --skills -g
+npx skills add microsoft/playwright-cli \
+  --skill playwright-cli -g -y \
+  --agent cursor --agent claude-code --agent codex
 ```
 
-Plugins are user-scope from agent chat. The `npx skills add … -g --agent cursor` lines are user-scope too: they land in `~/.cursor/skills` (every project). Omit `-g` only if you want them in one repo's `.agents/skills/`.
+`make uninstall-vendor-skills` runs `npx skills remove` for those packs on the same agents. It does not touch lore copies or plugins.
+
+Plugins are user-scope from agent chat. The `npx skills add … -g` lines are user-scope too: they land in `~/.cursor/skills`, `~/.claude/skills`, and `~/.codex/skills`. Omit `-g` only if you want them in one repo's `.agents/skills/`.
 
 | Source | Covers | Do not also install |
 | --- | --- | --- |
@@ -78,7 +86,7 @@ Plugins are user-scope from agent chat. The `npx skills add … -g --agent curso
 | [`expo/skills`](https://github.com/expo/skills) | Expo SDK, Expo Router, native UI, upgrades, EAS (build, submit, hosting, workflows). Router skill is `expo-overview` | Extra Expo packs; Lobe / skills.sh copies; `vercel-react-native-skills` beside this pack |
 | [`vercel-react-best-practices`](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices) | Web React and Next performance (RSC, waterfalls, `Activity`). From [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | The rest of that repo (`writing-guidelines`, `deploy-to-vercel`, …) unless you asked |
 | [`vercel/next.js`](https://github.com/vercel/next.js/tree/canary/skills) skills | Next **workflows**: `next-dev-loop`, Cache Components and Partial Prefetching adoption. Framework APIs stay in the project's `AGENTS.md` | Retired [`next-skills`](https://github.com/vercel-labs/next-skills); a lore App Router encyclopedia |
-| Official [Playwright skills](https://playwright.dev/docs/getting-started-cli) | Playwright CLI, codegen, traces, session (`playwright-cli install --skills`) | LambdaTest / QASkills Playwright packs; a lore Playwright API dump |
+| Official [Playwright skills](https://playwright.dev/docs/getting-started-cli) | Playwright CLI, codegen, traces, session (`microsoft/playwright-cli`) | LambdaTest / QASkills Playwright packs; a lore Playwright API dump |
 
 Optional scanner for React changes: [`react-doctor`](https://cursor.com/marketplace/react-doctor) (`/add-plugin react-doctor`, or `npx react-doctor install`). Expo MCP is optional live docs and EAS when you open an Expo app — see [Cursor and Expo](https://docs.expo.dev/agents/cursor). Do not add a second Expo skills pack to get the MCP. Next.js 16.3+: `next dev` writes `AGENTS.md` that points at `node_modules/next/dist/docs/`. That is the pin-matched encyclopedia — see [AI agents](https://nextjs.org/docs/app/guides/ai-agents). Do not install the retired knowledge pack.
 
@@ -149,7 +157,8 @@ For lore + vendor skills on a new machine, use `make setup`. See [Start here](#s
 | --- | --- |
 | `make setup` | Lore skills + vendor skills; prints Cursor plugin steps (plugins still manual) |
 | `make install` | Copy every skill into Cursor, Codex, and Claude Code skill dirs |
-| `make install-vendor-skills` | Install official vendor skills (Conventional Commits, Expo, Vercel, Playwright) into `~/.cursor/skills` |
+| `make install-vendor-skills` | Install official vendor skills (Conventional Commits, Expo, Vercel, Playwright) for cursor, claude-code, and codex |
+| `make uninstall-vendor-skills` | Remove those vendor packs from the same agents |
 | `make print-cursor-plugins` | Show `/add-plugin` steps only (no install) |
 | `make status` | Show which installed copies have drifted from the repo |
 | `make uninstall` | Remove this repo's skills from those skill dirs |

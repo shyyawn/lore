@@ -13,14 +13,7 @@ The format lives in
 [`conventional-commit-message`](https://github.com/conventional-changelog/conventional-changelog/blob/master/skills/conventional-commit-message/SKILL.md)
 (conventional-changelog org). Install it; do not fork it into this repo.
 This skill only adds Go / Python / TypeScript rules that skill does not.
-
-Install (user scope, every project): see the lore README **Start here**
-section, or:
-
-```bash
-npx skills add conventional-changelog/conventional-changelog \
-  --skill conventional-commit-message -g --agent cursor
-```
+Install: lore README **Start here** (`make install-vendor-skills`).
 
 Do not also install `committing-with-commitlint` globally. Use it only in
 a repo that already has commitlint.

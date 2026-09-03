@@ -21,7 +21,8 @@ CURSOR_RULES  := $(HOME)/.cursor/rules
 SKILL_DESTS   := $(CURSOR_SKILLS) $(AGENTS_SKILLS) $(CLAUDE_SKILLS)
 
 .DEFAULT_GOAL := help
-.PHONY: help setup install install-vendor-skills print-cursor-plugins status uninstall list
+.PHONY: help setup install install-vendor-skills uninstall-vendor-skills \
+	print-cursor-plugins status uninstall list
 
 ## help: list targets
 help:
@@ -35,9 +36,13 @@ setup:
 print-cursor-plugins:
 	@bash scripts/print-cursor-plugins.sh
 
-## install-vendor-skills: install official vendor skills into ~/.cursor/skills
+## install-vendor-skills: install official vendor skills (cursor, claude-code, codex)
 install-vendor-skills:
-	@bash scripts/install-vendor-skills.sh
+	@bash scripts/vendor-skills.sh install
+
+## uninstall-vendor-skills: remove those vendor packs from the same agents
+uninstall-vendor-skills:
+	@bash scripts/vendor-skills.sh uninstall
 
 ## install: copy skills (and any Cursor rules) into agent skill dirs
 install:
