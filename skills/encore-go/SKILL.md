@@ -15,8 +15,8 @@ router. Declare services, APIs, Postgres, Pub/Sub, cron, secrets, caches, and
 object storage in Go. Encore provisions them locally and in the cloud.
 
 Language idioms follow the `go-idioms` skill. Target the module's `go` version
-(Encore.go requires **1.22+**; **1.26** from Encore v1.56). CLI through v1.58
-still ships 1.26. Do not bump `go` to 1.27 on an Encore app. This skill
+(Encore.go requires **1.22+**; **1.26** from Encore v1.56; **1.27** from CLI
+v1.58.3). Do not bump `go` to unlock an idiom. This skill
 **overrides** `go-idioms` on layout, HTTP, logging, errors, and tests: do not
 add `net/http` servers, `cmd/` binaries, `slog` in handlers, or `go test`.
 
