@@ -219,6 +219,7 @@ Slug: `<folder>/out/<company>-<role>-<variant>.md`. Base:
 - Padding a second page with 2014 tickets
 - `@latest` "ATS score 100" theatre; a made-up match percentage
 - A resume-builder CLI or Canva template added to the repo
+- A software README (Install, Develop, badges) as the CV
 
 ## Do not
 
@@ -226,6 +227,7 @@ Slug: `<folder>/out/<company>-<role>-<variant>.md`. Base:
 - Refuse a CV because there is no JD.
 - Dump the whole source onto one page.
 - Restyle a working CV into Canva as a drive-by.
+- Write the CV as a software README. ATS shape stays in this skill.
 - Write all three variants unless the user asked for all three bases.
 - Recite Jobscan or Larson as an encyclopedia.
 - Put personal career facts into this lore repo.
