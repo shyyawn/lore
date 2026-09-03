@@ -57,7 +57,7 @@ real numbers from SOURCE.
 | Surface | Lead with | Trust |
 | --- | --- | --- |
 | Pass-along | Headline = the offer. Summary = available + proof + polite ask. Projects, then a short employment spine | Company products as proof of scale. No fake consulting chapter |
-| Marketplace | One niche title, keyworded overview, skill tags, portfolio texts, Fiverr "I will …" gigs with packages | Reviews after the first jobs. You do not have them yet — do not invent |
+| Marketplace | One niche title, keyworded overview, skill tags, portfolio texts, Fiverr "I will …" gigs with packages | Reviews only from SOURCE. Do not invent |
 
 ## Skip on a first page
 
@@ -93,11 +93,8 @@ Please write to <email> if I may be of help.
 
 ## Projects
 
-Work samples from employment. I do not yet have independent
-freelance clients to list.
-
 Product — MM/YYYY–Present or MAU
-Result. What was built. Stack. Credit colleagues when shared.
+Result. What was built. Stack.
 
 ## Skills
 
@@ -110,7 +107,7 @@ How apps run: …
 
 Title(s), Company, City, MM/YYYY–MM/YYYY
 Product surface. Not org size.
-- XYZ. Worked with / helped when the work was shared.
+- XYZ.
 
 ## Education
 
@@ -156,7 +153,6 @@ Freelance profile:
 - [ ] Headline is a service, not a job title
 - [ ] Summary is available + proof + polite ask ([tone.md](tone.md))
 - [ ] 3–6 Projects before Experience (employment apps allowed)
-- [ ] Disclaimer if they are not freelance gigs
 - [ ] Skill tags are specific tools
 - [ ] Experience collapsed, product bullets, not the lead
 - [ ] No invented reviews, clients, or Independent Consultant row
@@ -191,4 +187,3 @@ User named a path → honor it.
 | Friend PDF looks like ATS | Applied [ats.md](ats.md) Experience-first |
 | Ringgit and cloud % in Summary | Internal ops metrics on a product listing |
 | One Experience row per promotion | Did not collapse titles |
-| Reads high and mighty | Did not follow [tone.md](tone.md) |

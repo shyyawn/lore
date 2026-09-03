@@ -73,8 +73,8 @@ ATS + density:
 - [ ] Single column; no table, text box, photo, header/footer contact
 - [ ] Standard headings
 - [ ] MM/YYYY on every role
-- [ ] Each JD must-have is in a bullet or Skills, or named as a gap
-  (n/a if base)
+- [ ] Each JD must-have is in a bullet or Skills, or told to the
+  user as a gap — not printed (n/a if base)
 - [ ] No pasted JD sentence
 - [ ] Current role is the densest block
 - [ ] Every number is in the career source

@@ -199,8 +199,9 @@ Customize CV:
 ```
 
 1. Tailor: map each must-have to one piece of evidence. A must-have
-   with no evidence is a gap — say so. Do not paper it with a
-   keyword. Base: rank SOURCE tags for this variant / lane. Same
+   with no evidence is a gap — tell the user. Do not print it on
+   the page ([tone.md](tone.md)). Do not paper it with a keyword.
+   Base: rank SOURCE tags for this variant / lane. Same
    density.
 2. Ship the top of the current role first. Older roles shrink.
    Irrelevant roles become one line or drop.
@@ -239,6 +240,7 @@ you cannot, the engine wrote an image.
 | Parser empty / dates missing | Columns, tables, headers, or contact in the footer ([ats.md](ats.md)) |
 | Recruiter bounce in seconds | First half page is a keyword wall or a brand sentence |
 | Reads high and mighty | Did not follow [tone.md](tone.md) |
+| Reads inexperienced or negative | Named an absence. [tone.md](tone.md) |
 | Staff routed as Senior | Bullets are team-bound shipping ([variants.md](variants.md)) |
 | EM routed as IC | "I shipped" not team / hiring / retention |
 | Architect routed as Senior | Stack list, no named trade-off or ADR |
@@ -268,6 +270,8 @@ you cannot, the engine wrote an image.
 - Functional resume as the default
 - "Passionate engineer" / Objective / References on request
 - High-and-mighty copy: Need a …?; I own; strongest; unmatched
+- Inexperienced copy: I do not yet; I have not worked in; no
+  clients to list
 - White-text keywords or prompt injection
 - LinkedIn rewrite unasked
 - A freelance service headline on a job LinkedIn
