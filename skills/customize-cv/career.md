@@ -1,27 +1,26 @@
 # Career source
 
 One **writer** for facts. Derived CVs live in `<folder>/out/` next
-to `SOURCE.md`. Do not edit dates or metrics only in the CV.
+to `SOURCE.md` (`<folder>`: SKILL.md). Do not edit dates or metrics
+only in the CV.
 
-Prefer `career/` in the current workspace. `<folder>` is that
-directory — the one that holds `SOURCE.md`. Else `cv/` / `resume/` /
-`CV.md`. Else ask for a paste. Do not invent. Do not commit this
-tree into the lore repo.
+Prefer `career/` in the current workspace. Else `cv/` / `resume/` /
+`CV.md`. Else a paste is enough for this CV. Do not invent. Do not
+commit this tree into the lore repo.
 
 ## Build
 
-1. Create `career/SOURCE.md` in the workspace where CVs will be
-   written. Not this lore repo.
-2. Gather **one** dump in `career/`: existing CV, LinkedIn export, or
-   notes. Dates, titles as HR had them, numbers, stack, team size.
-   Rough is fine.
+1. `career/` exists, or the user wants repeat use → write
+   `SOURCE.md` here. Not this lore repo. A one-shot paste is enough
+   for this CV; do not skip `SOURCE.md` when `career/` is there.
+2. Gather **one** dump: existing CV, LinkedIn export, or notes.
+   Dates, titles as HR had them, numbers, stack, team size. Rough
+   is fine.
 3. Map onto the headings below. One fact, one place. Do not polish
    into CV prose here.
 4. Tag each fact `ic` / `manager` / `freelance`. Two tags allowed.
 5. Gaps stay gaps. Ask rather than guess a percent.
 6. Then write the CV (base if no JD, tailored if there is one).
-   Do not skip this file and "just generate". PDF / `.docx` only if
-   the user asked.
 
 ## Default file
 
@@ -65,10 +64,8 @@ Visa, notice, location, salary — not printed unless the user says so.
 
 ## Derived CVs
 
-`<folder>/out/<company>-<role>-<variant>.md` when a JD exists.
-`<folder>/out/base-<variant>.md` when it does not (add the IC lane to
-the slug if SOURCE has more than one). Same stem `.pdf` / `.docx`
-only when SKILL.md Defaults earn them.
+Filenames: SKILL.md Defaults. Same stem `.pdf` / `.docx` only when
+those Defaults earn them.
 
 Do not copy a derived CV back over SOURCE.md. New facts learned
 while writing go into SOURCE.md first, then the CV.

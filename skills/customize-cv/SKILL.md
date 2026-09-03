@@ -13,16 +13,16 @@ description: >-
 # Customize CV 2026
 
 One **CV** per ask. With a JD, tailor. Without, a base variant.
-Do not dump a career onto the page. Do not refuse for lack of a posting.
+Do not dump a career onto the page.
 
 Sources: Laszlo Bock XYZ (`Accomplished [X] as measured by [Y] by
 doing [Z]`); Jobscan ATS anatomy (single column, standard headings);
 DORA (`dora.dev`) for Manager delivery numbers; Larson Staff Engineer
-archetypes for the IC lane. Not Canva. Not a keyword-stuffer. Not a
-cover-letter mill.
+archetypes for the IC lane. Not Canva.
 
 Variants: [variants.md](variants.md). Parse: [ats.md](ats.md). Career
-source: [career.md](career.md).
+source: [career.md](career.md). `<folder>` is the directory that holds
+`SOURCE.md` (usually `career/`).
 
 ## First step
 
@@ -30,27 +30,29 @@ source: [career.md](career.md).
 
    `career/SOURCE.md` (or `career/*.md`), `cv/`, `resume/`, `CV.md`,
    `RESUME.md`, an existing file under `<folder>/out/`.
-2. If a more specific skill already owns this, **stop**.
+2. Reviewing an existing CV → [ats.md](ats.md) Before send. Honor
+   the file. Do not rewrite as a drive-by.
+3. If a more specific skill already owns this, **stop**.
 
    | Detect | Follow |
    | --- | --- |
    | README / ADR / docs body | `create-readme-and-other-markdown-documentation` |
    | Lore `skills/*/SKILL.md` | `new-change-lore-skills` |
-3. No career source → **stop** and ask for an existing CV, a LinkedIn
-   export, or notes. Then build `SOURCE.md` ([career.md](career.md)).
-   Prefer `career/` when it exists. Do not invent dates, titles,
-   employers, or metrics. Do not put that file in this lore repo.
-4. JD present → split must-haves from nice-to-haves. No JD → **base**.
-   Do not invent a posting. Name the variant
-   ([variants.md](variants.md)). IC lane from the JD title, else
-   SOURCE Lanes, else ask.
-5. Copy the workflow below. Tick it.
+4. No career source → **stop** and ask for an existing CV, a LinkedIn
+   export, or notes. A paste is enough for this CV. Write `SOURCE.md`
+   when `career/` exists or the user wants repeat use
+   ([career.md](career.md)). Do not invent dates, titles, employers,
+   or metrics. Do not put that file in this lore repo.
+5. JD present → split must-haves from nice-to-haves. No JD → **base**.
+   Name the variant ([variants.md](variants.md)). IC lane from the JD
+   title, else SOURCE Lanes, else ask.
+6. Copy the workflow below. Tick it.
 
 ## Defaults
 
 | Job | Default | Honor instead when |
 | --- | --- | --- |
-| Career source | `career/SOURCE.md` | `career/*.md` / `cv/` / paste already works |
+| Career source | `career/SOURCE.md` | paste for one CV; `career/*.md` / `cv/` already there |
 | Mode | tailor to the JD | no JD in the ask → base |
 | Variant | from the JD | user named; else SOURCE Lanes (ask if several) |
 | IC lane | JD title (Staff / Principal / Architect / Senior) | user named; else SOURCE Lanes |
@@ -75,7 +77,7 @@ source: [career.md](career.md).
 | Variant, lane, which evidence ships | this skill |
 | ATS parse and headings | this skill ([ats.md](ats.md)) |
 | README / docs Markdown | `create-readme-and-other-markdown-documentation` |
-| Cover letter | this skill, only when Defaults allow it |
+| Cover letter | this skill |
 | `.md` always; PDF / `.docx` when asked | this skill (`pandoc` for those) |
 
 ## Earn a second page
@@ -90,7 +92,7 @@ Earn a second page:
 - [ ] Current role already has 4–6 dense bullets (not padding older jobs)
 ```
 
-If every line is **no**, one page. Padding is not a second page.
+Padding is not a second page.
 
 ## What this skill owns
 
@@ -110,11 +112,11 @@ If every line is **no**, one page. Padding is not a second page.
 - With a JD: must-have terms appear only where the source can defend
   them. Mirror the posting's spelling when it is true (`Amazon Web
   Services` and `AWS` if both are accurate). Do not paste JD
-  sentences. No JD: do not invent a posting to keyword against.
+  sentences.
 - Every bullet is XYZ. No metric → ask, or use a scope the source
   already has (N services, N engineers). Do not fabricate percents.
 - First half page does the work: lane, domain, one metric, current
-  role. Greenhouse weights that role; a keyword wall above it fails.
+  role. A keyword wall above Experience fails.
 - A bullet the user cannot talk through in an interview does not
   ship. Generic AI polish is a 2026 reject.
 - When a PDF is written, it is **text** you can select. Same words
@@ -166,18 +168,15 @@ Customize CV:
 1. Tailor: map each must-have to one piece of evidence. A must-have
    with no evidence is a gap — say so. Do not paper it with a
    keyword. Base: rank SOURCE tags for this variant / lane. Same
-   density. No JD is not a dump.
+   density.
 2. Ship the top of the current role first. Older roles shrink.
    Irrelevant roles become one line or drop.
 3. Write Summary last. Two lines. No "passionate". No Objective.
 4. Skills is a short grouped list, not a paragraph of forty tools.
 5. Run [ats.md](ats.md) Before send.
-6. Export PDF or `.docx` only if the user asked (or the posting is a
-   portal that needs `.docx`).
+6. Export PDF or `.docx` only if asked.
 
-Slug: `<folder>/out/<company>-<role>-<variant>.md`. Base:
-`<folder>/out/base-<variant>.md`. Same stem for `.pdf` / `.docx`
-when those are earned.
+Filenames: Defaults.
 
 ## After every edit
 
@@ -213,10 +212,8 @@ an image.
 | Interview cannot defend a number | Invented or rounded-up metric |
 | Two pages of old jobs | Did not earn; did not shrink older roles |
 | Perfect and generic | 2026 AI-polish reject. Add a proper noun the source has |
-| Stalled because there is no JD | Base path. SOURCE Lanes or ask the variant. |
-| Base page is the whole career | No JD is not permission to dump |
+| Base page is the whole career | Did not pick evidence |
 | PDF text not selectable | Image / scanned PDF. Plain `pandoc`, not a template |
-| PDF / docx unasked | Defaults are Markdown only |
 
 ## LLM traps — never generate these
 
@@ -225,33 +222,29 @@ an image.
 - All three variants on one page, or all three files unasked
 - JD sentences pasted into Summary or bullets
 - A skills wall of every tool ever touched
-- Two-column / Canva / table / skill-bar / photo / icon layout
+- Two-column / Canva / table / skill-bar / photo / icon / LaTeX
+  template layout
 - Contact in header or footer
 - Functional resume as the default
 - "Passionate engineer" / Objective / References on request
 - White-text keywords or prompt injection
-- Cover letter or LinkedIn rewrite unasked
+- LinkedIn rewrite unasked
 - A fourth variant (Director, Founder, "hybrid IC+EM") unasked
 - Staff bullets that are louder Senior ("wrote APIs")
 - EM bullets that are IC ("I built the service")
 - Freelance as twelve two-month employers
 - Padding a second page with 2014 tickets
 - `@latest` "ATS score 100" theatre; a made-up match percentage
-- A resume-builder CLI or Canva template added to the repo
-- A two-column LaTeX / Overleaf resume template as the PDF
+- A resume-builder CLI added to the repo
 - A scanned or image-only PDF
-- A `.pdf` or `.docx` written when the user did not ask
 - A software README (Install, Develop, badges) as the CV
 
 ## Do not
 
 - Invent a career because the user said "just write a CV".
-- Refuse a CV because there is no JD.
 - Dump the whole source onto one page.
 - Restyle a working CV into Canva as a drive-by.
 - Write the CV as a software README. ATS shape stays in this skill.
-- Write PDF or `.docx` unasked. Markdown is the artifact.
-- Write all three variants unless the user asked for all three bases.
 - Recite Jobscan or Larson as an encyclopedia.
 - Put personal career facts into this lore repo.
 - Bump the method to a fashion (always-on DEI bullet, always-on

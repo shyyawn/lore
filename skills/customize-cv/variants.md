@@ -1,7 +1,7 @@
 # Variants
 
-Three files. Not five. Staff, Principal, Architect, and Senior share
-**IC**. Manager is people leadership. Freelance is a client or
+Three **variants**. Not five. Staff, Principal, Architect, and Senior
+share **IC**. Manager is people leadership. Freelance is a client or
 contract pitch.
 
 Pick from the JD, or from the ask / SOURCE Lanes when there is no
@@ -56,7 +56,7 @@ one bullet, not the page.
 | --- | --- | --- |
 | People | Retention / regrettable attrition, promotions, team size over time | "Fostered culture" |
 | Hiring | Hires by level, time-to-fill, 12–18 month stay | "Ran interviews" |
-| Delivery | DORA (deploy frequency, lead time, change-fail, MTTR) or % committed scope | Personal velocity |
+| Delivery | DORA (deploy frequency, lead time, change-fail, failed-deployment recovery time) or % committed scope | Personal velocity |
 | Craft | Rubric, calibration, on-call rota, performance cases | Servant-leader slogan |
 
 Scope line: N engineers, N squads, product surface.

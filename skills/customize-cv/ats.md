@@ -3,11 +3,10 @@
 Parse first, then a human in seconds. With a JD, semantic screeners
 (2026) score **meaning** against the posting. Exact strings still
 matter for recruiter search and older ATS. A base CV still follows
-this format. Do not treat keywords as a game. Do not invent a JD.
+this format. Do not treat keywords as a game.
 
-Sources: Jobscan ATS anatomy; Workday / Greenhouse / Lever / Taleo
-parse behavior as constraints. Not their admin trees. Not a scanner
-product.
+Sources: Jobscan ATS anatomy. Not a scanner product. Not their admin
+trees.
 
 ## 2024 → 2026
 
@@ -15,15 +14,15 @@ product.
 | --- | --- |
 | Exact-keyword density | Semantic overlap **plus** JD spelling you can defend |
 | Stuff and hidden white text | Detected; copy-paste of the JD can auto-reject |
-| Always PDF | Portal: `.docx` unless asked; recruiter email: text PDF |
+| Always PDF | Working file is Markdown. Portal `.docx` / share PDF only if asked |
 | One page always | One page default; two only if earned in SKILL.md |
 | Cover letter every app | Default **no** for engineering |
 | Functional / skills-first | Reverse chronological. Freelance uses an umbrella, not a skills dump |
 | Polished generic AI CV | Recruiter red flag. Specific, defendable nouns |
 
-Aim for overlap on must-haves, not a score. Schellmann / NPR: tools
-throw out near-copies of the posting. Mirror terms in XYZ bullets.
-Do not paste sentences.
+Aim for overlap on must-haves, not a score. Schellmann (NPR): some
+tools throw out near-copies of the posting. Mirror terms in XYZ
+bullets. Do not paste sentences.
 
 ## Format
 
@@ -32,20 +31,16 @@ Do not paste sentences.
 | Columns | One column, full width | Sidebar, two-column, text boxes |
 | Headings | Summary, Skills, Experience, Education | "What I bring", "Core competencies" as a H1 |
 | Contact | First lines of the body | Header, footer, icon row |
-| Dates | `MM/YYYY–MM/YYYY` or `MM/YYYY–Present` | `2019-Present` with no month if the ATS is Greenhouse-picky; still better than `2019` alone |
+| Dates | `MM/YYYY–MM/YYYY` or `MM/YYYY–Present` | Year-only (`2019`) or `2019-Present` |
 | Fonts | Arial, Calibri, Georgia, Garamond, Times, 10–12 pt | Decorative fonts, skill bars |
 | Margins | 0.5–1 in | Packed 0.3 in walls |
 | Graphics | None | Photo, logo, chart, icon |
 | Tables | None in the CV | Skills in a grid |
-| File | `.docx` for unknown portals | Scanned PDF, `.pages`, image PDF |
+| File | Markdown. `.docx` / PDF only when SKILL.md Defaults earn them | Scanned PDF, `.pages`, image PDF |
 
-Honor the posting's file type over this table when the user asked
-for a portal file. The working artifact is Markdown. PDF and `.docx`
-are earned in SKILL.md Defaults.
-
-Workday and older Taleo scramble columns and skip headers. Greenhouse
-weights the current role. Lever is title-similar — a defensible title
-closer to the JD is allowed; a lie is not.
+Honor the posting's file type when exporting. Jobscan: single
+column, standard headings, contact in the body. Columns, headers,
+and tables are reported to scramble in Workday and older Taleo.
 
 ## Keywords
 
