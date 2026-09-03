@@ -63,7 +63,7 @@ source: [career.md](career.md). `<folder>` is the directory that holds
 | File to write | Markdown in `<folder>/out/` | user named a path |
 | Slug | `<company>-<role>-<variant>.md` | no JD → `base-<variant>.md` (add lane if needed) |
 | Share PDF | **no** | user asked for PDF / export |
-| PDF tool | `pandoc` + an engine on PATH (typst, weasyprint, pdflatex) | standalone typst if no `pandoc` |
+| PDF tool | `pandoc` + an engine on PATH (typst, weasyprint, pdflatex) | — |
 | Portal `.docx` | **no** | posting is a portal, or the user asked |
 | Freelance portal | Independent Consultant umbrella | one long client (≥12 months) already a named role |
 | Cover letter | **no** | portal requires it, or the user asked |
@@ -193,8 +193,8 @@ pandoc <slug>.md -o <slug>.pdf --pdf-engine=typst
 ```
 
 Use `--pdf-engine=weasyprint` or `pdflatex` if that is the engine on
-PATH. Standalone typst if `pandoc` is missing. No engine → **stop**.
-Do not add a TeX live or a resume CLI. Select text in the PDF. If
+PATH. No `pandoc` or no engine → **stop**.
+Do not add a TeX Live install or a resume CLI. Select text in the PDF. If
 you cannot, the engine wrote an image.
 
 ## When it breaks
