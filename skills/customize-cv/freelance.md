@@ -6,7 +6,7 @@ Experience-first ATS into Upwork or a friend PDF.
 Sources: Damongo Upwork profile guide 2026, Fiverr profile/gig
 guides, LinkedIn Services setup. Not a scrape of seller accounts.
 Job CV and ATS contract: [variants.md](variants.md),
-[ats.md](ats.md).
+[ats.md](ats.md). Tone: [tone.md](tone.md).
 
 ## Defaults
 
@@ -37,7 +37,7 @@ Do not invent clients, reviews, or an Independent Consultant row.
 | Block | Put | Not |
 | --- | --- | --- |
 | Title / headline | Searchable service, skill first, under ~70 characters | Job title (Staff, SVP, Engineer) |
-| Overview / Summary | Buyer need, what you ship, one proof, how to start. First two sentences do the work | "I am a …" career lead; keyword dump |
+| Overview / Summary | Available for the offer; proof; polite ask ([tone.md](tone.md)). First two sentences do the work | "Need a …? I build"; keyword dump |
 | Offer / gigs | Pass-along: headline + Summary. Marketplace: named packages, deliverables, first milestone. LinkedIn Services: 2–3 categories | A career; every language you can touch |
 | Projects (3–6) | One product per row. Problem → built → result. URLs or MAU. Employment apps count | Skills wall; SVP duties as the case |
 | Skills tags | Specific tools (WordPress, Next.js, Expo, Laravel, VPS) | "web development" |
@@ -56,7 +56,7 @@ real numbers from SOURCE.
 
 | Surface | Lead with | Trust |
 | --- | --- | --- |
-| Pass-along | Headline = what you will build. Summary = need + ship + proof + email ask. Projects, then a short employment spine | Company products as proof of scale. No fake consulting chapter |
+| Pass-along | Headline = the offer. Summary = available + proof + polite ask. Projects, then a short employment spine | Company products as proof of scale. No fake consulting chapter |
 | Marketplace | One niche title, keyworded overview, skill tags, portfolio texts, Fiverr "I will …" gigs with packages | Reviews after the first jobs. You do not have them yet — do not invent |
 
 ## Skip on a first page
@@ -77,28 +77,31 @@ shape a first freelance page uses:
 ```
 # Name
 
-Web and mobile apps · Go backend · cheap VPS / Kubernetes
+Web and mobile applications · Go · low-cost hosting and Kubernetes
 City, Country · work auth if SOURCE prints it
 email · phone · LinkedIn · GitHub
 portfolio
 
 ## Summary
 
-Need a <offer>? I build <the site, the API, the cheap run>.
-<N> years of company products, not a career freelancer. Strongest
-on <niche>; also <adjacent>. City, on-site or remote.
-Email <address> with what you want built.
+I am available for freelance work on <offer>, and for running them
+at modest cost (<how they run>).
+My experience is <N> years in company product teams. I am most at
+home with <niche>, and I also work with <adjacent>. City; on-site
+there is welcome.
+Please write to <email> if I may be of help.
 
 ## Projects
 
-Live company products. Not freelance gigs.
+Work samples from employment. I do not yet have independent
+freelance clients to list.
 
 Product — MM/YYYY–Present or MAU
-Result. What shipped. Stack.
+Result. What was built. Stack. Credit colleagues when shared.
 
 ## Skills
 
-Backend: …
+Backend: … (preferred)
 Web and mobile: …
 Data: …
 How apps run: …
@@ -107,7 +110,7 @@ How apps run: …
 
 Title(s), Company, City, MM/YYYY–MM/YYYY
 Product surface. Not org size.
-- XYZ as shipped work
+- XYZ. Worked with / helped when the work was shared.
 
 ## Education
 
@@ -124,7 +127,8 @@ Marketplace (`<folder>/out/base-freelance-<surface>.md`):
 # <service title, skill first, ~70 characters>
 
 ## About
-Buyer need. What you ship. One proof line. How to start.
+Available for the offer. One proof line. Please / if I may
+([tone.md](tone.md)). Fiverr gig title may stay `I will …`.
 
 ## Services
 ### <package name>
@@ -150,12 +154,13 @@ Freelance profile:
 - [ ] Career source inventoried (or asked)
 - [ ] Surface picked (pass-along default; marketplace if named)
 - [ ] Headline is a service, not a job title
-- [ ] Summary opens on the buyer's need; proof; email ask
+- [ ] Summary is available + proof + polite ask ([tone.md](tone.md))
 - [ ] 3–6 Projects before Experience (employment apps allowed)
 - [ ] Disclaimer if they are not freelance gigs
 - [ ] Skill tags are specific tools
 - [ ] Experience collapsed, product bullets, not the lead
 - [ ] No invented reviews, clients, or Independent Consultant row
+- [ ] Humble, formal, polite ([tone.md](tone.md))
 - [ ] Rate / timezone / response only from SOURCE (or omitted)
 - [ ] Draft written to <folder>/out/<slug>.md
 ```
@@ -164,8 +169,8 @@ Freelance profile:
 2. Rank 3–6 products that prove those services. Company apps count.
 3. Collapse titles per employer. 2–3 product bullets. Drop the org
    chart.
-4. Write Summary last. Buyer need, then what you ship, then proof,
-   then the ask. No "passionate".
+4. Write Summary last. Available, proof, polite ask
+   ([tone.md](tone.md)). No "passionate". No "Need a …?".
 5. Marketplace only: tell the user to add a face photo. Optional
    30–60s intro of how they work.
 
@@ -186,3 +191,4 @@ User named a path → honor it.
 | Friend PDF looks like ATS | Applied [ats.md](ats.md) Experience-first |
 | Ringgit and cloud % in Summary | Internal ops metrics on a product listing |
 | One Experience row per promotion | Did not collapse titles |
+| Reads high and mighty | Did not follow [tone.md](tone.md) |

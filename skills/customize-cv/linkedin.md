@@ -4,7 +4,8 @@ Discovery. Not a CV paste. Not LinkedIn Services
 ([freelance.md](freelance.md)). Default is **no**.
 
 Sources: LinkedIn headline / About practice 2026. Job CV:
-[ats.md](ats.md). Listing: [freelance.md](freelance.md).
+[ats.md](ats.md). Listing: [freelance.md](freelance.md). Tone:
+[tone.md](tone.md).
 
 ## Defaults
 
@@ -12,7 +13,7 @@ Sources: LinkedIn headline / About practice 2026. Job CV:
 | --- | --- | --- |
 | Write LinkedIn | **no** | user asked for headline, About, Featured, or Open to Work |
 | Headline | Job title first, then 2–4 keywords | Freelance service headline ([freelance.md](freelance.md)) |
-| About | First person. First three lines do the work | Resume Summary dumped in |
+| About | First person, humble, formal. First three lines do the work | Resume Summary dumped in; Need a …? |
 | Photo | **yes** (on LinkedIn) | ATS file — still no ([ats.md](ats.md)) |
 | Featured | Talk, ADR, live product URL from SOURCE | Skills wall; invented posts |
 | Dates / titles | **same** as the CV | Search-optimized fake titles |
@@ -23,7 +24,7 @@ Sources: LinkedIn headline / About practice 2026. Job CV:
 | Block | Put | Not |
 | --- | --- | --- |
 | Headline | Role family recruiters search (Staff Engineer, EM) plus stack or domain | “Web apps · cheap VPS”; “Passionate leader” |
-| About | Hook, lane, one proof, intent. ~1,500–2,000 characters. Fold is line 3 | Keyword dump; I-will gig copy |
+| About | Lane, one proof, intent. Humble ([tone.md](tone.md)). Fold is line 3 | Keyword dump; I-will gig copy; high and mighty |
 | Experience | Same employers, titles, dates as the CV. Slightly more narrative | Conflicting dates; relabeled HR titles |
 | Featured | One or two URLs the source has | Empty; a Canva CV |
 | Skills | Terms the CV already proves | Forty endorsements of unused tools |
@@ -37,9 +38,10 @@ LinkedIn (job search):
 - [ ] User asked for LinkedIn (else stop)
 - [ ] Career source inventoried
 - [ ] Headline is a job title, then keywords
-- [ ] About first three lines: lane + one proof
+- [ ] About first three lines: lane + one proof ([tone.md](tone.md))
 - [ ] Experience titles and dates match the CV
 - [ ] Featured only from SOURCE URLs
+- [ ] Humble, formal, polite ([tone.md](tone.md))
 - [ ] No invented Open to Work public badge
 ```
 
@@ -47,7 +49,8 @@ LinkedIn (job search):
    and About.
 2. Headline starts with the role they want found for. Not the
    freelance service line.
-3. About last. First person. No "passionate".
+3. About last. First person. Humble, formal, polite
+   ([tone.md](tone.md)). No "passionate". No "Need a …?".
 4. Tell them photo and Open to Work live on LinkedIn, not in the
    Markdown CV.
 
@@ -63,3 +66,4 @@ it.
 | Dates disagree with the CV | Did not sync |
 | Photo in the ATS PDF | Applied LinkedIn hygiene to [ats.md](ats.md) |
 | Public Open to Work, still employed | Default was recruiter-only |
+| Reads high and mighty | Did not follow [tone.md](tone.md) |

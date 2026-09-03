@@ -27,9 +27,9 @@ LinkedIn Services. Not Canva.
 
 Variants: [variants.md](variants.md). Profile:
 [freelance.md](freelance.md). LinkedIn: [linkedin.md](linkedin.md).
-Parse: [ats.md](ats.md). Career source: [career.md](career.md).
-`<folder>` is the directory that holds `SOURCE.md` (usually
-`career/`).
+Parse: [ats.md](ats.md). Tone: [tone.md](tone.md). Career source:
+[career.md](career.md). `<folder>` is the directory that holds
+`SOURCE.md` (usually `career/`).
 
 ## First step
 
@@ -67,6 +67,7 @@ Parse: [ats.md](ats.md). Career source: [career.md](career.md).
 | Job | Default | Honor instead when |
 | --- | --- | --- |
 | Career source | `career/SOURCE.md` | paste for one file; `career/*.md` / `cv/` already there |
+| Tone | humble, formal, polite ([tone.md](tone.md)) | user named a different voice |
 | Artifact | job CV (IC / Manager) | freelance profile → [freelance.md](freelance.md); job LinkedIn → [linkedin.md](linkedin.md) |
 | Mode | tailor to the JD | no JD in the ask → base |
 | Variant | from the JD | user named; else SOURCE Lanes (ask if several) |
@@ -94,6 +95,7 @@ Parse: [ats.md](ats.md). Career source: [career.md](career.md).
 | Job CV ATS parse and headings | this skill ([ats.md](ats.md)) |
 | Freelance profile copy | this skill ([freelance.md](freelance.md)) |
 | Job LinkedIn copy | this skill ([linkedin.md](linkedin.md)) |
+| Tone on every artifact | this skill ([tone.md](tone.md)) |
 | README / docs Markdown | `create-readme-and-other-markdown-documentation` |
 | Cover letter | this skill |
 | Markdown file; `pandoc` export | this skill |
@@ -137,6 +139,8 @@ Padding is not a second page.
   sentences.
 - Every bullet is XYZ. No metric → ask, or use a scope the source
   already has (N services, N engineers). Do not fabricate percents.
+- Tone is humble, formal, polite on every artifact
+  ([tone.md](tone.md)). Do not write high-and-mighty copy.
 - Job CV: first half page does the work — lane, domain, one metric,
   current role. A keyword wall above Experience fails.
 - A bullet the user cannot talk through in an interview does not
@@ -190,6 +194,7 @@ Customize CV:
 - [ ] Variant + IC lane picked
 - [ ] Evidence selected (not dumped)
 - [ ] Draft written to <folder>/out/<slug>.md
+- [ ] Humble, formal, polite ([tone.md](tone.md))
 - [ ] ATS + density ticks ([ats.md](ats.md))
 ```
 
@@ -200,6 +205,7 @@ Customize CV:
 2. Ship the top of the current role first. Older roles shrink.
    Irrelevant roles become one line or drop.
 3. Write Summary last. Two lines. No "passionate". No Objective.
+   [tone.md](tone.md).
 4. Skills is a short grouped list, not a paragraph of forty tools.
 5. Run [ats.md](ats.md) Before send.
 
@@ -208,6 +214,7 @@ Filenames: Defaults.
 ## After every edit
 
 - Every number and title still matches the career source.
+- Tone still humble, formal, polite ([tone.md](tone.md)).
 - Paste the Markdown into a plain-text view. Order must read top to
   bottom. If it scrambles, you used a table or a column
   ([ats.md](ats.md)).
@@ -231,6 +238,7 @@ you cannot, the engine wrote an image.
 | --- | --- |
 | Parser empty / dates missing | Columns, tables, headers, or contact in the footer ([ats.md](ats.md)) |
 | Recruiter bounce in seconds | First half page is a keyword wall or a brand sentence |
+| Reads high and mighty | Did not follow [tone.md](tone.md) |
 | Staff routed as Senior | Bullets are team-bound shipping ([variants.md](variants.md)) |
 | EM routed as IC | "I shipped" not team / hiring / retention |
 | Architect routed as Senior | Stack list, no named trade-off or ADR |
@@ -259,6 +267,7 @@ you cannot, the engine wrote an image.
 - Contact in header or footer
 - Functional resume as the default
 - "Passionate engineer" / Objective / References on request
+- High-and-mighty copy: Need a …?; I own; strongest; unmatched
 - White-text keywords or prompt injection
 - LinkedIn rewrite unasked
 - A freelance service headline on a job LinkedIn
@@ -284,6 +293,7 @@ you cannot, the engine wrote an image.
 - Invent a career because the user said "just write a CV".
 - Dump the whole source onto one page.
 - Write a job CV into a freelance listing as a drive-by.
+- Write high-and-mighty copy ([tone.md](tone.md)).
 - Restyle a working CV into Canva as a drive-by.
 - Write the CV as a software README. ATS shape stays in this skill.
 - Recite Jobscan or Larson as an encyclopedia.

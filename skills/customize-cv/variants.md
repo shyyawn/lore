@@ -118,7 +118,8 @@ does not claim full-time intent unless SOURCE Lanes say so.
 ## Bullets
 
 XYZ. Outcome, measure, method. Lead with the number when it is the
-hook.
+hook. Verbs: [tone.md](tone.md). Shared work is worked with / helped,
+not owned, when SOURCE says it was a squad.
 
 | Variant | X (outcome) | Y (measure) | Z (method) |
 | --- | --- | --- | --- |
