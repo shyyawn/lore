@@ -44,9 +44,9 @@ a planned phase of a new skill.
 ## New domain
 
 The overlay table below is this repo's **current** stack. A skill that
-is not Go, TypeScript, CSS, Encore, Temporal, or Svelte does **not**
-hang under `go-idioms`. It is a hub, a lone playbook, or the start of
-a new family.
+is not Go, TypeScript, Python, CSS, Encore, Temporal, or Svelte does
+**not** hang under `go-idioms`. It is a hub, a lone playbook, or the
+start of a new family.
 
 | Situation | Do |
 | --- | --- |
@@ -85,6 +85,7 @@ Do not invent a parallel `go-idioms`, a second `encore-go`, or a second
 | `review-change` | workflow / playbook | — | Tick catalogs 1–7 plus the language pin. |
 | `go-idioms` | language | — | Go 1.18–1.27 + 2024–2026 flatten layout |
 | `typescript-idioms` | language | — | TypeScript 5–7 + 2024–2026 flatten layout |
+| `python-idioms` | language | — | Python 3.10–3.14 + 2024–2026 flatten layout |
 | `typescript-unit-tests` | domain overlay | `typescript-idioms` | Vitest / Jest / `node:test`, what to skip. Journeys stay `e2e-tests`. |
 | `e2e-tests` | workflow / playbook | official Playwright skills (install) | When to add journeys; house locators. Not a Playwright dump. |
 | `css-idioms` | language | — | Baseline 2022–2026 CSS + layers / tokens. Not a Sass or Tailwind fork |
@@ -123,6 +124,7 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | Commit message / squash PR title | `conventional-commits` (official skill first) |
 | Hooks, mise, just, `launch.json`, Zed debugger | `git-repo-setup` + language overlay |
 | `*.test.ts` / vitest / jest (writing) | `typescript-unit-tests` |
+| `*.py` / `pyproject.toml` (coding) | `python-idioms`. Kit: `git-repo-setup-python` |
 | `playwright.config.*` / Cypress / e2e journeys | `e2e-tests` |
 | `README.md` / health files / `docs/**/*.md` content | `create-readme-and-other-markdown-documentation` |
 | CQRS / dual-write / cache / outbox | `source-of-truth` |
@@ -142,7 +144,7 @@ Directory = YAML `name`. Lowercase hyphens. Max 64 chars.
 
 | Pattern | Example | Not |
 | --- | --- | --- |
-| Durable noun | `go-idioms`, `encore-go`, `temporal-go`, `svelte` | `go-2026`, `svelte-typescript` |
+| Durable noun | `go-idioms`, `python-idioms`, `encore-go`, `temporal-go`, `svelte` | `go-2026`, `svelte-typescript` |
 | Pipeline | `requirement-to-architecture-to-design` | `rta`, `design-2026`, `helper` |
 | Hub | `git-repo-setup` | `git-kit`, `repo-helpers` |
 | Hub + facet | `git-repo-setup-go` | `go-git-hooks` (hides the hub) |

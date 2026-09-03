@@ -12,8 +12,9 @@ description: >-
 # Git repo setup — Python
 
 Follow `git-repo-setup` for the kit. This file fills the **Python** commands
-and [debug.md](debug.md). Commit-msg regex: `conventional-commits` /
-`tooling.md` (no commitlint unless Node is already first-class).
+and [debug.md](debug.md). Language idioms stay in `python-idioms`.
+Commit-msg regex: `conventional-commits` / `tooling.md` (no commitlint
+unless Node is already first-class).
 
 ## First step
 

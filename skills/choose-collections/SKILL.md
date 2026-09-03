@@ -23,7 +23,7 @@ is not a sort; 8.4 LTS same). Not CLRS. Not GoF Strategy for a filter.
 Catalogs: [collections.md](collections.md), [algorithms.md](algorithms.md).
 Schema / indexes as persistence: `data-modeling`. Writer:
 `source-of-truth`. Language spelling: `go-idioms` /
-`typescript-idioms`.
+`typescript-idioms` / `python-idioms`.
 
 ## First step
 

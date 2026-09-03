@@ -27,10 +27,11 @@ Markdown body: `create-readme-and-other-markdown-documentation`.
 
 1. Inventory the change. Honor what is already there.
 
-   Diff, pin (`go.mod`, lockfile, `encore.app`, `svelte.config.*`),
-   existing tests, existing schema.
+   Diff, pin (`go.mod`, lockfile, `pyproject.toml`, `encore.app`,
+   `svelte.config.*`), existing tests, existing schema.
 2. Read the **pin**. Do not bump it. Load the language skill for
-   that pin (`go-idioms`, `typescript-idioms`, `css-idioms`, …).
+   that pin (`go-idioms`, `typescript-idioms`, `python-idioms`,
+   `css-idioms`, …).
    Platform overlays next (`encore-go`, `svelte`, `temporal-go`).
    Both Encore and Temporal: `encore-temporal-go-app-structure`.
 3. If a more specific owner already has the whole job, **stop**.
