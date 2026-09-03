@@ -76,7 +76,7 @@ requirements + design notes.
 
 | Own | Leave |
 | --- | --- |
-| Stage order; earn C4; earn the ADR | MADR file body (`create-readme`) |
+| Stage order; earn C4; earn the ADR | MADR file body (`create-readme-and-other-markdown-documentation`) |
 | Context + container shapes | Catalogs 1–7 (point, do not copy) |
 | | Package / route trees (app-structure after design) |
 
@@ -113,7 +113,8 @@ Earn an ADR:
 ```
 
 If every line is **no**, put the choice in the design notes. File
-body is MADR in `docs/decisions/` — `create-readme`. Do not invent a
+body is MADR in `docs/decisions/` —
+`create-readme-and-other-markdown-documentation`. Do not invent a
 second ADR format.
 
 ## Default shapes
@@ -161,7 +162,7 @@ Catalogs (point, do not copy):
 | Need | Use | Do not add |
 | --- | --- | --- |
 | Architecture encyclopedia | C4 context + container | TOGAF, arc42, Anthropic system-design |
-| Decision record | MADR via `create-readme` | a second ADR format |
+| Decision record | MADR via `create-readme-and-other-markdown-documentation` | a second ADR format |
 | Code tree | platform app-structure after design | `domain/` `usecase/` `adapter/` from this skill |
 | Capacity | real SLO from requirements | interview QPS |
 | Diagram tool | the one already there | Structurizr / a second renderer as fashion |
@@ -185,7 +186,7 @@ link catalogs; they do not paste them.
 | QPS / "can it scale to 1M" | interview theater; no SLO |
 | ADR for a restyle | did not earn |
 | Design recopies `source-of-truth` | point, do not copy |
-| Two owners of the ADR body | `create-readme` owns the file |
+| Two owners of the ADR body | `create-readme-and-other-markdown-documentation` owns the file |
 | Load balancer on the container diagram | that is deployment; not this stage |
 
 ## LLM traps — never generate these

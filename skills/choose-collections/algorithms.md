@@ -15,7 +15,7 @@ Stdlib and SQL first. Invent default is **no**. Earn in SKILL.md.
 | Graph walk | BFS/DFS you can state, when you have edges | a library on a list |
 | Shortest path | stdlib or a named lib **after** Earn | Dijkstra on day one |
 | Shuffle | stdlib | a custom swap loop |
-| Row order | `ORDER BY` (Postgres `queries-order`) | scan order; MySQL 8.4+ `GROUP BY` is not a sort |
+| Row order | `ORDER BY` (Postgres `queries-order`) | scan order; MySQL 8.0+ `GROUP BY` is not a sort |
 
 Complexity is a **reason to pick**, not a reason to invent. O(n²) on
 a hot path → map, set, index, or stdlib. Then measure.

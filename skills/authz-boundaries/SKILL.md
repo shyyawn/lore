@@ -63,7 +63,7 @@ Tenant in the business key: `identity`. Who writes the row:
 | Authz | this actor may do this to **this** row | login as the check |
 | Client `tenantId` | ignore; use the actor's | named operator path (Earn below) |
 | Cross-tenant GET | **no** | named operator path, or a named public catalog |
-| Same-tenant deny | 403 (`api-contracts`) | existing envelope 404s forbids |
+| Same-tenant deny | 403 (`api-contracts`) | existing envelope already 404s forbidden |
 | Missing in a scoped query | 404 (0 rows) | do not unscoped-get to emit 403 |
 | RLS | **no** | Postgres already has `CREATE POLICY` |
 | Policy engine | **no** | Casbin / OPA / SpiceDB already there |

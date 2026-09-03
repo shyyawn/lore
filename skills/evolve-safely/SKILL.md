@@ -55,7 +55,8 @@ Additive wire: `api-contracts`. Types: `data-modeling`. Two stores:
 | Rename column / JSON field | expand (add new) → dual-write → switch read → drop old | existing name stays |
 | Type of a live column | new typed column; dual-write | binary-compatible widening the pin already no-ops |
 | NOT NULL | backfill, then constrain | — |
-| Unique / FK / CHECK | pin's online add (below) | existing blocking add and you are not adding the constraint |
+| Unique | pin's online unique (below) | existing blocking unique and you are not adding it |
+| FK / CHECK | pin's online add (below) | existing blocking add and you are not adding the constraint |
 | Index on a live table | pin's online index (below) | — |
 | Drop | after no binary reads it | — |
 | API change | additive field (`api-contracts`) | Earn v2 (below); honor an existing version pin |
@@ -76,7 +77,7 @@ Inventory the database. Do not copy one engine's DDL onto another.
 
 | Pin | Online add / index | Rewrite that breaks old binaries |
 | --- | --- | --- |
-| Postgres | nullable add; non-volatile `DEFAULT`; `CREATE INDEX CONCURRENTLY`; `NOT VALID` then `VALIDATE CONSTRAINT` | `SET DATA TYPE`; volatile `DEFAULT`; `GENERATED … STORED`; `ACCESS EXCLUSIVE` scan. Rewrites are not MVCC-safe (`sql-altertable` Notes) |
+| Postgres | nullable add; non-volatile `DEFAULT`; `CREATE INDEX CONCURRENTLY`; unique: `CREATE UNIQUE INDEX CONCURRENTLY` then `ADD CONSTRAINT … USING INDEX`; FK / CHECK: `NOT VALID` then `VALIDATE CONSTRAINT` | `SET DATA TYPE`; volatile `DEFAULT`; `GENERATED … STORED`; `ACCESS EXCLUSIVE` scan. Rewrites are not MVCC-safe (`sql-altertable` Notes) |
 | MySQL 8.0.12+ / 8.4 | `ALGORITHM=INSTANT` add (default 8.0.12+); `LOCK=NONE` when `INPLACE` allows concurrent DML | `ALGORITHM=COPY`; changing data type; `GENERATED … STORED` add is not in-place (`innodb-online-ddl-operations`, `alter-table-generated-columns`) |
 | SQLite | add a nullable column | most other `ALTER` rebuilds the table |
 
@@ -166,7 +167,7 @@ protobuf package already there.
 | Split column | add pieces; dual-write | drop original |
 | Merge columns | add combined; dual-write | drop pieces |
 | Change column type | add `new` typed column; dual-write | drop `old` — not `SET DATA TYPE` / `MODIFY` / `USING` while old binaries run |
-| Enum label | `ADD VALUE`; rename = new label + dual-write | drop old label |
+| Enum label | `ADD VALUE`; rename = new label + dual-write | Postgres: leave old, or new type + swap columns. MySQL: `MODIFY` after backfill |
 | Proto field | new number; `reserved` the old | never reuse the number |
 | Client-only rename | remap sqlc / queries / `@map` | leave the column |
 | `GENERATED` add | MySQL: VIRTUAL is already the default. Postgres 17: `STORED` (rewrite). Postgres 18: VIRTUAL default, no rewrite; `STORED` rewrites — do not bump | `STORED` when you will index / filter it (`data-modeling`) |
@@ -180,7 +181,7 @@ never `latest`. Do not dump that migrator's command list here.
 | --- | --- | --- |
 | Rename | expand/contract | `ALTER … RENAME` while old binaries run |
 | Type change | expand/contract | in-place type rewrite while old binaries run |
-| Unique on live data | pin's online add | a blocking unique that rewrites / exclusive-locks |
+| Unique on live data | pin's online unique | a blocking unique that rewrites / exclusive-locks |
 | API break | Earn v2 | `/v2` as fashion |
 | Second store copy | `source-of-truth` outbox | dual-write two databases in the handler |
 | Migrator | the one already there | a second one; AutoMigrate next to migrate files |
@@ -205,6 +206,8 @@ step. A drop, `NOT NULL`, or type change without a backfill is undone.
 | sqlc still selects `old` after contract | readers were not migrated in step 4–5 |
 | AutoMigrate dropped / renamed a live column | ORM push is not expand/contract |
 | `CREATE INDEX CONCURRENTLY` failed in the migrate | it cannot run inside a transaction. Customize the migration |
+| `NOT VALID` rejected on UNIQUE | unique is CONCURRENTLY + `USING INDEX`, not `NOT VALID` |
+| `DROP VALUE` / drop a Postgres enum label | Postgres cannot drop an enum value. Leave it, or new type + swap |
 
 ## LLM traps — never generate these
 
@@ -219,6 +222,8 @@ step. A drop, `NOT NULL`, or type change without a backfill is undone.
 - Reusing a protobuf field number
 - Changing a JSON default while clients omit the field
 - Feature-flag the reader with no dual-write
+- `NOT VALID` on a UNIQUE constraint
+- `ALTER TYPE … DROP VALUE` / dropping a Postgres enum label
 - A migration encyclopedia (Flyway, Liquibase, Atlas, Prisma CLI)
   as this skill
 - `latest` in a migrate command the agent will run

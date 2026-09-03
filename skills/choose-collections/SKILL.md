@@ -17,8 +17,8 @@ stdlib or the database already has.
 Sources: language stdlib — Go spec `For_range` (map order not
 specified), `slices`, `container/heap`; MDN `Map` / `Set` / `Array`;
 Python `tutorial/datastructures`, `collections.deque`, `heapq`.
-Postgres `queries-order`. MySQL 8.4 `order-by-optimization` only for
-`GROUP BY` no longer sorting. Not CLRS. Not GoF Strategy for a filter.
+Postgres `queries-order`. MySQL 8.0 `order-by-optimization` (`GROUP BY`
+is not a sort; 8.4 LTS same). Not CLRS. Not GoF Strategy for a filter.
 
 Catalogs: [collections.md](collections.md), [algorithms.md](algorithms.md).
 Schema / indexes as persistence: `data-modeling`. Writer:
@@ -161,7 +161,7 @@ becomes a query.
 | Go `range` of a map is a stable list | map is not ordered. Key slice |
 | `Array.shift` / `list.pop(0)` in a hot loop | want a deque, or a head index |
 | User keys on `{}` collide / pollute | that is a `Map` (MDN), not a record |
-| MySQL 8.4 `GROUP BY` order changed | `GROUP BY` is not `ORDER BY` |
+| MySQL 8.0+ `GROUP BY` order changed | `GROUP BY` is not `ORDER BY` |
 
 ## LLM traps — never generate these
 

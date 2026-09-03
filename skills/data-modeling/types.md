@@ -1,7 +1,7 @@
 # Column types
 
 Gate on the database and ORM you have. Do not bump Postgres, SQLite,
-Prisma, or MySQL to unlock a type.
+Prisma, MySQL, or SQL Server to unlock a type.
 
 The **rule** is sealed snapshot vs child table. The type **name**
 changes with the pin.
@@ -14,7 +14,7 @@ Mongo collection), not a blob.
 | Pin | Use | Not |
 | --- | --- | --- |
 | Postgres | `jsonb` | `json` unless you must keep byte-exact text (whitespace, key order, duplicate keys) |
-| Prisma `Json` | `Json` — connector maps it (PG → `jsonb`, MySQL → `JSON`, SQLite → JSONB, Mongo → BSON, Cockroach → `JSONB`) | `Json` as a relation; `@db.Json` on Postgres (that's `json`, not `jsonb`) |
+| Prisma `Json` | `Json` — connector maps it (PG → `jsonb`, MySQL → `JSON`, SQLite → JSONB from 6.2.0, Mongo → BSON, Cockroach → `JSONB`) | `Json` as a relation; `@db.Json` on Postgres (that's `json`, not `jsonb`); SQLite `Json` before 6.2.0 |
 | Prisma + Mongo embed | composite `type` you still GET / replace **whole** | composite as a fake `@relation` |
 | Drizzle on PG | `jsonb()` | `json()` unless byte-exact |
 | TypeORM on PG | column type `jsonb` | `json` unless byte-exact |
@@ -23,10 +23,10 @@ Mongo collection), not a blob.
 | SQLite before 3.45 | `TEXT` + `json_valid` | a JSON column type SQLite does not have |
 | Mongo | one document you replace whole, or a collection | a nested array you filter / page / patch as if it were a table |
 | Cockroach | `JSONB` | — |
-| SQL Server | **no** JSON type — columns, or honor `nvarchar` JSON already there | EAV to fake JSON |
+| SQL Server | `nvarchar` JSON, or native `json` when the pin already has it | EAV to fake JSON |
 
 SQL Server JSON functions on `nvarchar` are not a reason to invent
-EAV. Honor what is there.
+EAV. Azure SQL native `json` is GA; 2025 on-prem is preview.
 
 SQLite `jsonb()` (3.45+) is a faster on-disk parse tree. It is **not**
 wire-compatible with Postgres `jsonb`. Do not copy bytes across.

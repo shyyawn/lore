@@ -97,6 +97,9 @@ Expand/contract of fields: `evolve-safely`. Caller-owned keys:
 | Unbounded or huge list | 400, or paginate | — |
 | Bug / dependency down | 500 / 503 | internal / unavailable |
 
+409 for a reused key with a different body is **house**. Stripe
+returns 400. IETF draft says 422.
+
 Envelope (honor the one already there). None yet — RFC 9457,
 `Content-Type: application/problem+json`:
 
