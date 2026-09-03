@@ -3,12 +3,11 @@ name: customize-cv
 description: >-
   Writes a software CV from a career source into one of three variants
   (IC, Manager, Freelance), tailored to a job description when one
-  exists, otherwise a base variant, ATS-parseable and dense enough to
-  get a recruiter call. Use when writing, customizing, or reviewing a
-  CV, resume, or application with or without a JD; when the user
-  mentions ATS, Staff Engineer, Principal, Software Architect,
-  Engineering Manager, freelance, contract CV, base CV, or tailor
-  resume.
+  exists, otherwise a base variant, as Markdown. Use when writing,
+  customizing, or reviewing a CV, resume, or application with or
+  without a JD; when the user mentions ATS, Staff Engineer, Principal,
+  Software Architect, Engineering Manager, freelance, contract CV,
+  base CV, tailor resume, or export PDF / docx.
 ---
 
 # Customize CV 2026
@@ -61,7 +60,9 @@ source: [career.md](career.md).
 | Bullets | XYZ; 3–5 on the current role, 2–3 on the one before | — |
 | File to write | Markdown in `<folder>/out/` | user named a path |
 | Slug | `<company>-<role>-<variant>.md` | no JD → `base-<variant>.md` (add lane if needed) |
-| Portal file | `.docx` | posting asks for PDF; recruiter email → text PDF |
+| Share PDF | **no** | user asked for PDF / export |
+| PDF tool | `pandoc` | typst / weasyprint already on PATH |
+| Portal `.docx` | **no** | posting is a portal, or the user asked |
 | Freelance portal | Independent Consultant umbrella | one long client (≥12 months) already a named role |
 | Cover letter | **no** | portal requires it, or the user asked |
 | LinkedIn rewrite | **no** | user asked to align dates and titles |
@@ -75,6 +76,7 @@ source: [career.md](career.md).
 | ATS parse and headings | this skill ([ats.md](ats.md)) |
 | README / docs Markdown | `create-readme-and-other-markdown-documentation` |
 | Cover letter | this skill, only when Defaults allow it |
+| `.md` always; PDF / `.docx` when asked | this skill (`pandoc` for those) |
 
 ## Earn a second page
 
@@ -115,6 +117,8 @@ If every line is **no**, one page. Padding is not a second page.
   role. Greenhouse weights that role; a keyword wall above it fails.
 - A bullet the user cannot talk through in an interview does not
   ship. Generic AI polish is a 2026 reject.
+- When a PDF is written, it is **text** you can select. Same words
+  as the `.md`. Not a scan. Not a two-column template.
 
 ## Default shapes
 
@@ -156,6 +160,7 @@ Customize CV:
 - [ ] Evidence selected (not dumped)
 - [ ] Draft written to <folder>/out/<slug>.md
 - [ ] ATS + density ticks ([ats.md](ats.md))
+- [ ] PDF / .docx only if asked (n/a otherwise)
 ```
 
 1. Tailor: map each must-have to one piece of evidence. A must-have
@@ -167,9 +172,12 @@ Customize CV:
 3. Write Summary last. Two lines. No "passionate". No Objective.
 4. Skills is a short grouped list, not a paragraph of forty tools.
 5. Run [ats.md](ats.md) Before send.
+6. Export PDF or `.docx` only if the user asked (or the posting is a
+   portal that needs `.docx`).
 
 Slug: `<folder>/out/<company>-<role>-<variant>.md`. Base:
-`<folder>/out/base-<variant>.md`.
+`<folder>/out/base-<variant>.md`. Same stem for `.pdf` / `.docx`
+when those are earned.
 
 ## After every edit
 
@@ -179,8 +187,17 @@ Slug: `<folder>/out/<company>-<role>-<variant>.md`. Base:
   ([ats.md](ats.md)).
 - First 8–12 lines: lane + one metric + current title. If not, cut
   above Experience.
-- Portal: `.docx` unless the posting says PDF. Honor pandoc if it is
-  already there. Else the user Save As. Do not add a resume builder.
+- PDF / `.docx` only when asked:
+
+```bash
+pandoc <slug>.md -o <slug>.pdf
+pandoc <slug>.md -o <slug>.docx
+```
+
+Honor typst / weasyprint if that is already the PDF path. Run only
+the format they asked for. No `pandoc` → **stop**. Do not add a
+resume CLI. Select text in the PDF. If you cannot, the engine wrote
+an image.
 
 ## When it breaks
 
@@ -198,6 +215,8 @@ Slug: `<folder>/out/<company>-<role>-<variant>.md`. Base:
 | Perfect and generic | 2026 AI-polish reject. Add a proper noun the source has |
 | Stalled because there is no JD | Base path. SOURCE Lanes or ask the variant. |
 | Base page is the whole career | No JD is not permission to dump |
+| PDF text not selectable | Image / scanned PDF. Plain `pandoc`, not a template |
+| PDF / docx unasked | Defaults are Markdown only |
 
 ## LLM traps — never generate these
 
@@ -219,6 +238,9 @@ Slug: `<folder>/out/<company>-<role>-<variant>.md`. Base:
 - Padding a second page with 2014 tickets
 - `@latest` "ATS score 100" theatre; a made-up match percentage
 - A resume-builder CLI or Canva template added to the repo
+- A two-column LaTeX / Overleaf resume template as the PDF
+- A scanned or image-only PDF
+- A `.pdf` or `.docx` written when the user did not ask
 - A software README (Install, Develop, badges) as the CV
 
 ## Do not
@@ -228,6 +250,7 @@ Slug: `<folder>/out/<company>-<role>-<variant>.md`. Base:
 - Dump the whole source onto one page.
 - Restyle a working CV into Canva as a drive-by.
 - Write the CV as a software README. ATS shape stays in this skill.
+- Write PDF or `.docx` unasked. Markdown is the artifact.
 - Write all three variants unless the user asked for all three bases.
 - Recite Jobscan or Larson as an encyclopedia.
 - Put personal career facts into this lore repo.

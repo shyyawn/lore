@@ -39,8 +39,9 @@ Do not paste sentences.
 | Tables | None in the CV | Skills in a grid |
 | File | `.docx` for unknown portals | Scanned PDF, `.pages`, image PDF |
 
-Honor the posting's file type over this table. Base: `.docx` still,
-or PDF if the user is emailing it.
+Honor the posting's file type over this table when the user asked
+for a portal file. The working artifact is Markdown. PDF and `.docx`
+are earned in SKILL.md Defaults.
 
 Workday and older Taleo scramble columns and skip headers. Greenhouse
 weights the current role. Lever is title-similar — a defensible title
@@ -75,7 +76,7 @@ ATS + density:
 - [ ] Current role is the densest block
 - [ ] Every number is in the career source
 - [ ] Plain-text paste still reads in order
-- [ ] Portal file is .docx unless the posting says otherwise
+- [ ] Portal .docx / text PDF only if asked (n/a otherwise)
 ```
 
 A made-up "87% ATS match" is not a tick.

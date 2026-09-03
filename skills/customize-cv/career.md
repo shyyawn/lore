@@ -20,7 +20,8 @@ tree into the lore repo.
 4. Tag each fact `ic` / `manager` / `freelance`. Two tags allowed.
 5. Gaps stay gaps. Ask rather than guess a percent.
 6. Then write the CV (base if no JD, tailored if there is one).
-   Do not skip this file and "just generate".
+   Do not skip this file and "just generate". PDF / `.docx` only if
+   the user asked.
 
 ## Default file
 
@@ -66,7 +67,8 @@ Visa, notice, location, salary — not printed unless the user says so.
 
 `<folder>/out/<company>-<role>-<variant>.md` when a JD exists.
 `<folder>/out/base-<variant>.md` when it does not (add the IC lane to
-the slug if SOURCE has more than one).
+the slug if SOURCE has more than one). Same stem `.pdf` / `.docx`
+only when SKILL.md Defaults earn them.
 
 Do not copy a derived CV back over SOURCE.md. New facts learned
 while writing go into SOURCE.md first, then the CV.
