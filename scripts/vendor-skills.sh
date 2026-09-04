@@ -12,7 +12,9 @@ PLUGIN_AGENTS=(--agent claude-code --agent codex)
 # Expo list: expo/skills skills.sh.json. Next: vercel/next.js skills/.
 SKILLS=(
 	conventional-commit-message
+	frontend-design
 	vercel-react-best-practices
+	web-design-guidelines
 	next-dev-loop
 	next-cache-components-adoption
 	next-cache-components-optimizer
@@ -99,8 +101,12 @@ install() {
 
 	run npx --yes skills add expo/skills -g -y "${AGENTS[@]}"
 
+	run npx --yes skills add anthropics/skills \
+		--skill frontend-design -g -y "${AGENTS[@]}"
+
 	run npx --yes skills add vercel-labs/agent-skills \
-		--skill vercel-react-best-practices -g -y "${AGENTS[@]}"
+		--skill vercel-react-best-practices --skill web-design-guidelines \
+		-g -y "${AGENTS[@]}"
 
 	run npx --yes skills add vercel/next.js -g -y "${AGENTS[@]}"
 

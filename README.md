@@ -33,7 +33,7 @@ Three layers. That is the whole agent setup.
 
 1. **This repo's skills** — how we write Go, TypeScript, Python, CSS, Encore, Temporal, and Svelte, plus TypeScript unit tests, e2e policy, a Conventional Commits *overlay* for those languages, and a 2026 Git repo kit.
 2. **Official Cursor plugins** — live tooling and vendor how-tos that this repo does not duplicate.
-3. **Official vendor skills** — Conventional Commits format; Expo / React Native / EAS; Vercel React performance; Next.js workflows; Playwright CLI. Not Cursor plugins.
+3. **Official vendor skills** — Conventional Commits format; Expo / React Native / EAS; Anthropic frontend-design; Vercel React performance and web-design-guidelines; Next.js workflows; Playwright CLI. Not Cursor plugins.
 
 On a new machine, clone this repo, then run one command for all scriptable setup:
 
@@ -61,8 +61,12 @@ npx skills add conventional-changelog/conventional-changelog \
 npx skills add expo/skills -g -y \
   --agent cursor --agent claude-code --agent codex
 
+npx skills add anthropics/skills \
+  --skill frontend-design -g -y \
+  --agent cursor --agent claude-code --agent codex
+
 npx skills add vercel-labs/agent-skills \
-  --skill vercel-react-best-practices -g -y \
+  --skill vercel-react-best-practices --skill web-design-guidelines -g -y \
   --agent cursor --agent claude-code --agent codex
 
 npx skills add vercel/next.js -g -y \
@@ -95,7 +99,9 @@ Plugins are user-scope from agent chat. The `npx skills add … -g` lines are us
 | [svelte](https://cursor.com/marketplace/svelte) plugin | Svelte MCP, skills, and the `svelte-file-editor` agent | Extra Svelte packs on Cursor; a second Svelte MCP |
 | [`conventional-commit-message`](https://github.com/conventional-changelog/conventional-changelog/tree/master/skills/conventional-commit-message) skill | Commit *format*: types by release impact, `!` / `BREAKING CHANGE`, scopes, commitlint check | Random skills.sh / Lobe copies; `committing-with-commitlint` globally (only in a repo that already has commitlint) |
 | [`expo/skills`](https://github.com/expo/skills) | Expo SDK, Expo Router, native UI, upgrades, EAS (build, submit, hosting, workflows). Router skill is `expo-overview` | Extra Expo packs; Lobe / skills.sh copies; `vercel-react-native-skills` beside this pack |
-| [`vercel-react-best-practices`](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices) | Web React and Next performance (RSC, waterfalls, `Activity`). From [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | The rest of that repo (`writing-guidelines`, `deploy-to-vercel`, …) unless you asked |
+| [`frontend-design`](https://github.com/anthropics/skills/tree/main/skills/frontend-design) | Web look: distinctive UI, anti-slop. From [anthropics/skills](https://github.com/anthropics/skills) | The rest of that repo (`skill-creator`, document packs, …); do not run it on Expo / RN screens |
+| [`vercel-react-best-practices`](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices) | Web React and Next performance (RSC, waterfalls, `Activity`). From [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | The rest of that repo (`writing-guidelines`, `deploy-to-vercel`, …) |
+| [`web-design-guidelines`](https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines) | Audit existing web UI against Vercel’s interface guidelines (a11y, spacing, focus) | `anti-ui-slop` / `ui-ux-pro-max` clones; do not use it as a mobile HIG skill |
 | [`vercel/next.js`](https://github.com/vercel/next.js/tree/canary/skills) skills | Next **workflows**: `next-dev-loop`, Cache Components and Partial Prefetching adoption. Framework APIs stay in the project's `AGENTS.md` | Retired [`next-skills`](https://github.com/vercel-labs/next-skills); a lore App Router encyclopedia |
 | Official [Playwright skills](https://playwright.dev/docs/getting-started-cli) | Playwright CLI, codegen, traces, session (`microsoft/playwright-cli`) | LambdaTest / QASkills Playwright packs; a lore Playwright API dump |
 
@@ -103,7 +109,7 @@ Optional scanner for React changes: [`react-doctor`](https://cursor.com/marketpl
 
 That combination covers the stack. You do **not** need more plugins, skill catalogs, or MCP servers to start.
 
-**Who wins when they overlap:** lore skills own Go package layout and Encore+Temporal structure (`encore-go-app-structure`, `temporal-go-app-structure`, `encore-temporal-go-app-structure`), the Svelte **pin and Kit tree** (`svelte`, `sveltekit-app-structure`), TypeScript **what to test** (`typescript-unit-tests`), when to add **journeys** (`e2e-tests`), and the Conventional Commits *overlay* (`conventional-commits`: Go `/v2`, Python/TS releasers, Lefthook without Node). The plugins own live inspection (Encore MCP), official Temporal CLI/SDK encyclopedias, and Svelte runes / autofixer / live docs. `conventional-commit-message` owns the commit format. Official Playwright skills own CLI / codegen / traces. `expo/skills` owns Expo, React Native-with-Expo, EAS, and native Maestro. `vercel-react-best-practices` owns web React and Next performance. Next.js **APIs and App Router** are the project's `AGENTS.md` plus bundled `next` docs. `vercel/next.js` skills own the verify loop and Cache Components / Partial Prefetching workflows. TypeScript language stays `typescript-idioms` — do not flatten Next `app/` or Expo Router `app/` with its `src/<noun>/` tree. Python language stays `python-idioms`. Kit stays `git-repo-setup-python`. CSS language stays `css-idioms`. There is no lore React, Expo, or Next overlay: those vendors already own pin and layout. Do not copy plugin or vendor skills into `skills/` — `make uninstall` would wipe a fork, and you would be maintaining vendor docs.
+**Who wins when they overlap:** lore skills own Go package layout and Encore+Temporal structure (`encore-go-app-structure`, `temporal-go-app-structure`, `encore-temporal-go-app-structure`), the Svelte **pin and Kit tree** (`svelte`, `sveltekit-app-structure`), TypeScript **what to test** (`typescript-unit-tests`), when to add **journeys** (`e2e-tests`), and the Conventional Commits *overlay* (`conventional-commits`: Go `/v2`, Python/TS releasers, Lefthook without Node). The plugins own live inspection (Encore MCP), official Temporal CLI/SDK encyclopedias, and Svelte runes / autofixer / live docs. `conventional-commit-message` owns the commit format. Official Playwright skills own CLI / codegen / traces. `expo/skills` owns Expo, React Native-with-Expo, EAS, and native Maestro. `frontend-design` owns web look. `web-design-guidelines` owns web UI audit. `vercel-react-best-practices` owns web React and Next performance. Next.js **APIs and App Router** are the project's `AGENTS.md` plus bundled `next` docs. `vercel/next.js` skills own the verify loop and Cache Components / Partial Prefetching workflows. TypeScript language stays `typescript-idioms` — do not flatten Next `app/` or Expo Router `app/` with its `src/<noun>/` tree. Python language stays `python-idioms`. Kit stays `git-repo-setup-python`. CSS language stays `css-idioms`. There is no lore React, Expo, or Next overlay: those vendors already own pin and layout. Do not copy plugin or vendor skills into `skills/` — `make uninstall` would wipe a fork, and you would be maintaining vendor docs.
 
 Plugins are Cursor-only (`/add-plugin` is not available in the Cursor CLI). `npx skills add` works from any terminal. After installing plugins, restart the agent chat if MCP tools do not appear.
 
@@ -169,7 +175,7 @@ For lore + vendor skills on a new machine, use `make setup`. See [Start here](#s
 | `make setup` | Lore skills + vendor skills; prints Cursor plugin steps (plugins still manual) |
 | `make clean` | Undo setup: lore copies + vendor packs; prints how to remove Cursor plugins |
 | `make install` | Copy every skill into Cursor, Codex, and Claude Code skill dirs |
-| `make install-vendor-skills` | Install official vendor skills (Conventional Commits, Expo, Vercel, Playwright) for cursor, claude-code, and codex |
+| `make install-vendor-skills` | Install official vendor skills (Conventional Commits, Expo, frontend-design, Vercel, Playwright) for cursor, claude-code, and codex |
 | `make uninstall-vendor-skills` | Remove those vendor packs from the same agents |
 | `make print-cursor-plugins` | Show `/add-plugin` steps only (no install) |
 | `make status` | Show which installed copies have drifted from the repo |

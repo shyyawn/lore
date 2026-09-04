@@ -115,8 +115,8 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | `svelte.config.*` without Kit | `svelte` (Vite). Do not add Kit as a drive-by |
 | `encore.app` + `svelte.config.*` | Encore skills for the API; `svelte` + `sveltekit-app-structure` for the UI; journeys: `e2e-tests` |
 | `expo` in `package.json` | Official `expo/skills` (install — README **Start here**). Tests: `typescript-unit-tests` + `jest-expo`; journeys: `e2e-tests`. Do not fork into `skills/` |
-| `next` in `package.json` | Project `AGENTS.md` + bundled `next` docs. Workflows: official `vercel/next.js` skills. Performance: `vercel-react-best-practices`. Tests: `typescript-unit-tests` + pin Testing guide; journeys: `e2e-tests`. Do not fork retired `next-skills` |
-| web `react` without `next` or `expo` | Official `vercel-react-best-practices`. Tests: `typescript-unit-tests`. Do not flatten a Vite `src/` into Next `app/` |
+| `next` in `package.json` | Project `AGENTS.md` + bundled `next` docs. Workflows: official `vercel/next.js` skills. Performance: `vercel-react-best-practices`. Look: `frontend-design`. Audit: `web-design-guidelines`. Tests: `typescript-unit-tests` + pin Testing guide; journeys: `e2e-tests`. Do not fork retired `next-skills` |
+| web `react` without `next` or `expo` | Official `vercel-react-best-practices`. Look: `frontend-design`. Audit: `web-design-guidelines`. Tests: `typescript-unit-tests`. Do not flatten a Vite `src/` into Next `app/` |
 | `encore.app` + `expo` | Encore skills for the API; `expo/skills` for the UI |
 | `encore.app` + `next` | Encore skills for the API; Next `AGENTS.md` + `vercel/next.js` for the UI |
 | Several `go.mod` / `go.work` | `go-mono-repo` |
@@ -141,6 +141,8 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | Upwork / Fiverr / Toptal / LinkedIn Services / freelance profile | `customize-cv` ([freelance.md](../customize-cv/freelance.md)) |
 | LinkedIn headline / About / Open to Work (job search) | `customize-cv` ([linkedin.md](../customize-cv/linkedin.md)) |
 | `*.css` / `<style>` / component CSS | `css-idioms`. Tailwind already there: honor. NativeWind setup: `expo-tailwind-setup` |
+| web look / anti-slop / landing UI | Official `frontend-design`. Do not run it on Expo / RN |
+| review UI / check accessibility / audit design | Official `web-design-guidelines` |
 
 ## Naming
 
@@ -230,7 +232,9 @@ pass on those names.
 | This repo `svelte` / `sveltekit-app-structure` | Pin, experimental default-no, Kit tree | Kit 3 `@next`; a runes catalog |
 | `conventional-commit-message` | Commit **format** | A lore fork of its type table |
 | Official `expo/skills` | Expo / RN-with-Expo pin, Router tree, native UI, EAS | A lore `expo-overview` or `expo-router` |
+| Official `frontend-design` | Web look / anti-slop | A lore fork; Expo / RN screens (use `expo/skills`) |
 | Official `vercel-react-best-practices` | Web React / Next performance | A lore dump of Vercel's rule files |
+| Official `web-design-guidelines` | Web UI audit (a11y, spacing, focus) | `anti-ui-slop` clones; a lore HIG dump |
 | Next `AGENTS.md` + bundled docs | App Router, caching APIs, pin-matched docs | A lore Next encyclopedia; retired `next-skills` |
 | Official `vercel/next.js` skills | `next-dev-loop`, Cache Components / Partial Prefetching workflows | Recopying those into `skills/` |
 | This repo `typescript-unit-tests` | What to test in TypeScript | A Jest / Vitest encyclopedia |
