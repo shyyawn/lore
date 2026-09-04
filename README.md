@@ -167,6 +167,7 @@ For lore + vendor skills on a new machine, use `make setup`. See [Start here](#s
 | Target | Does |
 | --- | --- |
 | `make setup` | Lore skills + vendor skills; prints Cursor plugin steps (plugins still manual) |
+| `make clean` | Undo setup: lore copies + vendor packs; prints how to remove Cursor plugins |
 | `make install` | Copy every skill into Cursor, Codex, and Claude Code skill dirs |
 | `make install-vendor-skills` | Install official vendor skills (Conventional Commits, Expo, Vercel, Playwright) for cursor, claude-code, and codex |
 | `make uninstall-vendor-skills` | Remove those vendor packs from the same agents |

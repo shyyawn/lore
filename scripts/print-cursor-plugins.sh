@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 # Reminder: Cursor marketplace plugins have no non-interactive CLI install yet.
+# Usage: print-cursor-plugins.sh [install|uninstall]
 
-cat <<'EOF'
+set -euo pipefail
+
+install_msg() {
+	cat <<'EOF'
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   Cursor plugins (manual — not scriptable yet)
@@ -25,3 +29,35 @@ cat <<'EOF'
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 EOF
+}
+
+uninstall_msg() {
+	cat <<'EOF'
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Cursor plugins (manual — make clean does not remove them)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  make clean already dropped lore copies and vendor packs.
+  Plugins stay until you uninstall them in Cursor:
+
+    Customize sidebar → the plugin (encore, temporal, svelte) → Uninstall.
+
+  Optional: same for react-doctor if you added it.
+
+  Restart agent chat after uninstall if MCP tools still appear.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+EOF
+}
+
+cmd="${1:-install}"
+case "$cmd" in
+install) install_msg ;;
+uninstall) uninstall_msg ;;
+*)
+	printf 'usage: %s install|uninstall\n' "$(basename "$0")" >&2
+	exit 2
+	;;
+esac

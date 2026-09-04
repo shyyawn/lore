@@ -21,7 +21,7 @@ CURSOR_RULES  := $(HOME)/.cursor/rules
 SKILL_DESTS   := $(CURSOR_SKILLS) $(AGENTS_SKILLS) $(CLAUDE_SKILLS)
 
 .DEFAULT_GOAL := help
-.PHONY: help setup install install-vendor-skills uninstall-vendor-skills \
+.PHONY: help setup clean install install-vendor-skills uninstall-vendor-skills \
 	print-cursor-plugins status uninstall list
 
 ## help: list targets
@@ -31,6 +31,12 @@ help:
 ## setup: lore skills + vendor skills; print Cursor plugin steps (plugins still manual)
 setup:
 	@bash scripts/setup.sh
+
+## clean: undo setup (lore copies + vendor packs; print how to remove Cursor plugins)
+clean:
+	@$(MAKE) uninstall
+	@$(MAKE) uninstall-vendor-skills
+	@bash scripts/print-cursor-plugins.sh uninstall
 
 ## print-cursor-plugins: show /add-plugin steps (no install — CLI cannot install plugins yet)
 print-cursor-plugins:
