@@ -55,7 +55,7 @@ pin unless the file already has them.
 Same-document view transitions are Baseline 2025 (Interop 2025).
 Cross-document / `:active-view-transition` wait for the 2026 pin.
 
-## 2026 — `@scope`, `shape()`, anchors, style queries
+## 2026 — `@scope`, `shape()`, anchors, style queries, tree counting
 
 | Before | After |
 | --- | --- |
@@ -68,9 +68,12 @@ Cross-document / `:active-view-transition` wait for the 2026 pin.
 | `width` hacks on `textarea` / select | `field-sizing: content` |
 | `:popover-open` only | also `:open` for the same open state where it applies |
 | view-transition active styling in JS | `:active-view-transition` |
+| `:nth-child(n)` delay / JS `--i` on each child | `sibling-index()` / `sibling-count()` in `calc()` |
 
 Anchor positioning **level 1** is Baseline 2026 (Firefox, 2026-01).
 Level 2 (`container-type: anchored`) is **not** all engines — Not yet.
+`sibling-index()` / `sibling-count()` became Newly available 2026-08
+(MDN). Skip them on a strict Widely pin unless the file already has them.
 
 ## Not Baseline (do not emit as the only path)
 
@@ -80,7 +83,6 @@ Level 2 (`container-type: anchored`) is **not** all engines — Not yet.
 | `@function` | Chromium 139+ | custom property; honor if already in the file |
 | `text-wrap: pretty` | Chromium + Safari; no Firefox | `text-wrap: balance` |
 | `@mixin` / `@apply` (CSS mixins) | no engine | nest; do not add Sass for it |
-| `sibling-index()` / `sibling-count()` | Chromium 138+, Safari 26.2+, Firefox 154 (2026-08) | `:nth-child` until the pin includes them |
 | `corner-shape` / `superellipse()` | Chromium | `border-radius` |
 | `interpolate-size: allow-keywords` | Chromium | `grid-template-rows: 0fr` / transform |
 | `animation-timeline: scroll()` / `view()` | Interop 2026; not all engines as default | `@media (prefers-reduced-motion)` time animation; honor scroll-driven if already in the file |

@@ -12,7 +12,7 @@ The stdlib closed the gaps that used to justify a starter kit of deps:
 - 1.24 `tool` → versioned dev tools
 - 1.25 `synctest` / `WaitGroup.Go` → structured concurrency in tests and servers
 - 1.26 `errors.AsType` / `new(expr)` / `go fix`
-- 1.27 generic methods / `"uuid"` / `encoding/json/v2`
+- 1.27 generic methods / `"uuid"` / `encoding/json/v2` / `jsontext` / `crypto/mldsa`
 
 Add a module when it does something the standard library will not (a database driver, OpenTelemetry, Cobra for a real CLI tree). Do not add a second library for logging, muxing, error wrapping, or slice helpers.
 
