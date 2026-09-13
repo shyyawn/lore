@@ -68,6 +68,8 @@ Do not invent a parallel `go-idioms`, a second `encore-go`, or a second
 | Skill | Kind | Parent | Overrides / fills |
 | --- | --- | --- | --- |
 | `new-change-lore-skills` | authoring | Cursor `create-skill` | House voice. Not a fork of create-skill. |
+| `implementation-discipline` | workflow / playbook | — | Framework-native lifecycle, mutation-path, concurrency, persistence, and closure discipline |
+| `opus5-guide` | model overlay | `implementation-discipline` | Opus 5 evidence, workaround, checkpoint, and stop-signal calibration |
 | `conventional-commits` | vendor overlay | `conventional-commit-message` (install, don't copy) | Go/Python/TS scopes, HEREDOC, no Node on Go/Python |
 | `git-repo-setup` | hub | — | Kit: init, Lefthook, mise, just/Make, ignore, debugger policy |
 | `git-repo-setup-go` | language overlay | `git-repo-setup` | Go commands + Delve JSON |
@@ -137,6 +139,8 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | slice vs map / heap / custom sort | `choose-collections` |
 | design a system, no code yet | `requirement-to-architecture-to-design` |
 | review this / code review | `review-change` |
+| non-trivial multi-surface implementation / persistence / concurrency / durable jobs | `implementation-discipline` + the task's framework and domain skills |
+| Claude Opus 5 / Opus 5 one-shot implementation | `implementation-discipline` + `opus5-guide` + the task's framework and domain skills |
 | CV / resume / tailor to JD / ATS / base CV | `customize-cv` |
 | Upwork / Fiverr / Toptal / LinkedIn Services / freelance profile | `customize-cv` ([freelance.md](../customize-cv/freelance.md)) |
 | LinkedIn headline / About / Open to Work (job search) | `customize-cv` ([linkedin.md](../customize-cv/linkedin.md)) |

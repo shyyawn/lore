@@ -120,6 +120,8 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | Skill | Use |
 | --- | --- |
 | [new-change-lore-skills](skills/new-change-lore-skills) | House look for creating or changing any skill in this repo |
+| [implementation-discipline](skills/implementation-discipline) | Framework-neutral implementation discipline: lifecycle seams, mutation paths, concurrency, durable work, real persistence, and closure sweeps |
+| [opus5-guide](skills/opus5-guide) | Opus 5 overlay on implementation-discipline: evidence updates the plan, workaround chains stop, and one-shot work stays checkpointed |
 | [conventional-commits](skills/conventional-commits) | Go/Python/TS overlay on the official `conventional-commit-message` skill (install that first — [Start here](#start-here-cursor)) |
 | [git-repo-setup](skills/git-repo-setup) | 2026 Git repo kit: init, hooks, mise, just/Make, ignore/attributes, linters, shared debugger |
 | [git-repo-setup-go](skills/git-repo-setup-go) | Go overlay: gofmt, go vet, golangci-lint, go test / encore test, Delve `launch.json` |
