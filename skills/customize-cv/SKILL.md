@@ -8,15 +8,15 @@ description: >-
   LinkedIn Services, or freelance profile; when the user mentions ATS,
   Staff Engineer, Principal, Software Architect, Engineering Manager,
   VP, SVP, LinkedIn headline, About, Open to Work, freelance, gig,
-  marketplace, contract CV, base CV, tailor resume, cover letter, or
-  export PDF / docx.
+  marketplace, contract CV, base CV, tailor resume, cover letter,
+  SOURCE.md, career dump, LinkedIn export, or export PDF / docx.
 ---
 
 # Customize CV 2026
 
-One **file** per ask. Job CV (IC / Manager), freelance profile, or
-job LinkedIn. Do not dump a career onto the page. Do not write a
-job CV when the ask is a listing.
+One **file** per ask. Job CV, listing, job LinkedIn, letter, or
+`SOURCE.md`. Do not dump a career onto a CV. Do not write a derived
+file when the ask is the source.
 
 Sources: Laszlo Bock XYZ (`Accomplished [X] as measured by [Y] by
 doing [Z]`); Jobscan ATS anatomy 2026 (single column, standard
@@ -53,11 +53,11 @@ Parse: [ats.md](ats.md). Tone: [tone.md](tone.md). Cover:
    | README / ADR / docs body | `create-readme-and-other-markdown-documentation` |
    | Lore `skills/*/SKILL.md` | `new-change-lore-skills` |
    | Cover letter (asked or required) | [cover.md](cover.md) |
+   | `SOURCE.md` / career dump | [career.md](career.md) |
 6. No career source → **stop** and ask for an existing CV, a LinkedIn
-   export, or notes. A paste is enough for this file. Write `SOURCE.md`
-   when `career/` exists or the user wants repeat use
-   ([career.md](career.md)). Do not invent dates, titles, employers,
-   or metrics. Do not put that file in this lore repo.
+   export, or notes. A paste is enough. Ask is `SOURCE.md` only →
+   [career.md](career.md). **Stop.** Do not invent. Do not put that
+   file in this lore repo.
 7. Job CV: JD present → split must-haves from nice-to-haves. No JD →
    **base**. Name the variant ([variants.md](variants.md)). IC lane
    from the JD title, else SOURCE Lanes, else ask. VP/SVP is Manager

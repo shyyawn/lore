@@ -141,6 +141,7 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | Upwork / Fiverr / Toptal / LinkedIn Services / freelance profile | `customize-cv` ([freelance.md](../customize-cv/freelance.md)) |
 | LinkedIn headline / About / Open to Work (job search) | `customize-cv` ([linkedin.md](../customize-cv/linkedin.md)) |
 | cover letter / covering letter | `customize-cv` ([cover.md](../customize-cv/cover.md)) |
+| SOURCE.md / career dump / LinkedIn export notes | `customize-cv` ([career.md](../customize-cv/career.md)) |
 | `*.css` / `<style>` / component CSS | `css-idioms`. Tailwind already there: honor. NativeWind setup: `expo-tailwind-setup` |
 | web look / anti-slop / landing UI | Official `frontend-design`. Do not run it on Expo / RN |
 | review UI / check accessibility / audit design | Official `web-design-guidelines` |
