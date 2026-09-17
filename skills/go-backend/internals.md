@@ -93,6 +93,28 @@ func (s ItemSQL) Get(ctx context.Context, id string) (Item, error) {
   `ItemStore` when a test or a rule needs it — not a folder named
   `repository`.
 
+## GORM (honor only)
+
+When `gorm.io/gorm` is already in `go.mod`. Do not add it. Do not
+restyle it to sqlc as a drive-by.
+
+```go
+err := db.WithContext(ctx).
+	Where("id = ? AND tenant_id = ?", id, tenant).
+	First(&row).Error
+```
+
+Not `db.First(&row, id)`. Tenant: `authz-boundaries`.
+
+`Create` / `Save` run hooks. `Updates` / `Delete` / `UpdateColumn`
+often do not. Inventory both paths.
+
+`clause.Locking{Strength: "UPDATE"}` is a row lock inside the
+transaction. A version column that rejects a stale write is different.
+Name the anomaly. Do not call a lock optimistic concurrency.
+
+`AutoMigrate` on a live DB is `evolve-safely` **no**.
+
 ## Config and wiring (non-Encore)
 
 ```go

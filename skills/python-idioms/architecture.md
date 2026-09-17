@@ -21,7 +21,8 @@ or UUID on 3.14+.
 
 Django / FastAPI / Flask / Typer stay if the project already has them.
 Do not replace them as a drive-by restyle. Do not introduce FastAPI for
-a 40-line script.
+a 40-line script. Django coding: `django`. Layout:
+`django-app-structure`. FastAPI: `fastapi`.
 
 ## Layout
 
@@ -47,7 +48,8 @@ pyproject.toml            # requires-python; [project.scripts] if any
 Do **not** create `domain/`, `usecase/`, `adapter/`, `controller/`,
 `repository/`, `utils/`, `helpers/`, `common/` layers for a small
 package. Flatten. Extract a module when an import cycle or a second
-entry forces it.
+entry forces it. Django `startproject`: `django-app-structure`. Do not
+flatten that tree here.
 
 Dual-store / cache: `source-of-truth`. Schema types: `data-modeling`.
 Slice vs map: `choose-collections`. Keys: `identity`.

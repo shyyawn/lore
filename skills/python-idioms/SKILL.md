@@ -20,7 +20,8 @@ beside a working `pyproject.toml`).
 Full catalogs: [versions.md](versions.md) (3.10→now),
 [modernizers.md](modernizers.md) (Ruff UP), [architecture.md](architecture.md)
 (2024–2026 structure). Kit: `git-repo-setup-python`. Collections:
-`choose-collections`. Keys: `identity`.
+`choose-collections`. Keys: `identity`. Django: `django`. FastAPI:
+`fastapi`.
 
 ## First step
 
@@ -87,7 +88,7 @@ Same instinct as Go ([architecture.md](architecture.md)).
 | Need | Use | Do not add |
 | --- | --- | --- |
 | HTTP client | `httpx` (sync or async); honor `requests` | a second client; new `requests` next to `httpx` |
-| HTTP server | honor Django / FastAPI / Starlette / Flask | FastAPI as fashion on a script |
+| HTTP server | honor Django (`django`) / FastAPI (`fastapi`) / Starlette / Flask | FastAPI as fashion on a script |
 | Validation at a boundary | Pydantic v2 (or the repo's msgspec) | `cast()` on `request.json`; a second schema lib |
 | Dates | `datetime` + `zoneinfo` | new `pytz` / `arrow` / `pendulum` |
 | IDs | `uuid.uuid4()`; 3.14+ `uuid.uuid7()` (`identity`) | a UUID package on 3.14+ |
@@ -105,7 +106,7 @@ layout: `git-repo-setup-python`. Do not recopy it.
 
 - Name packages for what they **are**.
 - One-way imports: domain must not import FastAPI, Click, or Django
-  wiring.
+  wiring. Django HTTP: `django`. FastAPI HTTP: `fastapi`.
 - `Protocol` at the **consumer**, methods that consumer needs. Do not
   export a 20-method ABC "for mocking".
 - Construct clients in `__main__` / the entry and pass them down. No
@@ -156,3 +157,4 @@ temp dirs. Journeys: `e2e-tests` when the UI is a browser.
 - Bump `requires-python` to unlock `uuid.uuid7` or `t""`.
 - Replace Django / Flask / FastAPI / Poetry as a drive-by restyle.
 - Recopy `git-repo-setup-python` recipes here.
+- Recopy `django` / `fastapi` catalogs here.

@@ -44,9 +44,9 @@ a planned phase of a new skill.
 ## New domain
 
 The overlay table below is this repo's **current** stack. A skill that
-is not Go, TypeScript, Python, CSS, Encore, Temporal, or Svelte does
-**not** hang under `go-idioms`. It is a hub, a lone playbook, or the
-start of a new family.
+is not Go, TypeScript, Python, CSS, Encore, Temporal, Svelte, Django,
+FastAPI, or NestJS does **not** hang under `go-idioms`. It is a hub, a
+lone playbook, or the start of a new family.
 
 | Situation | Do |
 | --- | --- |
@@ -62,8 +62,9 @@ It is not an overlay on `encore-go`. A later
 
 ## Overlay family (current stack)
 
-Do not invent a parallel `go-idioms`, a second `encore-go`, or a second
-`svelte`. Find the cell. Add a child. Point both ways.
+Do not invent a parallel `go-idioms`, a second `encore-go`, a second
+`svelte`, or a second `django` / `fastapi` / `nestjs`. Find the cell.
+Add a child. Point both ways.
 
 | Skill | Kind | Parent | Overrides / fills |
 | --- | --- | --- | --- |
@@ -87,6 +88,9 @@ Do not invent a parallel `go-idioms`, a second `encore-go`, or a second
 | `go-idioms` | language | — | Go 1.18–1.27 + 2024–2026 flatten layout |
 | `typescript-idioms` | language | — | TypeScript 5–7 + 2024–2026 flatten layout |
 | `python-idioms` | language | — | Python 3.10–3.14 + 2024–2026 flatten layout |
+| `django` | platform | `python-idioms` | Pin, forms vs `save`, bulk vs signals. Not a DRF dump |
+| `django-app-structure` | app-structure | `django` | `manage.py` / apps. Coding stays in `django` |
+| `fastapi` | platform | `python-idioms` | Pin, `Depends` vs transaction, lifespan. Not a Starlette pin |
 | `typescript-unit-tests` | domain overlay | `typescript-idioms` | Vitest / Jest / `node:test`, what to skip. Journeys stay `e2e-tests`. |
 | `e2e-tests` | workflow / playbook | official Playwright skills (install) | When to add journeys; house locators. Not a Playwright dump. |
 | `css-idioms` | language | — | Baseline 2022–2026 CSS + layers / tokens. Not a Sass or Tailwind fork |
@@ -94,10 +98,12 @@ Do not invent a parallel `go-idioms`, a second `encore-go`, or a second
 | `sveltekit-app-structure` | app-structure | `svelte` | `src/routes` / `$lib`. Coding stays in `svelte` + plugin |
 | `go-100-mistakes-avoid` | domain overlay | `go-idioms` | Still-in-force mistakes. Not language-fixed rows. |
 | `go-unit-tests` | domain overlay | `go-idioms` | Tables, synctest, fuzz, what to skip. Encore runner stays `encore-go`. |
-| `go-backend` | domain overlay | `go-idioms` | Inside a service. Encore still owns process layout. |
+| `go-backend` | domain overlay | `go-idioms` | Inside a service. sqlc default; honor GORM. Encore still owns process layout. |
 | `go-ddd` | domain overlay | `go-backend` | Aggregates. Default is no. |
 | `go-mono-repo` | domain overlay | `go-idioms` | How many `go.mod`. Encore stays one `encore.app`. |
 | `typescript-mono-repo` | domain overlay | `typescript-idioms` | How many `package.json`. pnpm workspaces; Turbo earned. |
+| `nestjs` | platform | `typescript-idioms` | Pin, pipes/guards, providers vs DB atomicity. Decorators override the language trap |
+| `nestjs-app-structure` | app-structure | `nestjs` | `AppModule` / feature modules. Coding stays in `nestjs` |
 | `encore-go` | platform | `go-idioms` | Layout, HTTP, log, errors, tests |
 | `temporal-go` | platform | `go-idioms` | Inside workflow functions: determinism |
 | `encore-go-app-structure` | app-structure | `encore-go` | Package layout. Coding stays in `encore-go`. |
@@ -126,6 +132,9 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | Hooks, mise, just, `launch.json`, Zed debugger | `git-repo-setup` + language overlay |
 | `*.test.ts` / vitest / jest (writing) | `typescript-unit-tests` |
 | `*.py` / `pyproject.toml` (coding) | `python-idioms`. Kit: `git-repo-setup-python` |
+| `manage.py` / `django` in deps | `django` + `django-app-structure` (not `python-idioms` `src/<name>/`) |
+| `fastapi` / Starlette ASGI app | `fastapi`. Django already there → `django` |
+| `@nestjs/core` | `nestjs` + `nestjs-app-structure` (not `typescript-idioms` `src/<noun>/`) |
 | `playwright.config.*` / Cypress / e2e journeys | `e2e-tests` |
 | `README.md` / health files / `docs/**/*.md` content | `create-readme-and-other-markdown-documentation` |
 | CQRS / dual-write / cache / outbox | `source-of-truth` |
@@ -152,13 +161,13 @@ Directory = YAML `name`. Lowercase hyphens. Max 64 chars.
 
 | Pattern | Example | Not |
 | --- | --- | --- |
-| Durable noun | `go-idioms`, `python-idioms`, `encore-go`, `temporal-go`, `svelte` | `go-2026`, `svelte-typescript` |
+| Durable noun | `go-idioms`, `python-idioms`, `encore-go`, `temporal-go`, `svelte`, `django`, `fastapi`, `nestjs` | `go-2026`, `svelte-typescript` |
 | Pipeline | `requirement-to-architecture-to-design` | `rta`, `design-2026`, `helper` |
 | Hub | `git-repo-setup` | `git-kit`, `repo-helpers` |
 | Hub + facet | `git-repo-setup-go` | `go-git-hooks` (hides the hub) |
 | Domain overlay | `go-unit-tests`, `typescript-unit-tests`, `go-backend`, `go-ddd`, `typescript-mono-repo` | Fusing into the parent |
 | Avoid catalog | `go-100-mistakes-avoid` | `go-mistakes` (vague) |
-| App-structure | `encore-go-app-structure`, `sveltekit-app-structure` | `encore-go-layout`, `svelte-ui-kit-typescript` |
+| App-structure | `encore-go-app-structure`, `sveltekit-app-structure`, `django-app-structure`, `nestjs-app-structure` | `encore-go-layout`, `svelte-ui-kit-typescript` |
 | Combined | `encore-temporal-go-app-structure` | Stuffing B into A's file |
 
 Title may include the current line (`# Go 2026`). The **directory**
@@ -242,6 +251,9 @@ pass on those names.
 | This repo `typescript-unit-tests` | What to test in TypeScript | A Jest / Vitest encyclopedia |
 | This repo `e2e-tests` | When to add journeys; house locators | A lore Playwright API dump |
 | Official Playwright skills | CLI, codegen, traces | LambdaTest / QASkills packs; a lore fork |
+| This repo `django` / `django-app-structure` | Django pin, ORM lifecycle, `startproject` tree | A skills.sh Django pack; DRF dump unasked |
+| This repo `fastapi` | FastAPI pin, lifespan, `Depends` vs transaction | A Starlette pin next to FastAPI; a FastAPI dump |
+| This repo `nestjs` / `nestjs-app-structure` | Nest pin, pipes vs DB, module tree | A skills.sh Nest pack; Nest on a 40-line worker |
 
 `make uninstall` would wipe a fork. You would be maintaining vendor
 docs. Overlay the gap (`conventional-commits`) or point at the plugin.

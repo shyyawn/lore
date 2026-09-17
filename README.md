@@ -31,7 +31,7 @@ Slash prompts / `.cursor/commands/` are legacy. New user-invoked workflows are s
 
 Three layers. That is the whole agent setup.
 
-1. **This repo's skills** — how we write Go, TypeScript, Python, CSS, Encore, Temporal, and Svelte, plus TypeScript unit tests, e2e policy, a Conventional Commits *overlay* for those languages, and a 2026 Git repo kit.
+1. **This repo's skills** — how we write Go, TypeScript, Python, CSS, Encore, Temporal, Svelte, Django, FastAPI, and NestJS, plus TypeScript unit tests, e2e policy, a Conventional Commits *overlay* for those languages, and a 2026 Git repo kit.
 2. **Official Cursor plugins** — live tooling and vendor how-tos that this repo does not duplicate.
 3. **Official vendor skills** — Conventional Commits format; Expo / React Native / EAS; Anthropic frontend-design; Vercel React performance and web-design-guidelines; Next.js workflows; Playwright CLI. Not Cursor plugins.
 
@@ -109,7 +109,7 @@ Optional scanner for React changes: [`react-doctor`](https://cursor.com/marketpl
 
 That combination covers the stack. You do **not** need more plugins, skill catalogs, or MCP servers to start.
 
-**Who wins when they overlap:** lore skills own Go package layout and Encore+Temporal structure (`encore-go-app-structure`, `temporal-go-app-structure`, `encore-temporal-go-app-structure`), the Svelte **pin and Kit tree** (`svelte`, `sveltekit-app-structure`), TypeScript **what to test** (`typescript-unit-tests`), when to add **journeys** (`e2e-tests`), and the Conventional Commits *overlay* (`conventional-commits`: Go `/v2`, Python/TS releasers, Lefthook without Node). The plugins own live inspection (Encore MCP), official Temporal CLI/SDK encyclopedias, and Svelte runes / autofixer / live docs. `conventional-commit-message` owns the commit format. Official Playwright skills own CLI / codegen / traces. `expo/skills` owns Expo, React Native-with-Expo, EAS, and native Maestro. `frontend-design` owns web look. `web-design-guidelines` owns web UI audit. `vercel-react-best-practices` owns web React and Next performance. Next.js **APIs and App Router** are the project's `AGENTS.md` plus bundled `next` docs. `vercel/next.js` skills own the verify loop and Cache Components / Partial Prefetching workflows. TypeScript language stays `typescript-idioms` — do not flatten Next `app/` or Expo Router `app/` with its `src/<noun>/` tree. Python language stays `python-idioms`. Kit stays `git-repo-setup-python`. CSS language stays `css-idioms`. There is no lore React, Expo, or Next overlay: those vendors already own pin and layout. Do not copy plugin or vendor skills into `skills/` — `make uninstall` would wipe a fork, and you would be maintaining vendor docs.
+**Who wins when they overlap:** lore skills own Go package layout and Encore+Temporal structure (`encore-go-app-structure`, `temporal-go-app-structure`, `encore-temporal-go-app-structure`), the Svelte **pin and Kit tree** (`svelte`, `sveltekit-app-structure`), Django **pin and project tree** (`django`, `django-app-structure`), FastAPI **pin** (`fastapi`), Nest **pin and module tree** (`nestjs`, `nestjs-app-structure`), TypeScript **what to test** (`typescript-unit-tests`), when to add **journeys** (`e2e-tests`), and the Conventional Commits *overlay* (`conventional-commits`: Go `/v2`, Python/TS releasers, Lefthook without Node). The plugins own live inspection (Encore MCP), official Temporal CLI/SDK encyclopedias, and Svelte runes / autofixer / live docs. `conventional-commit-message` owns the commit format. Official Playwright skills own CLI / codegen / traces. `expo/skills` owns Expo, React Native-with-Expo, EAS, and native Maestro. `frontend-design` owns web look. `web-design-guidelines` owns web UI audit. `vercel-react-best-practices` owns web React and Next performance. Next.js **APIs and App Router** are the project's `AGENTS.md` plus bundled `next` docs. `vercel/next.js` skills own the verify loop and Cache Components / Partial Prefetching workflows. TypeScript language stays `typescript-idioms` — do not flatten Next `app/`, Expo Router `app/`, or Nest `src/` with its `src/<noun>/` tree. Python language stays `python-idioms`. Django `startproject` stays `django-app-structure`. Kit stays `git-repo-setup-python`. CSS language stays `css-idioms`. Go sqlc / GORM stay `go-backend`. There is no lore React, Expo, or Next overlay: those vendors already own pin and layout. Do not copy plugin or vendor skills into `skills/` — `make uninstall` would wipe a fork, and you would be maintaining vendor docs.
 
 Plugins are Cursor-only (`/add-plugin` is not available in the Cursor CLI). `npx skills add` works from any terminal. After installing plugins, restart the agent chat if MCP tools do not appear.
 
@@ -139,12 +139,17 @@ Running an app is separate from this setup: Encore CLI, Temporal CLI (`temporal 
 | [go-idioms](skills/go-idioms) | Idiomatic Go 1.18–1.27 and 2024–2026 layout |
 | [go-100-mistakes-avoid](skills/go-100-mistakes-avoid) | Overlay on `go-idioms`: common Go mistakes still in force in 2026 |
 | [go-unit-tests](skills/go-unit-tests) | Overlay on `go-idioms`: 2024–2026 Go tests (tables, synctest, fuzz, what to skip) |
-| [go-backend](skills/go-backend) | Overlay on `go-idioms`: inside a Go service (handlers, persistence, shutdown) |
+| [go-backend](skills/go-backend) | Overlay on `go-idioms`: inside a Go service (handlers, sqlc / honor GORM, shutdown) |
 | [go-ddd](skills/go-ddd) | Overlay on `go-backend`: DDD Lite when a domain earns an aggregate |
 | [go-mono-repo](skills/go-mono-repo) | Overlay on `go-idioms`: one module by default, `go.work` only when modules version apart |
 | [typescript-mono-repo](skills/typescript-mono-repo) | Overlay on `typescript-idioms`: one package.json by default, pnpm workspaces when two apps appear, Turborepo only when CI time hurts |
 | [typescript-idioms](skills/typescript-idioms) | Idiomatic TypeScript 5–7 and 2024–2026 layout |
+| [nestjs](skills/nestjs) | Overlay on `typescript-idioms`: Nest pin, pipes/guards, providers vs DB atomicity |
+| [nestjs-app-structure](skills/nestjs-app-structure) | Nest `AppModule` / feature-module layout (coding stays in `nestjs`) |
 | [python-idioms](skills/python-idioms) | Idiomatic Python 3.10–3.14 and 2024–2026 layout |
+| [django](skills/django) | Overlay on `python-idioms`: Django pin, forms vs `save`, bulk vs signals |
+| [django-app-structure](skills/django-app-structure) | Django `manage.py` / apps layout (coding stays in `django`) |
+| [fastapi](skills/fastapi) | Overlay on `python-idioms`: FastAPI pin, `Depends` vs transaction, lifespan |
 | [typescript-unit-tests](skills/typescript-unit-tests) | Overlay on `typescript-idioms`: 2024–2026 TS tests (Vitest / Jest / `node:test`, what to skip) |
 | [e2e-tests](skills/e2e-tests) | When to add browser / device journeys (Playwright web; Expo Maestro). Install official Playwright skills first — [Start here](#start-here-cursor) |
 | [css-idioms](skills/css-idioms) | Idiomatic CSS Baseline 2022–2026 (`@layer`, nesting, view transitions, anchors). Not Sass or Tailwind |

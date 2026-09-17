@@ -12,6 +12,9 @@ to unlock a snippet.
 | `encore.app` | Generated API explorer | README: `encore run`. Layout: `encore-go-app-structure` |
 | `go.temporal.io/sdk` | docs.temporal.io | README: worker + dev server. Do not recopy the SDK |
 | `pyproject.toml` / `*.py` | Docstrings (PEP 257). Sphinx or MkDocs when earned | PyPI readme = this README unless they set another |
+| `manage.py` / `django` | Django docs for the pin | Coding: `django`. Layout: `django-app-structure` |
+| `fastapi` in deps | FastAPI docs | Coding: `fastapi`. Do not pin Starlette |
+| `@nestjs/core` | Nest docs | Coding: `nestjs`. Layout: `nestjs-app-structure` |
 | `package.json` + TS/JS | TSDoc / JSDoc for public API | npm renders README. `exports` / `types` in package.json, not prose |
 | `svelte.config.*` | Svelte component docs in `.svelte` | README is the app. Coding: `svelte`. Layout: `sveltekit-app-structure` |
 | `Cargo.toml` | rustdoc | README = why; rustdoc = how. Do not `include_str!` by default |

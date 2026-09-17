@@ -26,14 +26,14 @@ add a second library for HTTP clients, dates, UUID, or schema validation.
 
 Hono / Fastify / Nest stay if the project already has them. Do not replace
 them with `node:http` as a drive-by restyle. Do not introduce Nest for a
-40-line worker.
+40-line worker. Nest coding: `nestjs`. Layout: `nestjs-app-structure`.
 
 ## Layout
 
 SvelteKit is `sveltekit-app-structure`. Expo Router is `expo/skills`.
 Next `app/` is the project's `AGENTS.md` plus bundled `next` docs.
-Do not apply this `src/<noun>/` tree to `src/routes` or those `app/`
-trees.
+Nest `src/` is `nestjs-app-structure`. Do not apply this `src/<noun>/`
+tree to `src/routes` or those `app/` trees.
 
 Official instinct: start as a few modules next to `package.json`. Grow into
 this when there is a second binary or a publish boundary. More than one

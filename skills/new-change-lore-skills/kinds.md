@@ -11,8 +11,8 @@ pipeline.
 | Authoring | this skill | `voice.md`, `kinds.md`, `family.md` |
 | Workflow / playbook | `create-readme-and-other-markdown-documentation` (also `e2e-tests`, staff playbooks, `requirement-to-architecture-to-design`) | create-readme: `files.md`, `readme.md`, `english.md`, `stacks.md`; staff: `types.md`, `collections.md`, `algorithms.md`, `stages.md` |
 | Language idiom | `go-idioms`, `typescript-idioms`, `python-idioms`, `css-idioms` | `versions.md`, `modernizers.md`, `architecture.md` |
-| Platform coding | `encore-go`, `temporal-go`, `svelte` | Encore/Temporal catalogs; `svelte`: none (plugin owns runes) |
-| App-structure | `encore-go-app-structure`, `temporal-go-app-structure`, `sveltekit-app-structure` | usually none — trees live in SKILL.md |
+| Platform coding | `encore-go`, `temporal-go`, `svelte`, `django`, `fastapi`, `nestjs` | Encore/Temporal catalogs; `svelte`: none (plugin owns runes); django/fastapi/nestjs: none |
+| App-structure | `encore-go-app-structure`, `temporal-go-app-structure`, `sveltekit-app-structure`, `django-app-structure`, `nestjs-app-structure` | usually none — trees live in SKILL.md |
 | Combined stack | `encore-temporal-go-app-structure` | none — seam + division of labor in SKILL.md |
 | Hub kit | `git-repo-setup` | `files.md`, `gitconfig.md`, `debug.md` |
 | Language overlay on hub | `git-repo-setup-go` / `-typescript` / `-python` | overlay `debug.md` (the JSON) |
@@ -22,7 +22,9 @@ pipeline.
 Look is always [voice.md](voice.md). Authoring is this skill — do not
 write a second one. Language idiom and below are the **current** stack,
 not a requirement that every new skill hang under Go. Svelte hangs
-under `typescript-idioms` + the plugin, not under `go-idioms`.
+under `typescript-idioms` + the plugin, not under `go-idioms`. Django
+and FastAPI hang under `python-idioms`. Nest hangs under
+`typescript-idioms`.
 
 ## Three lists
 
@@ -87,11 +89,15 @@ the pin. `architecture.md` is 2024–2026 structure, not hexagonal fashion.
 
 ## Platform coding
 
-Open: `encore-go`, `temporal-go`, or `svelte`.
+Open: `encore-go`, `temporal-go`, `svelte`, `django`, `fastapi`, or
+`nestjs`.
 
 - Follow the language skill, then **overrides** on named axes (Encore:
   layout, HTTP, log, tests; Temporal workflows: no `slog` / `go` /
-  `time.Now`; Svelte: pin, experimental default-**no**, `$app/state`).
+  `time.Now`; Svelte: pin, experimental default-**no**, `$app/state`;
+  Django: forms vs `save`, bulk vs signals; FastAPI: `Depends` vs
+  transaction, lifespan; Nest: pipes vs DB atomicity — Nest
+  **decorators** override `typescript-idioms` `experimentalDecorators`).
   Bidirectional: language `architecture.md` points at the platform
   skill for that layout.
 - **Hard rules** (compiler / runtime), not a defaults table.
@@ -106,7 +112,8 @@ Open: `encore-go`, `temporal-go`, or `svelte`.
 
 ## App-structure
 
-Open: `encore-go-app-structure` or `sveltekit-app-structure`. Coding
+Open: `encore-go-app-structure` or `sveltekit-app-structure` (also
+`django-app-structure`, `nestjs-app-structure`). Coding
 idioms stay in the sibling coding skill. This file is layout and
 package / route boundaries.
 
@@ -115,8 +122,9 @@ package / route boundaries.
 - **Hard rules**. **Choose a layout** (situation → tree). Small vs large
   official trees. **Growth** stages. **After layout changes**.
 - **Do not**: restyle a working flat app into the large tree as a
-  drive-by. Apply `go-idioms` `cmd/` to Encore HTTP, or
-  `typescript-idioms` `src/<noun>/` to `src/routes`.
+  drive-by. Apply `go-idioms` `cmd/` to Encore HTTP,
+  `typescript-idioms` `src/<noun>/` to `src/routes` or Nest `src/`,
+  or `python-idioms` `src/<name>/` to Django `startproject`.
 
 If `go.temporal.io/sdk` is already in an Encore app, **stop** and follow
 `encore-temporal-go-app-structure`. Do not duplicate that seam here.

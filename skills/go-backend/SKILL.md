@@ -2,11 +2,12 @@
 name: go-backend
 description: >-
   Writes, restyles, and reviews Go service internals (thin handlers,
-  consumer-side persistence, config and clients constructed at the edge,
-  visible shutdown). Use when generating or reviewing Go backends, HTTP or
-  API handlers, repositories, graceful shutdown, or growing a flat package.
-  Overlay on go-idioms. Encore: encore-go owns process layout; this skill
-  still owns the inside of a service. Rich domain: go-ddd.
+  consumer-side persistence, sqlc default, honor GORM, config and
+  clients constructed at the edge, visible shutdown). Use when generating
+  or reviewing Go backends, HTTP or API handlers, repositories, sqlc,
+  GORM, graceful shutdown, or growing a flat package. Overlay on
+  go-idioms. Encore: encore-go owns process layout; this skill still
+  owns the inside of a service. Rich domain: go-ddd.
 ---
 
 # Go backend 2026
@@ -71,7 +72,16 @@ rules in the handler. No `log.Fatal`. Recipes: [internals.md](internals.md).
 ## Persistence
 
 Schema types: `data-modeling`. Keys: `identity`. Expand/contract:
-`evolve-safely`.
+`evolve-safely`. Tenant in the query: `authz-boundaries`. Recipes:
+[internals.md](internals.md).
+
+| Job | Default | Honor instead when |
+| --- | --- | --- |
+| Non-Encore Postgres | sqlc + `pgxpool` | handful of queries → raw pgx |
+| `encore.app` | Encore `sqldb` | never sqlc beside it |
+| GORM | **no** | `gorm.io/gorm` already in `go.mod` |
+| Ent / Bun / sqlx | **no** | already there |
+| AutoMigrate / schema push | **no** on a live DB | empty greenfield (`evolve-safely`) |
 
 The package that **calls** storage declares the interface with the methods
 it needs. The SQL type is concrete and lives beside it (or in a sub-package
@@ -84,12 +94,17 @@ when the driver types would otherwise leak). Name it `Store`, not
 - One pool for the process: `pgxpool` (Postgres), `*sql.DB`, or Encore
   `*sqldb.Database`. Open once. `PingContext` before serving. Not per
   request. Do not add `lib/pq` (`jackc/pgx` replaced it).
-- sqlc: 2026 default for a non-Encore Postgres service with more than a
-  handful of queries. Map generated rows to package types in the store.
-  Do not return `db.GetItemRow` from an API. Do not inject `*db.Queries`
-  into domain functions. Do not add sqlc beside Encore `sqldb`.
+- sqlc: map generated rows to package types in the store. Do not return
+  `db.GetItemRow` from an API. Do not inject `*db.Queries` into domain
+  functions. `sqlc generate` after a query change (`sqlc.yaml` already
+  there).
 - CRUD with no rules may call sqlc / `QueryRowContext` from the API.
   Add the consumer interface when a test seam or a rule appears.
+- GORM (honor only): `WithContext`; `Where` id **and** tenant, not
+  `First(id)`. `Updates` / `Delete` skip hooks that `Create` / `Save`
+  run — inventory both. `clause.Locking` is a lock. A version column is
+  stale-write detection. Name which. Do not restyle a working GORM
+  store to sqlc as a drive-by.
 
 Encore: `sqldb.NewDatabase` as a package-level var is the platform
 constructor. Do not also `sql.Open` into a global. Prefer fields on the
@@ -150,7 +165,7 @@ Go backend:
 - [ ] Handler / API is decode → one call → map errors
 - [ ] Interface at the consumer, 2–3 methods; fake in _test.go
 - [ ] ErrNotFound (etc.) sentinels; no nil, nil; no err.Error() map
-- [ ] sqlc/pgx rows mapped at the store; no lib/pq; PingContext before serve
+- [ ] sqlc/pgx rows mapped at the store; GORM honored if already there; no lib/pq; PingContext before serve
 - [ ] Clients constructed at the edge (main / initService), passed down
 - [ ] No domain/ usecase/ adapter/ trees; no util package
 - [ ] SIGINT+SIGTERM; full http.Server timeouts; Shutdown then close pool
@@ -168,7 +183,9 @@ Go backend:
 - Package-level `var db *sql.DB` you `Open` yourself; `lib/pq`; no `PingContext`
 - Returning sqlc `db.GetXRow` / injecting `*db.Queries` into domain code
 - `PingContext` on `/livez` (that is `/readyz`; a slow DB restarts the pod)
-- Adding Chi/Gin/Echo, GORM, or OTel on a greenfield stdlib/Encore service
+- Adding Chi/Gin/Echo, GORM, Ent, or OTel on a greenfield stdlib/Encore service
+- Restyling working GORM to sqlc (or sqlc to GORM) as a drive-by
+- `db.First(&row, id)` on a tenant-owned table; GORM `Updates` assumed to run `Save` hooks
 - `log.Fatal` / `slog` in Encore APIs
 - Copying `ardanlabs/service` `foundation/` or Wild Workouts hexagonal trees
 

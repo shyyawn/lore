@@ -70,7 +70,7 @@ requirements + design notes.
 | Design | apply catalogs 1–7 inside containers | `source-of-truth`, `data-modeling`, `identity`, `api-contracts`, `evolve-safely`, `authz-boundaries`, `choose-collections` |
 | ADR file body | MADR in `docs/decisions/` | `create-readme-and-other-markdown-documentation` |
 | Earn the ADR | architecturally significant only | this skill |
-| Code layout after design | language / platform app-structure | `go-idioms`, `encore-go-app-structure`, `sveltekit-app-structure`, … |
+| Code layout after design | language / platform app-structure | `go-idioms`, `encore-go-app-structure`, `sveltekit-app-structure`, `django-app-structure`, `nestjs-app-structure`, … |
 
 ## What this skill owns
 

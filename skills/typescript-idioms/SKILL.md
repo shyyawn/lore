@@ -105,7 +105,7 @@ Platform-first: do not add a dependency the runtime, Web APIs, or TypeScript
 | Need | Use | Do not add |
 | --- | --- | --- |
 | HTTP client | `fetch` + `AbortSignal` | `axios`, `node-fetch`, `got` |
-| HTTP server (new, small) | `node:http` or Hono | a second Express/Fastify/Nest beside an existing one |
+| HTTP server (new, small) | `node:http` or Hono | a second Express/Fastify/Nest beside an existing one. Nest already there: `nestjs` |
 | Validation at a boundary | Zod 4 (or the repo's Standard Schema lib) | a second schema lib; `as` on `req.body` |
 | Dates | `Temporal` (6.0+) | new `moment` / `dayjs` |
 | IDs | `crypto.randomUUID()` | `uuid` |
@@ -156,6 +156,7 @@ house in those skills; setup from the pin.
 - `any`, `as any`, `as unknown as T`, `@ts-ignore` / `@ts-expect-error` without
   a one-line reason
 - `enum`, `namespace`, `experimentalDecorators`, parameter properties
+  (Nest decorators stay — `nestjs`)
 - `import x from "./foo"` when `x` is type-only (`verbatimModuleSyntax`)
 - `import … assert { type: "json" }`
 - `axios`, `moment`, `lodash`, `uuid`, `node-fetch` in new code
@@ -172,3 +173,4 @@ house in those skills; setup from the pin.
 - Add generics, branded types, or Effect only to look modern.
 - Bump `typescript` or flip `strict` off to make an edit compile.
 - Replace Express/Fastify/Nest/Zod/Jest as a drive-by restyle.
+- Recopy `nestjs` catalogs here.
