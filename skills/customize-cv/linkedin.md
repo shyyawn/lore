@@ -3,17 +3,17 @@
 Discovery. Not a CV paste. Not LinkedIn Services
 ([freelance.md](freelance.md)). Default is **no**.
 
-Sources: LinkedIn headline / About practice 2026. Job CV:
-[ats.md](ats.md). Listing: [freelance.md](freelance.md). Tone:
-[tone.md](tone.md).
+Sources: LinkedIn headline / About practice 2026 (headline 220,
+About 2,600). Job CV: [ats.md](ats.md). Listing:
+[freelance.md](freelance.md). Tone: [tone.md](tone.md).
 
 ## Defaults
 
 | Job | Default | Honor instead when |
 | --- | --- | --- |
 | Write LinkedIn | **no** | user asked for headline, About, Featured, or Open to Work |
-| Headline | Job title first, then 2–4 keywords | Freelance service headline ([freelance.md](freelance.md)) |
-| About | First person, humble, formal. First three lines do the work | Resume Summary dumped in; Need a …? |
+| Headline | Job title first, then 2–4 keywords. Cap 220. First ~60–70 show in search | Freelance service headline ([freelance.md](freelance.md)) |
+| About | First person. Cap 2,600. First three lines / ~200–300 before See more | Resume Summary dumped in; Need a …? |
 | Photo | **yes** (on LinkedIn) | ATS file — still no ([ats.md](ats.md)) |
 | Featured | Talk, ADR, live product URL from SOURCE | Skills wall; invented posts |
 | Dates / titles | **same** as the CV | Search-optimized fake titles |
@@ -23,9 +23,9 @@ Sources: LinkedIn headline / About practice 2026. Job CV:
 
 | Block | Put | Not |
 | --- | --- | --- |
-| Headline | Role family recruiters search (Staff Engineer, EM) plus stack or domain | “Web apps · cheap VPS”; “Passionate leader” |
-| About | Lane, one proof, intent. Humble ([tone.md](tone.md)). Fold is line 3 | Keyword dump; I-will gig copy; high and mighty |
-| Experience | Same employers, titles, dates as the CV. Slightly more narrative | Conflicting dates; relabeled HR titles |
+| Headline | Role family (Staff Engineer, EM) plus stack or domain | Gig line; "Passionate leader" |
+| About | Lane, one proof, intent. Fold is line 3 ([tone.md](tone.md)) | Keyword dump; I-will gig copy |
+| Experience | Same employers, titles, dates as the CV | Conflicting dates; relabeled HR titles |
 | Featured | One or two URLs the source has | Empty; a Canva CV |
 | Skills | Terms the CV already proves | Forty endorsements of unused tools |
 
@@ -41,16 +41,16 @@ LinkedIn (job search):
 - [ ] About first three lines: lane + one proof ([tone.md](tone.md))
 - [ ] Experience titles and dates match the CV
 - [ ] Featured only from SOURCE URLs
-- [ ] Humble, formal, polite ([tone.md](tone.md))
+- [ ] Tone ticks ([tone.md](tone.md))
 - [ ] No invented Open to Work public badge
 ```
 
 1. Match **dates** and HR titles to the CV first. Then write headline
    and About.
 2. Headline starts with the role they want found for. Not the
-   freelance service line.
-3. About last. First person. Humble, formal, polite
-   ([tone.md](tone.md)). No "passionate". No "Need a …?".
+   freelance service line. Front-load the first 60–70 characters.
+3. About last. First person. [tone.md](tone.md). No "passionate".
+   No "Need a …?". Fold is the first three lines.
 4. Tell them photo and Open to Work live on LinkedIn, not in the
    Markdown CV.
 
@@ -67,3 +67,12 @@ it.
 | Photo in the ATS PDF | Applied LinkedIn hygiene to [ats.md](ats.md) |
 | Public Open to Work, still employed | Default was recruiter-only |
 | Reads high and mighty | Did not follow [tone.md](tone.md) |
+| Headline truncated into nonsense | Buried the role after a slogan |
+
+## LLM traps — never generate these
+
+- A freelance service headline on a job LinkedIn
+- LinkedIn rewrite unasked
+- Search-optimized fake titles or dates
+- Public Open to Work badge unasked
+- Photo baked into the ATS PDF

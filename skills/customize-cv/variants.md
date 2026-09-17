@@ -66,16 +66,21 @@ one bullet, not the page. Head / VP / SVP is this variant with
 | --- | --- | --- |
 | People | Retention / regrettable attrition, promotions, team size over time | "Fostered culture" |
 | Hiring | Hires by level, time-to-fill, 12–18 month stay | "Ran interviews" |
-| Delivery | DORA (deploy frequency, lead time, change-fail, failed-deployment recovery time) or % committed scope | Personal velocity |
+| Delivery | DORA five, or % committed scope | Personal velocity |
 | Craft | Rubric, calibration, on-call rota, performance cases | Servant-leader slogan |
 
 Scope line: N engineers, N squads, product surface.
 
 Lead with team outcomes. "Grew 6 → 14; 92% retention; 4 promoted to
 Senior" then how. VP: open with org coordinates (N engineers, who
-you reported to) then the before→after. DORA only with numbers the
-source has. Do not invent a DORA dashboard. Do not lead a VP page
-with architecture internals.
+you reported to) then the before→after.
+
+DORA (`dora.dev`, 2026): deploy frequency, change lead time, change
+fail rate, failed-deployment recovery time, deployment rework
+rate. Only numbers SOURCE has. Do not invent a dashboard. SOURCE
+may say MTTR. Print failed-deployment recovery time only when the
+number is deployment recovery. Do not lead a VP page with
+architecture internals.
 
 A required AI-tooling or DEI line: only when the source has it.
 With a JD, only if the JD asks too. Not a 2026 fashion stamp.
@@ -118,7 +123,8 @@ does not claim full-time intent unless SOURCE Lanes say so.
 ## Bullets
 
 XYZ. Outcome, measure, method. Lead with the number when it is the
-hook. Verbs match SOURCE. Do not rewrite Led to helped.
+hook. Verbs match SOURCE. Do not rewrite Led to helped. Do not
+upgrade Led to Spearheaded ([tone.md](tone.md)).
 
 | Variant | X (outcome) | Y (measure) | Z (method) |
 | --- | --- | --- | --- |
@@ -132,3 +138,24 @@ nowhere — they do not steal a current-role bullet from a must-have.
 Base: same density; ship the variant's strongest evidence.
 
 Tense: present only for the current role. Past everywhere else.
+
+## When it breaks
+
+| Symptom | Usually means |
+| --- | --- |
+| Staff routed as Senior | Bullets are team-bound shipping |
+| EM routed as IC | "I shipped" not team / hiring / retention |
+| Architect routed as Senior | Stack list, no named trade-off or ADR |
+| VP routed as Staff | Architecture internals; no org coordinates |
+| Staff page opens with SVP org story | Did not pick the JD lane. Experience title is fine. Summary is not |
+| Freelance flagged as hopper | Per-client rows under 6 months (ATS contract CV) |
+
+## LLM traps — never generate these
+
+- Staff bullets that are louder Senior ("wrote APIs")
+- EM bullets that are IC ("I built the service")
+- VP org-shape on a Staff page, or Staff leverage as the lead on a VP page
+- Relabeling VP/SVP as Staff in Experience
+- Freelance as twelve two-month employers
+- Independent Consultant chapter with no SOURCE clients
+- A fourth variant (Director, Founder, "hybrid IC+EM") unasked

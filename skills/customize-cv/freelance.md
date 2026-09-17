@@ -3,8 +3,9 @@
 A **listing**. Default is pass-along. Not a job CV. Do not paste
 Experience-first ATS into Upwork or a friend PDF.
 
-Sources: Damongo Upwork profile guide 2026, Fiverr profile/gig
-guides, LinkedIn Services setup. Not a scrape of seller accounts.
+Sources: Upwork freelancer profile tips (title 70, overview fold
+250); Damongo Upwork 2026; Fiverr profile/gig guides (About 600);
+LinkedIn Services. Not a scrape of seller accounts.
 Job CV and ATS contract: [variants.md](variants.md),
 [ats.md](ats.md). Tone: [tone.md](tone.md).
 
@@ -13,7 +14,7 @@ Job CV and ATS contract: [variants.md](variants.md),
 | Job | Default | Honor instead when |
 | --- | --- | --- |
 | Surface | pass-along | user named Upwork / Fiverr / Toptal |
-| Headline | 2–3 services, middots, under ~70 characters | — |
+| Headline | 2–3 services, middots, ≤70 characters | — |
 | Offer | inside headline + Summary | Marketplace: named gigs |
 | Projects | 3–6 shipped products, **before** Experience | SOURCE has real freelance gigs — say so |
 | Experience | short spine; titles collapsed per employer | ATS contract ([variants.md](variants.md)) |
@@ -27,37 +28,38 @@ Do not invent clients, reviews, or an Independent Consultant row.
 
 | Ask | Surface | Not |
 | --- | --- | --- |
-| Freelance profile, pass-along, friend PDF, LinkedIn Services | Pass-along | ATS headings, job title as headline |
-| Upwork, Fiverr, Toptal, marketplace | Marketplace | Pass-along dumped into a gig |
-| Contractor JD / ATS contract role | ATS CV ([variants.md](variants.md)) | Offer-first marketplace page |
+| Pass-along, friend PDF, LinkedIn Services | Pass-along | ATS headings; job title as headline |
+| Upwork, Fiverr, Toptal | Marketplace | Pass-along dumped into a gig |
+| Contractor JD / ATS contract | ATS CV ([variants.md](variants.md)) | Offer-first marketplace page |
 | Job LinkedIn (headline, About, Open to Work) | [linkedin.md](linkedin.md) | Service headline; ATS no-photo |
 
 ## Blocks
 
 | Block | Put | Not |
 | --- | --- | --- |
-| Title / headline | Searchable service, skill first, under ~70 characters | Job title (Staff, SVP, Engineer) |
-| Overview / Summary | Available for the offer; proof; polite ask ([tone.md](tone.md)). First two sentences do the work | "Need a …? I build"; keyword dump |
-| Offer / gigs | Pass-along: headline + Summary. Marketplace: named packages, deliverables, first milestone. LinkedIn Services: 2–3 categories | A career; every language you can touch |
-| Projects (3–6) | One product per row. Problem → built → result. URLs or MAU. Employment apps count | Skills wall; SVP duties as the case |
-| Skills tags | Specific tools (WordPress, Next.js, Expo, Laravel, VPS) | "web development" |
-| Reviews / history | Platform jobs, ratings, quotes — only if SOURCE has them | Invented stars or clients |
-| Rate, location, response | Hourly or package, timezone, replies in X hours, languages | Buried after a bio wall |
-| Photo / video | Marketplace: clear face; optional 30–60s how you work | ATS no-photo applied to the marketplace |
+| Title / headline | Service, skill first, ≤70 characters | Job title (Staff, SVP, Engineer) |
+| Overview / Summary | Available + proof + ask. First two sentences | "Need a …?"; keyword dump |
+| Offer / gigs | Headline + Summary. Marketplace: packages | A career; every language |
+| Projects (3–6) | Product row: problem → built → result | Skills wall; SVP duties |
+| Skills tags | Specific tools (WordPress, Next.js, Expo) | "web development" |
+| Reviews / history | SOURCE jobs, ratings, quotes | Invented stars or clients |
+| Rate, location, response | SOURCE or omit | Buried after a bio wall |
+| Photo / video | Marketplace: face; optional 30–60s | ATS no-photo on the marketplace |
 
-Employment products count when framed as **shipped** apps (site,
-mobile, API + VPS). Not infra estates or ringgit unless the buyer
-is ops or finance.
+Employment products count as **shipped** apps (site, mobile, API +
+VPS). Not infra estates or ringgit unless the buyer is ops or
+finance.
 
-Fiverr About is ~600 characters. Upwork wants longer text with
-real numbers from SOURCE.
+Limits (2026): Upwork title 70. Overview first 250 visible, longer
+body with SOURCE numbers. Fiverr About 600. Fiverr gig title stays
+`I will …` (platform formula).
 
 ## Platforms differ
 
 | Surface | Lead with | Trust |
 | --- | --- | --- |
-| Pass-along | Headline = the offer. Summary = available + proof + polite ask. Projects, then a short employment spine | Company products as proof of scale. No fake consulting chapter |
-| Marketplace | One niche title, keyworded overview, skill tags, portfolio texts, Fiverr "I will …" gigs with packages | Reviews only from SOURCE. Do not invent |
+| Pass-along | Offer headline. Projects, then a short spine | Company products. No fake consultancy |
+| Marketplace | Niche title, tags, portfolio. Fiverr `I will …` | SOURCE reviews only |
 
 ## Skip on a first page
 
@@ -84,16 +86,15 @@ portfolio
 
 ## Summary
 
-I am available for freelance work on <offer>, and for running them
-at modest cost (<how they run>).
-My experience is <N> years in company product teams. I am most at
-home with <niche>, and I also work with <adjacent>. City; on-site
-there is welcome.
-Please write to <email> if I may be of help.
+I take freelance work on <offer>, including running them at modest
+cost (<how they run>).
+<N> years in company product teams. Most at home with <niche>; also
+<adjacent>. City. On-site there is welcome.
+Write to <email>.
 
 ## Projects
 
-Product — MM/YYYY–Present or MAU
+Product, MM/YYYY–Present or MAU
 Result. What was built. Stack.
 
 ## Skills
@@ -124,7 +125,7 @@ Marketplace (`<folder>/out/base-freelance-<surface>.md`):
 # <service title, skill first, ~70 characters>
 
 ## About
-Available for the offer. One proof line. Please / if I may
+Available for the offer. One proof line. Write to email
 ([tone.md](tone.md)). Fiverr gig title may stay `I will …`.
 
 ## Services
@@ -156,7 +157,7 @@ Freelance profile:
 - [ ] Skill tags are specific tools
 - [ ] Experience collapsed, product bullets, not the lead
 - [ ] No invented reviews, clients, or Independent Consultant row
-- [ ] Humble, formal, polite ([tone.md](tone.md))
+- [ ] Tone ticks ([tone.md](tone.md))
 - [ ] Rate / timezone / response only from SOURCE (or omitted)
 - [ ] Draft written to <folder>/out/<slug>.md
 ```
@@ -187,3 +188,11 @@ User named a path → honor it.
 | Friend PDF looks like ATS | Applied [ats.md](ats.md) Experience-first |
 | Ringgit and cloud % in Summary | Internal ops metrics on a product listing |
 | One Experience row per promotion | Did not collapse titles |
+
+## LLM traps — never generate these
+
+- Job title (Staff, SVP, Engineer) as an Upwork / pass-along headline
+- A job CV written as a freelance profile
+- Invented reviews, clients, or Independent Consultant row
+- Projects skipped for a skills wall
+- ATS no-photo applied to a marketplace page
