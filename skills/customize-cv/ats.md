@@ -3,8 +3,8 @@
 Parse first, then a human in seconds. Job CVs only. A base CV still
 follows this format. Do not treat keywords as a game.
 
-Freelance profile: [freelance.md](freelance.md). Job LinkedIn:
-[linkedin.md](linkedin.md). Do not apply this file to an Upwork
+Freelance listing: `customize-cv-freelance`. Job LinkedIn:
+`customize-cv-linkedin`. Do not apply this file to an Upwork
 page, a pass-along listing, or a LinkedIn About.
 
 Sources: Jobscan ATS anatomy 2026. Not a scanner product. Not their
@@ -32,7 +32,7 @@ parse. A second page is still earned in SKILL.md. `## Experience`
 is the house heading. Do not invent "My Journey".
 
 Experience is the spine. Do not add a Projects-first block — that
-is [freelance.md](freelance.md). Staff+ fold shipped products into
+is `customize-cv-freelance`. Staff+ fold shipped products into
 Experience bullets. Certifications only if SOURCE has them.
 
 Working file is Markdown. Export is `.docx` or a text PDF when

@@ -9,7 +9,7 @@ pipeline.
 | Kind | Canon | Sibling files |
 | --- | --- | --- |
 | Authoring | this skill | `voice.md`, `kinds.md`, `family.md` |
-| Workflow / playbook | `create-readme-and-other-markdown-documentation` (also `e2e-tests`, staff playbooks, `requirement-to-architecture-to-design`) | create-readme: `files.md`, `readme.md`, `english.md`, `stacks.md`; staff: `types.md`, `collections.md`, `algorithms.md`, `stages.md` |
+| Workflow / playbook | `create-readme-and-other-markdown-documentation` (also `e2e-tests`, staff playbooks, `requirement-to-architecture-to-design`, `customize-cv`) | create-readme: `files.md`, `readme.md`, `english.md`, `stacks.md`; staff: `types.md`, `collections.md`, `algorithms.md`, `stages.md`; customize-cv: `ats.md`, `tone.md`, `variants.md`, `cover.md`, `career.md` |
 | Language idiom | `go-idioms`, `typescript-idioms`, `python-idioms`, `css-idioms` | `versions.md`, `modernizers.md`, `architecture.md` |
 | Platform coding | `encore-go`, `temporal-go`, `svelte`, `django`, `fastapi`, `nestjs` | Encore/Temporal catalogs; `svelte`: none (plugin owns runes); django/fastapi/nestjs: none |
 | App-structure | `encore-go-app-structure`, `temporal-go-app-structure`, `sveltekit-app-structure`, `django-app-structure`, `nestjs-app-structure` | usually none — trees live in SKILL.md |
@@ -18,13 +18,14 @@ pipeline.
 | Language overlay on hub | `git-repo-setup-go` / `-typescript` / `-python` | overlay `debug.md` (the JSON) |
 | Domain overlay | `go-backend`, `go-ddd`, `go-unit-tests`, `typescript-unit-tests`, `go-100-mistakes-avoid`, `go-mono-repo`, `typescript-mono-repo` | `internals.md`, `lite.md`, `methods.md`, `domains.md`, `catalog.md`, `layouts.md` |
 | Vendor overlay | `conventional-commits` | `tooling.md` |
+| Workflow overlay | `customize-cv-freelance`, `customize-cv-linkedin` | none — Follow parent; fills the artifact |
 
 Look is always [voice.md](voice.md). Authoring is this skill — do not
 write a second one. Language idiom and below are the **current** stack,
 not a requirement that every new skill hang under Go. Svelte hangs
 under `typescript-idioms` + the plugin, not under `go-idioms`. Django
 and FastAPI hang under `python-idioms`. Nest hangs under
-`typescript-idioms`.
+`typescript-idioms`. Career copy hangs under `customize-cv`.
 
 ## Three lists
 
@@ -213,6 +214,19 @@ Open: `conventional-commits`.
 - This file only adds what that skill does not (HEREDOC, scopes, Go
   `/v2`, no Node toolchain on Go/Python).
 - Do not rewrite the official type table here.
+
+## Workflow overlay
+
+Open: `customize-cv-freelance`.
+
+```
+Follow `customize-cv` for SOURCE, XYZ, tone, and `out/` paths. This
+file fills the **listing**.
+```
+
+- Overlay lead. Child names the override. Parent points back.
+- First step stop-and-follow: job CV and SOURCE-only stay the parent.
+- Do not recopy ATS / XYZ catalogs. Do not copy hub-kit headings.
 
 ## Sibling filenames
 

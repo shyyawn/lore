@@ -45,8 +45,9 @@ a planned phase of a new skill.
 
 The overlay table below is this repo's **current** stack. A skill that
 is not Go, TypeScript, Python, CSS, Encore, Temporal, Svelte, Django,
-FastAPI, or NestJS does **not** hang under `go-idioms`. It is a hub, a
-lone playbook, or the start of a new family.
+FastAPI, NestJS, or career copy does **not** hang under `go-idioms`.
+It is a hub, a lone playbook, or the start of a new family. Career
+copy hangs under `customize-cv`.
 
 | Situation | Do |
 | --- | --- |
@@ -63,8 +64,8 @@ It is not an overlay on `encore-go`. A later
 ## Overlay family (current stack)
 
 Do not invent a parallel `go-idioms`, a second `encore-go`, a second
-`svelte`, or a second `django` / `fastapi` / `nestjs`. Find the cell.
-Add a child. Point both ways.
+`svelte`, a second `django` / `fastapi` / `nestjs`, or a second
+`customize-cv`. Find the cell. Add a child. Point both ways.
 
 | Skill | Kind | Parent | Overrides / fills |
 | --- | --- | --- | --- |
@@ -84,7 +85,9 @@ Add a child. Point both ways.
 | `choose-collections` | workflow / playbook | — | In-memory chooser. Invent default no. |
 | `requirement-to-architecture-to-design` | workflow / playbook | — | Requirements then architecture then design. |
 | `review-change` | workflow / playbook | — | Tick catalogs 1–7 plus the language pin. |
-| `customize-cv` | workflow / playbook | — | Career source → IC / Manager job CV, freelance profile, job LinkedIn, or a short cover letter when earned. JD optional. Not a dump. |
+| `customize-cv` | workflow / playbook | — | Job CV from SOURCE. Writer is SOURCE. Cover when earned. Not a dump. |
+| `customize-cv-freelance` | workflow overlay | `customize-cv` | Listing / marketplace. Not ATS Experience-first |
+| `customize-cv-linkedin` | workflow overlay | `customize-cv` | Job LinkedIn. Default is no |
 | `go-idioms` | language | — | Go 1.18–1.27 + 2024–2026 flatten layout |
 | `typescript-idioms` | language | — | TypeScript 5–7 + 2024–2026 flatten layout |
 | `python-idioms` | language | — | Python 3.10–3.14 + 2024–2026 flatten layout |
@@ -147,8 +150,8 @@ Stop-and-follow (already in the tree → that skill, not a new one):
 | design a system, no code yet | `requirement-to-architecture-to-design` |
 | review this / code review | `review-change` |
 | CV / resume / tailor to JD / ATS / base CV | `customize-cv` |
-| Upwork / Fiverr / Toptal / LinkedIn Services / freelance profile | `customize-cv` ([freelance.md](../customize-cv/freelance.md)) |
-| LinkedIn headline / About / Open to Work (job search) | `customize-cv` ([linkedin.md](../customize-cv/linkedin.md)) |
+| Upwork / Fiverr / Toptal / LinkedIn Services / freelance profile | `customize-cv-freelance` |
+| LinkedIn headline / About / Open to Work (job search) | `customize-cv-linkedin` |
 | cover letter / covering letter | `customize-cv` ([cover.md](../customize-cv/cover.md)) |
 | SOURCE.md / career dump / LinkedIn export notes | `customize-cv` ([career.md](../customize-cv/career.md)) |
 | `*.css` / `<style>` / component CSS | `css-idioms`. Tailwind already there: honor. NativeWind setup: `expo-tailwind-setup` |
@@ -164,7 +167,7 @@ Directory = YAML `name`. Lowercase hyphens. Max 64 chars.
 | Durable noun | `go-idioms`, `python-idioms`, `encore-go`, `temporal-go`, `svelte`, `django`, `fastapi`, `nestjs` | `go-2026`, `svelte-typescript` |
 | Pipeline | `requirement-to-architecture-to-design` | `rta`, `design-2026`, `helper` |
 | Hub | `git-repo-setup` | `git-kit`, `repo-helpers` |
-| Hub + facet | `git-repo-setup-go` | `go-git-hooks` (hides the hub) |
+| Hub + facet | `git-repo-setup-go`, `customize-cv-freelance` | `go-git-hooks` (hides the hub) |
 | Domain overlay | `go-unit-tests`, `typescript-unit-tests`, `go-backend`, `go-ddd`, `typescript-mono-repo` | Fusing into the parent |
 | Avoid catalog | `go-100-mistakes-avoid` | `go-mistakes` (vague) |
 | App-structure | `encore-go-app-structure`, `sveltekit-app-structure`, `django-app-structure`, `nestjs-app-structure` | `encore-go-layout`, `svelte-ui-kit-typescript` |

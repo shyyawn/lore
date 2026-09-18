@@ -6,7 +6,8 @@ Do not commit this tree into the lore repo.
 
 Prefer `career/` in the current workspace. Else `cv/` / `resume/` /
 `CV.md`. Else a paste is enough to build this file. Job CV:
-SKILL.md. Tone on derived files: [tone.md](tone.md).
+`customize-cv`. Listing: `customize-cv-freelance`. Job LinkedIn:
+`customize-cv-linkedin`. Tone on derived files: [tone.md](tone.md).
 
 ## First step
 

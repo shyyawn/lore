@@ -41,6 +41,7 @@ Kit bootstrap section: `git-repo-setup`. Lore `SKILL.md`:
    | Only the Develop/bootstrap stub is missing | `git-repo-setup` [files.md](../git-repo-setup/files.md) |
    | Commit / squash-PR title wording | `conventional-commits` |
    | `svelte.config.*` app facts | `svelte` / `sveltekit-app-structure` (this skill still writes the README) |
+   | `CV.md` / `resume` / `SOURCE.md` / cover letter | `customize-cv` (listing: `customize-cv-freelance`; job LinkedIn: `customize-cv-linkedin`) |
 3. Pick the repo kind and stack ([readme.md](readme.md),
    [stacks.md](stacks.md)). Write the matching shape. Do not paste a
    library README onto a private app.
@@ -71,6 +72,7 @@ Kit bootstrap section: `git-repo-setup`. Lore `SKILL.md`:
 | `LICENSE` | `git-repo-setup` (ask; do not invent) |
 | Lore `SKILL.md` | `new-change-lore-skills` |
 | Commit / squash title | `conventional-commits` |
+| Job CV / `SOURCE.md` / listing / job LinkedIn | `customize-cv` and its overlays |
 
 ## Earn a docs site
 

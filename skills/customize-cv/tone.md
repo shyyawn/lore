@@ -66,7 +66,7 @@ Tone:
 | Reads like ChatGPT | Verb cluster, identical cadence, no SOURCE noun |
 | Metrics vanished | Confused modest with empty |
 | Fiverr About is a command | Applied gig-title formula to About |
-| Job CV sounds like a listing | [freelance.md](freelance.md) diction on an ATS page |
+| Job CV sounds like a listing | `customize-cv-freelance` diction on an ATS page |
 | Letter sounds like a butler | "If I may be of help" on a job page |
 
 ## LLM traps — never generate these

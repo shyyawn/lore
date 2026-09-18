@@ -1,13 +1,42 @@
-# Freelance profile
+---
+name: customize-cv-freelance
+description: >-
+  Overlay on customize-cv: pass-along or marketplace freelance listing
+  from a career source. Use when writing an Upwork, Fiverr, Toptal,
+  LinkedIn Services, pass-along, friend PDF, or freelance profile;
+  when the user mentions gig, marketplace, contract listing, or
+  I will. Job CV and ATS contract stay customize-cv. Job LinkedIn:
+  customize-cv-linkedin.
+---
 
-A **listing**. Default is pass-along. Not a job CV. Do not paste
-Experience-first ATS into Upwork or a friend PDF.
+# Customize CV — freelance
+
+Follow `customize-cv` for SOURCE, XYZ, tone, and `out/` paths. This
+file fills the **listing**. Do not paste Experience-first ATS into
+Upwork or a friend PDF.
 
 Sources: Upwork freelancer profile tips (title 70, overview fold
 250); Damongo Upwork 2026; Fiverr profile/gig guides (About 600);
 LinkedIn Services. Not a scrape of seller accounts.
-Job CV and ATS contract: [variants.md](variants.md),
-[ats.md](ats.md). Tone: [tone.md](tone.md).
+
+Tone: [`../customize-cv/tone.md`](../customize-cv/tone.md). ATS
+contract: [`../customize-cv/variants.md`](../customize-cv/variants.md).
+Job LinkedIn: `customize-cv-linkedin`.
+
+## First step
+
+1. Follow `customize-cv` First step inventory (SOURCE, honor, no
+   invent).
+2. If a more specific owner already has this, **stop**.
+
+   | Detect | Follow |
+   | --- | --- |
+   | Contractor JD / ATS contract role | `customize-cv` + freelance variant |
+   | Headline / About / Open to Work (job search) | `customize-cv-linkedin` |
+   | Ask is `SOURCE.md` only | `customize-cv` [career.md](../customize-cv/career.md) |
+   | Job CV / tailor / ATS page | `customize-cv` |
+3. Default surface is **pass-along**. Marketplace only when the user
+   named Upwork / Fiverr / Toptal.
 
 ## Defaults
 
@@ -17,12 +46,20 @@ Job CV and ATS contract: [variants.md](variants.md),
 | Headline | 2–3 services, middots, ≤70 characters | — |
 | Offer | inside headline + Summary | Marketplace: named gigs |
 | Projects | 3–6 shipped products, **before** Experience | SOURCE has real freelance gigs — say so |
-| Experience | short spine; titles collapsed per employer | ATS contract ([variants.md](variants.md)) |
+| Experience | short spine; titles collapsed per employer | ATS contract (`customize-cv`) |
 | Skills groups | Backend, Web and mobile, Data, How apps run | SOURCE already groups otherwise |
 | Photo in Markdown | **no** | user asked; marketplace: tell them to upload |
 
 No client list in SOURCE → company products as the portfolio.
 Do not invent clients, reviews, or an Independent Consultant row.
+
+## What this skill owns
+
+| Own | Leave |
+| --- | --- |
+| Pass-along and marketplace listing copy | Job CV ATS shape (`customize-cv`) |
+| | Job LinkedIn (`customize-cv-linkedin`) |
+| | Inventing clients / reviews / Independent Consultant |
 
 ## Pick the surface
 
@@ -30,8 +67,8 @@ Do not invent clients, reviews, or an Independent Consultant row.
 | --- | --- | --- |
 | Pass-along, friend PDF, LinkedIn Services | Pass-along | ATS headings; job title as headline |
 | Upwork, Fiverr, Toptal | Marketplace | Pass-along dumped into a gig |
-| Contractor JD / ATS contract | ATS CV ([variants.md](variants.md)) | Offer-first marketplace page |
-| Job LinkedIn (headline, About, Open to Work) | [linkedin.md](linkedin.md) | Service headline; ATS no-photo |
+| Contractor JD / ATS contract | ATS CV (`customize-cv`) | Offer-first marketplace page |
+| Job LinkedIn (headline, About, Open to Work) | `customize-cv-linkedin` | Service headline; ATS no-photo |
 
 ## Blocks
 
@@ -73,8 +110,7 @@ body with SOURCE numbers. Fiverr About 600. Fiverr gig title stays
 
 Write copy to paste. Do not embed a photo unless asked.
 
-Pass-along (`<folder>/out/base-freelance-pass-along.md`). This is the
-shape a first freelance page uses:
+Pass-along (`<folder>/out/base-freelance-pass-along.md`):
 
 ```
 # Name
@@ -125,8 +161,8 @@ Marketplace (`<folder>/out/base-freelance-<surface>.md`):
 # <service title, skill first, ~70 characters>
 
 ## About
-Available for the offer. One proof line. Write to email
-([tone.md](tone.md)). Fiverr gig title may stay `I will …`.
+Available for the offer. One proof line. Write to email.
+Fiverr gig title may stay `I will …`.
 
 ## Services
 ### <package name>
@@ -152,12 +188,12 @@ Freelance profile:
 - [ ] Career source inventoried (or asked)
 - [ ] Surface picked (pass-along default; marketplace if named)
 - [ ] Headline is a service, not a job title
-- [ ] Summary is available + proof + polite ask ([tone.md](tone.md))
+- [ ] Summary is available + proof + polite ask
 - [ ] 3–6 Projects before Experience (employment apps allowed)
 - [ ] Skill tags are specific tools
 - [ ] Experience collapsed, product bullets, not the lead
 - [ ] No invented reviews, clients, or Independent Consultant row
-- [ ] Tone ticks ([tone.md](tone.md))
+- [ ] Tone ticks (customize-cv tone.md)
 - [ ] Rate / timezone / response only from SOURCE (or omitted)
 - [ ] Draft written to <folder>/out/<slug>.md
 ```
@@ -166,14 +202,19 @@ Freelance profile:
 2. Rank 3–6 products that prove those services. Company apps count.
 3. Collapse titles per employer. 2–3 product bullets. Drop the org
    chart.
-4. Write Summary last. Available, proof, polite ask
-   ([tone.md](tone.md)). No "passionate". No "Need a …?".
+4. Write Summary last. Available, proof, polite ask. No "Need a …?".
 5. Marketplace only: tell the user to add a face photo. Optional
    30–60s intro of how they work.
 
 Filenames: `base-freelance-pass-along.md`, `base-freelance-upwork.md`,
 `base-freelance-fiverr.md`, `base-freelance-linkedin.md`.
 User named a path → honor it.
+
+## After every edit
+
+- Every number, client, and review is in SOURCE.
+- Headline is a service, not a job title.
+- Tone ticks (`customize-cv` [tone.md](../customize-cv/tone.md)).
 
 ## When it breaks
 
@@ -185,7 +226,7 @@ User named a path → honor it.
 | Five stars, unnamed buyers | Invented reviews |
 | Skills wall, no product rows | Skipped Projects |
 | "Web development" as the only tag | Matching is tag search |
-| Friend PDF looks like ATS | Applied [ats.md](ats.md) Experience-first |
+| Friend PDF looks like ATS | Applied `customize-cv` Experience-first |
 | Ringgit and cloud % in Summary | Internal ops metrics on a product listing |
 | One Experience row per promotion | Did not collapse titles |
 
@@ -196,3 +237,9 @@ User named a path → honor it.
 - Invented reviews, clients, or Independent Consultant row
 - Projects skipped for a skills wall
 - ATS no-photo applied to a marketplace page
+
+## Do not
+
+- Restyle a working listing into an ATS job CV as a drive-by.
+- Recopy `customize-cv` ATS / XYZ catalogs here.
+- Invent clients because the user said "just make a freelance page".
